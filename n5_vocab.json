@@ -1,0 +1,4310 @@
+[
+  {
+    "id": 1,
+    "furigana": "ああ",
+    "english": "Ah!, Oh!",
+    "emoji": "🦅"
+  },
+  {
+    "id": 2,
+    "furigana": "あう",
+    "english": "to meet, to see",
+    "emoji": "🦵"
+  },
+  {
+    "id": 3,
+    "furigana": "あお",
+    "english": "blue",
+    "emoji": "🕉️"
+  },
+  {
+    "id": 4,
+    "furigana": "あおい",
+    "english": "blue",
+    "emoji": "🥳"
+  },
+  {
+    "id": 5,
+    "furigana": "あか",
+    "english": "red",
+    "emoji": "🛎️"
+  },
+  {
+    "id": 6,
+    "furigana": "あかい",
+    "english": "red",
+    "emoji": "🐘"
+  },
+  {
+    "id": 7,
+    "furigana": "あかるい",
+    "english": "bright (in reference to personality or weather); cheerful",
+    "emoji": "🍸"
+  },
+  {
+    "id": 8,
+    "furigana": "あき",
+    "english": "fall (season)",
+    "emoji": "🤐"
+  },
+  {
+    "id": 9,
+    "furigana": "あく",
+    "english": "to open, to become open",
+    "emoji": "🧁"
+  },
+  {
+    "id": 10,
+    "furigana": "あける",
+    "english": "to open (v.t.)",
+    "emoji": "🦨"
+  },
+  {
+    "id": 11,
+    "furigana": "あげる",
+    "english": "to raise, to lift",
+    "emoji": "🥯"
+  },
+  {
+    "id": 12,
+    "furigana": "あさ",
+    "english": "morning",
+    "emoji": "⚡"
+  },
+  {
+    "id": 13,
+    "furigana": "あさごはん",
+    "english": "breakfast",
+    "emoji": "⛩️"
+  },
+  {
+    "id": 14,
+    "furigana": "あさって",
+    "english": "day after tomorrow",
+    "emoji": "😌"
+  },
+  {
+    "id": 15,
+    "furigana": "あし",
+    "english": "foot; leg",
+    "emoji": "🧆"
+  },
+  {
+    "id": 16,
+    "furigana": "あした",
+    "english": "tomorrow",
+    "emoji": "👆"
+  },
+  {
+    "id": 17,
+    "furigana": "あそこ",
+    "english": "there, over there, that place",
+    "emoji": "🐺"
+  },
+  {
+    "id": 18,
+    "furigana": "あそぶ",
+    "english": "to play; to spend time pleasantly; to hang out",
+    "emoji": "😦"
+  },
+  {
+    "id": 19,
+    "furigana": "あたたかい",
+    "english": "warm",
+    "emoji": "🩰"
+  },
+  {
+    "id": 20,
+    "furigana": "あたま",
+    "english": "head",
+    "emoji": "🤠"
+  },
+  {
+    "id": 21,
+    "furigana": "あたらしい",
+    "english": "new",
+    "emoji": "🐤"
+  },
+  {
+    "id": 22,
+    "furigana": "あちら",
+    "english": "this way (polite)",
+    "emoji": "🍥"
+  },
+  {
+    "id": 23,
+    "furigana": "あつい",
+    "english": "hot (in reference to weather), warm",
+    "emoji": "🚦"
+  },
+  {
+    "id": 24,
+    "furigana": "あつい",
+    "english": "hot (objects)",
+    "emoji": "💟"
+  },
+  {
+    "id": 25,
+    "furigana": "あつい",
+    "english": "kind, warm(hearted), thick, deep",
+    "emoji": "🌱"
+  },
+  {
+    "id": 26,
+    "furigana": "あっち",
+    "english": "over there",
+    "emoji": "🤲"
+  },
+  {
+    "id": 27,
+    "furigana": "あと",
+    "english": "afterwards (later); in the future; the rest; since then",
+    "emoji": "👗"
+  },
+  {
+    "id": 28,
+    "furigana": "あなた",
+    "english": "you",
+    "emoji": "🐊"
+  },
+  {
+    "id": 29,
+    "furigana": "あに",
+    "english": "(my) older brother (humble)",
+    "emoji": "🩷"
+  },
+  {
+    "id": 30,
+    "furigana": "あね",
+    "english": "(my) older sister (humble)",
+    "emoji": "🫑"
+  },
+  {
+    "id": 31,
+    "furigana": "アパート",
+    "english": "apartment (abbr.)",
+    "emoji": "🦷"
+  },
+  {
+    "id": 32,
+    "furigana": "あの",
+    "english": "that over there; like that, that way; um...",
+    "emoji": "🌼"
+  },
+  {
+    "id": 33,
+    "furigana": "あびる",
+    "english": "to bathe, to shower",
+    "emoji": "🔯"
+  },
+  {
+    "id": 34,
+    "furigana": "あぶない",
+    "english": "dangerous, critical",
+    "emoji": "😣"
+  },
+  {
+    "id": 35,
+    "furigana": "あまい",
+    "english": "generous, sweet",
+    "emoji": "💞"
+  },
+  {
+    "id": 36,
+    "furigana": "あまり",
+    "english": "not very; surplus",
+    "emoji": "🪲"
+  },
+  {
+    "id": 37,
+    "furigana": "あめ",
+    "english": "rain",
+    "emoji": "👻"
+  },
+  {
+    "id": 38,
+    "furigana": "あめ",
+    "english": "(hard) candy",
+    "emoji": "🧤"
+  },
+  {
+    "id": 39,
+    "furigana": "あらう",
+    "english": "to wash",
+    "emoji": "🦦"
+  },
+  {
+    "id": 40,
+    "furigana": "ある",
+    "english": "to be, to have",
+    "emoji": "🏔️"
+  },
+  {
+    "id": 41,
+    "furigana": "ある",
+    "english": "to be, to have",
+    "emoji": "🏔️"
+  },
+  {
+    "id": 42,
+    "furigana": "あるく",
+    "english": "to walk",
+    "emoji": "🖥️"
+  },
+  {
+    "id": 43,
+    "furigana": "あれ",
+    "english": "that one (over there)",
+    "emoji": "🤛"
+  },
+  {
+    "id": 44,
+    "furigana": "いい; よい",
+    "english": "good",
+    "emoji": "🧉"
+  },
+  {
+    "id": 45,
+    "furigana": "いいえ",
+    "english": "no, not at all",
+    "emoji": "🏍️"
+  },
+  {
+    "id": 46,
+    "furigana": "いう",
+    "english": "to say",
+    "emoji": "🧤"
+  },
+  {
+    "id": 47,
+    "furigana": "いえ",
+    "english": "house, home",
+    "emoji": "⚓"
+  },
+  {
+    "id": 48,
+    "furigana": "いかが",
+    "english": "how, in what way",
+    "emoji": "🫁"
+  },
+  {
+    "id": 49,
+    "furigana": "いく; ゆく",
+    "english": "to go",
+    "emoji": "🐷"
+  },
+  {
+    "id": 50,
+    "furigana": "いくつ",
+    "english": "how many, how old",
+    "emoji": "🎂"
+  },
+  {
+    "id": 51,
+    "furigana": "いくら",
+    "english": "how much, how many",
+    "emoji": "🛋️"
+  },
+  {
+    "id": 52,
+    "furigana": "いけ",
+    "english": "pond",
+    "emoji": "🐍"
+  },
+  {
+    "id": 53,
+    "furigana": "いしゃ",
+    "english": "doctor; physician",
+    "emoji": "🦖"
+  },
+  {
+    "id": 54,
+    "furigana": "いす",
+    "english": "chair",
+    "emoji": "☦️"
+  },
+  {
+    "id": 55,
+    "furigana": "いそがしい",
+    "english": "busy (people, days)",
+    "emoji": "😢"
+  },
+  {
+    "id": 56,
+    "furigana": "いたい",
+    "english": "hurt; painful; sore",
+    "emoji": "⛷️"
+  },
+  {
+    "id": 57,
+    "furigana": "いち",
+    "english": "one",
+    "emoji": "😲"
+  },
+  {
+    "id": 58,
+    "furigana": "いちにち",
+    "english": "one day (duration)",
+    "emoji": "📻"
+  },
+  {
+    "id": 59,
+    "furigana": "いちばん",
+    "english": "best (most), first, number one",
+    "emoji": "🎾"
+  },
+  {
+    "id": 60,
+    "furigana": "いつ",
+    "english": "when",
+    "emoji": "😼"
+  },
+  {
+    "id": 61,
+    "furigana": "いつか",
+    "english": "five days; fifth day of the month",
+    "emoji": "✈️"
+  },
+  {
+    "id": 62,
+    "furigana": "いっしょ",
+    "english": "together",
+    "emoji": "😐"
+  },
+  {
+    "id": 63,
+    "furigana": "いつつ",
+    "english": "five things",
+    "emoji": "🐥"
+  },
+  {
+    "id": 64,
+    "furigana": "いつも",
+    "english": "always, usually, every time, never (with neg. verb)",
+    "emoji": "🦦"
+  },
+  {
+    "id": 65,
+    "furigana": "いぬ",
+    "english": "dog",
+    "emoji": "🤩"
+  },
+  {
+    "id": 66,
+    "furigana": "いま",
+    "english": "now",
+    "emoji": "🧂"
+  },
+  {
+    "id": 67,
+    "furigana": "いみ",
+    "english": "meaning, significance",
+    "emoji": "😻"
+  },
+  {
+    "id": 68,
+    "furigana": "いもうと",
+    "english": "younger sister (humble)",
+    "emoji": "🌭"
+  },
+  {
+    "id": 69,
+    "furigana": "いや",
+    "english": "disagreeable, detestable, unpleasant",
+    "emoji": "🤯"
+  },
+  {
+    "id": 70,
+    "furigana": "いりぐち",
+    "english": "entrance",
+    "emoji": "☕"
+  },
+  {
+    "id": 71,
+    "furigana": "いる",
+    "english": "(humble) to be (animate), to exist",
+    "emoji": "🤛"
+  },
+  {
+    "id": 72,
+    "furigana": "いる",
+    "english": "to need",
+    "emoji": "👚"
+  },
+  {
+    "id": 73,
+    "furigana": "いれる",
+    "english": "to put in",
+    "emoji": "🛎️"
+  },
+  {
+    "id": 74,
+    "furigana": "いろ",
+    "english": "color",
+    "emoji": "🪡"
+  },
+  {
+    "id": 75,
+    "furigana": "いろいろ",
+    "english": "various",
+    "emoji": "🐠"
+  },
+  {
+    "id": 76,
+    "furigana": "うえ",
+    "english": "above (up, top, etc.), over, on top of",
+    "emoji": "🤌"
+  },
+  {
+    "id": 77,
+    "furigana": "うしろ",
+    "english": "back, behind, rear",
+    "emoji": "🍍"
+  },
+  {
+    "id": 78,
+    "furigana": "うすい",
+    "english": "thin, weak",
+    "emoji": "🌿"
+  },
+  {
+    "id": 79,
+    "furigana": "うた",
+    "english": "a song",
+    "emoji": "💜"
+  },
+  {
+    "id": 80,
+    "furigana": "うたう",
+    "english": "to sing",
+    "emoji": "🤿"
+  },
+  {
+    "id": 81,
+    "furigana": "うち",
+    "english": "home; house; my place",
+    "emoji": "😕"
+  },
+  {
+    "id": 82,
+    "furigana": "うまれる",
+    "english": "to be born",
+    "emoji": "🙉"
+  },
+  {
+    "id": 83,
+    "furigana": "うみ",
+    "english": "sea, beach",
+    "emoji": "💕"
+  },
+  {
+    "id": 84,
+    "furigana": "うる",
+    "english": "to sell (v.t.)",
+    "emoji": "🤘"
+  },
+  {
+    "id": 85,
+    "furigana": "うるさい",
+    "english": "noisy; annoying",
+    "emoji": "👋"
+  },
+  {
+    "id": 86,
+    "furigana": "うわぎ",
+    "english": "coat, jacket",
+    "emoji": "🚂"
+  },
+  {
+    "id": 87,
+    "furigana": "え",
+    "english": "a painting; a picture; a drawing",
+    "emoji": "🐠"
+  },
+  {
+    "id": 88,
+    "furigana": "えいが",
+    "english": "movie, film",
+    "emoji": "🤥"
+  },
+  {
+    "id": 89,
+    "furigana": "えいがかん",
+    "english": "movie theater, cinema",
+    "emoji": "🛻"
+  },
+  {
+    "id": 90,
+    "furigana": "えいご",
+    "english": "English (language)",
+    "emoji": "🍼"
+  },
+  {
+    "id": 91,
+    "furigana": "ええ",
+    "english": "yes",
+    "emoji": "😡"
+  },
+  {
+    "id": 92,
+    "furigana": "えき",
+    "english": "station",
+    "emoji": "🍇"
+  },
+  {
+    "id": 93,
+    "furigana": "エレベーター",
+    "english": "elevator",
+    "emoji": "😇"
+  },
+  {
+    "id": 94,
+    "furigana": "～えん",
+    "english": "Yen",
+    "emoji": "🤒"
+  },
+  {
+    "id": 95,
+    "furigana": "えんぴつ",
+    "english": "pencil",
+    "emoji": "🧈"
+  },
+  {
+    "id": 96,
+    "furigana": "お～",
+    "english": "honorable ~ (honorific)",
+    "emoji": "🤤"
+  },
+  {
+    "id": 97,
+    "furigana": "おいしい",
+    "english": "delicious, tasty",
+    "emoji": "🥤"
+  },
+  {
+    "id": 98,
+    "furigana": "おおい",
+    "english": "many; there are a lot",
+    "emoji": "🍼"
+  },
+  {
+    "id": 99,
+    "furigana": "おおきい",
+    "english": "big, large",
+    "emoji": "🛣️"
+  },
+  {
+    "id": 100,
+    "furigana": "おおきな",
+    "english": "big",
+    "emoji": "🧊"
+  },
+  {
+    "id": 101,
+    "furigana": "おおぜい",
+    "english": "great number of people",
+    "emoji": "💞"
+  },
+  {
+    "id": 102,
+    "furigana": "おかあさん",
+    "english": "mother (formal)",
+    "emoji": "🥙"
+  },
+  {
+    "id": 103,
+    "furigana": "おかし",
+    "english": "confections, sweets, snack",
+    "emoji": "🐋"
+  },
+  {
+    "id": 104,
+    "furigana": "おかね",
+    "english": "money",
+    "emoji": "🍋"
+  },
+  {
+    "id": 105,
+    "furigana": "おきる",
+    "english": "to get up (e.g., from sleeping); to happen",
+    "emoji": "🔥"
+  },
+  {
+    "id": 106,
+    "furigana": "おく",
+    "english": "to put; to lay; to place",
+    "emoji": "🏀"
+  },
+  {
+    "id": 107,
+    "furigana": "おくさん",
+    "english": "(someone else's) wife (hon.)",
+    "emoji": "✌️"
+  },
+  {
+    "id": 108,
+    "furigana": "おさけ",
+    "english": "sake; alcohol",
+    "emoji": "⛵"
+  },
+  {
+    "id": 109,
+    "furigana": "おさら",
+    "english": "plate, dish",
+    "emoji": "🧺"
+  },
+  {
+    "id": 110,
+    "furigana": "おじさん",
+    "english": "uncle, middle-aged man",
+    "emoji": "🦑"
+  },
+  {
+    "id": 111,
+    "furigana": "おじいさん",
+    "english": "grandfather, male senior citizen",
+    "emoji": "🎡"
+  },
+  {
+    "id": 112,
+    "furigana": "おしえる",
+    "english": "to teach, to inform, to instruct",
+    "emoji": "🏎️"
+  },
+  {
+    "id": 113,
+    "furigana": "おす",
+    "english": "to push, to press, to stamp (e.g., a passport)",
+    "emoji": "🦇"
+  },
+  {
+    "id": 114,
+    "furigana": "おそい",
+    "english": "slow; (to be) late",
+    "emoji": "🦷"
+  },
+  {
+    "id": 115,
+    "furigana": "おちゃ",
+    "english": "(green) tea",
+    "emoji": "☘️"
+  },
+  {
+    "id": 116,
+    "furigana": "おてあらい",
+    "english": "toilet, restroom, bathroom (lit., a place to wash one's hands)",
+    "emoji": "⚡"
+  },
+  {
+    "id": 117,
+    "furigana": "おとうさん",
+    "english": "father (formal)",
+    "emoji": "🤜"
+  },
+  {
+    "id": 118,
+    "furigana": "おとうと",
+    "english": "younger brother",
+    "emoji": "⏳"
+  },
+  {
+    "id": 119,
+    "furigana": "おとこ",
+    "english": "man, male",
+    "emoji": "🙉"
+  },
+  {
+    "id": 120,
+    "furigana": "おとこのこ",
+    "english": "boy",
+    "emoji": "🎃"
+  },
+  {
+    "id": 121,
+    "furigana": "おととい",
+    "english": "the day before yesterday",
+    "emoji": "🖐️"
+  },
+  {
+    "id": 122,
+    "furigana": "おととし",
+    "english": "year before last",
+    "emoji": "🐊"
+  },
+  {
+    "id": 123,
+    "furigana": "おとな",
+    "english": "adult",
+    "emoji": "💕"
+  },
+  {
+    "id": 124,
+    "furigana": "おなか",
+    "english": "stomach",
+    "emoji": "🌏"
+  },
+  {
+    "id": 125,
+    "furigana": "おなじ",
+    "english": "same, identical",
+    "emoji": "👆"
+  },
+  {
+    "id": 126,
+    "furigana": "おにいさん",
+    "english": "(someone else's) older brother (formal)",
+    "emoji": "💾"
+  },
+  {
+    "id": 127,
+    "furigana": "おねえさん",
+    "english": "older sister (formal)",
+    "emoji": "😕"
+  },
+  {
+    "id": 128,
+    "furigana": "おばさん",
+    "english": "aunt",
+    "emoji": "👍"
+  },
+  {
+    "id": 129,
+    "furigana": "おばあさん",
+    "english": "grandmother, female senior-citizen",
+    "emoji": "🐻‍❄️"
+  },
+  {
+    "id": 130,
+    "furigana": "おふろ",
+    "english": "a bath",
+    "emoji": "🖤"
+  },
+  {
+    "id": 131,
+    "furigana": "おべんとう",
+    "english": "a boxed lunch",
+    "emoji": "🤍"
+  },
+  {
+    "id": 132,
+    "furigana": "おぼえる",
+    "english": "to learn, to commit to memory, to remember, to memorize",
+    "emoji": "📻"
+  },
+  {
+    "id": 133,
+    "furigana": "おまわりさん",
+    "english": "policeman (friendly term)",
+    "emoji": "🦶"
+  },
+  {
+    "id": 134,
+    "furigana": "おもい",
+    "english": "heavy; serious",
+    "emoji": "🍿"
+  },
+  {
+    "id": 135,
+    "furigana": "おもしろい",
+    "english": "interesting, amusing",
+    "emoji": "🏖️"
+  },
+  {
+    "id": 136,
+    "furigana": "およぐ",
+    "english": "to swim",
+    "emoji": "🙌"
+  },
+  {
+    "id": 137,
+    "furigana": "おりる",
+    "english": "to get off",
+    "emoji": "💞"
+  },
+  {
+    "id": 138,
+    "furigana": "おわる",
+    "english": "to finish, to close",
+    "emoji": "🎳"
+  },
+  {
+    "id": 139,
+    "furigana": "おんがく",
+    "english": "Music",
+    "emoji": "🍰"
+  },
+  {
+    "id": 140,
+    "furigana": "おんな",
+    "english": "woman, female",
+    "emoji": "🧅"
+  },
+  {
+    "id": 141,
+    "furigana": "おんなのこ",
+    "english": "girl",
+    "emoji": "😰"
+  },
+  {
+    "id": 142,
+    "furigana": "～かい",
+    "english": "counter for occurrences (~ times)",
+    "emoji": "🙁"
+  },
+  {
+    "id": 143,
+    "furigana": "～かい",
+    "english": "counter for stories (floors) of a building",
+    "emoji": "💡"
+  },
+  {
+    "id": 144,
+    "furigana": "がいこく",
+    "english": "foreign country; abroad",
+    "emoji": "😂"
+  },
+  {
+    "id": 145,
+    "furigana": "がいこくじん",
+    "english": "foreigner",
+    "emoji": "🧤"
+  },
+  {
+    "id": 146,
+    "furigana": "かいしゃ",
+    "english": "company, corporation",
+    "emoji": "🐠"
+  },
+  {
+    "id": 147,
+    "furigana": "かいだん",
+    "english": "stairs",
+    "emoji": "🐴"
+  },
+  {
+    "id": 148,
+    "furigana": "かいもの",
+    "english": "shopping",
+    "emoji": "💌"
+  },
+  {
+    "id": 149,
+    "furigana": "かう",
+    "english": "to buy",
+    "emoji": "🥦"
+  },
+  {
+    "id": 150,
+    "furigana": "かえす",
+    "english": "to return something",
+    "emoji": "⛺"
+  },
+  {
+    "id": 151,
+    "furigana": "かえる",
+    "english": "to go back, to go home, to return",
+    "emoji": "🦷"
+  },
+  {
+    "id": 152,
+    "furigana": "かお",
+    "english": "face (body part)",
+    "emoji": "🙂"
+  },
+  {
+    "id": 153,
+    "furigana": "かかる",
+    "english": "it takes (amount of time, money) (v.i.)",
+    "emoji": "🥦"
+  },
+  {
+    "id": 154,
+    "furigana": "かぎ",
+    "english": "a lock; a key",
+    "emoji": "✊"
+  },
+  {
+    "id": 155,
+    "furigana": "かく",
+    "english": "to write",
+    "emoji": "🍥"
+  },
+  {
+    "id": 156,
+    "furigana": "がくせい",
+    "english": "student",
+    "emoji": "🐼"
+  },
+  {
+    "id": 157,
+    "furigana": "～かげつ",
+    "english": "(number of) months",
+    "emoji": "🥿"
+  },
+  {
+    "id": 158,
+    "furigana": "かける",
+    "english": "to put on (e.g., glasses); to hang (e.g., on a wall)",
+    "emoji": "☕"
+  },
+  {
+    "id": 159,
+    "furigana": "かける",
+    "english": "to dial/call (e.g., phone); to sit down",
+    "emoji": "🍅"
+  },
+  {
+    "id": 160,
+    "furigana": "かさ",
+    "english": "umbrella, parasol",
+    "emoji": "🏫"
+  },
+  {
+    "id": 161,
+    "furigana": "かす",
+    "english": "to lend",
+    "emoji": "👀"
+  },
+  {
+    "id": 162,
+    "furigana": "かぜ",
+    "english": "wind, breeze",
+    "emoji": "🎈"
+  },
+  {
+    "id": 163,
+    "furigana": "かぜ",
+    "english": "cold, flu",
+    "emoji": "🥧"
+  },
+  {
+    "id": 164,
+    "furigana": "かた",
+    "english": "-- honorific form for 人 (ひと) --; way of doing",
+    "emoji": "🌮"
+  },
+  {
+    "id": 165,
+    "furigana": "かぞく",
+    "english": "family, members of a family",
+    "emoji": "🐫"
+  },
+  {
+    "id": 166,
+    "furigana": "かたかな",
+    "english": "katakana",
+    "emoji": "👕"
+  },
+  {
+    "id": 167,
+    "furigana": "～がつ",
+    "english": "month of year",
+    "emoji": "🐍"
+  },
+  {
+    "id": 168,
+    "furigana": "がっこう",
+    "english": "a school",
+    "emoji": "🌏"
+  },
+  {
+    "id": 169,
+    "furigana": "カップ",
+    "english": "cup",
+    "emoji": "🍰"
+  },
+  {
+    "id": 170,
+    "furigana": "かてい",
+    "english": "home; family",
+    "emoji": "🤛"
+  },
+  {
+    "id": 171,
+    "furigana": "かど",
+    "english": "corner (e.g., desk, pavement)",
+    "emoji": "🏭"
+  },
+  {
+    "id": 172,
+    "furigana": "かばん",
+    "english": "bag, basket",
+    "emoji": "👎"
+  },
+  {
+    "id": 173,
+    "furigana": "かびん",
+    "english": "(flower) vase",
+    "emoji": "🐋"
+  },
+  {
+    "id": 174,
+    "furigana": "かぶる",
+    "english": "to wear, to put on (e.g., a hat on the head)",
+    "emoji": "🏏"
+  },
+  {
+    "id": 175,
+    "furigana": "かみ",
+    "english": "paper",
+    "emoji": "👄"
+  },
+  {
+    "id": 176,
+    "furigana": "カメラ",
+    "english": "camera",
+    "emoji": "🥮"
+  },
+  {
+    "id": 177,
+    "furigana": "かようび",
+    "english": "Tuesday",
+    "emoji": "🦴"
+  },
+  {
+    "id": 178,
+    "furigana": "からい",
+    "english": "hot and spicy; salty",
+    "emoji": "🐝"
+  },
+  {
+    "id": 179,
+    "furigana": "からだ",
+    "english": "body; health",
+    "emoji": "🍁"
+  },
+  {
+    "id": 180,
+    "furigana": "かりる",
+    "english": "to borrow, to owe",
+    "emoji": "🍲"
+  },
+  {
+    "id": 181,
+    "furigana": "～がる",
+    "english": "feel",
+    "emoji": "🦀"
+  },
+  {
+    "id": 182,
+    "furigana": "かるい",
+    "english": "light, non-serious, minor",
+    "emoji": "😀"
+  },
+  {
+    "id": 183,
+    "furigana": "カレー",
+    "english": "curry (abbr. for curry and rice)",
+    "emoji": "☯️"
+  },
+  {
+    "id": 184,
+    "furigana": "カレンダー",
+    "english": "calendar",
+    "emoji": "👽"
+  },
+  {
+    "id": 185,
+    "furigana": "かわ",
+    "english": "river",
+    "emoji": "🐷"
+  },
+  {
+    "id": 186,
+    "furigana": "～がわ",
+    "english": "~ side",
+    "emoji": "🍖"
+  },
+  {
+    "id": 187,
+    "furigana": "かわいい",
+    "english": "cute, adorable",
+    "emoji": "👒"
+  },
+  {
+    "id": 188,
+    "furigana": "かんじ",
+    "english": "kanji; Chinese character",
+    "emoji": "👏"
+  },
+  {
+    "id": 189,
+    "furigana": "き",
+    "english": "tree, wood, timber",
+    "emoji": "🫀"
+  },
+  {
+    "id": 190,
+    "furigana": "きいろ",
+    "english": "yellow",
+    "emoji": "🛣️"
+  },
+  {
+    "id": 191,
+    "furigana": "きいろい",
+    "english": "yellow",
+    "emoji": "🦆"
+  },
+  {
+    "id": 192,
+    "furigana": "きえる",
+    "english": "to vanish, to disappear",
+    "emoji": "🍐"
+  },
+  {
+    "id": 193,
+    "furigana": "きく",
+    "english": "to hear, to listen, to ask",
+    "emoji": "😣"
+  },
+  {
+    "id": 194,
+    "furigana": "きた",
+    "english": "north",
+    "emoji": "❄️"
+  },
+  {
+    "id": 195,
+    "furigana": "ギター",
+    "english": "guitar",
+    "emoji": "🌹"
+  },
+  {
+    "id": 196,
+    "furigana": "きたない",
+    "english": "dirty, unclean, filthy",
+    "emoji": "🍵"
+  },
+  {
+    "id": 197,
+    "furigana": "きっさてん",
+    "english": "café",
+    "emoji": "🧅"
+  },
+  {
+    "id": 198,
+    "furigana": "きって",
+    "english": "postal (postage) stamps",
+    "emoji": "🛳️"
+  },
+  {
+    "id": 199,
+    "furigana": "きっぷ",
+    "english": "a ticket",
+    "emoji": "🥚"
+  },
+  {
+    "id": 200,
+    "furigana": "きのう",
+    "english": "yesterday",
+    "emoji": "🪛"
+  },
+  {
+    "id": 201,
+    "furigana": "きゅう",
+    "english": "nine",
+    "emoji": "🏹"
+  },
+  {
+    "id": 202,
+    "furigana": "ぎゅうにく",
+    "english": "beef",
+    "emoji": "🫐"
+  },
+  {
+    "id": 203,
+    "furigana": "ぎゅうにゅう",
+    "english": "milk",
+    "emoji": "🦅"
+  },
+  {
+    "id": 204,
+    "furigana": "きょう",
+    "english": "today, this day",
+    "emoji": "🐿️"
+  },
+  {
+    "id": 205,
+    "furigana": "きょうしつ",
+    "english": "classroom",
+    "emoji": "⏳"
+  },
+  {
+    "id": 206,
+    "furigana": "きょうだい",
+    "english": "siblings (humble), brothers and sisters",
+    "emoji": "🥑"
+  },
+  {
+    "id": 207,
+    "furigana": "きょねん",
+    "english": "last year",
+    "emoji": "🚌"
+  },
+  {
+    "id": 208,
+    "furigana": "きらい",
+    "english": "dislike",
+    "emoji": "👒"
+  },
+  {
+    "id": 209,
+    "furigana": "きる",
+    "english": "to cut; to hang up (a phone)",
+    "emoji": "🧰"
+  },
+  {
+    "id": 210,
+    "furigana": "きる",
+    "english": "to put on (clothes above your waist); to wear",
+    "emoji": "🛴"
+  },
+  {
+    "id": 211,
+    "furigana": "きれい",
+    "english": "pretty, clean, tidy",
+    "emoji": "🐊"
+  },
+  {
+    "id": 212,
+    "furigana": "キロ; キログラム",
+    "english": "(abbr.) kilo (kilogram)",
+    "emoji": "🚀"
+  },
+  {
+    "id": 213,
+    "furigana": "キロ; キロメートル",
+    "english": "(abbr.) kilo (kilometer)",
+    "emoji": "🛤️"
+  },
+  {
+    "id": 214,
+    "furigana": "ぎんこう",
+    "english": "bank",
+    "emoji": "🎮"
+  },
+  {
+    "id": 215,
+    "furigana": "きんようび",
+    "english": "Friday",
+    "emoji": "🪥"
+  },
+  {
+    "id": 216,
+    "furigana": "く",
+    "english": "nine",
+    "emoji": "😡"
+  },
+  {
+    "id": 217,
+    "furigana": "くすり",
+    "english": "medicine",
+    "emoji": "😓"
+  },
+  {
+    "id": 218,
+    "furigana": "ください",
+    "english": "(with te-form verb) please do for me",
+    "emoji": "🧭"
+  },
+  {
+    "id": 219,
+    "furigana": "くだもの",
+    "english": "fruit",
+    "emoji": "🌈"
+  },
+  {
+    "id": 220,
+    "furigana": "くち",
+    "english": "job opening; mouth",
+    "emoji": "🏫"
+  },
+  {
+    "id": 221,
+    "furigana": "くつ",
+    "english": "shoes, footwear",
+    "emoji": "🏈"
+  },
+  {
+    "id": 222,
+    "furigana": "くつした",
+    "english": "socks",
+    "emoji": "🥸"
+  },
+  {
+    "id": 223,
+    "furigana": "くに",
+    "english": "country; place of origin",
+    "emoji": "🍧"
+  },
+  {
+    "id": 224,
+    "furigana": "くもり",
+    "english": "cloudiness, cloudy weather",
+    "emoji": "🧶"
+  },
+  {
+    "id": 225,
+    "furigana": "くもる",
+    "english": "to become cloudy, to become dim",
+    "emoji": "🍆"
+  },
+  {
+    "id": 226,
+    "furigana": "くらい",
+    "english": "dark, gloomy",
+    "emoji": "⛸️"
+  },
+  {
+    "id": 227,
+    "furigana": "～くらい; ぐらい",
+    "english": "approximate (quantity)",
+    "emoji": "🎳"
+  },
+  {
+    "id": 228,
+    "furigana": "クラス",
+    "english": "a class",
+    "emoji": "🌻"
+  },
+  {
+    "id": 229,
+    "furigana": "グラム",
+    "english": "gram",
+    "emoji": "🧡"
+  },
+  {
+    "id": 230,
+    "furigana": "くる",
+    "english": "to come",
+    "emoji": "🏰"
+  },
+  {
+    "id": 231,
+    "furigana": "くるま",
+    "english": "car, vehicle",
+    "emoji": "🤏"
+  },
+  {
+    "id": 232,
+    "furigana": "くろ",
+    "english": "black",
+    "emoji": "😝"
+  },
+  {
+    "id": 233,
+    "furigana": "くろい",
+    "english": "black; dark",
+    "emoji": "😩"
+  },
+  {
+    "id": 234,
+    "furigana": "けいかん",
+    "english": "police officer",
+    "emoji": "🧭"
+  },
+  {
+    "id": 235,
+    "furigana": "けさ",
+    "english": "this morning",
+    "emoji": "🛁"
+  },
+  {
+    "id": 236,
+    "furigana": "けす",
+    "english": "to erase, to delete, to turn off power",
+    "emoji": "🥥"
+  },
+  {
+    "id": 237,
+    "furigana": "けっこう",
+    "english": "splendid; enough, tolerably",
+    "emoji": "🧣"
+  },
+  {
+    "id": 238,
+    "furigana": "けっこん (する)",
+    "english": "marriage (get married)",
+    "emoji": "🪜"
+  },
+  {
+    "id": 239,
+    "furigana": "げつようび",
+    "english": "Monday",
+    "emoji": "🐺"
+  },
+  {
+    "id": 240,
+    "furigana": "げんかん",
+    "english": "entrance (to a house or a building)",
+    "emoji": "🧭"
+  },
+  {
+    "id": 241,
+    "furigana": "げんき",
+    "english": "health(y), energetic",
+    "emoji": "🧳"
+  },
+  {
+    "id": 242,
+    "furigana": "～こ",
+    "english": "counter for small items (e.g., fruits, cups)",
+    "emoji": "🍫"
+  },
+  {
+    "id": 243,
+    "furigana": "ご",
+    "english": "five",
+    "emoji": "🥉"
+  },
+  {
+    "id": 244,
+    "furigana": "～ご",
+    "english": "word, language",
+    "emoji": "🕶️"
+  },
+  {
+    "id": 245,
+    "furigana": "こうえん",
+    "english": "a park",
+    "emoji": "🦬"
+  },
+  {
+    "id": 246,
+    "furigana": "こうさてん",
+    "english": "intersection",
+    "emoji": "🦇"
+  },
+  {
+    "id": 247,
+    "furigana": "こうちゃ",
+    "english": "black tea",
+    "emoji": "🛻"
+  },
+  {
+    "id": 248,
+    "furigana": "こうばん",
+    "english": "police box",
+    "emoji": "🥸"
+  },
+  {
+    "id": 249,
+    "furigana": "こえ",
+    "english": "voice",
+    "emoji": "🍁"
+  },
+  {
+    "id": 250,
+    "furigana": "コート",
+    "english": "coat; court (e.g., tennis)",
+    "emoji": "⛺"
+  },
+  {
+    "id": 251,
+    "furigana": "コーヒー",
+    "english": "coffee",
+    "emoji": "🗽"
+  },
+  {
+    "id": 252,
+    "furigana": "ここ",
+    "english": "here, this place",
+    "emoji": "🕶️"
+  },
+  {
+    "id": 253,
+    "furigana": "ごご",
+    "english": "afternoon, P.M.",
+    "emoji": "🥦"
+  },
+  {
+    "id": 254,
+    "furigana": "ここのか",
+    "english": "nine days; ninth day of the month",
+    "emoji": "🧈"
+  },
+  {
+    "id": 255,
+    "furigana": "ここのつ",
+    "english": "nine things",
+    "emoji": "🦁"
+  },
+  {
+    "id": 256,
+    "furigana": "ごぜん",
+    "english": "morning, A.M.",
+    "emoji": "😡"
+  },
+  {
+    "id": 257,
+    "furigana": "こたえる",
+    "english": "to answer, to reply",
+    "emoji": "🏖️"
+  },
+  {
+    "id": 258,
+    "furigana": "こちら",
+    "english": "this person (polite); this way (polite)",
+    "emoji": "🍊"
+  },
+  {
+    "id": 259,
+    "furigana": "こっち",
+    "english": "this person; this direction; this side",
+    "emoji": "💙"
+  },
+  {
+    "id": 260,
+    "furigana": "コップ",
+    "english": "a tumbler; a glass",
+    "emoji": "🎥"
+  },
+  {
+    "id": 261,
+    "furigana": "ことし",
+    "english": "this year",
+    "emoji": "☘️"
+  },
+  {
+    "id": 262,
+    "furigana": "ことば",
+    "english": "language; word(s); expression(s)",
+    "emoji": "🪖"
+  },
+  {
+    "id": 263,
+    "furigana": "こども",
+    "english": "child(ren)",
+    "emoji": "🚿"
+  },
+  {
+    "id": 264,
+    "furigana": "この",
+    "english": "this",
+    "emoji": "🎠"
+  },
+  {
+    "id": 265,
+    "furigana": "ごはん",
+    "english": "rice (cooked); meal",
+    "emoji": "🚑"
+  },
+  {
+    "id": 266,
+    "furigana": "コピーする",
+    "english": "to copy",
+    "emoji": "🧻"
+  },
+  {
+    "id": 267,
+    "furigana": "こまる",
+    "english": "to be bothered, to have difficulty",
+    "emoji": "👎"
+  },
+  {
+    "id": 268,
+    "furigana": "これ",
+    "english": "this one",
+    "emoji": "🔥"
+  },
+  {
+    "id": 269,
+    "furigana": "～ころ; ～ごろ",
+    "english": "about, toward, approximately (time)",
+    "emoji": "🦆"
+  },
+  {
+    "id": 270,
+    "furigana": "こんげつ",
+    "english": "this month",
+    "emoji": "🌺"
+  },
+  {
+    "id": 271,
+    "furigana": "こんしゅう",
+    "english": "this week",
+    "emoji": "🌹"
+  },
+  {
+    "id": 272,
+    "furigana": "こんな",
+    "english": "such, like this",
+    "emoji": "🚪"
+  },
+  {
+    "id": 273,
+    "furigana": "こんばん",
+    "english": "tonight, this evening",
+    "emoji": "😔"
+  },
+  {
+    "id": 274,
+    "furigana": "さあ",
+    "english": "come now, well",
+    "emoji": "🛏️"
+  },
+  {
+    "id": 275,
+    "furigana": "～さい",
+    "english": "~ years old",
+    "emoji": "🤪"
+  },
+  {
+    "id": 276,
+    "furigana": "さいふ",
+    "english": "wallet",
+    "emoji": "😻"
+  },
+  {
+    "id": 277,
+    "furigana": "さかな",
+    "english": "fish",
+    "emoji": "🐝"
+  },
+  {
+    "id": 278,
+    "furigana": "さき",
+    "english": "future; recent, previous",
+    "emoji": "🥩"
+  },
+  {
+    "id": 279,
+    "furigana": "さく",
+    "english": "to bloom",
+    "emoji": "💜"
+  },
+  {
+    "id": 280,
+    "furigana": "さくぶん",
+    "english": "essay; composition",
+    "emoji": "🌹"
+  },
+  {
+    "id": 281,
+    "furigana": "さす",
+    "english": "to raise (stretch out) hands, to raise (e.g., umbrella)",
+    "emoji": "💽"
+  },
+  {
+    "id": 282,
+    "furigana": "～さつ",
+    "english": "counter for books",
+    "emoji": "💚"
+  },
+  {
+    "id": 283,
+    "furigana": "ざっし",
+    "english": "magazine, journal",
+    "emoji": "😝"
+  },
+  {
+    "id": 284,
+    "furigana": "さとう",
+    "english": "sugar",
+    "emoji": "🦅"
+  },
+  {
+    "id": 285,
+    "furigana": "さむい",
+    "english": "cold (in reference to weather)",
+    "emoji": "👜"
+  },
+  {
+    "id": 286,
+    "furigana": "さらいねん",
+    "english": "year after next",
+    "emoji": "🥃"
+  },
+  {
+    "id": 287,
+    "furigana": "～さん",
+    "english": "Mr. ~, Ms. ~",
+    "emoji": "🧁"
+  },
+  {
+    "id": 288,
+    "furigana": "さん",
+    "english": "three",
+    "emoji": "🐣"
+  },
+  {
+    "id": 289,
+    "furigana": "さんぽ (する)",
+    "english": "walk, stroll",
+    "emoji": "👜"
+  },
+  {
+    "id": 290,
+    "furigana": "し",
+    "english": "four",
+    "emoji": "🚦"
+  },
+  {
+    "id": 291,
+    "furigana": "～じ",
+    "english": "~ o'clock (time)",
+    "emoji": "🎠"
+  },
+  {
+    "id": 292,
+    "furigana": "しお",
+    "english": "salt",
+    "emoji": "😢"
+  },
+  {
+    "id": 293,
+    "furigana": "しかし",
+    "english": "however; but",
+    "emoji": "🪜"
+  },
+  {
+    "id": 294,
+    "furigana": "じかん",
+    "english": "time",
+    "emoji": "🤥"
+  },
+  {
+    "id": 295,
+    "furigana": "～じかん",
+    "english": "~ hours",
+    "emoji": "😂"
+  },
+  {
+    "id": 296,
+    "furigana": "しごと",
+    "english": "work, job, occupation, employment",
+    "emoji": "🍃"
+  },
+  {
+    "id": 297,
+    "furigana": "じしょ",
+    "english": "dictionary",
+    "emoji": "🥸"
+  },
+  {
+    "id": 298,
+    "furigana": "しずか",
+    "english": "quiet, calm",
+    "emoji": "🍰"
+  },
+  {
+    "id": 299,
+    "furigana": "した",
+    "english": "under, below, beneath",
+    "emoji": "😡"
+  },
+  {
+    "id": 300,
+    "furigana": "しち",
+    "english": "seven",
+    "emoji": "😝"
+  },
+  {
+    "id": 301,
+    "furigana": "しつもん",
+    "english": "question, inquiry",
+    "emoji": "🤖"
+  },
+  {
+    "id": 302,
+    "furigana": "じてんしゃ",
+    "english": "bicycle",
+    "emoji": "⚡"
+  },
+  {
+    "id": 303,
+    "furigana": "じどうしゃ",
+    "english": "automobile",
+    "emoji": "🪆"
+  },
+  {
+    "id": 304,
+    "furigana": "しぬ",
+    "english": "to die",
+    "emoji": "🥥"
+  },
+  {
+    "id": 305,
+    "furigana": "じびき",
+    "english": "dictionary",
+    "emoji": "🎩"
+  },
+  {
+    "id": 306,
+    "furigana": "じぶん",
+    "english": "myself, oneself",
+    "emoji": "📀"
+  },
+  {
+    "id": 307,
+    "furigana": "しまる",
+    "english": "to close, to be closed",
+    "emoji": "💕"
+  },
+  {
+    "id": 308,
+    "furigana": "しめる",
+    "english": "to close, to shut",
+    "emoji": "🚁"
+  },
+  {
+    "id": 309,
+    "furigana": "しめる",
+    "english": "to tie, to fasten, to tighten",
+    "emoji": "🛎️"
+  },
+  {
+    "id": 310,
+    "furigana": "じゃ; じゃあ",
+    "english": "well, well then",
+    "emoji": "⛵"
+  },
+  {
+    "id": 311,
+    "furigana": "しゃしん",
+    "english": "a picture; a photograph",
+    "emoji": "🍵"
+  },
+  {
+    "id": 312,
+    "furigana": "シャツ",
+    "english": "shirt",
+    "emoji": "😔"
+  },
+  {
+    "id": 313,
+    "furigana": "シャワー",
+    "english": "shower",
+    "emoji": "🍤"
+  },
+  {
+    "id": 314,
+    "furigana": "じゅう",
+    "english": "ten",
+    "emoji": "🦇"
+  },
+  {
+    "id": 315,
+    "furigana": "～じゅう",
+    "english": "during, while",
+    "emoji": "🤜"
+  },
+  {
+    "id": 316,
+    "furigana": "～しゅうかん",
+    "english": "~ weeks",
+    "emoji": "😘"
+  },
+  {
+    "id": 317,
+    "furigana": "じゅぎょう",
+    "english": "a class (of school)",
+    "emoji": "🎂"
+  },
+  {
+    "id": 318,
+    "furigana": "しゅくだい",
+    "english": "homework",
+    "emoji": "🦿"
+  },
+  {
+    "id": 319,
+    "furigana": "じょうず",
+    "english": "be good at, skillful",
+    "emoji": "👒"
+  },
+  {
+    "id": 320,
+    "furigana": "じょうぶ",
+    "english": "strong, solid, durable",
+    "emoji": "🏫"
+  },
+  {
+    "id": 321,
+    "furigana": "しょうゆ",
+    "english": "soy sauce",
+    "emoji": "📺"
+  },
+  {
+    "id": 322,
+    "furigana": "しょくどう",
+    "english": "cafeteria, dining hall",
+    "emoji": "⚾"
+  },
+  {
+    "id": 323,
+    "furigana": "しる",
+    "english": "to know, to understand",
+    "emoji": "🏙️"
+  },
+  {
+    "id": 324,
+    "furigana": "しろ",
+    "english": "white",
+    "emoji": "🍆"
+  },
+  {
+    "id": 325,
+    "furigana": "しろい",
+    "english": "white",
+    "emoji": "😬"
+  },
+  {
+    "id": 326,
+    "furigana": "～じん",
+    "english": "counter for people",
+    "emoji": "🪞"
+  },
+  {
+    "id": 327,
+    "furigana": "しんぶん",
+    "english": "newspaper",
+    "emoji": "💧"
+  },
+  {
+    "id": 328,
+    "furigana": "すいようび",
+    "english": "Wednesday",
+    "emoji": "💕"
+  },
+  {
+    "id": 329,
+    "furigana": "すう",
+    "english": "to breathe in, to suck",
+    "emoji": "🥋"
+  },
+  {
+    "id": 330,
+    "furigana": "スカート",
+    "english": "skirt",
+    "emoji": "🧪"
+  },
+  {
+    "id": 331,
+    "furigana": "すき",
+    "english": "liking, fondness, love",
+    "emoji": "🤕"
+  },
+  {
+    "id": 332,
+    "furigana": "～すぎ",
+    "english": "past; to exceed, ~ too much",
+    "emoji": "🙉"
+  },
+  {
+    "id": 333,
+    "furigana": "すくない",
+    "english": "a little; a few",
+    "emoji": "😩"
+  },
+  {
+    "id": 334,
+    "furigana": "すぐに",
+    "english": "immediately, soon",
+    "emoji": "✍️"
+  },
+  {
+    "id": 335,
+    "furigana": "すこし",
+    "english": "little, few",
+    "emoji": "😟"
+  },
+  {
+    "id": 336,
+    "furigana": "すずしい",
+    "english": "cool, refreshing (in reference to weather)",
+    "emoji": "🖱️"
+  },
+  {
+    "id": 337,
+    "furigana": "～ずつ",
+    "english": "at a time",
+    "emoji": "🐿️"
+  },
+  {
+    "id": 338,
+    "furigana": "ストーブ",
+    "english": "heater (lit: stove)",
+    "emoji": "🤟"
+  },
+  {
+    "id": 339,
+    "furigana": "スプーン",
+    "english": "spoon",
+    "emoji": "🪆"
+  },
+  {
+    "id": 340,
+    "furigana": "スポーツ",
+    "english": "sport(s)",
+    "emoji": "😷"
+  },
+  {
+    "id": 341,
+    "furigana": "ズボン",
+    "english": "trousers",
+    "emoji": "🐶"
+  },
+  {
+    "id": 342,
+    "furigana": "すむ",
+    "english": "to reside, to live in",
+    "emoji": "😈"
+  },
+  {
+    "id": 343,
+    "furigana": "する",
+    "english": "to do, to try; to wear small items (e.g., necktie, watch, etc.)",
+    "emoji": "😓"
+  },
+  {
+    "id": 344,
+    "furigana": "すわる",
+    "english": "to sit",
+    "emoji": "🐼"
+  },
+  {
+    "id": 345,
+    "furigana": "せい",
+    "english": "(one's) height, stature",
+    "emoji": "🥚"
+  },
+  {
+    "id": 346,
+    "furigana": "せいと",
+    "english": "student; pupil",
+    "emoji": "🥯"
+  },
+  {
+    "id": 347,
+    "furigana": "セーター",
+    "english": "sweater",
+    "emoji": "😹"
+  },
+  {
+    "id": 348,
+    "furigana": "せっけん",
+    "english": "soap",
+    "emoji": "🤙"
+  },
+  {
+    "id": 349,
+    "furigana": "せびろ",
+    "english": "men's suit",
+    "emoji": "🥕"
+  },
+  {
+    "id": 350,
+    "furigana": "せまい",
+    "english": "narrow; not spacious",
+    "emoji": "🖱️"
+  },
+  {
+    "id": 351,
+    "furigana": "ゼロ",
+    "english": "zero",
+    "emoji": "💘"
+  },
+  {
+    "id": 352,
+    "furigana": "せん",
+    "english": "thousand",
+    "emoji": "🐻‍❄️"
+  },
+  {
+    "id": 353,
+    "furigana": "せんげつ",
+    "english": "last month",
+    "emoji": "💿"
+  },
+  {
+    "id": 354,
+    "furigana": "せんしゅう",
+    "english": "last week",
+    "emoji": "🏛️"
+  },
+  {
+    "id": 355,
+    "furigana": "せんせい",
+    "english": "teacher, professor; master; doctor",
+    "emoji": "🌙"
+  },
+  {
+    "id": 356,
+    "furigana": "せんたく",
+    "english": "washing, laundry",
+    "emoji": "🧺"
+  },
+  {
+    "id": 357,
+    "furigana": "ぜんぶ",
+    "english": "all, entire, whole",
+    "emoji": "🍉"
+  },
+  {
+    "id": 358,
+    "furigana": "そう; そうです",
+    "english": "yes; appears, to be the case",
+    "emoji": "👃"
+  },
+  {
+    "id": 359,
+    "furigana": "そうじ (する)",
+    "english": "cleaning, sweeping",
+    "emoji": "🏫"
+  },
+  {
+    "id": 360,
+    "furigana": "そうして; そして",
+    "english": "and, like that",
+    "emoji": "🩵"
+  },
+  {
+    "id": 361,
+    "furigana": "そこ",
+    "english": "that place, there; bottom, sole",
+    "emoji": "🧡"
+  },
+  {
+    "id": 362,
+    "furigana": "そちら",
+    "english": "over there",
+    "emoji": "💧"
+  },
+  {
+    "id": 363,
+    "furigana": "そっち",
+    "english": "over there",
+    "emoji": "😀"
+  },
+  {
+    "id": 364,
+    "furigana": "そと",
+    "english": "outside, exterior",
+    "emoji": "⚽"
+  },
+  {
+    "id": 365,
+    "furigana": "その",
+    "english": "that",
+    "emoji": "🎿"
+  },
+  {
+    "id": 366,
+    "furigana": "そば",
+    "english": "near, close, beside; Japanese traditional buckwheat noodle",
+    "emoji": "🥑"
+  },
+  {
+    "id": 367,
+    "furigana": "そら",
+    "english": "sky",
+    "emoji": "😣"
+  },
+  {
+    "id": 368,
+    "furigana": "それ",
+    "english": "that one",
+    "emoji": "🥉"
+  },
+  {
+    "id": 369,
+    "furigana": "それから",
+    "english": "and then, after that",
+    "emoji": "🥰"
+  },
+  {
+    "id": 370,
+    "furigana": "それでは",
+    "english": "in that situation, well then...",
+    "emoji": "🛳️"
+  },
+  {
+    "id": 371,
+    "furigana": "～だい",
+    "english": "counter for vehicles; machines",
+    "emoji": "🤥"
+  },
+  {
+    "id": 372,
+    "furigana": "だいがく",
+    "english": "college; university",
+    "emoji": "🥾"
+  },
+  {
+    "id": 373,
+    "furigana": "たいしかん",
+    "english": "embassy",
+    "emoji": "😛"
+  },
+  {
+    "id": 374,
+    "furigana": "だいじょうぶ",
+    "english": "It's ok (all right); No need to worry; Everything is under control",
+    "emoji": "🍼"
+  },
+  {
+    "id": 375,
+    "furigana": "だいすき",
+    "english": "very like-able, like very much",
+    "emoji": "🥈"
+  },
+  {
+    "id": 376,
+    "furigana": "たいせつ",
+    "english": "important",
+    "emoji": "🦷"
+  },
+  {
+    "id": 377,
+    "furigana": "だいどころ",
+    "english": "kitchen",
+    "emoji": "🔨"
+  },
+  {
+    "id": 378,
+    "furigana": "たいへん",
+    "english": "very; difficult, hard",
+    "emoji": "🚚"
+  },
+  {
+    "id": 379,
+    "furigana": "たかい",
+    "english": "tall, high; expensive",
+    "emoji": "🚓"
+  },
+  {
+    "id": 380,
+    "furigana": "～だけ",
+    "english": "only ~, just ~, as ~",
+    "emoji": "⛑️"
+  },
+  {
+    "id": 381,
+    "furigana": "たくさん",
+    "english": "many, much",
+    "emoji": "🔑"
+  },
+  {
+    "id": 382,
+    "furigana": "タクシー",
+    "english": "taxi",
+    "emoji": "⛷️"
+  },
+  {
+    "id": 383,
+    "furigana": "だす",
+    "english": "to take (something) out; to hand in (something)",
+    "emoji": "🐁"
+  },
+  {
+    "id": 384,
+    "furigana": "～たち",
+    "english": "plural suffix",
+    "emoji": "🍲"
+  },
+  {
+    "id": 385,
+    "furigana": "たつ",
+    "english": "to stand up",
+    "emoji": "🪟"
+  },
+  {
+    "id": 386,
+    "furigana": "たて",
+    "english": "length, height",
+    "emoji": "🪐"
+  },
+  {
+    "id": 387,
+    "furigana": "たてもの",
+    "english": "building",
+    "emoji": "💽"
+  },
+  {
+    "id": 388,
+    "furigana": "たのしい",
+    "english": "enjoyable, fun",
+    "emoji": "🐀"
+  },
+  {
+    "id": 389,
+    "furigana": "たのむ",
+    "english": "to request, to ask (a favor)",
+    "emoji": "✈️"
+  },
+  {
+    "id": 390,
+    "furigana": "たばこ",
+    "english": "tobacco, cigarettes",
+    "emoji": "🧉"
+  },
+  {
+    "id": 391,
+    "furigana": "たぶん",
+    "english": "perhaps, probably, maybe",
+    "emoji": "🍨"
+  },
+  {
+    "id": 392,
+    "furigana": "たべもの",
+    "english": "food",
+    "emoji": "🤓"
+  },
+  {
+    "id": 393,
+    "furigana": "たべる",
+    "english": "to eat",
+    "emoji": "😼"
+  },
+  {
+    "id": 394,
+    "furigana": "たまご",
+    "english": "egg",
+    "emoji": "🐵"
+  },
+  {
+    "id": 395,
+    "furigana": "だれ",
+    "english": "who",
+    "emoji": "🚽"
+  },
+  {
+    "id": 396,
+    "furigana": "だれか",
+    "english": "someone",
+    "emoji": "📻"
+  },
+  {
+    "id": 397,
+    "furigana": "たんじょうび",
+    "english": "birthday",
+    "emoji": "🍤"
+  },
+  {
+    "id": 398,
+    "furigana": "だんだん",
+    "english": "gradually, by degrees",
+    "emoji": "🛍️"
+  },
+  {
+    "id": 399,
+    "furigana": "ちいさい",
+    "english": "small, little",
+    "emoji": "🍣"
+  },
+  {
+    "id": 400,
+    "furigana": "ちいさな",
+    "english": "small, little",
+    "emoji": "👝"
+  },
+  {
+    "id": 401,
+    "furigana": "ちかい",
+    "english": "near, close by, short",
+    "emoji": "🏂"
+  },
+  {
+    "id": 402,
+    "furigana": "ちがう",
+    "english": "to be different; to differ; wrong",
+    "emoji": "😲"
+  },
+  {
+    "id": 403,
+    "furigana": "ちかく",
+    "english": "nearby; in the neighborhood",
+    "emoji": "😔"
+  },
+  {
+    "id": 404,
+    "furigana": "ちかてつ",
+    "english": "underground train, subway",
+    "emoji": "🪡"
+  },
+  {
+    "id": 405,
+    "furigana": "ちず",
+    "english": "a map",
+    "emoji": "🛵"
+  },
+  {
+    "id": 406,
+    "furigana": "ちち",
+    "english": "(my) father",
+    "emoji": "🍖"
+  },
+  {
+    "id": 407,
+    "furigana": "ちゃいろ",
+    "english": "brown",
+    "emoji": "👈"
+  },
+  {
+    "id": 408,
+    "furigana": "ちゃわん",
+    "english": "rice bowl",
+    "emoji": "🤨"
+  },
+  {
+    "id": 409,
+    "furigana": "～ちゅう",
+    "english": "during, while ~ing",
+    "emoji": "🐸"
+  },
+  {
+    "id": 410,
+    "furigana": "ちょうど",
+    "english": "just, right, exactly",
+    "emoji": "☔"
+  },
+  {
+    "id": 411,
+    "furigana": "ちょっと",
+    "english": "a little, somewhat; just a little, somewhat",
+    "emoji": "🍑"
+  },
+  {
+    "id": 412,
+    "furigana": "ついたち",
+    "english": "one day; first day of the month",
+    "emoji": "😗"
+  },
+  {
+    "id": 413,
+    "furigana": "つかう",
+    "english": "to use",
+    "emoji": "🏐"
+  },
+  {
+    "id": 414,
+    "furigana": "つかれる",
+    "english": "to get (become) tired; to become fatigued",
+    "emoji": "🍧"
+  },
+  {
+    "id": 415,
+    "furigana": "つぎ",
+    "english": "next",
+    "emoji": "😡"
+  },
+  {
+    "id": 416,
+    "furigana": "つく",
+    "english": "to arrive at, to reach",
+    "emoji": "😆"
+  },
+  {
+    "id": 417,
+    "furigana": "つくえ",
+    "english": "desk",
+    "emoji": "😵"
+  },
+  {
+    "id": 418,
+    "furigana": "つくる",
+    "english": "to make, to create",
+    "emoji": "✝️"
+  },
+  {
+    "id": 419,
+    "furigana": "つける",
+    "english": "to turn on (e.g., a light); to take",
+    "emoji": "🤙"
+  },
+  {
+    "id": 420,
+    "furigana": "つとめる",
+    "english": "to work (for)",
+    "emoji": "🎰"
+  },
+  {
+    "id": 421,
+    "furigana": "つまらない",
+    "english": "boring, dull; insignificant",
+    "emoji": "💖"
+  },
+  {
+    "id": 422,
+    "furigana": "つめたい",
+    "english": "cold (things, people)",
+    "emoji": "🦦"
+  },
+  {
+    "id": 423,
+    "furigana": "つよい",
+    "english": "strong, powerful",
+    "emoji": "🐋"
+  },
+  {
+    "id": 424,
+    "furigana": "て",
+    "english": "hand",
+    "emoji": "🏆"
+  },
+  {
+    "id": 425,
+    "furigana": "テープ",
+    "english": "tape",
+    "emoji": "🍾"
+  },
+  {
+    "id": 426,
+    "furigana": "テープレコーダー",
+    "english": "tape recorder",
+    "emoji": "✊"
+  },
+  {
+    "id": 427,
+    "furigana": "テーブル",
+    "english": "table",
+    "emoji": "⚡"
+  },
+  {
+    "id": 428,
+    "furigana": "でかける",
+    "english": "to go out; to depart",
+    "emoji": "🍳"
+  },
+  {
+    "id": 429,
+    "furigana": "てがみ",
+    "english": "letter",
+    "emoji": "👜"
+  },
+  {
+    "id": 430,
+    "furigana": "できる",
+    "english": "to be able to (to accomplish)",
+    "emoji": "🚲"
+  },
+  {
+    "id": 431,
+    "furigana": "でぐち",
+    "english": "an exit",
+    "emoji": "✍️"
+  },
+  {
+    "id": 432,
+    "furigana": "テスト",
+    "english": "test",
+    "emoji": "🌮"
+  },
+  {
+    "id": 433,
+    "furigana": "では",
+    "english": "then, well, so",
+    "emoji": "😽"
+  },
+  {
+    "id": 434,
+    "furigana": "デパート",
+    "english": "(abbr.) department store",
+    "emoji": "🎒"
+  },
+  {
+    "id": 435,
+    "furigana": "でも",
+    "english": "but, however",
+    "emoji": "💖"
+  },
+  {
+    "id": 436,
+    "furigana": "でる",
+    "english": "to appear, to leave",
+    "emoji": "🚽"
+  },
+  {
+    "id": 437,
+    "furigana": "テレビ",
+    "english": "television, TV",
+    "emoji": "👎"
+  },
+  {
+    "id": 438,
+    "furigana": "てんき",
+    "english": "weather",
+    "emoji": "🥼"
+  },
+  {
+    "id": 439,
+    "furigana": "でんき",
+    "english": "electricity, (electric) light",
+    "emoji": "🤖"
+  },
+  {
+    "id": 440,
+    "furigana": "でんしゃ",
+    "english": "electric train",
+    "emoji": "😄"
+  },
+  {
+    "id": 441,
+    "furigana": "でんわ",
+    "english": "a telephone",
+    "emoji": "🧈"
+  },
+  {
+    "id": 442,
+    "furigana": "と",
+    "english": "door (Japanese style)",
+    "emoji": "🏖️"
+  },
+  {
+    "id": 443,
+    "furigana": "～ど",
+    "english": "counter for occurrences; ~ degree; ~ point",
+    "emoji": "🦈"
+  },
+  {
+    "id": 444,
+    "furigana": "ドア",
+    "english": "door (Western style)",
+    "emoji": "🍠"
+  },
+  {
+    "id": 445,
+    "furigana": "トイレ",
+    "english": "bathroom; toilet",
+    "emoji": "🤌"
+  },
+  {
+    "id": 446,
+    "furigana": "どう",
+    "english": "how, in what way",
+    "emoji": "🔋"
+  },
+  {
+    "id": 447,
+    "furigana": "どうして",
+    "english": "why, for what reason",
+    "emoji": "🧯"
+  },
+  {
+    "id": 448,
+    "furigana": "どうぞ",
+    "english": "please, kindly, by all means",
+    "emoji": "😒"
+  },
+  {
+    "id": 449,
+    "furigana": "どうぶつ",
+    "english": "animal",
+    "emoji": "🏹"
+  },
+  {
+    "id": 450,
+    "furigana": "どうも",
+    "english": "Thank you; somehow; no matter how hard one may try",
+    "emoji": "🍼"
+  },
+  {
+    "id": 451,
+    "furigana": "(〜を) とお",
+    "english": "ten (~)",
+    "emoji": "🏉"
+  },
+  {
+    "id": 452,
+    "furigana": "とおい",
+    "english": "far (away), distant",
+    "emoji": "🦀"
+  },
+  {
+    "id": 453,
+    "furigana": "とおか",
+    "english": "ten days; tenth day of the month",
+    "emoji": "🍠"
+  },
+  {
+    "id": 454,
+    "furigana": "～とき",
+    "english": "at the time of ~",
+    "emoji": "🎈"
+  },
+  {
+    "id": 455,
+    "furigana": "ときどき",
+    "english": "sometimes",
+    "emoji": "🍼"
+  },
+  {
+    "id": 456,
+    "furigana": "とけい",
+    "english": "a watch; a clock",
+    "emoji": "🛼"
+  },
+  {
+    "id": 457,
+    "furigana": "どこ",
+    "english": "where, what place",
+    "emoji": "🦔"
+  },
+  {
+    "id": 458,
+    "furigana": "ところ",
+    "english": "place",
+    "emoji": "⌨️"
+  },
+  {
+    "id": 459,
+    "furigana": "とし",
+    "english": "year, age",
+    "emoji": "🥔"
+  },
+  {
+    "id": 460,
+    "furigana": "としょかん",
+    "english": "library",
+    "emoji": "🥚"
+  },
+  {
+    "id": 461,
+    "furigana": "どちら",
+    "english": "which (one) (way); where (polite)",
+    "emoji": "⛷️"
+  },
+  {
+    "id": 462,
+    "furigana": "どっち",
+    "english": "which one, which way",
+    "emoji": "🤗"
+  },
+  {
+    "id": 463,
+    "furigana": "とても",
+    "english": "very (much), greatly, exceedingly",
+    "emoji": "🍐"
+  },
+  {
+    "id": 464,
+    "furigana": "どなた",
+    "english": "who",
+    "emoji": "🧋"
+  },
+  {
+    "id": 465,
+    "furigana": "となり",
+    "english": "next to, next door to",
+    "emoji": "🖐️"
+  },
+  {
+    "id": 466,
+    "furigana": "どの",
+    "english": "which",
+    "emoji": "👝"
+  },
+  {
+    "id": 467,
+    "furigana": "とぶ",
+    "english": "to fly, to hop",
+    "emoji": "🦅"
+  },
+  {
+    "id": 468,
+    "furigana": "とまる",
+    "english": "to come to a halt",
+    "emoji": "🐆"
+  },
+  {
+    "id": 469,
+    "furigana": "ともだち",
+    "english": "friend",
+    "emoji": "😮"
+  },
+  {
+    "id": 470,
+    "furigana": "どようび",
+    "english": "Saturday",
+    "emoji": "🛋️"
+  },
+  {
+    "id": 471,
+    "furigana": "とり",
+    "english": "chicken (lit., bird)",
+    "emoji": "👇"
+  },
+  {
+    "id": 472,
+    "furigana": "とりにく",
+    "english": "chicken meat",
+    "emoji": "❣️"
+  },
+  {
+    "id": 473,
+    "furigana": "とる",
+    "english": "to take (a class); to get (a grade)",
+    "emoji": "😝"
+  },
+  {
+    "id": 474,
+    "furigana": "とる",
+    "english": "to take (a photo), to make (a film)",
+    "emoji": "💽"
+  },
+  {
+    "id": 475,
+    "furigana": "どれ",
+    "english": "which one",
+    "emoji": "😽"
+  },
+  {
+    "id": 476,
+    "furigana": "どんな",
+    "english": "what, what kind of",
+    "emoji": "🛏️"
+  },
+  {
+    "id": 477,
+    "furigana": "ない",
+    "english": "there isn't, doesn't have",
+    "emoji": "💘"
+  },
+  {
+    "id": 478,
+    "furigana": "ナイフ",
+    "english": "knife",
+    "emoji": "🥼"
+  },
+  {
+    "id": 479,
+    "furigana": "なか",
+    "english": "inside, middle, among",
+    "emoji": "⛸️"
+  },
+  {
+    "id": 480,
+    "furigana": "ながい",
+    "english": "long, lengthy",
+    "emoji": "🌍"
+  },
+  {
+    "id": 481,
+    "furigana": "なく",
+    "english": "to make sound (animal)",
+    "emoji": "🛫"
+  },
+  {
+    "id": 482,
+    "furigana": "なくす",
+    "english": "to lose something",
+    "emoji": "🎊"
+  },
+  {
+    "id": 483,
+    "furigana": "なぜ",
+    "english": "why (same as どうして)",
+    "emoji": "🛰️"
+  },
+  {
+    "id": 484,
+    "furigana": "なつ",
+    "english": "summer",
+    "emoji": "🐼"
+  },
+  {
+    "id": 485,
+    "furigana": "なつやすみ",
+    "english": "summer vacation",
+    "emoji": "🤗"
+  },
+  {
+    "id": 486,
+    "furigana": "～など",
+    "english": "et cetera",
+    "emoji": "💀"
+  },
+  {
+    "id": 487,
+    "furigana": "ななつ",
+    "english": "seven things",
+    "emoji": "🛋️"
+  },
+  {
+    "id": 488,
+    "furigana": "なん; なに",
+    "english": "what",
+    "emoji": "📡"
+  },
+  {
+    "id": 489,
+    "furigana": "なのか",
+    "english": "seven days; seventh day (of the month)",
+    "emoji": "👻"
+  },
+  {
+    "id": 490,
+    "furigana": "なまえ",
+    "english": "name",
+    "emoji": "📻"
+  },
+  {
+    "id": 491,
+    "furigana": "ならう",
+    "english": "to learn",
+    "emoji": "🤠"
+  },
+  {
+    "id": 492,
+    "furigana": "ならぶ",
+    "english": "to line up, to stand in a line (v.i.)",
+    "emoji": "🔦"
+  },
+  {
+    "id": 493,
+    "furigana": "ならべる",
+    "english": "to put (things) side by side; to line up",
+    "emoji": "🐷"
+  },
+  {
+    "id": 494,
+    "furigana": "なる",
+    "english": "to become",
+    "emoji": "🤛"
+  },
+  {
+    "id": 495,
+    "furigana": "なん～",
+    "english": "what sort of ~",
+    "emoji": "🥉"
+  },
+  {
+    "id": 496,
+    "furigana": "に",
+    "english": "two",
+    "emoji": "⚛️"
+  },
+  {
+    "id": 497,
+    "furigana": "にぎやか",
+    "english": "bustling, busy",
+    "emoji": "😗"
+  },
+  {
+    "id": 498,
+    "furigana": "にく",
+    "english": "meat",
+    "emoji": "🏸"
+  },
+  {
+    "id": 499,
+    "furigana": "にし",
+    "english": "west",
+    "emoji": "😰"
+  },
+  {
+    "id": 500,
+    "furigana": "～にち",
+    "english": "~ day of the month, for ~ days",
+    "emoji": "🐰"
+  },
+  {
+    "id": 501,
+    "furigana": "にちようび",
+    "english": "Sunday",
+    "emoji": "🛬"
+  },
+  {
+    "id": 502,
+    "furigana": "にもつ",
+    "english": "luggage; baggage",
+    "emoji": "🚌"
+  },
+  {
+    "id": 503,
+    "furigana": "ニュース",
+    "english": "news",
+    "emoji": "👖"
+  },
+  {
+    "id": 504,
+    "furigana": "にわ",
+    "english": "garden",
+    "emoji": "🍉"
+  },
+  {
+    "id": 505,
+    "furigana": "～にん",
+    "english": "counter for people",
+    "emoji": "👜"
+  },
+  {
+    "id": 506,
+    "furigana": "ぬぐ",
+    "english": "to take off (clothes)",
+    "emoji": "😋"
+  },
+  {
+    "id": 507,
+    "furigana": "ぬるい",
+    "english": "lukewarm",
+    "emoji": "👚"
+  },
+  {
+    "id": 508,
+    "furigana": "ネクタイ",
+    "english": "tie, necktie",
+    "emoji": "😫"
+  },
+  {
+    "id": 509,
+    "furigana": "ねこ",
+    "english": "cat",
+    "emoji": "😩"
+  },
+  {
+    "id": 510,
+    "furigana": "ねる",
+    "english": "to sleep; to go to sleep; to go to bed",
+    "emoji": "🧹"
+  },
+  {
+    "id": 511,
+    "furigana": "～ねん",
+    "english": "~ years",
+    "emoji": "🐳"
+  },
+  {
+    "id": 512,
+    "furigana": "ノート",
+    "english": "notebook",
+    "emoji": "🤩"
+  },
+  {
+    "id": 513,
+    "furigana": "のぼる",
+    "english": "to climb",
+    "emoji": "🍜"
+  },
+  {
+    "id": 514,
+    "furigana": "のみもの",
+    "english": "drink, beverage",
+    "emoji": "🏛️"
+  },
+  {
+    "id": 515,
+    "furigana": "のむ",
+    "english": "to drink",
+    "emoji": "😍"
+  },
+  {
+    "id": 516,
+    "furigana": "のる",
+    "english": "to get on, to ride in, to board",
+    "emoji": "🤘"
+  },
+  {
+    "id": 517,
+    "furigana": "は",
+    "english": "tooth",
+    "emoji": "😧"
+  },
+  {
+    "id": 518,
+    "furigana": "パーティー",
+    "english": "a party",
+    "emoji": "🌻"
+  },
+  {
+    "id": 519,
+    "furigana": "はい",
+    "english": "yes",
+    "emoji": "🍕"
+  },
+  {
+    "id": 520,
+    "furigana": "～はい",
+    "english": "counter for cupfuls",
+    "emoji": "😵"
+  },
+  {
+    "id": 521,
+    "furigana": "はいざら",
+    "english": "ashtray",
+    "emoji": "🥈"
+  },
+  {
+    "id": 522,
+    "furigana": "はいる",
+    "english": "to enter, to contain, to hold",
+    "emoji": "🦅"
+  },
+  {
+    "id": 523,
+    "furigana": "はがき",
+    "english": "postcard",
+    "emoji": "🦖"
+  },
+  {
+    "id": 524,
+    "furigana": "はく",
+    "english": "to put on (items below your waist)",
+    "emoji": "🫁"
+  },
+  {
+    "id": 525,
+    "furigana": "はこ",
+    "english": "box",
+    "emoji": "🥔"
+  },
+  {
+    "id": 526,
+    "furigana": "はし",
+    "english": "bridge",
+    "emoji": "🌺"
+  },
+  {
+    "id": 527,
+    "furigana": "はし",
+    "english": "chopsticks",
+    "emoji": "🤔"
+  },
+  {
+    "id": 528,
+    "furigana": "はじまる",
+    "english": "(something) begins",
+    "emoji": "🐢"
+  },
+  {
+    "id": 529,
+    "furigana": "はじめ",
+    "english": "beginning, start",
+    "emoji": "🍇"
+  },
+  {
+    "id": 530,
+    "furigana": "はじめて",
+    "english": "for the first time",
+    "emoji": "🍕"
+  },
+  {
+    "id": 531,
+    "furigana": "はしる",
+    "english": "to run",
+    "emoji": "🥝"
+  },
+  {
+    "id": 532,
+    "furigana": "バス",
+    "english": "bus; bath; bass",
+    "emoji": "😎"
+  },
+  {
+    "id": 533,
+    "furigana": "バター",
+    "english": "butter",
+    "emoji": "🔌"
+  },
+  {
+    "id": 534,
+    "furigana": "はたち",
+    "english": "20 years old",
+    "emoji": "🔋"
+  },
+  {
+    "id": 535,
+    "furigana": "はたらく",
+    "english": "to work",
+    "emoji": "🚚"
+  },
+  {
+    "id": 536,
+    "furigana": "はち",
+    "english": "eight",
+    "emoji": "😞"
+  },
+  {
+    "id": 537,
+    "furigana": "はつか",
+    "english": "twenty days, twentieth (day of the month)",
+    "emoji": "🦴"
+  },
+  {
+    "id": 538,
+    "furigana": "はな",
+    "english": "flower",
+    "emoji": "🍣"
+  },
+  {
+    "id": 539,
+    "furigana": "はな",
+    "english": "nose",
+    "emoji": "🌱"
+  },
+  {
+    "id": 540,
+    "furigana": "はなし",
+    "english": "talk (chat), story",
+    "emoji": "🙂"
+  },
+  {
+    "id": 541,
+    "furigana": "はなす",
+    "english": "to speak",
+    "emoji": "🐦"
+  },
+  {
+    "id": 542,
+    "furigana": "はは",
+    "english": "(my) mother",
+    "emoji": "🐶"
+  },
+  {
+    "id": 543,
+    "furigana": "はやい",
+    "english": "early",
+    "emoji": "🚙"
+  },
+  {
+    "id": 544,
+    "furigana": "はやい",
+    "english": "fast, quick",
+    "emoji": "🐀"
+  },
+  {
+    "id": 545,
+    "furigana": "はる",
+    "english": "spring",
+    "emoji": "🏠"
+  },
+  {
+    "id": 546,
+    "furigana": "はる",
+    "english": "to post; to paste; to attach",
+    "emoji": "💪"
+  },
+  {
+    "id": 547,
+    "furigana": "はれ",
+    "english": "clear (sunny) weather",
+    "emoji": "🌆"
+  },
+  {
+    "id": 548,
+    "furigana": "はれる",
+    "english": "to be sunny",
+    "emoji": "🥉"
+  },
+  {
+    "id": 549,
+    "furigana": "はん",
+    "english": "half (e.g., にじはん | half-past two)",
+    "emoji": "🐪"
+  },
+  {
+    "id": 550,
+    "furigana": "ばん",
+    "english": "evening",
+    "emoji": "😇"
+  },
+  {
+    "id": 551,
+    "furigana": "～ばん",
+    "english": "~st; ~th best",
+    "emoji": "🐫"
+  },
+  {
+    "id": 552,
+    "furigana": "パン",
+    "english": "bread",
+    "emoji": "🚚"
+  },
+  {
+    "id": 553,
+    "furigana": "ハンカチ",
+    "english": "handkerchief",
+    "emoji": "🥑"
+  },
+  {
+    "id": 554,
+    "furigana": "ばんごう",
+    "english": "number, series of digits",
+    "emoji": "🤌"
+  },
+  {
+    "id": 555,
+    "furigana": "ばんごはん",
+    "english": "dinner, evening meal",
+    "emoji": "🪆"
+  },
+  {
+    "id": 556,
+    "furigana": "はんぶん",
+    "english": "half",
+    "emoji": "🦑"
+  },
+  {
+    "id": 557,
+    "furigana": "ひがし",
+    "english": "east",
+    "emoji": "🩵"
+  },
+  {
+    "id": 558,
+    "furigana": "～ひき",
+    "english": "counter for small animals",
+    "emoji": "🌱"
+  },
+  {
+    "id": 559,
+    "furigana": "ひく",
+    "english": "to pull, to draw; subtract",
+    "emoji": "🎱"
+  },
+  {
+    "id": 560,
+    "furigana": "ひく",
+    "english": "to play (a string instrument or piano)",
+    "emoji": "🚉"
+  },
+  {
+    "id": 561,
+    "furigana": "ひくい",
+    "english": "short, low",
+    "emoji": "🏹"
+  },
+  {
+    "id": 562,
+    "furigana": "ひこうき",
+    "english": "airplane",
+    "emoji": "🧭"
+  },
+  {
+    "id": 563,
+    "furigana": "ひだり",
+    "english": "left hand side",
+    "emoji": "⚾"
+  },
+  {
+    "id": 564,
+    "furigana": "ひと",
+    "english": "man, person",
+    "emoji": "🎉"
+  },
+  {
+    "id": 565,
+    "furigana": "ひとつ",
+    "english": "one thing",
+    "emoji": "🔯"
+  },
+  {
+    "id": 566,
+    "furigana": "ひとつき",
+    "english": "one month",
+    "emoji": "👎"
+  },
+  {
+    "id": 567,
+    "furigana": "ひとり",
+    "english": "one person",
+    "emoji": "🚁"
+  },
+  {
+    "id": 568,
+    "furigana": "ひま",
+    "english": "free time, leisure",
+    "emoji": "🚙"
+  },
+  {
+    "id": 569,
+    "furigana": "ひゃく",
+    "english": "hundred",
+    "emoji": "🛴"
+  },
+  {
+    "id": 570,
+    "furigana": "びょういん",
+    "english": "hospital",
+    "emoji": "🧭"
+  },
+  {
+    "id": 571,
+    "furigana": "びょうき",
+    "english": "illness; sickness",
+    "emoji": "🐙"
+  },
+  {
+    "id": 572,
+    "furigana": "ひらがな",
+    "english": "hiragana",
+    "emoji": "🐭"
+  },
+  {
+    "id": 573,
+    "furigana": "ひる",
+    "english": "noon, daytime",
+    "emoji": "🦏"
+  },
+  {
+    "id": 574,
+    "furigana": "ひるごはん",
+    "english": "lunch, midday meal",
+    "emoji": "💖"
+  },
+  {
+    "id": 575,
+    "furigana": "ひろい",
+    "english": "spacious; wide; broad",
+    "emoji": "👊"
+  },
+  {
+    "id": 576,
+    "furigana": "フィルム",
+    "english": "film (roll of)",
+    "emoji": "😚"
+  },
+  {
+    "id": 577,
+    "furigana": "ふうとう",
+    "english": "envelope",
+    "emoji": "🐺"
+  },
+  {
+    "id": 578,
+    "furigana": "プール",
+    "english": "swimming pool",
+    "emoji": "🏒"
+  },
+  {
+    "id": 579,
+    "furigana": "フォーク",
+    "english": "fork",
+    "emoji": "🧻"
+  },
+  {
+    "id": 580,
+    "furigana": "ふく",
+    "english": "to blow (wind, etc.)",
+    "emoji": "🤿"
+  },
+  {
+    "id": 581,
+    "furigana": "ふく",
+    "english": "clothes",
+    "emoji": "🍳"
+  },
+  {
+    "id": 582,
+    "furigana": "ふたつ",
+    "english": "two things",
+    "emoji": "♟️"
+  },
+  {
+    "id": 583,
+    "furigana": "ぶたにく",
+    "english": "pork",
+    "emoji": "🥐"
+  },
+  {
+    "id": 584,
+    "furigana": "ふたり",
+    "english": "two people",
+    "emoji": "🎙️"
+  },
+  {
+    "id": 585,
+    "furigana": "ふつか",
+    "english": "two days; second day of the month",
+    "emoji": "🪨"
+  },
+  {
+    "id": 586,
+    "furigana": "ふとい",
+    "english": "fat, thick",
+    "emoji": "😔"
+  },
+  {
+    "id": 587,
+    "furigana": "ふゆ",
+    "english": "winter",
+    "emoji": "🐷"
+  },
+  {
+    "id": 588,
+    "furigana": "ふる",
+    "english": "to precipitate, to fall (e.g., rain, snow, etc.)",
+    "emoji": "💌"
+  },
+  {
+    "id": 589,
+    "furigana": "ふるい",
+    "english": "old (in reference to objects, not people), aged, ancient",
+    "emoji": "👆"
+  },
+  {
+    "id": 590,
+    "furigana": "～ふん",
+    "english": "~ minutes",
+    "emoji": "👡"
+  },
+  {
+    "id": 591,
+    "furigana": "ぶんしょう",
+    "english": "sentence, text",
+    "emoji": "🐤"
+  },
+  {
+    "id": 592,
+    "furigana": "ページ",
+    "english": "a page",
+    "emoji": "🪡"
+  },
+  {
+    "id": 593,
+    "furigana": "へた",
+    "english": "unskillful, poor",
+    "emoji": "🏀"
+  },
+  {
+    "id": 594,
+    "furigana": "ベッド",
+    "english": "bed",
+    "emoji": "🧰"
+  },
+  {
+    "id": 595,
+    "furigana": "ペット",
+    "english": "pet",
+    "emoji": "🎯"
+  },
+  {
+    "id": 596,
+    "furigana": "へや",
+    "english": "a room",
+    "emoji": "🖕"
+  },
+  {
+    "id": 597,
+    "furigana": "へん",
+    "english": "area, vicinity",
+    "emoji": "🎙️"
+  },
+  {
+    "id": 598,
+    "furigana": "ペン",
+    "english": "pen",
+    "emoji": "🧯"
+  },
+  {
+    "id": 599,
+    "furigana": "べんきょう (する)",
+    "english": "study",
+    "emoji": "🤿"
+  },
+  {
+    "id": 600,
+    "furigana": "べんり",
+    "english": "convenient, handy",
+    "emoji": "😘"
+  },
+  {
+    "id": 601,
+    "furigana": "ぼうし",
+    "english": "hat; cap",
+    "emoji": "❄️"
+  },
+  {
+    "id": 602,
+    "furigana": "ボールペン",
+    "english": "ball-point pen",
+    "emoji": "🧶"
+  },
+  {
+    "id": 603,
+    "furigana": "ほか",
+    "english": "other, the rest",
+    "emoji": "🏛️"
+  },
+  {
+    "id": 604,
+    "furigana": "ポケット",
+    "english": "pocket",
+    "emoji": "👐"
+  },
+  {
+    "id": 605,
+    "furigana": "ほしい",
+    "english": "to want, in need of",
+    "emoji": "🛬"
+  },
+  {
+    "id": 606,
+    "furigana": "ポスト",
+    "english": "mailbox; post, position",
+    "emoji": "🧈"
+  },
+  {
+    "id": 607,
+    "furigana": "ほそい",
+    "english": "thin, slender, fine",
+    "emoji": "🧭"
+  },
+  {
+    "id": 608,
+    "furigana": "ボタン",
+    "english": "button",
+    "emoji": "👆"
+  },
+  {
+    "id": 609,
+    "furigana": "ホテル",
+    "english": "hotel",
+    "emoji": "🤠"
+  },
+  {
+    "id": 610,
+    "furigana": "ほん",
+    "english": "book",
+    "emoji": "🥔"
+  },
+  {
+    "id": 611,
+    "furigana": "～ほん",
+    "english": "counter for long cylindrical things",
+    "emoji": "🐍"
+  },
+  {
+    "id": 612,
+    "furigana": "ほんだな",
+    "english": "bookshelf",
+    "emoji": "🌊"
+  },
+  {
+    "id": 613,
+    "furigana": "ほんとう",
+    "english": "real, true",
+    "emoji": "🤠"
+  },
+  {
+    "id": 614,
+    "furigana": "～まい",
+    "english": "counter for flat things",
+    "emoji": "😲"
+  },
+  {
+    "id": 615,
+    "furigana": "まいあさ",
+    "english": "every morning",
+    "emoji": "👂"
+  },
+  {
+    "id": 616,
+    "furigana": "まいげつ; まいつき",
+    "english": "every month, monthly",
+    "emoji": "🍫"
+  },
+  {
+    "id": 617,
+    "furigana": "まいしゅう",
+    "english": "every week",
+    "emoji": "🌍"
+  },
+  {
+    "id": 618,
+    "furigana": "まいにち",
+    "english": "every day",
+    "emoji": "🤖"
+  },
+  {
+    "id": 619,
+    "furigana": "まいねん; まいとし",
+    "english": "every year, yearly, annually",
+    "emoji": "🥿"
+  },
+  {
+    "id": 620,
+    "furigana": "まいばん",
+    "english": "every night",
+    "emoji": "🪞"
+  },
+  {
+    "id": 621,
+    "furigana": "まえ",
+    "english": "before, in front",
+    "emoji": "😖"
+  },
+  {
+    "id": 622,
+    "furigana": "～まえ",
+    "english": "in front of ~",
+    "emoji": "🎿"
+  },
+  {
+    "id": 623,
+    "furigana": "まがる",
+    "english": "to turn, to bend",
+    "emoji": "😵"
+  },
+  {
+    "id": 624,
+    "furigana": "まずい",
+    "english": "terrible (in reference to food), unappetizing, unpleasant (taste)",
+    "emoji": "🐁"
+  },
+  {
+    "id": 625,
+    "furigana": "また",
+    "english": "and; furthermore",
+    "emoji": "🤞"
+  },
+  {
+    "id": 626,
+    "furigana": "まだ",
+    "english": "yet, still, besides",
+    "emoji": "🤿"
+  },
+  {
+    "id": 627,
+    "furigana": "まち",
+    "english": "town; city",
+    "emoji": "🎙️"
+  },
+  {
+    "id": 628,
+    "furigana": "まつ",
+    "english": "to wait",
+    "emoji": "😨"
+  },
+  {
+    "id": 629,
+    "furigana": "まっすぐ",
+    "english": "straight (ahead), direct",
+    "emoji": "❄️"
+  },
+  {
+    "id": 630,
+    "furigana": "マッチ",
+    "english": "match",
+    "emoji": "🪖"
+  },
+  {
+    "id": 631,
+    "furigana": "まど",
+    "english": "window",
+    "emoji": "⏰"
+  },
+  {
+    "id": 632,
+    "furigana": "まるい",
+    "english": "round, circular",
+    "emoji": "🍸"
+  },
+  {
+    "id": 633,
+    "furigana": "まん",
+    "english": "ten thousand",
+    "emoji": "🧼"
+  },
+  {
+    "id": 634,
+    "furigana": "まんねんひつ",
+    "english": "fountain pen",
+    "emoji": "🖖"
+  },
+  {
+    "id": 635,
+    "furigana": "みがく",
+    "english": "to brush (teeth); to polish",
+    "emoji": "😝"
+  },
+  {
+    "id": 636,
+    "furigana": "みぎ",
+    "english": "right hand side",
+    "emoji": "🥝"
+  },
+  {
+    "id": 637,
+    "furigana": "みじかい",
+    "english": "short (length)",
+    "emoji": "🐬"
+  },
+  {
+    "id": 638,
+    "furigana": "みず",
+    "english": "water",
+    "emoji": "💼"
+  },
+  {
+    "id": 639,
+    "furigana": "みせ",
+    "english": "store, shop",
+    "emoji": "🪜"
+  },
+  {
+    "id": 640,
+    "furigana": "みせる",
+    "english": "to show, to display",
+    "emoji": "🍡"
+  },
+  {
+    "id": 641,
+    "furigana": "みち",
+    "english": "road, street; way, directions",
+    "emoji": "🧅"
+  },
+  {
+    "id": 642,
+    "furigana": "みっか",
+    "english": "three days, third day of the month",
+    "emoji": "👍"
+  },
+  {
+    "id": 643,
+    "furigana": "みっつ",
+    "english": "three things",
+    "emoji": "🔑"
+  },
+  {
+    "id": 644,
+    "furigana": "みどり",
+    "english": "green",
+    "emoji": "☝️"
+  },
+  {
+    "id": 645,
+    "furigana": "みなさん",
+    "english": "all of you, everyone",
+    "emoji": "😼"
+  },
+  {
+    "id": 646,
+    "furigana": "みなみ",
+    "english": "South",
+    "emoji": "👟"
+  },
+  {
+    "id": 647,
+    "furigana": "みみ",
+    "english": "ear",
+    "emoji": "🦏"
+  },
+  {
+    "id": 648,
+    "furigana": "みる",
+    "english": "to see, to look",
+    "emoji": "🤍"
+  },
+  {
+    "id": 649,
+    "furigana": "みんな",
+    "english": "all, everyone, everybody",
+    "emoji": "☸️"
+  },
+  {
+    "id": 650,
+    "furigana": "むいか",
+    "english": "six days; sixth day of month",
+    "emoji": "😂"
+  },
+  {
+    "id": 651,
+    "furigana": "むこう",
+    "english": "beyond, over there",
+    "emoji": "🛖"
+  },
+  {
+    "id": 652,
+    "furigana": "むずかしい",
+    "english": "difficult",
+    "emoji": "👗"
+  },
+  {
+    "id": 653,
+    "furigana": "むっつ",
+    "english": "six things",
+    "emoji": "🎮"
+  },
+  {
+    "id": 654,
+    "furigana": "むら",
+    "english": "village",
+    "emoji": "😺"
+  },
+  {
+    "id": 655,
+    "furigana": "め",
+    "english": "eye(s)",
+    "emoji": "🍬"
+  },
+  {
+    "id": 656,
+    "furigana": "メートル",
+    "english": "meter",
+    "emoji": "🫀"
+  },
+  {
+    "id": 657,
+    "furigana": "めがね",
+    "english": "eye glasses",
+    "emoji": "🫀"
+  },
+  {
+    "id": 658,
+    "furigana": "もう",
+    "english": "already; again; more",
+    "emoji": "🚉"
+  },
+  {
+    "id": 659,
+    "furigana": "もくようび",
+    "english": "Thursday",
+    "emoji": "🍨"
+  },
+  {
+    "id": 660,
+    "furigana": "もしもし",
+    "english": "Hello? (used on the phone)",
+    "emoji": "😚"
+  },
+  {
+    "id": 661,
+    "furigana": "もつ",
+    "english": "to hold, to carry; to possess",
+    "emoji": "🥍"
+  },
+  {
+    "id": 662,
+    "furigana": "もっと",
+    "english": "more",
+    "emoji": "👡"
+  },
+  {
+    "id": 663,
+    "furigana": "もの",
+    "english": "thing (concrete object)",
+    "emoji": "💕"
+  },
+  {
+    "id": 664,
+    "furigana": "もん",
+    "english": "gate",
+    "emoji": "🎙️"
+  },
+  {
+    "id": 665,
+    "furigana": "もんだい",
+    "english": "a problem",
+    "emoji": "🍎"
+  },
+  {
+    "id": 666,
+    "furigana": "～や",
+    "english": "~ shop",
+    "emoji": "🦦"
+  },
+  {
+    "id": 667,
+    "furigana": "やおや",
+    "english": "greengrocer",
+    "emoji": "🏂"
+  },
+  {
+    "id": 668,
+    "furigana": "やさい",
+    "english": "vegetable",
+    "emoji": "🌹"
+  },
+  {
+    "id": 669,
+    "furigana": "やさしい",
+    "english": "easy, plain, simple",
+    "emoji": "⏳"
+  },
+  {
+    "id": 670,
+    "furigana": "やすい",
+    "english": "inexpensive; cheap (things)",
+    "emoji": "🐨"
+  },
+  {
+    "id": 671,
+    "furigana": "やすみ",
+    "english": "holiday; day off; absence",
+    "emoji": "😼"
+  },
+  {
+    "id": 672,
+    "furigana": "やすむ",
+    "english": "to rest, to have a break, to get time off",
+    "emoji": "🧯"
+  },
+  {
+    "id": 673,
+    "furigana": "やっつ",
+    "english": "eight things",
+    "emoji": "🧥"
+  },
+  {
+    "id": 674,
+    "furigana": "やま",
+    "english": "mountain",
+    "emoji": "🍅"
+  },
+  {
+    "id": 675,
+    "furigana": "やる",
+    "english": "to do; to give (to pets, parents, siblings, etc.)",
+    "emoji": "💼"
+  },
+  {
+    "id": 676,
+    "furigana": "ゆうがた",
+    "english": "late afternoon (typically just before dinner time), evening",
+    "emoji": "😕"
+  },
+  {
+    "id": 677,
+    "furigana": "ゆうはん",
+    "english": "dinner, supper, evening meal",
+    "emoji": "😔"
+  },
+  {
+    "id": 678,
+    "furigana": "ゆうびんきょく",
+    "english": "post office",
+    "emoji": "😔"
+  },
+  {
+    "id": 679,
+    "furigana": "ゆうべ",
+    "english": "last night",
+    "emoji": "🤿"
+  },
+  {
+    "id": 680,
+    "furigana": "ゆうめい",
+    "english": "famous",
+    "emoji": "🫐"
+  },
+  {
+    "id": 681,
+    "furigana": "ゆき",
+    "english": "snow",
+    "emoji": "🏰"
+  },
+  {
+    "id": 682,
+    "furigana": "ゆっくりと",
+    "english": "slowly, at ease",
+    "emoji": "😟"
+  },
+  {
+    "id": 683,
+    "furigana": "ようか",
+    "english": "eight days; eighth day of the month",
+    "emoji": "🥺"
+  },
+  {
+    "id": 684,
+    "furigana": "ようふく",
+    "english": "Western-style clothes",
+    "emoji": "👌"
+  },
+  {
+    "id": 685,
+    "furigana": "よく",
+    "english": "frequently, often (much); well, skillfully",
+    "emoji": "🧩"
+  },
+  {
+    "id": 686,
+    "furigana": "よこ",
+    "english": "beside; side; width",
+    "emoji": "🦔"
+  },
+  {
+    "id": 687,
+    "furigana": "よっか",
+    "english": "four days; fourth day of the month",
+    "emoji": "🧈"
+  },
+  {
+    "id": 688,
+    "furigana": "よっつ",
+    "english": "four things",
+    "emoji": "🏖️"
+  },
+  {
+    "id": 689,
+    "furigana": "よぶ",
+    "english": "to call (one's name); to invite",
+    "emoji": "🤞"
+  },
+  {
+    "id": 690,
+    "furigana": "よむ",
+    "english": "to read",
+    "emoji": "🥪"
+  },
+  {
+    "id": 691,
+    "furigana": "よる",
+    "english": "evening, night",
+    "emoji": "🧁"
+  },
+  {
+    "id": 692,
+    "furigana": "よわい",
+    "english": "weak",
+    "emoji": "🍮"
+  },
+  {
+    "id": 693,
+    "furigana": "らいげつ",
+    "english": "next month",
+    "emoji": "🐊"
+  },
+  {
+    "id": 694,
+    "furigana": "らいしゅう",
+    "english": "next week",
+    "emoji": "🧪"
+  },
+  {
+    "id": 695,
+    "furigana": "らいねん",
+    "english": "next year",
+    "emoji": "👈"
+  },
+  {
+    "id": 696,
+    "furigana": "ラジオ",
+    "english": "radio",
+    "emoji": "😖"
+  },
+  {
+    "id": 697,
+    "furigana": "ラジオカセ",
+    "english": "radio cassette player",
+    "emoji": "🍗"
+  },
+  {
+    "id": 698,
+    "furigana": "りっぱ",
+    "english": "splendid, fine",
+    "emoji": "🏹"
+  },
+  {
+    "id": 699,
+    "furigana": "りゅうがくせい",
+    "english": "international student",
+    "emoji": "✌️"
+  },
+  {
+    "id": 700,
+    "furigana": "りょうしん",
+    "english": "parents (lit., both parents)",
+    "emoji": "🥽"
+  },
+  {
+    "id": 701,
+    "furigana": "りょうり",
+    "english": "cooking; cuisine",
+    "emoji": "🎠"
+  },
+  {
+    "id": 702,
+    "furigana": "りょこう",
+    "english": "travel, trip",
+    "emoji": "🐤"
+  },
+  {
+    "id": 703,
+    "furigana": "れい",
+    "english": "zero, nought",
+    "emoji": "🧭"
+  },
+  {
+    "id": 704,
+    "furigana": "れいぞうこ",
+    "english": "refrigerator",
+    "emoji": "👏"
+  },
+  {
+    "id": 705,
+    "furigana": "レコード",
+    "english": "record",
+    "emoji": "💘"
+  },
+  {
+    "id": 706,
+    "furigana": "レストラン",
+    "english": "restaurant",
+    "emoji": "🥸"
+  },
+  {
+    "id": 707,
+    "furigana": "れんしゅう (する)",
+    "english": "(to) practice",
+    "emoji": "🛐"
+  },
+  {
+    "id": 708,
+    "furigana": "ろうか",
+    "english": "corridor",
+    "emoji": "🫑"
+  },
+  {
+    "id": 709,
+    "furigana": "ろく",
+    "english": "six",
+    "emoji": "☮️"
+  },
+  {
+    "id": 710,
+    "furigana": "ワイシャツ",
+    "english": "shirt (lit: white shirt), business shirt",
+    "emoji": "🚉"
+  },
+  {
+    "id": 711,
+    "furigana": "わかい",
+    "english": "young",
+    "emoji": "🍦"
+  },
+  {
+    "id": 712,
+    "furigana": "わかる",
+    "english": "to understand",
+    "emoji": "😗"
+  },
+  {
+    "id": 713,
+    "furigana": "わすれる",
+    "english": "to forget",
+    "emoji": "🐨"
+  },
+  {
+    "id": 714,
+    "furigana": "わたし",
+    "english": "I, myself",
+    "emoji": "👛"
+  },
+  {
+    "id": 715,
+    "furigana": "わたくし",
+    "english": "I (formal), myself, private affairs",
+    "emoji": "🎙️"
+  },
+  {
+    "id": 716,
+    "furigana": "わたす",
+    "english": "to hand (something) over (v.t.); to get across",
+    "emoji": "🐫"
+  },
+  {
+    "id": 717,
+    "furigana": "わたる",
+    "english": "to cross over, to go across",
+    "emoji": "😮"
+  },
+  {
+    "id": 718,
+    "furigana": "わるい",
+    "english": "bad, sinful; inferior",
+    "emoji": "🫀"
+  }
+]

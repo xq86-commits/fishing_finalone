@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Words Fishing Lingo</title>
+  <style>
+    link[rel=preload] {
+      display: none;
+    }
+  </style>
+  <link rel="preload" href="./games/game.js" as="script">
+  <link rel="preload" href="./games/game.html" as="document">
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: url('fish_assets/bg.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
+    }
+
+    /* 状态工具类 */
+    .is-hidden {
+      display: none !important;
+      pointer-events: none !important;
+    }
+
+    .is-flex {
+      display: flex !important;
+      pointer-events: auto !important;
+    }
+
+    .is-block {
+      display: block !important;
+      pointer-events: auto !important;
+    }
+
+    /* 通用按钮 */
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      background: #1F6FCF;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 0 rgba(0, 0, 0, .18)
+    }
+
+    button:active {
+      transform: translateY(2px)
+    }
+
+    #start-btn,
+    #next-btn {
+      background: #FF6042;
+    }
+
+    /* 启动页 */
+    #start-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      height: 100vh;
+      position: relative;
+      /* background removed */
+    }
+
+    #start-screen button {
+      width: 200px;
+    }
+
+    #start-screen h1 {
+      color: #084B90;
+      font-size: 28px;
+      margin-bottom: 16px
+    }
+
+    /* Loading */
+    #loading {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      height: 100vh;
+      background: #000
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 6px solid rgba(255, 255, 255, .3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* 游戏 iframe 容器 */
+    #game-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 375/812;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+      margin: auto
+    }
+
+    #game-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #000;
+      display: block
+    }
+
+    /* 结算页（全屏） */
+    #result-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .65);
+      color: #fff;
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+      padding-bottom: env(safe-area-inset-bottom)
+    }
+
+    #result-screen h2 {
+      font-size: 28px;
+      margin-bottom: 10px
+    }
+
+    #result-screen button {
+      width: 200px;
+      padding: 12px 0;
+      border-radius: 8px
+    }
+
+    /* 排行榜（全屏） */
+    #rank-screen {
+      position: fixed;
+      inset: 0;
+      inset: 0;
+      /* background removed */
+      color: #1E2D3C;
+      color: #1E2D3C;
+      z-index: 1000;
+      flex-direction: column;
+      height: 100vh;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      overflow: hidden
+    }
+
+    #rank-header {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 60px;
+      background: rgba(255, 255, 255, .75);
+      backdrop-filter: blur(6px);
+      font-size: 20px;
+      font-weight: bold;
+      color: #1E2D3C
+    }
+
+    #rank-back {
+      position: absolute;
+      left: 12px;
+      background: none;
+      border: none;
+      color: #1E2D3C;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 10px
+    }
+
+    #rank-list {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box
+    }
+
+    .rank-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, .85);
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      font-size: 15px;
+      color: #1E2D3C;
+      box-shadow: 0 6px 16px rgba(31, 75, 114, .12)
+    }
+
+    .rank-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0
+    }
+
+    .rank-index {
+      width: 28px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px
+    }
+
+    .rank-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: rgba(0, 0, 0, .2)
+    }
+
+    .rank-avatar--placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: #1E2D3C;
+      background: rgba(255, 255, 255, .6);
+      text-transform: uppercase
+    }
+
+    .rank-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0
+    }
+
+    .rank-name {
+      font-weight: 700;
+      font-size: 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .rank-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: rgba(31, 75, 114, .75)
+    }
+
+    .rank-meta:empty {
+      display: none
+    }
+
+    .rank-vip {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffd66b, #ffae00);
+      color: #312200;
+      font-weight: 700;
+      font-size: 12px
+    }
+
+    .rank-time {
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(31, 75, 114, .1);
+      color: #1E2D3C
+    }
+
+    .rank-score {
+      font-weight: 700;
+      font-size: 16px;
+      color: #F36900
+    }
+
+    .rank-loading,
+    .rank-error,
+    .rank-empty {
+      padding: 30px 10px;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(31, 75, 114, .7)
+    }
+
+    .rank-item.top1 {
+      background: linear-gradient(90deg, #ffe699, #ffd24c);
+      color: #1E2D3C
+    }
+
+    .rank-item.top2 {
+      background: linear-gradient(90deg, #f4f4f4, #d3d6d8);
+      color: #1E2D3C
+    }
+
+    .rank-item.top3 {
+      background: linear-gradient(90deg, #f5d0a0, #d08b44);
+      color: #1E2D3C
+    }
+
+    .rank-item.top1 .rank-avatar--placeholder,
+    .rank-item.top2 .rank-avatar--placeholder,
+    .rank-item.top3 .rank-avatar--placeholder {
+      background: rgba(255, 255, 255, .6);
+      color: #1E2D3C
+    }
+
+    .rank-item.top1 .rank-meta,
+    .rank-item.top2 .rank-meta {
+      color: rgba(31, 75, 114, .7)
+    }
+
+    .rank-item.top1 .rank-time,
+    .rank-item.top2 .rank-time {
+      background: rgba(31, 75, 114, .12);
+      color: #1E2D3C
+    }
+
+    /* Found Words List */
+    #found-words-list {
+      width: 90%;
+      max-width: 300px;
+      max-height: 200px;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .found-word-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 14px;
+    }
+
+    .found-word-item:last-child {
+      border-bottom: none;
+    }
+
+    .found-word-kana {
+      font-weight: bold;
+      color: #ffd700;
+    }
+
+    .found-word-en {
+      color: #ddd;
+      font-size: 12px;
+    }
+
+    .music-toggle {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 5;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f2fbff;
+      cursor: pointer;
+    }
+
+    .music-toggle svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    .music-toggle.is-off {
+      color: rgba(242, 251, 255, 0.65);
+    }
+
+    .music-toggle.is-on .sound-wave {
+      animation: wavePulse 1.8s ease-in-out infinite;
+      opacity: 0.9;
+    }
+
+    .music-toggle.is-on .sound-wave.wave-2 {
+      animation-delay: 0.2s;
+    }
+
+    .music-toggle.is-on .sound-wave.wave-3 {
+      animation-delay: 0.4s;
+    }
+
+    .music-toggle.is-off .sound-wave,
+    .music-toggle.is-off .slash {
+      animation: none;
+    }
+
+    .music-toggle.is-on .slash {
+      opacity: 0;
+    }
+
+    .music-toggle.is-off .sound-wave {
+      opacity: 0;
+    }
+
+    .music-toggle.is-off .slash {
+      opacity: 1;
+    }
+
+    .music-toggle:active {
+      transform: scale(0.96);
+    }
+
+    @keyframes wavePulse {
+      0% {
+        opacity: 0.6;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.6;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <audio id="bgm" src="assets/潮汐小旅行.mp3" preload="auto" loop playsinline></audio>
+
+  <!-- 启动页（默认唯一可见） -->
+  <div id="start-screen" class="is-flex">
+    <button id="music-toggle-start" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
+        <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="sound-wave wave-2" d="M18 6a7 7 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="sound-wave wave-3" d="M20.5 4a9.5 9.5 0 0 1 0 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="slash" d="M4 20L20 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <h1> Words Fishing</h1>
+    <button id="start-btn">Start</button>
+    <button id="share-btn">Share</button>
+  </div>
+
+  <!-- Loading / 游戏 / 结算 / 排行榜（都默认隐藏） -->
+  <div id="loading" class="is-hidden">
+    <div class="loader"></div>
+    <div>loading</div>
+  </div>
+
+  <div id="game-wrapper" class="is-hidden">
+    <button id="music-toggle-game" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
+        <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="sound-wave wave-2" d="M18 6a7 7 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="sound-wave wave-3" d="M20.5 4a9.5 9.5 0 0 1 0 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="slash" d="M4 20L20 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <iframe id="game-frame" src=""></iframe>
+  </div>
+
+  <div id="result-screen" class="is-hidden">
+    <h2 id="result-title">Your Score: 0</h2>
+    <div id="found-words-list"></div>
+    <button id="next-btn">Play Again</button>
+    <button id="share2-btn">Share</button>
+    <button id="home-btn">Home</button>
+  </div>
+
+  <div id="rank-screen" class="is-hidden">
+    <div id="rank-header">
+      <button id="rank-back">←</button>
+      Leaderboard
+    </div>
+    <div id="rank-list"></div>
+  </div>
+
+  <script src="./scripts/fireworks.js"></script>
+  <script src="./scripts/game-data.js"></script>
+  <script src="./scripts/share.js"></script>
+  <script src="./scripts/advertising-manager.js"></script>
+  <script src="./scripts/app-communication.js"></script>
+  <script>
+    /* 工具：状态切换（只留一个层可见） */
+    const LAYERS = ["start-screen", "loading", "game-wrapper", "result-screen", "rank-screen"];
+    function showFlex(id) { hideAll(); document.getElementById(id).classList.remove("is-hidden"); document.getElementById(id).classList.add("is-flex"); }
+    function showBlock(id) { hideAll(); document.getElementById(id).classList.remove("is-hidden"); document.getElementById(id).classList.add("is-block"); }
+    function hideAll() {
+      LAYERS.forEach(k => {
+        const el = document.getElementById(k);
+        el.classList.remove("is-flex", "is-block");
+        el.classList.add("is-hidden");
+      });
+    }
+
+    /* DOM 引用 */
+    const startBtn = document.getElementById("start-btn");
+    const rankBtn = document.getElementById("rank-btn");
+    const rankBack = document.getElementById("rank-back");
+    const shareBtn = document.getElementById("share-btn");
+    const share2Btn = document.getElementById("share2-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const homeBtn = document.getElementById("home-btn");
+    const gameFrame = document.getElementById("game-frame");
+    const bgm = document.getElementById("bgm");
+    const musicToggleStart = document.getElementById("music-toggle-start");
+    const musicToggleGame = document.getElementById("music-toggle-game");
+    const resultTitle = document.getElementById("result-title");
+    const rankList = document.getElementById("rank-list");
+    let latestScore = 0;
+    let latestLevel = null;
+    let fireworksTimeout = null;
+    const DEFAULT_AVATAR = "assets/handy.png";
+    let bgmEnabled = true;
+    let bgmResumeBound = false;
+    if (bgm) {
+      bgm.volume = 0.35;
+    }
+
+    function triggerFireworks() {
+      if (window.fireworksEffect && typeof window.fireworksEffect.burst === "function") {
+        window.fireworksEffect.burst(5);
+        if (fireworksTimeout) {
+          clearTimeout(fireworksTimeout);
+        }
+        fireworksTimeout = setTimeout(() => {
+          fireworksTimeout = null;
+          if (window.fireworksEffect && typeof window.fireworksEffect.burst === "function") {
+            window.fireworksEffect.burst(5);
+          }
+        }, 900);
+      }
+    }
+
+    function stopFireworks() {
+      if (window.fireworksEffect && typeof window.fireworksEffect.stop === "function") {
+        window.fireworksEffect.stop();
+      }
+      if (fireworksTimeout) {
+        clearTimeout(fireworksTimeout);
+        fireworksTimeout = null;
+      }
+    }
+
+    function escapeHtml(value) {
+      if (value === undefined || value === null) {
+        return "";
+      }
+      return String(value).replace(/[&<>"']/g, function (match) {
+        switch (match) {
+          case "&": return "&amp;";
+          case "<": return "&lt;";
+          case ">": return "&gt;";
+          case '"': return "&quot;";
+          case "'": return "&#39;";
+          default: return match;
+        }
+      });
+    }
+
+    function escapeAttribute(value) {
+      return escapeHtml(value).replace(/`/g, "&#96;");
+    }
+
+    function getInitial(name) {
+      var trimmed = (name || "").trim();
+      if (!trimmed) return "?";
+      return trimmed.charAt(0).toUpperCase();
+    }
+
+    function formatCompletion(ms) {
+      var value = Number(ms);
+      if (!Number.isFinite(value) || value <= 0) {
+        return "";
+      }
+      var seconds = value / 1000;
+      if (seconds >= 60) {
+        var minutes = Math.floor(seconds / 60);
+        var remainder = Math.round((seconds % 60) * 10) / 10;
+        var remainderStr = remainder < 10 ? "0" + remainder.toFixed(1) : remainder.toFixed(1);
+        return minutes + "m " + remainderStr + "s";
+      }
+      var formatted = seconds.toFixed(1);
+      return formatted.replace(/\.0$/, "") + "s";
+    }
+
+    function renderRankItem(item, index) {
+      var rankClass = index === 0 ? "top1" : index === 1 ? "top2" : index === 2 ? "top3" : "";
+      var avatarSrc = item.avatar ? item.avatar : DEFAULT_AVATAR;
+      var avatarHtml = '<img class="rank-avatar" src="' + escapeAttribute(avatarSrc) + '" alt="' + escapeAttribute(item.nickname || "Player") + '" loading="lazy" />';
+      var metaParts = [];
+      if (item.isVip) {
+        metaParts.push('<span class="rank-vip">VIP</span>');
+      }
+      var completion = formatCompletion(item.completionTimeMs);
+      if (completion) {
+        metaParts.push('<span class="rank-time">' + escapeHtml(completion) + "</span>");
+      }
+      var metaHtml = metaParts.join("");
+      var scoreValue = Number(item.score);
+      var scoreDisplay = Number.isFinite(scoreValue) ? scoreValue : 0;
+      return '<div class="rank-item ' + rankClass + '">' +
+        '<div class="rank-main">' +
+        '<span class="rank-index">' + (index + 1) + "</span>" +
+        avatarHtml +
+        '<div class="rank-info">' +
+        '<div class="rank-name">' + escapeHtml(item.nickname) + "</div>" +
+        '<div class="rank-meta">' + metaHtml + "</div>" +
+        "</div>" +
+        "</div>" +
+        '<div class="rank-score">' + escapeHtml(scoreDisplay) + "</div>" +
+        "</div>";
+    }
+
+    function renderLeaderboard(list) {
+      if (!Array.isArray(list) || list.length === 0) {
+        rankList.innerHTML = '<div class="rank-empty">暂时没有排行榜数据</div>';
+        return;
+      }
+      rankList.innerHTML = list.map(function (item, index) {
+        return renderRankItem(item, index);
+      }).join("");
+    }
+
+    function loadLeaderboard() {
+      rankList.innerHTML = '<div class="rank-loading">正在加载排行榜...</div>';
+      var service = window.gameDataService;
+      var loader;
+      if (service && typeof service.fetchLeaderboard === "function") {
+        loader = service.fetchLeaderboard();
+      } else {
+        loader = Promise.resolve([]);
+      }
+      loader.then(function (list) {
+        if ((!list || !list.length) && service && typeof service.getFallbackLeaderboard === "function") {
+          list = service.getFallbackLeaderboard();
+        }
+        renderLeaderboard(list);
+      }).catch(function (error) {
+        console.warn("[leaderboard] load failed", error);
+        rankList.innerHTML = '<div class="rank-error">排行榜加载失败，请稍后再试。</div>';
+      });
+    }
+
+    /* 首屏强制态（防止某些浏览器闪现浮层） */
+    window.addEventListener("DOMContentLoaded", () => {
+      hideAll();
+      showFlex("start-screen");   // 只显示首页
+      updateMusicButtons();
+      tryPlayBgm();
+      bindBgmResumeOnGesture();
+    });
+
+    /* 开始游戏 */
+    startBtn.onclick = () => {
+      hideAll();
+      showFlex("loading");
+      stopFireworks();
+      tryPlayBgm();
+      setTimeout(() => {
+        showBlock("game-wrapper");
+        gameFrame.src = "./games/game.html";
+      }, 200);
+      if (window.appCommunication && typeof window.appCommunication.sendMessageToApp === "function") {
+        window.appCommunication.sendMessageToApp({
+          type: "gameStart"
+        });
+      }
+    };
+
+    /* 排行榜 */
+    if (rankBtn) {
+      rankBtn.classList.add("is-hidden");
+      rankBtn.onclick = () => {
+        hideAll();
+        stopFireworks();
+        showFlex("rank-screen");
+        rankList.scrollTop = 0;
+        loadLeaderboard();
+      };
+    }
+    rankBack.onclick = () => {
+      hideAll();
+      showFlex("start-screen");
+      stopFireworks();
+    };
+
+    /* 分享 */
+    shareBtn.onclick = () => {
+      if (window.gameShare && typeof window.gameShare.shareHome === "function") {
+        window.gameShare.shareHome();
+      }
+      if (window.appCommunication && typeof window.appCommunication.sendMessageToApp === "function") {
+        window.appCommunication.sendMessageToApp({
+          type: "shareTriggered",
+          data: { source: "home" }
+        });
+      }
+    };
+    share2Btn.onclick = () => {
+      if (window.gameShare && typeof window.gameShare.shareScore === "function") {
+        window.gameShare.shareScore(latestScore, latestLevel);
+      }
+      if (window.appCommunication && typeof window.appCommunication.sendMessageToApp === "function") {
+        window.appCommunication.sendMessageToApp({
+          type: "shareTriggered",
+          data: { source: "result", score: latestScore }
+        });
+      }
+    };
+
+    /* 结算页按钮 */
+    homeBtn.onclick = () => {
+      hideAll();
+      showFlex("start-screen");
+      stopFireworks();
+      tryPlayBgm();
+    };
+    nextBtn.onclick = () => {
+      hideAll();
+      showBlock("game-wrapper");
+      stopFireworks();
+      gameFrame.contentWindow?.postMessage({ action: "nextLevel" }, "*");
+    };
+
+    /* 接收游戏过关消息 */
+    window.addEventListener("message", (e) => {
+      const data = e.data || {};
+      if (data.action === "levelComplete") {
+        latestScore = Number(data.score ?? 0) || 0;
+        const completionTimeMs = Number.isFinite(Number(data.completionTimeMs)) ? Number(data.completionTimeMs) : null;
+        const levelValue = Number.isFinite(Number(data.level)) ? Number(data.level) : null;
+        const foundWords = Array.isArray(data.foundWords) ? data.foundWords : [];
+
+        latestLevel = levelValue;
+        hideAll();
+        showFlex("result-screen");
+        resultTitle.textContent = "Your Score: " + latestScore;
+
+        // Render Found Words
+        const listContainer = document.getElementById("found-words-list");
+        if (foundWords.length > 0) {
+          listContainer.innerHTML = foundWords.map(w => `
+        <div class="found-word-item">
+          <span class="found-word-kana">${escapeHtml(w.furigana)}</span>
+          <span class="found-word-en">${escapeHtml(w.english)}</span>
+        </div>
+      `).join("");
+        } else {
+          listContainer.innerHTML = '<div style="text-align:center;color:#aaa;">No words found</div>';
+        }
+
+        if (window.appCommunication && typeof window.appCommunication.sendMessageToApp === "function") {
+          window.appCommunication.sendMessageToApp({
+            type: "levelComplete",
+            data: { score: latestScore, level: levelValue, completionTimeMs }
+          });
+        }
+        if (window.gameDataService && typeof window.gameDataService.submitResult === "function") {
+          var userInfo = null;
+          if (window.appCommunication && typeof window.appCommunication.getUserInfo === "function") {
+            userInfo = window.appCommunication.getUserInfo();
+          }
+          var payload = window.gameDataService.buildSubmissionPayload({
+            score: latestScore,
+            level: levelValue,
+            completionTimeMs: completionTimeMs
+          }, userInfo || {});
+          window.gameDataService.submitResult(payload).catch(function (error) {
+            console.warn("[gameDataService] submitResult failed", error);
+          });
+        }
+        triggerFireworks();
+      }
+    });
+
+    /* 默认预加载一次广告以加快首个展示 */
+    if (window.advertisingManager && typeof window.advertisingManager.preload === "function") {
+      window.advertisingManager.preload({ sceneType: "reward" });
+    }
+
+    function updateMusicButtons() {
+      if (!bgm) return;
+      const isPlaying = !bgm.paused && !bgm.muted;
+      [musicToggleStart, musicToggleGame].forEach(btn => {
+        if (!btn) return;
+        btn.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+        btn.classList.toggle("is-on", isPlaying);
+        btn.classList.toggle("is-off", !isPlaying);
+      });
+    }
+
+    function tryPlayBgm() {
+      if (!bgm || !bgmEnabled) {
+        updateMusicButtons();
+        return;
+      }
+      const playResult = bgm.play();
+      if (playResult && typeof playResult.then === "function") {
+        playResult.then(updateMusicButtons).catch(updateMusicButtons);
+      } else {
+        updateMusicButtons();
+      }
+    }
+
+    function bindBgmResumeOnGesture() {
+      if (bgmResumeBound) return;
+      bgmResumeBound = true;
+      window.addEventListener("pointerdown", () => {
+        tryPlayBgm();
+      }, { once: true });
+    }
+
+    function toggleBgm() {
+      if (!bgm) return;
+      if (bgm.paused || bgm.muted) {
+        bgm.muted = false;
+        bgmEnabled = true;
+        tryPlayBgm();
+      } else {
+        bgm.pause();
+        bgmEnabled = false;
+        updateMusicButtons();
+      }
+    }
+
+    if (musicToggleStart) {
+      musicToggleStart.addEventListener("click", toggleBgm);
+    }
+    if (musicToggleGame) {
+      musicToggleGame.addEventListener("click", toggleBgm);
+    }
+  </script>
+</body>
+
+</html>

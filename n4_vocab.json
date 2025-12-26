@@ -1,0 +1,3342 @@
+[
+  {
+    "id": 1,
+    "furigana": "ふむ",
+    "english": "to step on, to tread on"
+  },
+  {
+    "id": 2,
+    "furigana": "～く",
+    "english": "~ district, ~ ward, ~ borough"
+  },
+  {
+    "id": 3,
+    "furigana": "すっと",
+    "english": "straight, quickly"
+  },
+  {
+    "id": 4,
+    "furigana": "ぬすむ",
+    "english": "to steal; to rob"
+  },
+  {
+    "id": 5,
+    "furigana": "たいてい",
+    "english": "generally, usually"
+  },
+  {
+    "id": 6,
+    "furigana": "とうとう",
+    "english": "finally, at last"
+  },
+  {
+    "id": 7,
+    "furigana": "ガソリン",
+    "english": "gasoline, petrol"
+  },
+  {
+    "id": 8,
+    "furigana": "なる",
+    "english": "to sound, to ring (v.i.)"
+  },
+  {
+    "id": 9,
+    "furigana": "しっかり",
+    "english": "firmly, steady"
+  },
+  {
+    "id": 10,
+    "furigana": "いきる",
+    "english": "to live"
+  },
+  {
+    "id": 11,
+    "furigana": "にがい",
+    "english": "bitter"
+  },
+  {
+    "id": 12,
+    "furigana": "わく",
+    "english": "to boil, to grow hot"
+  },
+  {
+    "id": 13,
+    "furigana": "いけん",
+    "english": "opinion, view, idea"
+  },
+  {
+    "id": 14,
+    "furigana": "やはり; やっぱり",
+    "english": "as I thought, absolutely"
+  },
+  {
+    "id": 15,
+    "furigana": "まんが",
+    "english": "comic (book), cartoon"
+  },
+  {
+    "id": 16,
+    "furigana": "ステレオ",
+    "english": "stereo"
+  },
+  {
+    "id": 17,
+    "furigana": "いがく",
+    "english": "medical science"
+  },
+  {
+    "id": 18,
+    "furigana": "テキスト",
+    "english": "text; text book"
+  },
+  {
+    "id": 19,
+    "furigana": "～つき",
+    "english": "month"
+  },
+  {
+    "id": 20,
+    "furigana": "おる",
+    "english": "to snap, to break; to bend"
+  },
+  {
+    "id": 21,
+    "furigana": "～かい",
+    "english": "~ meeting"
+  },
+  {
+    "id": 22,
+    "furigana": "うかがう",
+    "english": "to ask"
+  },
+  {
+    "id": 23,
+    "furigana": "きこえる",
+    "english": "to be heard, to be audible"
+  },
+  {
+    "id": 24,
+    "furigana": "ぼく",
+    "english": "I (used by men towards those of equal or lower status)"
+  },
+  {
+    "id": 25,
+    "furigana": "かならず",
+    "english": "surely, certainly"
+  },
+  {
+    "id": 26,
+    "furigana": "こわす",
+    "english": "to break, to break down"
+  },
+  {
+    "id": 27,
+    "furigana": "おこる",
+    "english": "to get angry; to scold angrily"
+  },
+  {
+    "id": 28,
+    "furigana": "とこや",
+    "english": "barber's (shop)"
+  },
+  {
+    "id": 29,
+    "furigana": "オートバイ",
+    "english": "motorcycle (lit: auto-bi(ke))"
+  },
+  {
+    "id": 30,
+    "furigana": "うんどうする",
+    "english": "exercise"
+  },
+  {
+    "id": 31,
+    "furigana": "やむ",
+    "english": "to cease, to stop"
+  },
+  {
+    "id": 32,
+    "furigana": "もし",
+    "english": "if"
+  },
+  {
+    "id": 33,
+    "furigana": "おもて",
+    "english": "surface; front; outside"
+  },
+  {
+    "id": 34,
+    "furigana": "だいがくせい",
+    "english": "college student, university student"
+  },
+  {
+    "id": 35,
+    "furigana": "うんてんしゅ",
+    "english": "driver (by occupation)"
+  },
+  {
+    "id": 36,
+    "furigana": "よしゅう",
+    "english": "preparation of lessons (for class)"
+  },
+  {
+    "id": 37,
+    "furigana": "しんぱいする",
+    "english": "worry, concern"
+  },
+  {
+    "id": 38,
+    "furigana": "べつ",
+    "english": "distinction, different"
+  },
+  {
+    "id": 39,
+    "furigana": "ひじょうに",
+    "english": "extremely; very"
+  },
+  {
+    "id": 40,
+    "furigana": "おたく",
+    "english": "(someone else's) house; home -- polite word for 家 (いえ) --"
+  },
+  {
+    "id": 41,
+    "furigana": "やわらかい",
+    "english": "soft (in reference to texture), tender"
+  },
+  {
+    "id": 42,
+    "furigana": "ひろう",
+    "english": "to pick up (something), to find"
+  },
+  {
+    "id": 43,
+    "furigana": "～ございます",
+    "english": "to be (polite), to exist"
+  },
+  {
+    "id": 44,
+    "furigana": "き",
+    "english": "spirit, mood"
+  },
+  {
+    "id": 45,
+    "furigana": "くらべる",
+    "english": "to compare"
+  },
+  {
+    "id": 46,
+    "furigana": "ほとんど",
+    "english": "mostly, almost"
+  },
+  {
+    "id": 47,
+    "furigana": "つもり",
+    "english": "intention, plan"
+  },
+  {
+    "id": 48,
+    "furigana": "こうがい",
+    "english": "suburb, outskirts"
+  },
+  {
+    "id": 49,
+    "furigana": "だめ",
+    "english": "useless, no good, hopeless"
+  },
+  {
+    "id": 50,
+    "furigana": "うりば",
+    "english": "place where things are sold"
+  },
+  {
+    "id": 51,
+    "furigana": "しょうがつ",
+    "english": "New Year, New Year's Day"
+  },
+  {
+    "id": 52,
+    "furigana": "きそく",
+    "english": "rule, regulation"
+  },
+  {
+    "id": 53,
+    "furigana": "うん",
+    "english": "yes (informal), all right (ok)"
+  },
+  {
+    "id": 54,
+    "furigana": "はつおん",
+    "english": "pronunciation"
+  },
+  {
+    "id": 55,
+    "furigana": "やく",
+    "english": "to bake, to grill"
+  },
+  {
+    "id": 56,
+    "furigana": "おくじょう",
+    "english": "rooftop"
+  },
+  {
+    "id": 57,
+    "furigana": "しつれい",
+    "english": "discourtesy, impoliteness; Excuse me"
+  },
+  {
+    "id": 58,
+    "furigana": "ごみ",
+    "english": "trash, garbage"
+  },
+  {
+    "id": 59,
+    "furigana": "アフリカ",
+    "english": "Africa"
+  },
+  {
+    "id": 60,
+    "furigana": "てん",
+    "english": "mark, score, grade; point, dot"
+  },
+  {
+    "id": 61,
+    "furigana": "いっしょうけんめい",
+    "english": "very hard (as in \"to work hard\"), with utmost effort"
+  },
+  {
+    "id": 62,
+    "furigana": "こんど",
+    "english": "now, this time, near future, one of these days, next time"
+  },
+  {
+    "id": 63,
+    "furigana": "きかい",
+    "english": "chance, opportunity"
+  },
+  {
+    "id": 64,
+    "furigana": "たてる",
+    "english": "to build"
+  },
+  {
+    "id": 65,
+    "furigana": "ふくざつ",
+    "english": "complexity, complication"
+  },
+  {
+    "id": 66,
+    "furigana": "かれ",
+    "english": "he, boyfriend"
+  },
+  {
+    "id": 67,
+    "furigana": "いらっしゃる",
+    "english": "-- honorific expression for いく, くる, and いる --"
+  },
+  {
+    "id": 68,
+    "furigana": "ふとん",
+    "english": "futon"
+  },
+  {
+    "id": 69,
+    "furigana": "だいじ",
+    "english": "important, valuable, serious matter"
+  },
+  {
+    "id": 70,
+    "furigana": "おくりもの",
+    "english": "a gift; a present"
+  },
+  {
+    "id": 71,
+    "furigana": "どろぼう",
+    "english": "thief; burglar"
+  },
+  {
+    "id": 72,
+    "furigana": "～せい",
+    "english": "made in ~"
+  },
+  {
+    "id": 73,
+    "furigana": "ちゅうい",
+    "english": "caution, attention"
+  },
+  {
+    "id": 74,
+    "furigana": "たいふう",
+    "english": "typhoon"
+  },
+  {
+    "id": 75,
+    "furigana": "ひ",
+    "english": "sun, sunshine, day"
+  },
+  {
+    "id": 76,
+    "furigana": "～けん",
+    "english": "counter for houses"
+  },
+  {
+    "id": 77,
+    "furigana": "そう",
+    "english": "really, (is that) so; yes, right"
+  },
+  {
+    "id": 78,
+    "furigana": "とおる",
+    "english": "to pass (by), to go through"
+  },
+  {
+    "id": 79,
+    "furigana": "すぎる",
+    "english": "to exceed, to go beyond"
+  },
+  {
+    "id": 80,
+    "furigana": "レポート; リポート",
+    "english": "report"
+  },
+  {
+    "id": 81,
+    "furigana": "は",
+    "english": "leaf"
+  },
+  {
+    "id": 82,
+    "furigana": "ひつよう",
+    "english": "necessary"
+  },
+  {
+    "id": 83,
+    "furigana": "かちょう",
+    "english": "section manager"
+  },
+  {
+    "id": 84,
+    "furigana": "じしん",
+    "english": "earthquake"
+  },
+  {
+    "id": 85,
+    "furigana": "すると",
+    "english": "and, then"
+  },
+  {
+    "id": 86,
+    "furigana": "やめる",
+    "english": "to end, to stop"
+  },
+  {
+    "id": 87,
+    "furigana": "ガラス",
+    "english": "glass, pane"
+  },
+  {
+    "id": 88,
+    "furigana": "～がくぶ",
+    "english": "department of a university"
+  },
+  {
+    "id": 89,
+    "furigana": "きびしい",
+    "english": "hard; rigorous; strict"
+  },
+  {
+    "id": 90,
+    "furigana": "エスカレーター",
+    "english": "escalator"
+  },
+  {
+    "id": 91,
+    "furigana": "じんこう",
+    "english": "population"
+  },
+  {
+    "id": 92,
+    "furigana": "つき",
+    "english": "moon"
+  },
+  {
+    "id": 93,
+    "furigana": "きぬ",
+    "english": "silk"
+  },
+  {
+    "id": 94,
+    "furigana": "ちっとも",
+    "english": "not at all (neg. verb)"
+  },
+  {
+    "id": 95,
+    "furigana": "ふかい",
+    "english": "deep, profound"
+  },
+  {
+    "id": 96,
+    "furigana": "こわれる",
+    "english": "to be broken, to break"
+  },
+  {
+    "id": 97,
+    "furigana": "ゆれる",
+    "english": "to shake, to sway"
+  },
+  {
+    "id": 98,
+    "furigana": "おちる",
+    "english": "to fall, to drop"
+  },
+  {
+    "id": 99,
+    "furigana": "できるだけ",
+    "english": "if at all possible, as much as possible"
+  },
+  {
+    "id": 100,
+    "furigana": "かなしい",
+    "english": "sad, sorrowful"
+  },
+  {
+    "id": 101,
+    "furigana": "ちゅうがっこう",
+    "english": "junior high school pupil"
+  },
+  {
+    "id": 102,
+    "furigana": "ガス",
+    "english": "gas"
+  },
+  {
+    "id": 103,
+    "furigana": "いのる",
+    "english": "to pray; to wish"
+  },
+  {
+    "id": 104,
+    "furigana": "さかん",
+    "english": "prosperous, active, thriving"
+  },
+  {
+    "id": 105,
+    "furigana": "アルバイト",
+    "english": "part-time job"
+  },
+  {
+    "id": 106,
+    "furigana": "おこす",
+    "english": "to wake (someone) up"
+  },
+  {
+    "id": 107,
+    "furigana": "いたす",
+    "english": "-- extra-modest expression for する --"
+  },
+  {
+    "id": 108,
+    "furigana": "かむ",
+    "english": "to bite, to chew"
+  },
+  {
+    "id": 109,
+    "furigana": "あかちゃん",
+    "english": "baby, infant"
+  },
+  {
+    "id": 110,
+    "furigana": "あさい",
+    "english": "shallow, superficial"
+  },
+  {
+    "id": 111,
+    "furigana": "うそ",
+    "english": "lie"
+  },
+  {
+    "id": 112,
+    "furigana": "しょうせつ",
+    "english": "novel"
+  },
+  {
+    "id": 113,
+    "furigana": "おや",
+    "english": "a parent"
+  },
+  {
+    "id": 114,
+    "furigana": "それに",
+    "english": "moreover; besides"
+  },
+  {
+    "id": 115,
+    "furigana": "せいよう",
+    "english": "the West, Western countries"
+  },
+  {
+    "id": 116,
+    "furigana": "おもう",
+    "english": "to think, to feel"
+  },
+  {
+    "id": 117,
+    "furigana": "パート (タイム)",
+    "english": "part time (esp. female part time employees)"
+  },
+  {
+    "id": 118,
+    "furigana": "じだい",
+    "english": "age, period, epoch, era"
+  },
+  {
+    "id": 119,
+    "furigana": "もうしあげる",
+    "english": "(humble)to say, to tell"
+  },
+  {
+    "id": 120,
+    "furigana": "～しき",
+    "english": "~ ceremony; ~ style"
+  },
+  {
+    "id": 121,
+    "furigana": "しゅっせきする",
+    "english": "attendance"
+  },
+  {
+    "id": 122,
+    "furigana": "～か",
+    "english": "person who is specialized in ~"
+  },
+  {
+    "id": 123,
+    "furigana": "むかえる",
+    "english": "to welcome; to meet; to greet"
+  },
+  {
+    "id": 124,
+    "furigana": "さわる",
+    "english": "to touch, to feel"
+  },
+  {
+    "id": 125,
+    "furigana": "～だて",
+    "english": "~ storied, separate housing"
+  },
+  {
+    "id": 126,
+    "furigana": "しゃちょう",
+    "english": "president of a company"
+  },
+  {
+    "id": 127,
+    "furigana": "どうぶつえん",
+    "english": "zoo"
+  },
+  {
+    "id": 128,
+    "furigana": "つかまえる",
+    "english": "to catch, to arrest"
+  },
+  {
+    "id": 129,
+    "furigana": "きせつ",
+    "english": "season (in reference to weather)"
+  },
+  {
+    "id": 130,
+    "furigana": "よる",
+    "english": "to stop by"
+  },
+  {
+    "id": 131,
+    "furigana": "きまる",
+    "english": "to be set; fixed (v.i.)"
+  },
+  {
+    "id": 132,
+    "furigana": "ひらく",
+    "english": "to open; to hold (an event)"
+  },
+  {
+    "id": 133,
+    "furigana": "にげる",
+    "english": "to escape, to run away"
+  },
+  {
+    "id": 134,
+    "furigana": "だから",
+    "english": "so; therefore"
+  },
+  {
+    "id": 135,
+    "furigana": "ざんねん",
+    "english": "regret; regrettable"
+  },
+  {
+    "id": 136,
+    "furigana": "たたみ",
+    "english": "tatami mat (Japanese straw mat)"
+  },
+  {
+    "id": 137,
+    "furigana": "ていねい",
+    "english": "polite, courteous, careful"
+  },
+  {
+    "id": 138,
+    "furigana": "ちり",
+    "english": "geography"
+  },
+  {
+    "id": 139,
+    "furigana": "さっき",
+    "english": "a little while ago"
+  },
+  {
+    "id": 140,
+    "furigana": "こわい",
+    "english": "scary, frightening"
+  },
+  {
+    "id": 141,
+    "furigana": "つつむ",
+    "english": "to wrap, to cover"
+  },
+  {
+    "id": 142,
+    "furigana": "なるべく",
+    "english": "if possible, as much as possible"
+  },
+  {
+    "id": 143,
+    "furigana": "むり",
+    "english": "unreasonable, impossible"
+  },
+  {
+    "id": 144,
+    "furigana": "サンドイッチ",
+    "english": "sandwich"
+  },
+  {
+    "id": 145,
+    "furigana": "かいぎしつ",
+    "english": "conference room"
+  },
+  {
+    "id": 146,
+    "furigana": "しなもの",
+    "english": "goods"
+  },
+  {
+    "id": 147,
+    "furigana": "にんぎょう",
+    "english": "doll, figure"
+  },
+  {
+    "id": 148,
+    "furigana": "りよう",
+    "english": "use, utilization"
+  },
+  {
+    "id": 149,
+    "furigana": "かざる",
+    "english": "to decorate, to adorn"
+  },
+  {
+    "id": 150,
+    "furigana": "とめる",
+    "english": "to stop (something)"
+  },
+  {
+    "id": 151,
+    "furigana": "はずかしい",
+    "english": "ashamed, embarrassed"
+  },
+  {
+    "id": 152,
+    "furigana": "いくら～ても",
+    "english": "however much one may ~"
+  },
+  {
+    "id": 153,
+    "furigana": "ようじ",
+    "english": "business to take care of; tasks; errands"
+  },
+  {
+    "id": 154,
+    "furigana": "ビル",
+    "english": "(abbr.) building"
+  },
+  {
+    "id": 155,
+    "furigana": "けんかする",
+    "english": "quarrel"
+  },
+  {
+    "id": 156,
+    "furigana": "がんばる",
+    "english": "to try one's best, to try hard, to persist"
+  },
+  {
+    "id": 157,
+    "furigana": "なげる",
+    "english": "to pitch, to cast away"
+  },
+  {
+    "id": 158,
+    "furigana": "こしょうする",
+    "english": "breakdown"
+  },
+  {
+    "id": 159,
+    "furigana": "ちから",
+    "english": "strength, power"
+  },
+  {
+    "id": 160,
+    "furigana": "うける",
+    "english": "to take (an examination, interview, etc.); to receive"
+  },
+  {
+    "id": 161,
+    "furigana": "きぶん",
+    "english": "feeling, mood"
+  },
+  {
+    "id": 162,
+    "furigana": "まちがえる",
+    "english": "to make a mistake"
+  },
+  {
+    "id": 163,
+    "furigana": "そんな",
+    "english": "such, like that, that sort of"
+  },
+  {
+    "id": 164,
+    "furigana": "ほし",
+    "english": "star"
+  },
+  {
+    "id": 165,
+    "furigana": "ばあい",
+    "english": "case, situation"
+  },
+  {
+    "id": 166,
+    "furigana": "やっと",
+    "english": "at last, finally"
+  },
+  {
+    "id": 167,
+    "furigana": "たりる",
+    "english": "to be sufficient; to be enough"
+  },
+  {
+    "id": 168,
+    "furigana": "おこなう",
+    "english": "to carry out; to conduct (typically used in written language)"
+  },
+  {
+    "id": 169,
+    "furigana": "ぶどう",
+    "english": "grapes"
+  },
+  {
+    "id": 170,
+    "furigana": "なくなる",
+    "english": "to disappear, to get lost"
+  },
+  {
+    "id": 171,
+    "furigana": "じゅんびする",
+    "english": "prepare"
+  },
+  {
+    "id": 172,
+    "furigana": "せかい",
+    "english": "world"
+  },
+  {
+    "id": 173,
+    "furigana": "じゅうしょ",
+    "english": "address; place of residence"
+  },
+  {
+    "id": 174,
+    "furigana": "さらいげつ",
+    "english": "the month after next"
+  },
+  {
+    "id": 175,
+    "furigana": "はやし",
+    "english": "woods, forest"
+  },
+  {
+    "id": 176,
+    "furigana": "ばい",
+    "english": "double"
+  },
+  {
+    "id": 177,
+    "furigana": "やせる",
+    "english": "to lose weight"
+  },
+  {
+    "id": 178,
+    "furigana": "せん",
+    "english": "line, wire"
+  },
+  {
+    "id": 179,
+    "furigana": "せんそう",
+    "english": "war"
+  },
+  {
+    "id": 180,
+    "furigana": "きめる",
+    "english": "to decide (v.t.)"
+  },
+  {
+    "id": 181,
+    "furigana": "しらべる",
+    "english": "to check; to look up; to inquire; to search"
+  },
+  {
+    "id": 182,
+    "furigana": "ねぼう",
+    "english": "sleeping in late"
+  },
+  {
+    "id": 183,
+    "furigana": "パパ",
+    "english": "papa, daddy"
+  },
+  {
+    "id": 184,
+    "furigana": "ひかる",
+    "english": "to shine, to glitter"
+  },
+  {
+    "id": 185,
+    "furigana": "おっと",
+    "english": "husband"
+  },
+  {
+    "id": 186,
+    "furigana": "くも",
+    "english": "cloud"
+  },
+  {
+    "id": 187,
+    "furigana": "さか",
+    "english": "slope, hill"
+  },
+  {
+    "id": 188,
+    "furigana": "～(て) しまう",
+    "english": "to end up ~"
+  },
+  {
+    "id": 189,
+    "furigana": "ひこうじょう",
+    "english": "airport"
+  },
+  {
+    "id": 190,
+    "furigana": "じゅうどう",
+    "english": "judo"
+  },
+  {
+    "id": 191,
+    "furigana": "けっして",
+    "english": "never"
+  },
+  {
+    "id": 192,
+    "furigana": "じむしょ",
+    "english": "office"
+  },
+  {
+    "id": 193,
+    "furigana": "れんらく",
+    "english": "communication, contact, connection"
+  },
+  {
+    "id": 194,
+    "furigana": "しょうがっこう",
+    "english": "elementary school"
+  },
+  {
+    "id": 195,
+    "furigana": "きゃく",
+    "english": "guest, customer"
+  },
+  {
+    "id": 196,
+    "furigana": "むかし",
+    "english": "old days; past"
+  },
+  {
+    "id": 197,
+    "furigana": "うつくしい",
+    "english": "beautiful, lovely"
+  },
+  {
+    "id": 198,
+    "furigana": "すてる",
+    "english": "throw away (trash), dump, discard"
+  },
+  {
+    "id": 199,
+    "furigana": "なさる",
+    "english": "-- honorific expression for する --"
+  },
+  {
+    "id": 200,
+    "furigana": "こと",
+    "english": "thing(s), matter(s), fact"
+  },
+  {
+    "id": 201,
+    "furigana": "どんどん",
+    "english": "quickly and steadily; at a rapid pace"
+  },
+  {
+    "id": 202,
+    "furigana": "しあい",
+    "english": "match, game, competition"
+  },
+  {
+    "id": 203,
+    "furigana": "てきとう",
+    "english": "fitness, suitability"
+  },
+  {
+    "id": 204,
+    "furigana": "すばらしい",
+    "english": "wonderful; terrific"
+  },
+  {
+    "id": 205,
+    "furigana": "びじゅつかん",
+    "english": "art gallery, art museum"
+  },
+  {
+    "id": 206,
+    "furigana": "ぶんぽう",
+    "english": "grammar"
+  },
+  {
+    "id": 207,
+    "furigana": "おわり",
+    "english": "end"
+  },
+  {
+    "id": 208,
+    "furigana": "かべ",
+    "english": "wall"
+  },
+  {
+    "id": 209,
+    "furigana": "いちど",
+    "english": "once, one time"
+  },
+  {
+    "id": 210,
+    "furigana": "おれい",
+    "english": "expression of gratitude; thanking; gift of appreciation; bow"
+  },
+  {
+    "id": 211,
+    "furigana": "しんせつ",
+    "english": "kindness"
+  },
+  {
+    "id": 212,
+    "furigana": "しらせる",
+    "english": "to notify"
+  },
+  {
+    "id": 213,
+    "furigana": "はいしゃ",
+    "english": "dentist"
+  },
+  {
+    "id": 214,
+    "furigana": "ねっしん",
+    "english": "enthusiasm"
+  },
+  {
+    "id": 215,
+    "furigana": "はじめる",
+    "english": "to start, to begin"
+  },
+  {
+    "id": 216,
+    "furigana": "もらう",
+    "english": "to receive"
+  },
+  {
+    "id": 217,
+    "furigana": "なく",
+    "english": "to cry"
+  },
+  {
+    "id": 218,
+    "furigana": "なおる",
+    "english": "to get better; to recover from illness (v.i.)"
+  },
+  {
+    "id": 219,
+    "furigana": "ねつ",
+    "english": "fever, temperature"
+  },
+  {
+    "id": 220,
+    "furigana": "おまつり",
+    "english": "festival"
+  },
+  {
+    "id": 221,
+    "furigana": "すいどう",
+    "english": "water service, water line"
+  },
+  {
+    "id": 222,
+    "furigana": "におい",
+    "english": "odor, smell"
+  },
+  {
+    "id": 223,
+    "furigana": "ベル",
+    "english": "bell"
+  },
+  {
+    "id": 224,
+    "furigana": "あかんぼう",
+    "english": "baby"
+  },
+  {
+    "id": 225,
+    "furigana": "おかしい",
+    "english": "strange; odd; funny"
+  },
+  {
+    "id": 226,
+    "furigana": "じこ",
+    "english": "accident"
+  },
+  {
+    "id": 227,
+    "furigana": "へん",
+    "english": "strange, odd"
+  },
+  {
+    "id": 228,
+    "furigana": "じてん",
+    "english": "encyclopedia, reference book"
+  },
+  {
+    "id": 229,
+    "furigana": "のこる",
+    "english": "to remain (v.i.), to be left"
+  },
+  {
+    "id": 230,
+    "furigana": "たてる",
+    "english": "to stand (something) up, to erect (something)"
+  },
+  {
+    "id": 231,
+    "furigana": "くれる",
+    "english": "to give, to do for"
+  },
+  {
+    "id": 232,
+    "furigana": "～いん",
+    "english": "member of ~"
+  },
+  {
+    "id": 233,
+    "furigana": "げんいん",
+    "english": "cause, origin, source"
+  },
+  {
+    "id": 234,
+    "furigana": "おどろく",
+    "english": "to be surprised, to be astonished"
+  },
+  {
+    "id": 235,
+    "furigana": "頂く",
+    "english": "-- extra-modest expression for たべる and のむ; humble expression for もらう --"
+  },
+  {
+    "id": 236,
+    "furigana": "そぼ",
+    "english": "grandmother"
+  },
+  {
+    "id": 237,
+    "furigana": "ばしょ",
+    "english": "place, location"
+  },
+  {
+    "id": 238,
+    "furigana": "こたえ",
+    "english": "answer, response"
+  },
+  {
+    "id": 239,
+    "furigana": "もちろん",
+    "english": "certainly, of course"
+  },
+  {
+    "id": 240,
+    "furigana": "つける",
+    "english": "to soak, to moisten, to pickle"
+  },
+  {
+    "id": 241,
+    "furigana": "うけつけ",
+    "english": "reception(ist) desk"
+  },
+  {
+    "id": 242,
+    "furigana": "うち",
+    "english": "within, inside"
+  },
+  {
+    "id": 243,
+    "furigana": "スクリーン",
+    "english": "screen"
+  },
+  {
+    "id": 244,
+    "furigana": "ふえる",
+    "english": "to increase, to multiply"
+  },
+  {
+    "id": 245,
+    "furigana": "または",
+    "english": "or, otherwise"
+  },
+  {
+    "id": 246,
+    "furigana": "けがする",
+    "english": "injury (to animate object), hurt"
+  },
+  {
+    "id": 247,
+    "furigana": "いか",
+    "english": "less than, below"
+  },
+  {
+    "id": 248,
+    "furigana": "えらぶ",
+    "english": "to choose; to select"
+  },
+  {
+    "id": 249,
+    "furigana": "～ばかり",
+    "english": "just did ~, only"
+  },
+  {
+    "id": 250,
+    "furigana": "こころ",
+    "english": "heart, mind"
+  },
+  {
+    "id": 251,
+    "furigana": "～だす",
+    "english": "to start doing ~"
+  },
+  {
+    "id": 252,
+    "furigana": "サラダ",
+    "english": "salad"
+  },
+  {
+    "id": 253,
+    "furigana": "とどける",
+    "english": "to deliver (v.t.)"
+  },
+  {
+    "id": 254,
+    "furigana": "あいさつする",
+    "english": "greet(ing)"
+  },
+  {
+    "id": 255,
+    "furigana": "けしき",
+    "english": "scenery, landscape"
+  },
+  {
+    "id": 256,
+    "furigana": "たしか",
+    "english": "if I remember correctly; certain, definite"
+  },
+  {
+    "id": 257,
+    "furigana": "ステーキ",
+    "english": "steak"
+  },
+  {
+    "id": 258,
+    "furigana": "しょくりょうひん",
+    "english": "foodstuff, groceries"
+  },
+  {
+    "id": 259,
+    "furigana": "もり",
+    "english": "forest"
+  },
+  {
+    "id": 260,
+    "furigana": "いない",
+    "english": "within, less (no more) than"
+  },
+  {
+    "id": 261,
+    "furigana": "よてい",
+    "english": "plans, arrangement, schedule"
+  },
+  {
+    "id": 262,
+    "furigana": "オーバー",
+    "english": "overcoat; over, exceeding, exaggeration"
+  },
+  {
+    "id": 263,
+    "furigana": "かわく",
+    "english": "to get dry"
+  },
+  {
+    "id": 264,
+    "furigana": "いし",
+    "english": "stone"
+  },
+  {
+    "id": 265,
+    "furigana": "おもいだす",
+    "english": "to recall, to remember"
+  },
+  {
+    "id": 266,
+    "furigana": "おどる",
+    "english": "to dance"
+  },
+  {
+    "id": 267,
+    "furigana": "こまかい",
+    "english": "small; fine, minute"
+  },
+  {
+    "id": 268,
+    "furigana": "ぬる",
+    "english": "to paint, to plaster"
+  },
+  {
+    "id": 269,
+    "furigana": "ごしゅじん",
+    "english": "(your, her) husband"
+  },
+  {
+    "id": 270,
+    "furigana": "めずらしい",
+    "english": "unusual, rare"
+  },
+  {
+    "id": 271,
+    "furigana": "よう",
+    "english": "errand, task, business (to take care of)"
+  },
+  {
+    "id": 272,
+    "furigana": "こうむいん",
+    "english": "government worker, public servant"
+  },
+  {
+    "id": 273,
+    "furigana": "おじょうさん",
+    "english": "(someone's) daughter (polite)"
+  },
+  {
+    "id": 274,
+    "furigana": "ようい",
+    "english": "preparation"
+  },
+  {
+    "id": 275,
+    "furigana": "さがす",
+    "english": "to search, to seek, to look for"
+  },
+  {
+    "id": 276,
+    "furigana": "かたち",
+    "english": "shape"
+  },
+  {
+    "id": 277,
+    "furigana": "うんてんする",
+    "english": "driving"
+  },
+  {
+    "id": 278,
+    "furigana": "すっかり",
+    "english": "all, completely"
+  },
+  {
+    "id": 279,
+    "furigana": "アナウンサー",
+    "english": "announcer"
+  },
+  {
+    "id": 280,
+    "furigana": "おみやげ",
+    "english": "souvenir"
+  },
+  {
+    "id": 281,
+    "furigana": "けしゴム",
+    "english": "eraser"
+  },
+  {
+    "id": 282,
+    "furigana": "りょかん",
+    "english": "a Japanese inn"
+  },
+  {
+    "id": 283,
+    "furigana": "かいがん",
+    "english": "coast, seashore"
+  },
+  {
+    "id": 284,
+    "furigana": "さびしい",
+    "english": "lonely, lonesome"
+  },
+  {
+    "id": 285,
+    "furigana": "ひ",
+    "english": "fire"
+  },
+  {
+    "id": 286,
+    "furigana": "そだてる",
+    "english": "to raise (v.t.); to bring up"
+  },
+  {
+    "id": 287,
+    "furigana": "みそ",
+    "english": "miso, bean paste"
+  },
+  {
+    "id": 288,
+    "furigana": "おいわい",
+    "english": "congratulation, celebration"
+  },
+  {
+    "id": 289,
+    "furigana": "のりもの",
+    "english": "vehicle"
+  },
+  {
+    "id": 290,
+    "furigana": "あんないする",
+    "english": "information, guidance"
+  },
+  {
+    "id": 291,
+    "furigana": "かよう",
+    "english": "to go back and forth; to commute"
+  },
+  {
+    "id": 292,
+    "furigana": "つれる",
+    "english": "to lead, to take (a person)"
+  },
+  {
+    "id": 293,
+    "furigana": "ぎじゅつ",
+    "english": "technique, technology, skill"
+  },
+  {
+    "id": 294,
+    "furigana": "ことり",
+    "english": "small bird"
+  },
+  {
+    "id": 295,
+    "furigana": "げしゅく",
+    "english": "lodging, boarding house"
+  },
+  {
+    "id": 296,
+    "furigana": "ジャム",
+    "english": "jam"
+  },
+  {
+    "id": 297,
+    "furigana": "しょうたいする",
+    "english": "invitation"
+  },
+  {
+    "id": 298,
+    "furigana": "かがみ",
+    "english": "mirror"
+  },
+  {
+    "id": 299,
+    "furigana": "はず",
+    "english": "it should be so"
+  },
+  {
+    "id": 300,
+    "furigana": "ほうりつ",
+    "english": "law"
+  },
+  {
+    "id": 301,
+    "furigana": "すすむ",
+    "english": "to advance, to proceed"
+  },
+  {
+    "id": 302,
+    "furigana": "たのしむ",
+    "english": "to enjoy"
+  },
+  {
+    "id": 303,
+    "furigana": "ぼうえき",
+    "english": "trade"
+  },
+  {
+    "id": 304,
+    "furigana": "はんたい",
+    "english": "oppose, opposition, resistance"
+  },
+  {
+    "id": 305,
+    "furigana": "おる",
+    "english": "-- extra-modest expression for いる --"
+  },
+  {
+    "id": 306,
+    "furigana": "もうす",
+    "english": "-- extra-modest (humble) expression for 言う (いう) --"
+  },
+  {
+    "id": 307,
+    "furigana": "しけん",
+    "english": "an exam"
+  },
+  {
+    "id": 308,
+    "furigana": "まじめ",
+    "english": "diligent, serious"
+  },
+  {
+    "id": 309,
+    "furigana": NaN,
+    "english": "-- honorific expression for みる --"
+  },
+  {
+    "id": 310,
+    "furigana": "てんいん",
+    "english": "clerk; shop-employee"
+  },
+  {
+    "id": 311,
+    "furigana": "とまる",
+    "english": "to stay (over night) (v.i.)"
+  },
+  {
+    "id": 312,
+    "furigana": "よろしい",
+    "english": "(hon.) good, OK, all right"
+  },
+  {
+    "id": 313,
+    "furigana": "こんや",
+    "english": "this evening, tonight"
+  },
+  {
+    "id": 314,
+    "furigana": "おつり",
+    "english": "change; balance of money returned to the purchaser"
+  },
+  {
+    "id": 315,
+    "furigana": "チェックする",
+    "english": "check"
+  },
+  {
+    "id": 316,
+    "furigana": "かいわ",
+    "english": "conversation"
+  },
+  {
+    "id": 317,
+    "furigana": "くうき",
+    "english": "air, atmosphere"
+  },
+  {
+    "id": 318,
+    "furigana": "こうつう",
+    "english": "traffic, transportation"
+  },
+  {
+    "id": 319,
+    "furigana": "ワープロ",
+    "english": "word processor"
+  },
+  {
+    "id": 320,
+    "furigana": "よろこぶ",
+    "english": "to rejoice, to be delighted, to be glad"
+  },
+  {
+    "id": 321,
+    "furigana": "きゅうこう",
+    "english": "express train or bus"
+  },
+  {
+    "id": 322,
+    "furigana": "みな",
+    "english": "everyone"
+  },
+  {
+    "id": 323,
+    "furigana": "あじ",
+    "english": "flavor, taste"
+  },
+  {
+    "id": 324,
+    "furigana": "くうこう",
+    "english": "airport"
+  },
+  {
+    "id": 325,
+    "furigana": "てぶくろ",
+    "english": "glove(s)"
+  },
+  {
+    "id": 326,
+    "furigana": "こうちょう",
+    "english": "principal, headmaster"
+  },
+  {
+    "id": 327,
+    "furigana": "ごちそう",
+    "english": "feast, treating (someone)"
+  },
+  {
+    "id": 328,
+    "furigana": "おどり",
+    "english": "dance"
+  },
+  {
+    "id": 329,
+    "furigana": "きょうみ",
+    "english": "interest (in something)"
+  },
+  {
+    "id": 330,
+    "furigana": "ひっこす",
+    "english": "to move to a new place of residence"
+  },
+  {
+    "id": 331,
+    "furigana": "れいぼう",
+    "english": "cooling, air conditioning"
+  },
+  {
+    "id": 332,
+    "furigana": "つごう",
+    "english": "circumstances, convenience"
+  },
+  {
+    "id": 333,
+    "furigana": "えんりょする",
+    "english": "restraint, reserve, hesitate"
+  },
+  {
+    "id": 334,
+    "furigana": "なくなる",
+    "english": "to pass away"
+  },
+  {
+    "id": 335,
+    "furigana": "かがく",
+    "english": "science"
+  },
+  {
+    "id": 336,
+    "furigana": "はっきり",
+    "english": "clearly, distinctly"
+  },
+  {
+    "id": 337,
+    "furigana": "さしあげる",
+    "english": "-- humble expression for あげる --"
+  },
+  {
+    "id": 338,
+    "furigana": "きもち",
+    "english": "feeling, sensation, mood"
+  },
+  {
+    "id": 339,
+    "furigana": "そふ",
+    "english": "grandfather"
+  },
+  {
+    "id": 340,
+    "furigana": "みなと",
+    "english": "harbor, port"
+  },
+  {
+    "id": 341,
+    "furigana": "よやく",
+    "english": "reservation"
+  },
+  {
+    "id": 342,
+    "furigana": "すごい",
+    "english": "terrific, great"
+  },
+  {
+    "id": 343,
+    "furigana": "にゅうがくする",
+    "english": "entry to school or university"
+  },
+  {
+    "id": 344,
+    "furigana": "かたづける",
+    "english": "to (clean) tidy up (v.t.), to put away"
+  },
+  {
+    "id": 345,
+    "furigana": "うつす",
+    "english": "to copy (v.t.); to photograph"
+  },
+  {
+    "id": 346,
+    "furigana": "パソコン",
+    "english": "(personal) computer"
+  },
+  {
+    "id": 347,
+    "furigana": "ぶちょう",
+    "english": "department (division) manager"
+  },
+  {
+    "id": 348,
+    "furigana": "かじ",
+    "english": "fire"
+  },
+  {
+    "id": 349,
+    "furigana": "たす",
+    "english": "to add (numbers)"
+  },
+  {
+    "id": 350,
+    "furigana": "きょうかい",
+    "english": "church"
+  },
+  {
+    "id": 351,
+    "furigana": "かれら",
+    "english": "they (usually male)"
+  },
+  {
+    "id": 352,
+    "furigana": "いっぱい",
+    "english": "full, to the utmost"
+  },
+  {
+    "id": 353,
+    "furigana": "アメリカ",
+    "english": "America, U.S.A."
+  },
+  {
+    "id": 354,
+    "furigana": "だんせい",
+    "english": "man; male"
+  },
+  {
+    "id": 355,
+    "furigana": "りゆう",
+    "english": "reason"
+  },
+  {
+    "id": 356,
+    "furigana": "せいさんする",
+    "english": "production; to produce"
+  },
+  {
+    "id": 357,
+    "furigana": "きもの",
+    "english": "kimono; Japanese traditional dress"
+  },
+  {
+    "id": 358,
+    "furigana": "おもちゃ",
+    "english": "a toy"
+  },
+  {
+    "id": 359,
+    "furigana": "くれる",
+    "english": "to get dark, to come to an end"
+  },
+  {
+    "id": 360,
+    "furigana": "つる",
+    "english": "to fish"
+  },
+  {
+    "id": 361,
+    "furigana": "～ちゃん",
+    "english": "suffix for familiar (female) person"
+  },
+  {
+    "id": 362,
+    "furigana": "うつ",
+    "english": "to hit, to strike"
+  },
+  {
+    "id": 363,
+    "furigana": "あんな",
+    "english": "such, like that"
+  },
+  {
+    "id": 364,
+    "furigana": "あやまる",
+    "english": "to apologize"
+  },
+  {
+    "id": 365,
+    "furigana": "ひるま",
+    "english": "daytime, during the day"
+  },
+  {
+    "id": 366,
+    "furigana": "きょういく",
+    "english": "education"
+  },
+  {
+    "id": 367,
+    "furigana": "じょせい",
+    "english": "woman"
+  },
+  {
+    "id": 368,
+    "furigana": "こめ",
+    "english": "uncooked rice"
+  },
+  {
+    "id": 369,
+    "furigana": "じゃま",
+    "english": "hindrance, intrusion"
+  },
+  {
+    "id": 370,
+    "furigana": "こくさい",
+    "english": "international"
+  },
+  {
+    "id": 371,
+    "furigana": "すみ",
+    "english": "corner"
+  },
+  {
+    "id": 372,
+    "furigana": "うかがう",
+    "english": "humble form of 行く (いく), 聞く (きく) and 来る (くる)"
+  },
+  {
+    "id": 373,
+    "furigana": "さらいしゅう",
+    "english": "the week after next"
+  },
+  {
+    "id": 374,
+    "furigana": "ゆめ",
+    "english": "a dream"
+  },
+  {
+    "id": 375,
+    "furigana": "のど",
+    "english": "throat"
+  },
+  {
+    "id": 376,
+    "furigana": "さいきん",
+    "english": "recently, nowadays, in recent years, most recent, latest"
+  },
+  {
+    "id": 377,
+    "furigana": "まわり",
+    "english": "surroundings"
+  },
+  {
+    "id": 378,
+    "furigana": "れきし",
+    "english": "history"
+  },
+  {
+    "id": 379,
+    "furigana": "ふべん",
+    "english": "inconvenience"
+  },
+  {
+    "id": 380,
+    "furigana": "ち",
+    "english": "blood"
+  },
+  {
+    "id": 381,
+    "furigana": "～つづける",
+    "english": "to continue doing ~"
+  },
+  {
+    "id": 382,
+    "furigana": "け",
+    "english": "hair, fur"
+  },
+  {
+    "id": 383,
+    "furigana": "ひどい",
+    "english": "terrible, awful, unfair, cruel"
+  },
+  {
+    "id": 384,
+    "furigana": "たとえば",
+    "english": "for example, e.g."
+  },
+  {
+    "id": 385,
+    "furigana": "なかなか",
+    "english": "very, considerably, quite"
+  },
+  {
+    "id": 386,
+    "furigana": "ずいぶん",
+    "english": "extremely"
+  },
+  {
+    "id": 387,
+    "furigana": "～やすい",
+    "english": "easy to do ~"
+  },
+  {
+    "id": 388,
+    "furigana": "おしいれ",
+    "english": "closet"
+  },
+  {
+    "id": 389,
+    "furigana": "でんとう",
+    "english": "electric light"
+  },
+  {
+    "id": 390,
+    "furigana": "しかる",
+    "english": "to scold"
+  },
+  {
+    "id": 391,
+    "furigana": "サンダル",
+    "english": "sandal"
+  },
+  {
+    "id": 392,
+    "furigana": "びっくりする",
+    "english": "to be surprised"
+  },
+  {
+    "id": 393,
+    "furigana": "うまい",
+    "english": "delicious; skillful; fortunate"
+  },
+  {
+    "id": 394,
+    "furigana": "かえる",
+    "english": "to change, to alter, to vary"
+  },
+  {
+    "id": 395,
+    "furigana": "こうどう",
+    "english": "auditorium"
+  },
+  {
+    "id": 396,
+    "furigana": "こ",
+    "english": "child"
+  },
+  {
+    "id": 397,
+    "furigana": "わかす",
+    "english": "to boil"
+  },
+  {
+    "id": 398,
+    "furigana": "レジ",
+    "english": "register"
+  },
+  {
+    "id": 399,
+    "furigana": "しばらく",
+    "english": "little while"
+  },
+  {
+    "id": 400,
+    "furigana": "とくに",
+    "english": "particularly"
+  },
+  {
+    "id": 401,
+    "furigana": "あく",
+    "english": "to open, to become empty (vacant)"
+  },
+  {
+    "id": 402,
+    "furigana": "けいかくする",
+    "english": "plan, project, schedule"
+  },
+  {
+    "id": 403,
+    "furigana": "とおり",
+    "english": "~ Street, ~ Avenue"
+  },
+  {
+    "id": 404,
+    "furigana": "したぎ",
+    "english": "underwear"
+  },
+  {
+    "id": 405,
+    "furigana": "けいざい",
+    "english": "economics, finance, economy"
+  },
+  {
+    "id": 406,
+    "furigana": "こう",
+    "english": "like this, this way"
+  },
+  {
+    "id": 407,
+    "furigana": "ぜひ",
+    "english": "certainly, by all means; without fail"
+  },
+  {
+    "id": 408,
+    "furigana": "うら",
+    "english": "reverse side, back"
+  },
+  {
+    "id": 409,
+    "furigana": "ため",
+    "english": "good, advantage, in order to"
+  },
+  {
+    "id": 410,
+    "furigana": "おいでになる",
+    "english": "(hon.) to be"
+  },
+  {
+    "id": 411,
+    "furigana": "かわる",
+    "english": "to change (v.i.), to be transformed, to vary"
+  },
+  {
+    "id": 412,
+    "furigana": "いがい",
+    "english": "other than, with the exception of, excepting"
+  },
+  {
+    "id": 413,
+    "furigana": "すむ",
+    "english": "to finish, to end"
+  },
+  {
+    "id": 414,
+    "furigana": "ハンバーグ",
+    "english": "hamburger steak"
+  },
+  {
+    "id": 415,
+    "furigana": "し",
+    "english": "city"
+  },
+  {
+    "id": 416,
+    "furigana": "ひきだし",
+    "english": "drawer"
+  },
+  {
+    "id": 417,
+    "furigana": "あそび",
+    "english": "play"
+  },
+  {
+    "id": 418,
+    "furigana": "したくする",
+    "english": "preparation"
+  },
+  {
+    "id": 419,
+    "furigana": "～はじめる",
+    "english": "to start doing ~"
+  },
+  {
+    "id": 420,
+    "furigana": "みえる",
+    "english": "to be visible; -- polite verb meaning 来る (くる) --"
+  },
+  {
+    "id": 421,
+    "furigana": "じゅうぶん",
+    "english": "enough"
+  },
+  {
+    "id": 422,
+    "furigana": "おと",
+    "english": "sound, note"
+  },
+  {
+    "id": 423,
+    "furigana": "きっと",
+    "english": "surely, definitely, undoubtedly, certainly"
+  },
+  {
+    "id": 424,
+    "furigana": "まず",
+    "english": "first (of all), to start with"
+  },
+  {
+    "id": 425,
+    "furigana": "とおく",
+    "english": "far away, distant"
+  },
+  {
+    "id": 426,
+    "furigana": "だいたい",
+    "english": "approximately; in most cases; in general; to begin with (same as もともと)"
+  },
+  {
+    "id": 427,
+    "furigana": "おれる",
+    "english": "to break, to be folded, to give in; to turn (a corner)"
+  },
+  {
+    "id": 428,
+    "furigana": "ただしい",
+    "english": "correct"
+  },
+  {
+    "id": 429,
+    "furigana": "ゆにゅう",
+    "english": "import"
+  },
+  {
+    "id": 430,
+    "furigana": "へんじ",
+    "english": "reply, answer"
+  },
+  {
+    "id": 431,
+    "furigana": "と",
+    "english": "metropolitan"
+  },
+  {
+    "id": 432,
+    "furigana": "さんぎょう",
+    "english": "industry"
+  },
+  {
+    "id": 433,
+    "furigana": "つたえる",
+    "english": "to convey (a message); to tell, to report"
+  },
+  {
+    "id": 434,
+    "furigana": "かねもち; おかねもち",
+    "english": "rich person"
+  },
+  {
+    "id": 435,
+    "furigana": "せつめい",
+    "english": "explanation"
+  },
+  {
+    "id": 436,
+    "furigana": "しま",
+    "english": "island"
+  },
+  {
+    "id": 437,
+    "furigana": "どうぐ",
+    "english": "tool"
+  },
+  {
+    "id": 438,
+    "furigana": "すべる",
+    "english": "to slide, to slip"
+  },
+  {
+    "id": 439,
+    "furigana": "それほど",
+    "english": "to that degree; extent"
+  },
+  {
+    "id": 440,
+    "furigana": "いじょう",
+    "english": "more than; this is all"
+  },
+  {
+    "id": 441,
+    "furigana": "～まま",
+    "english": "as it is"
+  },
+  {
+    "id": 442,
+    "furigana": "とっきゅう",
+    "english": "limited express (train faster than an express)"
+  },
+  {
+    "id": 443,
+    "furigana": "プレゼント",
+    "english": "present, gift"
+  },
+  {
+    "id": 444,
+    "furigana": "～(に) よると",
+    "english": "according to ~"
+  },
+  {
+    "id": 445,
+    "furigana": "つま",
+    "english": "wife (humble)"
+  },
+  {
+    "id": 446,
+    "furigana": "かえり",
+    "english": "return, coming back"
+  },
+  {
+    "id": 447,
+    "furigana": "ぐあい",
+    "english": "condition, state, health"
+  },
+  {
+    "id": 448,
+    "furigana": "かたい",
+    "english": "solid, hard, firm"
+  },
+  {
+    "id": 449,
+    "furigana": "ちゅうしゃじょう",
+    "english": "parking lot"
+  },
+  {
+    "id": 450,
+    "furigana": "スーツ",
+    "english": "suit"
+  },
+  {
+    "id": 451,
+    "furigana": "きけん",
+    "english": "danger, risk, hazard"
+  },
+  {
+    "id": 452,
+    "furigana": "かみ",
+    "english": "hair"
+  },
+  {
+    "id": 453,
+    "furigana": "てんきよほう",
+    "english": "weather forecast"
+  },
+  {
+    "id": 454,
+    "furigana": "かのじょ",
+    "english": "girlfriend; she"
+  },
+  {
+    "id": 455,
+    "furigana": "あいだ",
+    "english": "space, interval"
+  },
+  {
+    "id": 456,
+    "furigana": "そつぎょう",
+    "english": "graduation"
+  },
+  {
+    "id": 457,
+    "furigana": "それで",
+    "english": "and (conj.), thereupon, because of that"
+  },
+  {
+    "id": 458,
+    "furigana": "えだ",
+    "english": "branch, twig"
+  },
+  {
+    "id": 459,
+    "furigana": "せんもん",
+    "english": "major; speciality"
+  },
+  {
+    "id": 460,
+    "furigana": "そろそろ",
+    "english": "gradually, soon"
+  },
+  {
+    "id": 461,
+    "furigana": "おくる",
+    "english": "to send, to dispatch"
+  },
+  {
+    "id": 462,
+    "furigana": "あげる",
+    "english": "to give"
+  },
+  {
+    "id": 463,
+    "furigana": "さわぐ",
+    "english": "to make noise, to clamor"
+  },
+  {
+    "id": 464,
+    "furigana": "たずねる",
+    "english": "to inquire (same as 質問する)"
+  },
+  {
+    "id": 465,
+    "furigana": "ほうそうする",
+    "english": "broadcasting"
+  },
+  {
+    "id": 466,
+    "furigana": "せいじ",
+    "english": "politics"
+  },
+  {
+    "id": 467,
+    "furigana": "しみん",
+    "english": "citizen"
+  },
+  {
+    "id": 468,
+    "furigana": "ファックス",
+    "english": "fax"
+  },
+  {
+    "id": 469,
+    "furigana": "まける",
+    "english": "to lose (a game) (v.i.), to be defeated"
+  },
+  {
+    "id": 470,
+    "furigana": "ゆびわ",
+    "english": "(finger) ring"
+  },
+  {
+    "id": 471,
+    "furigana": "いなか",
+    "english": "rural, countryside"
+  },
+  {
+    "id": 472,
+    "furigana": "みつける",
+    "english": "to discover, to find (v.t.)"
+  },
+  {
+    "id": 473,
+    "furigana": "こうこうせい",
+    "english": "high school student"
+  },
+  {
+    "id": 474,
+    "furigana": "こうぎ",
+    "english": "a lecture"
+  },
+  {
+    "id": 475,
+    "furigana": "そんなに",
+    "english": "so much, like that"
+  },
+  {
+    "id": 476,
+    "furigana": "ひるやすみ",
+    "english": "lunch break, noon recess"
+  },
+  {
+    "id": 477,
+    "furigana": "わすれもの",
+    "english": "lost article, something forgotten"
+  },
+  {
+    "id": 478,
+    "furigana": "おりる",
+    "english": "to get down, to go; come down"
+  },
+  {
+    "id": 479,
+    "furigana": "うで",
+    "english": "arm (in reference to body)"
+  },
+  {
+    "id": 480,
+    "furigana": "わけ",
+    "english": "reason; explanation"
+  },
+  {
+    "id": 481,
+    "furigana": "しょうちする",
+    "english": "consent, acceptance"
+  },
+  {
+    "id": 482,
+    "furigana": "にっき",
+    "english": "diary, journal"
+  },
+  {
+    "id": 483,
+    "furigana": "こうこう; こうとうがっこう",
+    "english": "high school; senior high school"
+  },
+  {
+    "id": 484,
+    "furigana": "にる",
+    "english": "to resemble, to be similar"
+  },
+  {
+    "id": 485,
+    "furigana": "～おわる",
+    "english": "to finish doing ~"
+  },
+  {
+    "id": 486,
+    "furigana": "だんぼう",
+    "english": "heating"
+  },
+  {
+    "id": 487,
+    "furigana": "るす",
+    "english": "absence; not at home"
+  },
+  {
+    "id": 488,
+    "furigana": "わりあい",
+    "english": "rate, ratio, percentage"
+  },
+  {
+    "id": 489,
+    "furigana": "てら",
+    "english": "Buddhist temple"
+  },
+  {
+    "id": 490,
+    "furigana": "なれる",
+    "english": "to grow accustomed to"
+  },
+  {
+    "id": 491,
+    "furigana": "ふつう",
+    "english": "common; usual"
+  },
+  {
+    "id": 492,
+    "furigana": "てつだう",
+    "english": "to help"
+  },
+  {
+    "id": 493,
+    "furigana": "なるほど",
+    "english": "I see; I now understand"
+  },
+  {
+    "id": 494,
+    "furigana": "くださる",
+    "english": "(hon.) to give, to confer"
+  },
+  {
+    "id": 495,
+    "furigana": "むすこ",
+    "english": "(humble) son"
+  },
+  {
+    "id": 496,
+    "furigana": "おこさん",
+    "english": "(someone else's) child (polite)"
+  },
+  {
+    "id": 497,
+    "furigana": "かいじょう",
+    "english": "venue, meeting place"
+  },
+  {
+    "id": 498,
+    "furigana": "わらう",
+    "english": "to laugh, to smile"
+  },
+  {
+    "id": 499,
+    "furigana": "はこぶ",
+    "english": "to transport, to carry"
+  },
+  {
+    "id": 500,
+    "furigana": "ぶんがく",
+    "english": "literature"
+  },
+  {
+    "id": 501,
+    "furigana": "ひかり",
+    "english": "light"
+  },
+  {
+    "id": 502,
+    "furigana": "おみまい",
+    "english": "calling on someone who is ill, visit"
+  },
+  {
+    "id": 503,
+    "furigana": "せき",
+    "english": "a seat"
+  },
+  {
+    "id": 504,
+    "furigana": "～さま",
+    "english": "Mr., Mrs., Ms."
+  },
+  {
+    "id": 505,
+    "furigana": "ごぞんじ",
+    "english": "knowing, acquaintance"
+  },
+  {
+    "id": 506,
+    "furigana": "さがる",
+    "english": "to descend, to drop, to fall"
+  },
+  {
+    "id": 507,
+    "furigana": "じ",
+    "english": "letter; character"
+  },
+  {
+    "id": 508,
+    "furigana": "アジア",
+    "english": "Asia"
+  },
+  {
+    "id": 509,
+    "furigana": "ほめる",
+    "english": "to praise; to say nice things"
+  },
+  {
+    "id": 510,
+    "furigana": "すく",
+    "english": "to be empty (in reference to people), to be less crowded"
+  },
+  {
+    "id": 511,
+    "furigana": "あ",
+    "english": "Ah"
+  },
+  {
+    "id": 512,
+    "furigana": "もっとも",
+    "english": "most"
+  },
+  {
+    "id": 513,
+    "furigana": "あう",
+    "english": "to fit, to match"
+  },
+  {
+    "id": 514,
+    "furigana": "～だい",
+    "english": "~ age; period"
+  },
+  {
+    "id": 515,
+    "furigana": "さいご",
+    "english": "last, end"
+  },
+  {
+    "id": 516,
+    "furigana": "ねだん",
+    "english": "price"
+  },
+  {
+    "id": 517,
+    "furigana": "たいいんする",
+    "english": "leaving hospital"
+  },
+  {
+    "id": 518,
+    "furigana": "てんらんかい",
+    "english": "exhibition"
+  },
+  {
+    "id": 519,
+    "furigana": "ひさしぶり",
+    "english": "it has been a long time; for the first time in a long time"
+  },
+  {
+    "id": 520,
+    "furigana": "カーテン",
+    "english": "curtain"
+  },
+  {
+    "id": 521,
+    "furigana": "きしゃ",
+    "english": "train (steam)"
+  },
+  {
+    "id": 522,
+    "furigana": "おくれる",
+    "english": "to (be) become late"
+  },
+  {
+    "id": 523,
+    "furigana": "みつかる",
+    "english": "to be found (v.i.), to be discovered"
+  },
+  {
+    "id": 524,
+    "furigana": "めしあがる",
+    "english": "-- honorific form of 食べる (たべる) and 飲む (のむ) --"
+  },
+  {
+    "id": 525,
+    "furigana": "ふとる",
+    "english": "to gain weight"
+  },
+  {
+    "id": 526,
+    "furigana": "ちゅうしゃ",
+    "english": "injection"
+  },
+  {
+    "id": 527,
+    "furigana": "よう",
+    "english": "way, manner, kind"
+  },
+  {
+    "id": 528,
+    "furigana": "～おき",
+    "english": "after every ~"
+  },
+  {
+    "id": 529,
+    "furigana": "さいしょ",
+    "english": "beginning, first"
+  },
+  {
+    "id": 530,
+    "furigana": "ご～",
+    "english": "honorable ~"
+  },
+  {
+    "id": 531,
+    "furigana": "あんしん",
+    "english": "peace of mind, relief"
+  },
+  {
+    "id": 532,
+    "furigana": "なおる",
+    "english": "to be fixed"
+  },
+  {
+    "id": 533,
+    "furigana": "あつめる",
+    "english": "to collect, to gather (v.t.), to assemble"
+  },
+  {
+    "id": 534,
+    "furigana": "なおす",
+    "english": "to correct (v.t.); to fix"
+  },
+  {
+    "id": 535,
+    "furigana": "つづく",
+    "english": "to be continued"
+  },
+  {
+    "id": 536,
+    "furigana": "せんぱい",
+    "english": "senior members of a group"
+  },
+  {
+    "id": 537,
+    "furigana": "やくそく",
+    "english": "arrangement, appointment, promise"
+  },
+  {
+    "id": 538,
+    "furigana": "せわする",
+    "english": "looking after; to look after"
+  },
+  {
+    "id": 539,
+    "furigana": "きんじょ",
+    "english": "neighborhood"
+  },
+  {
+    "id": 540,
+    "furigana": "しょうらい",
+    "english": "(in the) future; prospects"
+  },
+  {
+    "id": 541,
+    "furigana": "おく",
+    "english": "hundred million"
+  },
+  {
+    "id": 542,
+    "furigana": "すうがく",
+    "english": "mathematics"
+  },
+  {
+    "id": 543,
+    "furigana": "ぶんか",
+    "english": "culture"
+  },
+  {
+    "id": 544,
+    "furigana": "はらう",
+    "english": "to pay"
+  },
+  {
+    "id": 545,
+    "furigana": "しゅうかん",
+    "english": "custom (in reference to culture)"
+  },
+  {
+    "id": 546,
+    "furigana": "やける",
+    "english": "to burn, to be roasted"
+  },
+  {
+    "id": 547,
+    "furigana": "きみ",
+    "english": "you (informal for men)"
+  },
+  {
+    "id": 548,
+    "furigana": "ひえる",
+    "english": "to grow cold, to cool down"
+  },
+  {
+    "id": 549,
+    "furigana": "つく",
+    "english": "to be started, to be switched on"
+  },
+  {
+    "id": 550,
+    "furigana": "このあいだ",
+    "english": "the other day, recently"
+  },
+  {
+    "id": 551,
+    "furigana": "かっこう",
+    "english": "appearance, manner, shape, form, posture"
+  },
+  {
+    "id": 552,
+    "furigana": NaN,
+    "english": "to mind, to care about, to be concerned about"
+  },
+  {
+    "id": 553,
+    "furigana": "つづける",
+    "english": "to continue, to keep up"
+  },
+  {
+    "id": 554,
+    "furigana": "おとす",
+    "english": "to drop, to lose"
+  },
+  {
+    "id": 555,
+    "furigana": "あす",
+    "english": "tomorrow"
+  },
+  {
+    "id": 556,
+    "furigana": "しゅっぱつする",
+    "english": "departure"
+  },
+  {
+    "id": 557,
+    "furigana": "はいけんする",
+    "english": "(humble) (polite) seeing, look at"
+  },
+  {
+    "id": 558,
+    "furigana": "われる",
+    "english": "to break"
+  },
+  {
+    "id": 559,
+    "furigana": "せなか",
+    "english": "back (of body)"
+  },
+  {
+    "id": 560,
+    "furigana": "しんぶんしゃ",
+    "english": "newspaper company"
+  },
+  {
+    "id": 561,
+    "furigana": "いじめる",
+    "english": "to bully, to torment"
+  },
+  {
+    "id": 562,
+    "furigana": "まわる、まわす",
+    "english": "to go around, to revolve"
+  },
+  {
+    "id": 563,
+    "furigana": "～くん",
+    "english": "Mr. (junior) ~, master ~"
+  },
+  {
+    "id": 564,
+    "furigana": "おっしゃる",
+    "english": "-- honorific expression for いう --"
+  },
+  {
+    "id": 565,
+    "furigana": "ねむい",
+    "english": "sleepy, drowsy"
+  },
+  {
+    "id": 566,
+    "furigana": "ぬれる",
+    "english": "to get wet"
+  },
+  {
+    "id": 567,
+    "furigana": "たおれる",
+    "english": "to collapse, to break down"
+  },
+  {
+    "id": 568,
+    "furigana": "スーパー (マーケット)",
+    "english": "supermarket"
+  },
+  {
+    "id": 569,
+    "furigana": "アクセサリー",
+    "english": "accessory"
+  },
+  {
+    "id": 570,
+    "furigana": "かんがえる",
+    "english": "to think (about); to consider"
+  },
+  {
+    "id": 571,
+    "furigana": "むかう",
+    "english": "to face, to go towards"
+  },
+  {
+    "id": 572,
+    "furigana": "じゆう",
+    "english": "freedom"
+  },
+  {
+    "id": 573,
+    "furigana": "しかた",
+    "english": "way (of doing something)"
+  },
+  {
+    "id": 574,
+    "furigana": "くび",
+    "english": "neck"
+  },
+  {
+    "id": 575,
+    "furigana": "ほど",
+    "english": "degree, extent"
+  },
+  {
+    "id": 576,
+    "furigana": "かわり",
+    "english": "substitute, replacement"
+  },
+  {
+    "id": 577,
+    "furigana": "しっぱい",
+    "english": "failure, mistake"
+  },
+  {
+    "id": 578,
+    "furigana": "こうぎょう",
+    "english": "(manufacturing) industry"
+  },
+  {
+    "id": 579,
+    "furigana": "うつる",
+    "english": "to move (from a house); to transfer (from a department); to shift"
+  },
+  {
+    "id": 580,
+    "furigana": "スーツケース",
+    "english": "suitcase"
+  },
+  {
+    "id": 581,
+    "furigana": "ひげ",
+    "english": "beard"
+  },
+  {
+    "id": 582,
+    "furigana": "けんきゅうしつ",
+    "english": "the professor's office; laboratory"
+  },
+  {
+    "id": 583,
+    "furigana": "こうじょう",
+    "english": "factory"
+  },
+  {
+    "id": 584,
+    "furigana": "しょうかい",
+    "english": "an introduction"
+  },
+  {
+    "id": 585,
+    "furigana": "けれど; けれども",
+    "english": "but, although"
+  },
+  {
+    "id": 586,
+    "furigana": "ふね",
+    "english": "ship, boat"
+  },
+  {
+    "id": 587,
+    "furigana": "うごく",
+    "english": "to move"
+  },
+  {
+    "id": 588,
+    "furigana": "～(に) ついて",
+    "english": "about, concerning"
+  },
+  {
+    "id": 589,
+    "furigana": "コンサート",
+    "english": "concert"
+  },
+  {
+    "id": 590,
+    "furigana": "むし",
+    "english": "insect"
+  },
+  {
+    "id": 591,
+    "furigana": "やさしい",
+    "english": "kind (person), gentle (person), easy (problem)"
+  },
+  {
+    "id": 592,
+    "furigana": "コンピュータ; コンピューター",
+    "english": "computer"
+  },
+  {
+    "id": 593,
+    "furigana": "うえる",
+    "english": "to plant"
+  },
+  {
+    "id": 594,
+    "furigana": "りょうほう",
+    "english": "both sides, both parties"
+  },
+  {
+    "id": 595,
+    "furigana": "よごれる",
+    "english": "to become dirty"
+  },
+  {
+    "id": 596,
+    "furigana": "すいえい",
+    "english": "swimming"
+  },
+  {
+    "id": 597,
+    "furigana": "けいけんする",
+    "english": "experience"
+  },
+  {
+    "id": 598,
+    "furigana": "かつ",
+    "english": "to win"
+  },
+  {
+    "id": 599,
+    "furigana": "すな",
+    "english": "sand"
+  },
+  {
+    "id": 600,
+    "furigana": "けいさつ",
+    "english": "police; police station"
+  },
+  {
+    "id": 601,
+    "furigana": "とりかえる",
+    "english": "to exchange, to replace"
+  },
+  {
+    "id": 602,
+    "furigana": "いそぐ",
+    "english": "to hurry, to be in a hurry, to rush"
+  },
+  {
+    "id": 603,
+    "furigana": "かんたん",
+    "english": "simple"
+  },
+  {
+    "id": 604,
+    "furigana": "まいる",
+    "english": "humble expression for 行く and 来る"
+  },
+  {
+    "id": 605,
+    "furigana": "ぜんぜん",
+    "english": "not at all; wholly, entirely"
+  },
+  {
+    "id": 606,
+    "furigana": "とくべつ",
+    "english": "special"
+  },
+  {
+    "id": 607,
+    "furigana": "ふくしゅう",
+    "english": "review (of lessons), revision"
+  },
+  {
+    "id": 608,
+    "furigana": "まにあう",
+    "english": "to be in time for"
+  },
+  {
+    "id": 609,
+    "furigana": "やくにたつ",
+    "english": "to be helpful, to be useful"
+  },
+  {
+    "id": 610,
+    "furigana": "もうすぐ",
+    "english": "very soon; in a few moments; days"
+  },
+  {
+    "id": 611,
+    "furigana": "まんなか",
+    "english": "middle, center"
+  },
+  {
+    "id": 612,
+    "furigana": "もどる",
+    "english": "to return (v.i.); to come back"
+  },
+  {
+    "id": 613,
+    "furigana": "けんきゅう",
+    "english": "study, research, investigation"
+  },
+  {
+    "id": 614,
+    "furigana": "ケーキ",
+    "english": "cake"
+  },
+  {
+    "id": 615,
+    "furigana": "くさ",
+    "english": "grass"
+  },
+  {
+    "id": 616,
+    "furigana": "こむ",
+    "english": "to be crowded"
+  },
+  {
+    "id": 617,
+    "furigana": "このごろ",
+    "english": "these days, nowadays"
+  },
+  {
+    "id": 618,
+    "furigana": "たずねる",
+    "english": "to visit"
+  },
+  {
+    "id": 619,
+    "furigana": "さげる",
+    "english": "to lower (v.t.); to hang"
+  },
+  {
+    "id": 620,
+    "furigana": "はなみ",
+    "english": "cherry-blossom viewing"
+  },
+  {
+    "id": 621,
+    "furigana": "とちゅう",
+    "english": "on the way, midway"
+  },
+  {
+    "id": 622,
+    "furigana": "にゅういんする",
+    "english": "hospitalization"
+  },
+  {
+    "id": 623,
+    "furigana": "のりかえる",
+    "english": "to transfer (trains), to change (bus, train, etc.)"
+  },
+  {
+    "id": 624,
+    "furigana": "わかれる",
+    "english": "to part from, to separate"
+  },
+  {
+    "id": 625,
+    "furigana": "～ちょう",
+    "english": "the town of ~"
+  },
+  {
+    "id": 626,
+    "furigana": "あんぜん",
+    "english": "safety, security"
+  },
+  {
+    "id": 627,
+    "furigana": "かんごふ",
+    "english": "(female) nurse"
+  },
+  {
+    "id": 628,
+    "furigana": "けんぶつ",
+    "english": "sightseeing"
+  },
+  {
+    "id": 629,
+    "furigana": "そうだんする",
+    "english": "consultation"
+  },
+  {
+    "id": 630,
+    "furigana": "ガソリンスタンド",
+    "english": "gas station, service station"
+  },
+  {
+    "id": 631,
+    "furigana": "テニス",
+    "english": "tennis"
+  },
+  {
+    "id": 632,
+    "furigana": "ねむる",
+    "english": "to sleep"
+  },
+  {
+    "id": 633,
+    "furigana": "あがる",
+    "english": "to rise, to go up"
+  },
+  {
+    "id": 634,
+    "furigana": "ほんやく",
+    "english": "translation"
+  },
+  {
+    "id": 635,
+    "furigana": "しょくじする",
+    "english": "meal"
+  },
+  {
+    "id": 636,
+    "furigana": "おかげ",
+    "english": "thanks or owing to"
+  },
+  {
+    "id": 637,
+    "furigana": "むすめ",
+    "english": "daughter (humble)"
+  },
+  {
+    "id": 638,
+    "furigana": "ゆ",
+    "english": "hot water"
+  },
+  {
+    "id": 639,
+    "furigana": "きょうそう",
+    "english": "competition, contest"
+  },
+  {
+    "id": 640,
+    "furigana": "かいぎ",
+    "english": "business meeting; conference"
+  },
+  {
+    "id": 641,
+    "furigana": "みずうみ",
+    "english": "lake"
+  },
+  {
+    "id": 642,
+    "furigana": "あつまる",
+    "english": "to gather (v.i.), to collect"
+  },
+  {
+    "id": 643,
+    "furigana": "～にくい",
+    "english": "difficult to do ~"
+  },
+  {
+    "id": 644,
+    "furigana": "せいかつする",
+    "english": "living, life; to live"
+  },
+  {
+    "id": 645,
+    "furigana": "いと",
+    "english": "thread"
+  },
+  {
+    "id": 646,
+    "furigana": "かんけい",
+    "english": "relation(ship), connection"
+  },
+  {
+    "id": 647,
+    "furigana": "ピアノ",
+    "english": "piano"
+  },
+  {
+    "id": 648,
+    "furigana": "～め",
+    "english": "number ~ sequence, ~nd; ~th"
+  },
+  {
+    "id": 649,
+    "furigana": "ばんぐみ",
+    "english": "broadcast program"
+  },
+  {
+    "id": 650,
+    "furigana": "きゅう",
+    "english": "urgent, sudden; steep"
+  },
+  {
+    "id": 651,
+    "furigana": "たな",
+    "english": "shelves, rack"
+  },
+  {
+    "id": 652,
+    "furigana": "もめん",
+    "english": "cotton"
+  },
+  {
+    "id": 653,
+    "furigana": "ゆしゅつする",
+    "english": "export"
+  },
+  {
+    "id": 654,
+    "furigana": "タイプ",
+    "english": "type, style"
+  },
+  {
+    "id": 655,
+    "furigana": "すり",
+    "english": "pickpocket"
+  },
+  {
+    "id": 656,
+    "furigana": "うれしい",
+    "english": "to be happy; to be glad"
+  },
+  {
+    "id": 657,
+    "furigana": "アルコール",
+    "english": "alcohol"
+  },
+  {
+    "id": 658,
+    "furigana": "ソフト",
+    "english": "soft; soft hat; software"
+  },
+  {
+    "id": 659,
+    "furigana": "じんじゃ",
+    "english": "Shinto shrine"
+  },
+  {
+    "id": 660,
+    "furigana": "だいぶ",
+    "english": "fairly well, to a large extent, considerably, pretty much"
+  },
+  {
+    "id": 661,
+    "furigana": "たのしみ",
+    "english": "pleasure, joy"
+  },
+  {
+    "id": 662,
+    "furigana": "しゅみ",
+    "english": "hobby; pastime"
+  },
+  {
+    "id": 663,
+    "furigana": "でんぽう",
+    "english": "telegram"
+  },
+  {
+    "id": 664,
+    "furigana": "かない",
+    "english": "(one's own) wife"
+  },
+  {
+    "id": 665,
+    "furigana": "ゆび",
+    "english": "finger"
+  },
+  {
+    "id": 666,
+    "furigana": "これから",
+    "english": "from now on, after this"
+  },
+  {
+    "id": 667,
+    "furigana": "たまに",
+    "english": "occasionally"
+  },
+  {
+    "id": 668,
+    "furigana": "しゃかい",
+    "english": "society"
+  }
+]

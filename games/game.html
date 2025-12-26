@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+               maximum-scale=1.0, minimum-scale=1.0,
+               user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#9FD8F6">
+<title>Word Search</title>
+
+<style>
+:root {
+  --scale: calc(100vw / 375);
+  --color-bg: linear-gradient(#9fd8f6, #ffffff);
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--color-bg);
+  display: block;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  overflow: hidden;
+}
+canvas {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<script src="game.js"></script>
+<script>
+let lastTouchEnd = 0;
+document.addEventListener('touchend', e => {
+  const now = Date.now();
+  if (now - lastTouchEnd <= 300) e.preventDefault();
+  lastTouchEnd = now;
+});
+document.addEventListener('gesturestart', e => e.preventDefault());
+</script>
+</body>
+</html>
