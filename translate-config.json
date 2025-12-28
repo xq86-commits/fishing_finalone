@@ -1,0 +1,12 @@
+{
+  "provider": "deepl",
+  "deepl": {
+    "apiKey": "f546a936-ac6e-4c4b-abd7-b56eda71521d:fx",
+    "endpoint": "https://api-free.deepl.com"
+  },
+  "rateLimit": {
+    "requestsPerSecond": 5,
+    "batchSize": 50
+  },
+  "enableTranslation": true
+}
