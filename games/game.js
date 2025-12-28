@@ -538,7 +538,7 @@ async function ensureActiveVocab(level) {
 
 async function applyLanguageSettings() {
   if (state.selectedLearningLang === state.selectedBaseLang) {
-    showToast("Use different languages\nPlease change");
+    showToast("Please choose another language");
     return;
   }
 
@@ -712,7 +712,7 @@ let dpr = window.devicePixelRatio || 1;
 let toastTimeout = null;
 let toastLines = [];
 
-function showToast(message, duration = 1500) {
+function showToast(message, duration = 900) {
   state.toastMessage = message; // Keep for compatibility if needed, but we use toastLines now
   toastLines = message.split('\n');
 
@@ -1229,12 +1229,29 @@ function draw() {
     ctx.save();
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
 
-    // Calculate size based on lines
-    const lineHeight = 30;
-    const paddingV = 20;
-    const paddingH = 40;
+    // Font and sizing (reduced to 60% of original)
+    const fontSize = 12; // 20 * 0.6 = 12
+    const lineHeight = fontSize * 1.2; // Auto-calculated, approximately 14.4px
+    const paddingV = 12; // 20 * 0.6 = 12
+    const paddingH = 24; // 40 * 0.6 = 24
+
+    // Set font before measuring text
+    ctx.font = `bold ${fontSize}px Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    // Calculate dynamic width based on text width
+    let maxLineWidth = 0;
+    toastLines.forEach(line => {
+      const metrics = ctx.measureText(line);
+      if (metrics.width > maxLineWidth) {
+        maxLineWidth = metrics.width;
+      }
+    });
+
+    // Calculate box dimensions
+    const boxWidth = Math.max(150, Math.min(maxLineWidth + paddingH, logicalWidth * 0.8)); // Min 150px, max 80% of screen width
     const boxHeight = toastLines.length * lineHeight + paddingV;
-    const boxWidth = 300; // Fixed width for simplicity or measure
 
     // Use fillRect for compatibility if roundRect is not supported, or check support
     const boxX = logicalWidth / 2 - boxWidth / 2;
@@ -1249,9 +1266,6 @@ function draw() {
     }
 
     ctx.fillStyle = '#fff';
-    ctx.font = 'bold 20px Arial';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
 
     // Draw each line
     toastLines.forEach((line, index) => {
@@ -1704,13 +1718,14 @@ function drawLanguageOverlay() {
   
   // Dynamic language options calculation
   const learningOptions = LANGUAGE_OPTIONS; // All languages can be selected as learning language
-  const baseOptions = LANGUAGE_OPTIONS.filter(l => l !== state.selectedLearningLang); // Base language cannot be the same as learning language
+  const baseOptions = LANGUAGE_OPTIONS; // Show all languages, validation happens on click
   
   const learningRows = Math.ceil(learningOptions.length / 2);
   const learningSectionHeight = learningRows * (chipHeight + chipGapY) + 30;
   const baseRows = Math.ceil(baseOptions.length / 2);
   const baseSectionHeight = baseRows * (chipHeight + chipGapY) + 30;
-  const levelRows = Math.ceil(LEVEL_OPTIONS.length / 2);
+  // 难度级别按钮改为一行显示（3个按钮）
+  const levelRows = 1;
   const levelSectionHeight = levelRows * (chipHeight + chipGapY) + 30;
   const sectionsHeight = levelSectionHeight + learningSectionHeight + baseSectionHeight;
   const neededHeight = 50 + 16 + sectionsHeight + 20 + 44 + 24;
@@ -1796,7 +1811,9 @@ function drawLanguageOverlay() {
 
   // Content Area
   const contentStartY = y + headerHeight + 16;
-  const chipWidth = (panelWidth - 32 - 16 - chipGapX) / 2; // Adjusted for inner padding
+  // 难度级别按钮使用更小的宽度（一行3个）
+  const levelChipWidth = (panelWidth - 32 - 16 - chipGapX * 2) / 3; // 3个按钮一行
+  const chipWidth = (panelWidth - 32 - 16 - chipGapX) / 2; // 其他区域保持2列布局
   let cursorY = contentStartY;
 
   // Level Section
@@ -1819,16 +1836,17 @@ function drawLanguageOverlay() {
   ctx.font = '12px Arial';
   ctx.fillStyle = '#57738c';
   const levelLabelWidth = ctx.measureText(levelLabel).width;
-  ctx.fillText(`Current: ${state.activeLevel}`, x + 28 + levelLabelWidth + 22, levelSectionY + 14);
+  ctx.fillText(`Current: ${state.activeLevel}`, x + 28 + levelLabelWidth + 32, levelSectionY + 14);
 
   state.levelRects = [];
   const levelGridStartY = levelSectionY + 40;
   LEVEL_OPTIONS.forEach((level, idx) => {
-    const col = idx % 2;
-    const row = Math.floor(idx / 2);
-    const chipX = x + 28 + col * (chipWidth + chipGapX);
+    // 一行显示3个按钮
+    const col = idx % 3;
+    const row = Math.floor(idx / 3);
+    const chipX = x + 28 + col * (levelChipWidth + chipGapX);
     const chipY = levelGridStartY + row * (chipHeight + chipGapY);
-    const rect = { x: chipX, y: chipY, width: chipWidth, height: chipHeight, level, type: 'level' };
+    const rect = { x: chipX, y: chipY, width: levelChipWidth, height: chipHeight, level, type: 'level' };
     state.levelRects.push(rect);
 
     const selected = state.selectedLevel === level;
@@ -1847,19 +1865,19 @@ function drawLanguageOverlay() {
     ctx.lineWidth = 1;
     if (ctx.roundRect) {
       ctx.beginPath();
-      ctx.roundRect(chipX, chipY, chipWidth, chipHeight, 8);
+      ctx.roundRect(chipX, chipY, levelChipWidth, chipHeight, 8);
       ctx.fill();
       ctx.stroke();
     } else {
-      ctx.fillRect(chipX, chipY, chipWidth, chipHeight);
-      ctx.strokeRect(chipX, chipY, chipWidth, chipHeight);
+      ctx.fillRect(chipX, chipY, levelChipWidth, chipHeight);
+      ctx.strokeRect(chipX, chipY, levelChipWidth, chipHeight);
     }
 
     ctx.fillStyle = selected ? '#fff' : '#2c3e50';
-    ctx.font = 'bold 14px Arial';
+    ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(level, chipX + chipWidth / 2, chipY + chipHeight / 2);
+    ctx.fillText(level, chipX + levelChipWidth / 2, chipY + chipHeight / 2);
   });
 
   cursorY += levelSectionHeight + 16;
@@ -2151,14 +2169,12 @@ async function handleInputClick(e) {
     if (!handledLang) {
       for (const opt of state.languageLearningRects) {
         if (isPointInRect(clickX, clickY, opt)) {
-          state.selectedLearningLang = opt.lang;
-          // If base language is the same as new learning language, change base language
-          if (state.selectedBaseLang === opt.lang) {
-            const availableBaseLang = LANGUAGE_OPTIONS.find(l => l !== opt.lang);
-            if (availableBaseLang) {
-              state.selectedBaseLang = availableBaseLang;
-            }
+          // Check if the selected language is the same as current base language
+          if (opt.lang === state.selectedBaseLang) {
+            showToast("Please choose another language");
+            return;
           }
+          state.selectedLearningLang = opt.lang;
           handledLang = true;
           break;
         }
@@ -2168,6 +2184,11 @@ async function handleInputClick(e) {
     if (!handledLang) {
       for (const opt of state.languageBaseRects) {
         if (isPointInRect(clickX, clickY, opt)) {
+          // Check if the selected language is the same as current learning language
+          if (opt.lang === state.selectedLearningLang) {
+            showToast("Please choose another language");
+            return;
+          }
           state.selectedBaseLang = opt.lang;
           handledLang = true;
           break;
@@ -2228,15 +2249,7 @@ async function handleInputClick(e) {
   // Language button
   if (state.langButtonRect && isPointInRect(clickX, clickY, state.langButtonRect)) {
     state.selectedLevel = state.activeLevel || state.selectedLevel || DEFAULT_LEVEL;
-    // Ensure base language is not the same as learning language
-    if (state.selectedBaseLang === state.selectedLearningLang || !LANGUAGE_OPTIONS.includes(state.selectedBaseLang)) {
-      const availableBaseLang = LANGUAGE_OPTIONS.find(l => l !== state.selectedLearningLang);
-      if (availableBaseLang) {
-        state.selectedBaseLang = availableBaseLang;
-      } else {
-        state.selectedBaseLang = "English"; // Fallback
-      }
-    }
+    // Note: Language validation now happens on click, not when opening the panel
     state.languageOpen = true;
     state.noteOpen = false;
     return;

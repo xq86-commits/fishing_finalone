@@ -103,8 +103,8 @@ async function translateEntry(entry, languages = ['chinese', 'korean', 'spanish'
   const result = { ...entry };
 
   for (const lang of languages) {
-    // 如果已经有翻译，跳过
-    if (result[lang]) continue;
+    // 如果已经有翻译（非空），跳过
+    if (result[lang] && result[lang].trim() !== '') continue;
 
     try {
       const translated = await translateText(english, lang);
@@ -152,9 +152,13 @@ async function translateFile(filename) {
   let processed = 0;
   let needsTranslation = 0;
   
-  // 统计需要翻译的数量
+  // 统计需要翻译的数量（包括空字符串）
   for (const entry of data) {
-    if (!entry.chinese || !entry.korean || !entry.spanish || !entry.french) {
+    const hasChinese = entry.chinese && entry.chinese.trim() !== '';
+    const hasKorean = entry.korean && entry.korean.trim() !== '';
+    const hasSpanish = entry.spanish && entry.spanish.trim() !== '';
+    const hasFrench = entry.french && entry.french.trim() !== '';
+    if (!hasChinese || !hasKorean || !hasSpanish || !hasFrench) {
       needsTranslation++;
     }
   }
@@ -165,8 +169,12 @@ async function translateFile(filename) {
   for (let i = 0; i < data.length; i++) {
     const entry = data[i];
     
-    // 检查是否需要翻译
-    const needsTranslation = !entry.chinese || !entry.korean || !entry.spanish || !entry.french;
+    // 检查是否需要翻译（包括空字符串）
+    const hasChinese = entry.chinese && entry.chinese.trim() !== '';
+    const hasKorean = entry.korean && entry.korean.trim() !== '';
+    const hasSpanish = entry.spanish && entry.spanish.trim() !== '';
+    const hasFrench = entry.french && entry.french.trim() !== '';
+    const needsTranslation = !hasChinese || !hasKorean || !hasSpanish || !hasFrench;
     
     if (needsTranslation) {
       console.log(`[${i + 1}/${data.length}] 翻译: ${entry.english || entry.furigana}`);
@@ -189,8 +197,7 @@ async function translateFile(filename) {
 // 主函数
 async function main() {
   const files = [
-    'n4_vocab.json',
-    'n5_vocab.json'
+    'n1_vocab.json'
   ];
 
   for (const file of files) {
