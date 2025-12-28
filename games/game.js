@@ -22,8 +22,8 @@ for (let i = 1; i <= TOTAL_FISH_TYPES; i++) {
   ASSETS.fish.push({ src: `../fish_assets/fish${i}.png`, img: null });
 }
 
-const LEVEL_OPTIONS = ["N5", "N4", "N3", "N2", "N1"];
-const DEFAULT_LEVEL = "N5";
+const LEVEL_OPTIONS = ["Beginner", "Intermediate", "Advanced"];
+const DEFAULT_LEVEL = "Beginner";
 const LEVEL_FILES = {
   N1: "../n1_vocab.json",
   N2: "../n2_vocab.json",
@@ -31,6 +31,16 @@ const LEVEL_FILES = {
   N4: "../n4_vocab.json",
   N5: "../n5_vocab.json"
 };
+
+// 将通用级别映射到对应的JLPT级别数组（用于加载词汇文件）
+function genericLevelToJLPTLevels(genericLevel) {
+  const mapping = {
+    "Beginner": ["N5", "N4"],      // 初级合并N5和N4
+    "Intermediate": ["N3", "N2"],  // 中级合并N3和N2
+    "Advanced": ["N1"]             // 高级使用N1
+  };
+  return mapping[genericLevel] || ["N5"];
+}
 
 // Vocabulary Data (N5 seed with multilingual translations)
 const N5_SEED_VOCAB = [
@@ -395,20 +405,32 @@ function enrichVocabulary(list = []) {
   return list.map(enrichWord).filter(item => item.furigana && item.english);
 }
 
+// Helper function to merge vocabularies and remove duplicates based on furigana
+function mergeVocabularies(...vocabLists) {
+  const merged = [];
+  const seen = new Set();
+  vocabLists.forEach(vocabList => {
+    vocabList.forEach(item => {
+      const key = item.furigana || item.english || '';
+      if (key && !seen.has(key)) {
+        seen.add(key);
+        merged.push(item);
+      }
+    });
+  });
+  return merged;
+}
+
 const vocabCache = {
-  [DEFAULT_LEVEL]: enrichVocabulary(N5_SEED_VOCAB),
-  N4: enrichVocabulary(N4_SEED_VOCAB),
-  N3: enrichVocabulary(N3_SEED_VOCAB),
-  N2: enrichVocabulary(N2_SEED_VOCAB),
-  N1: enrichVocabulary(N1_SEED_VOCAB)
+  Beginner: enrichVocabulary(mergeVocabularies(N5_SEED_VOCAB, N4_SEED_VOCAB)),
+  Intermediate: enrichVocabulary(mergeVocabularies(N3_SEED_VOCAB, N2_SEED_VOCAB)),
+  Advanced: enrichVocabulary(N1_SEED_VOCAB)
 };
 
 const vocabLoadedFromFile = {
-  [DEFAULT_LEVEL]: false,
-  N4: false,
-  N3: false,
-  N2: false,
-  N1: false
+  Beginner: false,
+  Intermediate: false,
+  Advanced: false
 };
 
 const CHAR_SETS = {
@@ -429,7 +451,9 @@ const LANG_MAP = {
   "Français": { key: "french", locale: "fr-FR" }
 };
 const LANGUAGE_OPTIONS = ["中文", "日本語", "한국어", "English", "Español", "Français"];
-const BASE_LANGUAGE_OPTIONS = LANGUAGE_OPTIONS.filter(l => l !== "日本語"); // Hide Japanese for Using
+// BASE_LANGUAGE_OPTIONS is now computed dynamically based on selectedLearningLang
+// Legacy: kept for backward compatibility, but will be computed dynamically
+const BASE_LANGUAGE_OPTIONS = LANGUAGE_OPTIONS.filter(l => l !== "日本語"); // Deprecated: use dynamic calculation instead
 let hintAdListenerAttached = false;
 
 function getAdManager() {
@@ -473,8 +497,8 @@ let state = {
   languageOpen: false,
   selectedLearningLang: "日本語",
   selectedBaseLang: "English",
-  selectedLevel: DEFAULT_LEVEL,
-  activeLevel: DEFAULT_LEVEL,
+  selectedLevel: "Beginner",
+  activeLevel: "Beginner",
   activeVocab: vocabCache[DEFAULT_LEVEL],
   levelRects: [],
   isLoadingVocab: false,
@@ -615,33 +639,47 @@ async function loadVocabForLevel(level = DEFAULT_LEVEL) {
   const targetLevel = LEVEL_OPTIONS.includes(level) ? level : DEFAULT_LEVEL;
   if (vocabCache[targetLevel] && vocabLoadedFromFile[targetLevel]) return vocabCache[targetLevel];
 
-  const file = LEVEL_FILES[targetLevel];
-  if (!file) return vocabCache[DEFAULT_LEVEL];
-
+  // Get the JLPT levels that correspond to this generic level
+  const jlptLevels = genericLevelToJLPTLevels(targetLevel);
+  
   try {
-    const res = await fetch(file);
-    const text = await res.text();
-    // Some source files may contain NaN; replace with null before parsing
-    const safeText = text.replace(/\bNaN\b/g, "null");
-    const rawList = JSON.parse(safeText);
-    let normalized = enrichVocabulary(rawList);
-
-    // Keep the richer N5 seed translations even after loading the larger list
-    if (targetLevel === DEFAULT_LEVEL) {
-      const seedList = vocabCache[DEFAULT_LEVEL] ? [...vocabCache[DEFAULT_LEVEL]] : [];
-      const seen = new Set(normalized.map(item => item.furigana));
-      seedList.forEach(item => {
-        if (!seen.has(item.furigana)) {
-          normalized.push(item);
-        }
-      });
+    // Load vocabularies from all corresponding JLPT levels
+    const loadedVocabs = [];
+    for (const jlptLevel of jlptLevels) {
+      const file = LEVEL_FILES[jlptLevel];
+      if (!file) continue;
+      
+      try {
+        const res = await fetch(file);
+        const text = await res.text();
+        // Some source files may contain NaN; replace with null before parsing
+        const safeText = text.replace(/\bNaN\b/g, "null");
+        const rawList = JSON.parse(safeText);
+        const enriched = enrichVocabulary(rawList);
+        loadedVocabs.push(enriched);
+      } catch (err) {
+        console.warn(`Failed to load vocab for ${jlptLevel}`, err);
+      }
     }
+
+    // Merge all loaded vocabularies and remove duplicates
+    let normalized = loadedVocabs.length > 0 ? mergeVocabularies(...loadedVocabs) : [];
+    normalized = enrichVocabulary(normalized);
+
+    // Merge with seed vocabulary to keep richer translations
+    const seedList = vocabCache[targetLevel] ? [...vocabCache[targetLevel]] : [];
+    const seen = new Set(normalized.map(item => item.furigana));
+    seedList.forEach(item => {
+      if (!seen.has(item.furigana)) {
+        normalized.push(item);
+      }
+    });
 
     vocabCache[targetLevel] = normalized.length ? normalized : vocabCache[DEFAULT_LEVEL];
     vocabLoadedFromFile[targetLevel] = true;
   } catch (err) {
     console.error(`Failed to load vocab for level ${targetLevel}`, err);
-    showToast("Failed to load vocab\nFallback to N5");
+    showToast(`Failed to load vocab\nFallback to ${DEFAULT_LEVEL}`);
     vocabCache[targetLevel] = vocabCache[DEFAULT_LEVEL];
     vocabLoadedFromFile[targetLevel] = false;
   }
@@ -1647,7 +1685,7 @@ function drawLanguageOverlay() {
   state.langPanelRect = null;
   state.langCloseRect = null;
   state.langConfirmRect = null;
-  state.languageLearningRects = []; // kept for compatibility but unused when learning language fixed
+  state.languageLearningRects = [];
   state.languageBaseRects = [];
   state.levelRects = [];
   return;
@@ -1663,12 +1701,18 @@ function drawLanguageOverlay() {
   const chipHeight = 36;
   const chipGapY = 10;
   const chipGapX = 10;
-  const baseOptions = BASE_LANGUAGE_OPTIONS;
+  
+  // Dynamic language options calculation
+  const learningOptions = LANGUAGE_OPTIONS; // All languages can be selected as learning language
+  const baseOptions = LANGUAGE_OPTIONS.filter(l => l !== state.selectedLearningLang); // Base language cannot be the same as learning language
+  
+  const learningRows = Math.ceil(learningOptions.length / 2);
+  const learningSectionHeight = learningRows * (chipHeight + chipGapY) + 30;
   const baseRows = Math.ceil(baseOptions.length / 2);
   const baseSectionHeight = baseRows * (chipHeight + chipGapY) + 30;
   const levelRows = Math.ceil(LEVEL_OPTIONS.length / 2);
   const levelSectionHeight = levelRows * (chipHeight + chipGapY) + 30;
-  const sectionsHeight = levelSectionHeight + baseSectionHeight;
+  const sectionsHeight = levelSectionHeight + learningSectionHeight + baseSectionHeight;
   const neededHeight = 50 + 16 + sectionsHeight + 20 + 44 + 24;
 
   const panelWidth = Math.min(380, logicalWidth - 40);
@@ -1737,7 +1781,7 @@ function drawLanguageOverlay() {
   ctx.lineTo(closeX + pad, closeY + closeSize - pad);
   ctx.stroke();
 
-  ctx.restore(); // End clip
+  // Note: clip restore moved to end of function to protect all content areas
 
   // Border (Stroke) for the whole panel
   ctx.strokeStyle = 'rgba(0,0,0,0.08)';
@@ -1770,12 +1814,12 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  const jlptLabel = 'JLPT Level';
-  ctx.fillText(jlptLabel, x + 28, levelSectionY + 12);
+  const levelLabel = 'Difficulty Level';
+  ctx.fillText(levelLabel, x + 28, levelSectionY + 12);
   ctx.font = '12px Arial';
   ctx.fillStyle = '#57738c';
-  const jlptLabelWidth = ctx.measureText(jlptLabel).width;
-  ctx.fillText(`Current: ${state.activeLevel}`, x + 28 + jlptLabelWidth + 22, levelSectionY + 14);
+  const levelLabelWidth = ctx.measureText(levelLabel).width;
+  ctx.fillText(`Current: ${state.activeLevel}`, x + 28 + levelLabelWidth + 22, levelSectionY + 14);
 
   state.levelRects = [];
   const levelGridStartY = levelSectionY + 40;
@@ -1819,6 +1863,65 @@ function drawLanguageOverlay() {
   });
 
   cursorY += levelSectionHeight + 16;
+
+  // Learning Language Section
+  ctx.fillStyle = '#E8F5E9';
+  if (ctx.roundRect) {
+    ctx.beginPath();
+    ctx.roundRect(x + 16, cursorY, panelWidth - 32, learningSectionHeight, 12);
+    ctx.fill();
+  } else {
+    ctx.fillRect(x + 16, cursorY, panelWidth - 32, learningSectionHeight);
+  }
+
+  ctx.fillStyle = '#2c3e50';
+  ctx.font = 'bold 14px Arial';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('Learning', x + 28, cursorY + 12);
+
+  state.languageLearningRects = [];
+  const learningKeyStartY = cursorY + 36;
+  learningOptions.forEach((lang, idx) => {
+    const col = idx % 2;
+    const row = Math.floor(idx / 2);
+    const chipX = x + 28 + col * (chipWidth + chipGapX);
+    const chipY = learningKeyStartY + row * (chipHeight + chipGapY);
+    const rect = { x: chipX, y: chipY, width: chipWidth, height: chipHeight, lang, type: 'learning' };
+    state.languageLearningRects.push(rect);
+
+    const selected = state.selectedLearningLang === lang;
+
+    if (selected) {
+      const grad = ctx.createLinearGradient(chipX, chipY, chipX, chipY + chipHeight);
+      grad.addColorStop(0, '#4CAF50');
+      grad.addColorStop(1, '#388E3C');
+      ctx.fillStyle = grad;
+      ctx.strokeStyle = '#2E7D32';
+    } else {
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#C8E6C9';
+    }
+
+    ctx.lineWidth = 1;
+    if (ctx.roundRect) {
+      ctx.beginPath();
+      ctx.roundRect(chipX, chipY, chipWidth, chipHeight, 8);
+      ctx.fill();
+      ctx.stroke();
+    } else {
+      ctx.fillRect(chipX, chipY, chipWidth, chipHeight);
+      ctx.strokeRect(chipX, chipY, chipWidth, chipHeight);
+    }
+
+    ctx.fillStyle = selected ? '#fff' : '#2c3e50';
+    ctx.font = 'bold 14px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(lang, chipX + chipWidth / 2, chipY + chipHeight / 2);
+  });
+
+  cursorY += learningSectionHeight + 16;
 
   // Base Language (Using)
   ctx.fillStyle = '#FFF0D4';
@@ -1927,7 +2030,7 @@ function drawLanguageOverlay() {
     ctx.fillText('Loading vocab...', confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height + 18);
   }
 
-  ctx.restore();
+  ctx.restore(); // End clip - moved here to protect all content areas (Difficulty Level, Learning Language, Using Language, Apply button)
 }
 
 function completeCurrentWord() {
@@ -2046,6 +2149,23 @@ async function handleInputClick(e) {
     }
 
     if (!handledLang) {
+      for (const opt of state.languageLearningRects) {
+        if (isPointInRect(clickX, clickY, opt)) {
+          state.selectedLearningLang = opt.lang;
+          // If base language is the same as new learning language, change base language
+          if (state.selectedBaseLang === opt.lang) {
+            const availableBaseLang = LANGUAGE_OPTIONS.find(l => l !== opt.lang);
+            if (availableBaseLang) {
+              state.selectedBaseLang = availableBaseLang;
+            }
+          }
+          handledLang = true;
+          break;
+        }
+      }
+    }
+
+    if (!handledLang) {
       for (const opt of state.languageBaseRects) {
         if (isPointInRect(clickX, clickY, opt)) {
           state.selectedBaseLang = opt.lang;
@@ -2108,8 +2228,14 @@ async function handleInputClick(e) {
   // Language button
   if (state.langButtonRect && isPointInRect(clickX, clickY, state.langButtonRect)) {
     state.selectedLevel = state.activeLevel || state.selectedLevel || DEFAULT_LEVEL;
-    if (!BASE_LANGUAGE_OPTIONS.includes(state.selectedBaseLang)) {
-      state.selectedBaseLang = "English";
+    // Ensure base language is not the same as learning language
+    if (state.selectedBaseLang === state.selectedLearningLang || !LANGUAGE_OPTIONS.includes(state.selectedBaseLang)) {
+      const availableBaseLang = LANGUAGE_OPTIONS.find(l => l !== state.selectedLearningLang);
+      if (availableBaseLang) {
+        state.selectedBaseLang = availableBaseLang;
+      } else {
+        state.selectedBaseLang = "English"; // Fallback
+      }
     }
     state.languageOpen = true;
     state.noteOpen = false;

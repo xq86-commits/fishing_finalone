@@ -62,6 +62,10 @@ function translateText(text, targetLang) {
       });
       res.on('end', () => {
         try {
+          if (res.statusCode !== 200) {
+            reject(new Error(`API错误: ${res.statusCode} - ${data}`));
+            return;
+          }
           const result = JSON.parse(data);
           if (result.translations && result.translations[0]) {
             const translated = result.translations[0].text;
@@ -69,10 +73,10 @@ function translateText(text, targetLang) {
             translationCache[cacheKey] = translated;
             resolve(translated);
           } else {
-            reject(new Error('翻译响应格式错误'));
+            reject(new Error(`翻译响应格式错误: ${JSON.stringify(result)}`));
           }
         } catch (e) {
-          reject(e);
+          reject(new Error(`解析错误: ${e.message}, 响应: ${data.substring(0, 200)}`));
         }
       });
     });
@@ -109,12 +113,27 @@ async function translateEntry(entry, languages = ['chinese', 'korean', 'spanish'
       // 保存缓存
       fs.writeFileSync(cacheFile, JSON.stringify(translationCache, null, 2));
       
-      // 遵守速率限制
-      await delay(1000 / config.rateLimit.requestsPerSecond);
+      // 遵守速率限制，增加延迟以避免429错误
+      await delay(500); // 每500ms一次请求，约2 requests/second
     } catch (error) {
-      console.error(`翻译失败 [${lang}]: ${english}`, error.message);
-      // 如果翻译失败，使用英文作为后备
-      result[lang] = english;
+      if (error.message.includes('429') || error.message.includes('速率限制')) {
+        console.error(`翻译失败 [${lang}]: ${english} - 速率限制，等待5秒后重试...`);
+        // 如果遇到429错误，等待更长时间后重试
+        await delay(5000);
+        try {
+          const translated = await translateText(english, lang);
+          result[lang] = translated;
+          fs.writeFileSync(cacheFile, JSON.stringify(translationCache, null, 2));
+          await delay(500); // 重试后也要延迟
+        } catch (retryError) {
+          console.error(`重试失败 [${lang}]: ${english}`, retryError.message);
+          result[lang] = english;
+        }
+      } else {
+        console.error(`翻译失败 [${lang}]: ${english}`, error.message);
+        // 如果翻译失败，使用英文作为后备
+        result[lang] = english;
+      }
     }
   }
 
@@ -126,7 +145,9 @@ async function translateFile(filename) {
   console.log(`\n开始处理文件: ${filename}`);
   
   const content = fs.readFileSync(filename, 'utf8');
-  const data = JSON.parse(content);
+  // Some source files may contain NaN; replace with null before parsing
+  const safeText = content.replace(/\bNaN\b/g, "null");
+  const data = JSON.parse(safeText);
   
   let processed = 0;
   let needsTranslation = 0;
@@ -168,8 +189,6 @@ async function translateFile(filename) {
 // 主函数
 async function main() {
   const files = [
-    'n2_vocab.json',
-    'n3_vocab.json',
     'n4_vocab.json',
     'n5_vocab.json'
   ];

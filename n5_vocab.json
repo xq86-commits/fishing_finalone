@@ -3,961 +3,1601 @@
     "id": 1,
     "furigana": "ああ",
     "english": "Ah!, Oh!",
-    "emoji": "🦅"
+    "emoji": "🦅",
+    "chinese": "啊",
+    "korean": "아!, 오!",
+    "spanish": "¡Ah!, ¡Oh!",
+    "french": "Ah !"
   },
   {
     "id": 2,
     "furigana": "あう",
     "english": "to meet, to see",
-    "emoji": "🦵"
+    "emoji": "🦵",
+    "chinese": "见面",
+    "korean": "만나고, 보고",
+    "spanish": "reunirse, ver",
+    "french": "rencontrer, voir"
   },
   {
     "id": 3,
     "furigana": "あお",
     "english": "blue",
-    "emoji": "🕉️"
+    "emoji": "🕉️",
+    "chinese": "蓝",
+    "korean": "파란색",
+    "spanish": "azul",
+    "french": "bleu"
   },
   {
     "id": 4,
     "furigana": "あおい",
     "english": "blue",
-    "emoji": "🥳"
+    "emoji": "🥳",
+    "chinese": "蓝",
+    "korean": "파란색",
+    "spanish": "azul",
+    "french": "bleu"
   },
   {
     "id": 5,
     "furigana": "あか",
     "english": "red",
-    "emoji": "🛎️"
+    "emoji": "🛎️",
+    "chinese": "红",
+    "korean": "빨간색",
+    "spanish": "rojo",
+    "french": "rouge"
   },
   {
     "id": 6,
     "furigana": "あかい",
     "english": "red",
-    "emoji": "🐘"
+    "emoji": "🐘",
+    "chinese": "红",
+    "korean": "빨간색",
+    "spanish": "rojo",
+    "french": "rouge"
   },
   {
     "id": 7,
     "furigana": "あかるい",
     "english": "bright (in reference to personality or weather); cheerful",
-    "emoji": "🍸"
+    "emoji": "🍸",
+    "chinese": "开朗",
+    "korean": "밝음(성격 또는 날씨와 관련하여); 쾌활함",
+    "spanish": "brillante (en referencia a la personalidad o al tiempo); alegre",
+    "french": "lumineux (en référence à la personnalité ou au temps) ; gai"
   },
   {
     "id": 8,
     "furigana": "あき",
     "english": "fall (season)",
-    "emoji": "🤐"
+    "emoji": "🤐",
+    "chinese": "秋季",
+    "korean": "가을(시즌)",
+    "spanish": "otoño (estación)",
+    "french": "automne (saison)"
   },
   {
     "id": 9,
     "furigana": "あく",
     "english": "to open, to become open",
-    "emoji": "🧁"
+    "emoji": "🧁",
+    "chinese": "开放，成为开放",
+    "korean": "열다, 열리다",
+    "spanish": "abrirse, abrirse",
+    "french": "s'ouvrir, s'ouvrir"
   },
   {
     "id": 10,
     "furigana": "あける",
     "english": "to open (v.t.)",
-    "emoji": "🦨"
+    "emoji": "🦨",
+    "chinese": "打开",
+    "korean": "열다(V.T.)",
+    "spanish": "abrir (v.t.)",
+    "french": "ouvrir (v.t.)"
   },
   {
     "id": 11,
     "furigana": "あげる",
     "english": "to raise, to lift",
-    "emoji": "🥯"
+    "emoji": "🥯",
+    "chinese": "挢",
+    "korean": "올리다, 들어올리다",
+    "spanish": "elevar, levantar",
+    "french": "élever, soulever"
   },
   {
     "id": 12,
     "furigana": "あさ",
     "english": "morning",
-    "emoji": "⚡"
+    "emoji": "⚡",
+    "chinese": "早上",
+    "korean": "아침",
+    "spanish": "mañana",
+    "french": "matinée"
   },
   {
     "id": 13,
     "furigana": "あさごはん",
     "english": "breakfast",
-    "emoji": "⛩️"
+    "emoji": "⛩️",
+    "chinese": "早餐",
+    "korean": "아침 식사",
+    "spanish": "desayuno",
+    "french": "petit déjeuner"
   },
   {
     "id": 14,
     "furigana": "あさって",
     "english": "day after tomorrow",
-    "emoji": "😌"
+    "emoji": "😌",
+    "chinese": "后天",
+    "korean": "모레",
+    "spanish": "pasado mañana",
+    "french": "après-demain"
   },
   {
     "id": 15,
     "furigana": "あし",
     "english": "foot; leg",
-    "emoji": "🧆"
+    "emoji": "🧆",
+    "chinese": "脚；腿",
+    "korean": "발; 다리",
+    "spanish": "pie; pierna",
+    "french": "pied ; jambe"
   },
   {
     "id": 16,
     "furigana": "あした",
     "english": "tomorrow",
-    "emoji": "👆"
+    "emoji": "👆",
+    "chinese": "明天",
+    "korean": "내일",
+    "spanish": "tomorrow",
+    "french": "demain"
   },
   {
     "id": 17,
     "furigana": "あそこ",
     "english": "there, over there, that place",
-    "emoji": "🐺"
+    "emoji": "🐺",
+    "chinese": "那边，那边，那个地方",
+    "korean": "저기, 저기, 저기",
+    "spanish": "allí, allí, ese lugar",
+    "french": "là, là-bas, à cet endroit"
   },
   {
     "id": 18,
     "furigana": "あそぶ",
     "english": "to play; to spend time pleasantly; to hang out",
-    "emoji": "😦"
+    "emoji": "😦",
+    "chinese": "玩耍；愉快地消磨时间；闲逛",
+    "korean": "놀다; 즐겁게 시간을 보내다; 어울리다",
+    "spanish": "jugar; pasar el tiempo agradablemente; pasar el rato",
+    "french": "jouer ; passer du temps agréablement ; traîner"
   },
   {
     "id": 19,
     "furigana": "あたたかい",
     "english": "warm",
-    "emoji": "🩰"
+    "emoji": "🩰",
+    "chinese": "温暖",
+    "korean": "따뜻한",
+    "spanish": "caliente",
+    "french": "chaud"
   },
   {
     "id": 20,
     "furigana": "あたま",
     "english": "head",
-    "emoji": "🤠"
+    "emoji": "🤠",
+    "chinese": "率领",
+    "korean": "head",
+    "spanish": "cabeza",
+    "french": "tête"
   },
   {
     "id": 21,
     "furigana": "あたらしい",
     "english": "new",
-    "emoji": "🐤"
+    "emoji": "🐤",
+    "chinese": "新",
+    "korean": "new",
+    "spanish": "nuevo",
+    "french": "nouveau"
   },
   {
     "id": 22,
     "furigana": "あちら",
     "english": "this way (polite)",
-    "emoji": "🍥"
+    "emoji": "🍥",
+    "chinese": "恁般",
+    "korean": "이쪽(정중하게)",
+    "spanish": "de esta manera (educado)",
+    "french": "de cette façon (polie)"
   },
   {
     "id": 23,
     "furigana": "あつい",
     "english": "hot (in reference to weather), warm",
-    "emoji": "🚦"
+    "emoji": "🚦",
+    "chinese": "热",
+    "korean": "덥다(날씨 기준), 따뜻하다",
+    "spanish": "caliente (en referencia al tiempo), templado",
+    "french": "chaud (en référence à la météo), chaud"
   },
   {
     "id": 24,
     "furigana": "あつい",
     "english": "hot (objects)",
-    "emoji": "💟"
+    "emoji": "💟",
+    "chinese": "热",
+    "korean": "핫(개체)",
+    "spanish": "caliente (objetos)",
+    "french": "chaud (objets)"
   },
   {
     "id": 25,
     "furigana": "あつい",
     "english": "kind, warm(hearted), thick, deep",
-    "emoji": "🌱"
+    "emoji": "🌱",
+    "chinese": "善良、热情、厚实、深沉",
+    "korean": "친절하고, 따뜻하고(마음이 따뜻하고), 두껍고, 깊은",
+    "spanish": "amable, cariñoso, grueso, profundo",
+    "french": "gentil, chaleureux, épais, profond"
   },
   {
     "id": 26,
     "furigana": "あっち",
     "english": "over there",
-    "emoji": "🤲"
+    "emoji": "🤲",
+    "chinese": "那边",
+    "korean": "저기",
+    "spanish": "allí",
+    "french": "là-bas"
   },
   {
     "id": 27,
     "furigana": "あと",
     "english": "afterwards (later); in the future; the rest; since then",
-    "emoji": "👗"
+    "emoji": "👗",
+    "chinese": "以后；将来；剩下的；从那时起",
+    "korean": "이후(나중에); 미래에; 나머지; 그 이후로",
+    "spanish": "después (más tarde); en el futuro; el resto; desde entonces",
+    "french": "après (plus tard) ; dans le futur ; le reste ; depuis lors"
   },
   {
     "id": 28,
     "furigana": "あなた",
     "english": "you",
-    "emoji": "🐊"
+    "emoji": "🐊",
+    "chinese": "你",
+    "korean": "당신",
+    "spanish": "usted",
+    "french": "vous"
   },
   {
     "id": 29,
     "furigana": "あに",
     "english": "(my) older brother (humble)",
-    "emoji": "🩷"
+    "emoji": "🩷",
+    "chinese": "师兄",
+    "korean": "(나의) 오빠(겸손한)",
+    "spanish": "(mi) hermano mayor (humilde)",
+    "french": "(mon) grand frère (humble)"
   },
   {
     "id": 30,
     "furigana": "あね",
     "english": "(my) older sister (humble)",
-    "emoji": "🫑"
+    "emoji": "🫑",
+    "chinese": "大姐",
+    "korean": "(나의) 누나(겸손)",
+    "spanish": "(mi) hermana mayor (humilde)",
+    "french": "(ma) grande sœur (humble)"
   },
   {
     "id": 31,
     "furigana": "アパート",
     "english": "apartment (abbr.)",
-    "emoji": "🦷"
+    "emoji": "🦷",
+    "chinese": "公寓",
+    "korean": "아파트(약어)",
+    "spanish": "apartamento (abbr.)",
+    "french": "appartement (abbr.)"
   },
   {
     "id": 32,
     "furigana": "あの",
     "english": "that over there; like that, that way; um...",
-    "emoji": "🌼"
+    "emoji": "🌼",
+    "chinese": "那边；就像那边；嗯......",
+    "korean": "저기 저쪽, 저쪽, 저쪽, 음...",
+    "spanish": "eso de ahí; así, por ahí; um...",
+    "french": "par là ; comme ça, par là ; hum..."
   },
   {
     "id": 33,
     "furigana": "あびる",
     "english": "to bathe, to shower",
-    "emoji": "🔯"
+    "emoji": "🔯",
+    "chinese": "沐浴",
+    "korean": "목욕, 샤워",
+    "spanish": "bañarse, ducharse",
+    "french": "se baigner, se doucher"
   },
   {
     "id": 34,
     "furigana": "あぶない",
     "english": "dangerous, critical",
-    "emoji": "😣"
+    "emoji": "😣",
+    "chinese": "危险、危急",
+    "korean": "위험, 중요",
+    "spanish": "peligroso, crítico",
+    "french": "dangereux, critique"
   },
   {
     "id": 35,
     "furigana": "あまい",
     "english": "generous, sweet",
-    "emoji": "💞"
+    "emoji": "💞",
+    "chinese": "慷慨、甜蜜",
+    "korean": "넉넉하고 달콤한",
+    "spanish": "generoso, dulce",
+    "french": "généreux, doux"
   },
   {
     "id": 36,
     "furigana": "あまり",
     "english": "not very; surplus",
-    "emoji": "🪲"
+    "emoji": "🪲",
+    "chinese": "不甚",
+    "korean": "별로; 잉여",
+    "spanish": "poco; excedente",
+    "french": "peu ; excédentaire"
   },
   {
     "id": 37,
     "furigana": "あめ",
     "english": "rain",
-    "emoji": "👻"
+    "emoji": "👻",
+    "chinese": "雨水",
+    "korean": "rain",
+    "spanish": "lluvia",
+    "french": "pluie"
   },
   {
     "id": 38,
     "furigana": "あめ",
     "english": "(hard) candy",
-    "emoji": "🧤"
+    "emoji": "🧤",
+    "chinese": "糖果",
+    "korean": "(단단한) 캔디",
+    "spanish": "caramelos (duros)",
+    "french": "bonbons (durs)"
   },
   {
     "id": 39,
     "furigana": "あらう",
     "english": "to wash",
-    "emoji": "🦦"
+    "emoji": "🦦",
+    "chinese": "洗涤",
+    "korean": "씻다",
+    "spanish": "lavar",
+    "french": "laver"
   },
   {
     "id": 40,
     "furigana": "ある",
     "english": "to be, to have",
-    "emoji": "🏔️"
+    "emoji": "🏔️",
+    "chinese": "有、有",
+    "korean": "되다, 가지다",
+    "spanish": "ser, tener",
+    "french": "être, avoir"
   },
   {
     "id": 41,
     "furigana": "ある",
     "english": "to be, to have",
-    "emoji": "🏔️"
+    "emoji": "🏔️",
+    "chinese": "有、有",
+    "korean": "되다, 가지다",
+    "spanish": "ser, tener",
+    "french": "être, avoir"
   },
   {
     "id": 42,
     "furigana": "あるく",
     "english": "to walk",
-    "emoji": "🖥️"
+    "emoji": "🖥️",
+    "chinese": "要走",
+    "korean": "걷기",
+    "spanish": "caminar",
+    "french": "marcher"
   },
   {
     "id": 43,
     "furigana": "あれ",
     "english": "that one (over there)",
-    "emoji": "🤛"
+    "emoji": "🤛",
+    "chinese": "那个",
+    "korean": "저기(저쪽)",
+    "spanish": "ese (por ahí)",
+    "french": "celui-là (là-bas)"
   },
   {
     "id": 44,
     "furigana": "いい; よい",
     "english": "good",
-    "emoji": "🧉"
+    "emoji": "🧉",
+    "chinese": "好",
+    "korean": "좋은",
+    "spanish": "bien",
+    "french": "bon"
   },
   {
     "id": 45,
     "furigana": "いいえ",
     "english": "no, not at all",
-    "emoji": "🏍️"
+    "emoji": "🏍️",
+    "chinese": "没有",
+    "korean": "아니요, 전혀",
+    "spanish": "no, en absoluto",
+    "french": "non, pas du tout"
   },
   {
     "id": 46,
     "furigana": "いう",
     "english": "to say",
-    "emoji": "🧤"
+    "emoji": "🧤",
+    "chinese": "要说",
+    "korean": "말하기",
+    "spanish": "decir",
+    "french": "à dire"
   },
   {
     "id": 47,
     "furigana": "いえ",
     "english": "house, home",
-    "emoji": "⚓"
+    "emoji": "⚓",
+    "chinese": "房子、家",
+    "korean": "집, 집",
+    "spanish": "casa, hogar",
+    "french": "maison, foyer"
   },
   {
     "id": 48,
     "furigana": "いかが",
     "english": "how, in what way",
-    "emoji": "🫁"
+    "emoji": "🫁",
+    "chinese": "如何",
+    "korean": "어떻게, 어떤 방식으로",
+    "spanish": "cómo, de qué manera",
+    "french": "comment, de quelle manière"
   },
   {
     "id": 49,
     "furigana": "いく; ゆく",
     "english": "to go",
-    "emoji": "🐷"
+    "emoji": "🐷",
+    "chinese": "去",
+    "korean": "이동",
+    "spanish": "ir",
+    "french": "pour aller"
   },
   {
     "id": 50,
     "furigana": "いくつ",
     "english": "how many, how old",
-    "emoji": "🎂"
+    "emoji": "🎂",
+    "chinese": "几岁",
+    "korean": "몇 명, 몇 살",
+    "spanish": "cuántos, cuántos años",
+    "french": "combien, quel âge"
   },
   {
     "id": 51,
     "furigana": "いくら",
     "english": "how much, how many",
-    "emoji": "🛋️"
+    "emoji": "🛋️",
+    "chinese": "多少",
+    "korean": "얼마나, 얼마나 많은",
+    "spanish": "cuánto, cuántos",
+    "french": "combien, combien"
   },
   {
     "id": 52,
     "furigana": "いけ",
     "english": "pond",
-    "emoji": "🐍"
+    "emoji": "🐍",
+    "chinese": "池塘",
+    "korean": "연못",
+    "spanish": "estanque",
+    "french": "étang"
   },
   {
     "id": 53,
     "furigana": "いしゃ",
     "english": "doctor; physician",
-    "emoji": "🦖"
+    "emoji": "🦖",
+    "chinese": "医生",
+    "korean": "의사; 의사",
+    "spanish": "doctor; médico",
+    "french": "médecin ; médecin"
   },
   {
     "id": 54,
     "furigana": "いす",
     "english": "chair",
-    "emoji": "☦️"
+    "emoji": "☦️",
+    "chinese": "担任主席",
+    "korean": "의자",
+    "spanish": "silla",
+    "french": "chaise"
   },
   {
     "id": 55,
     "furigana": "いそがしい",
     "english": "busy (people, days)",
-    "emoji": "😢"
+    "emoji": "😢",
+    "chinese": "忙",
+    "korean": "바쁜(사람, 일)",
+    "spanish": "ocupado (personas, días)",
+    "french": "occupé (personnes, jours)"
   },
   {
     "id": 56,
     "furigana": "いたい",
     "english": "hurt; painful; sore",
-    "emoji": "⛷️"
+    "emoji": "⛷️",
+    "chinese": "伤；痛；疮",
+    "korean": "상처; 고통스러운; 아픈",
+    "spanish": "herido; dolorido; dolorido",
+    "french": "blessé ; douloureux ; endolori"
   },
   {
     "id": 57,
     "furigana": "いち",
     "english": "one",
-    "emoji": "😲"
+    "emoji": "😲",
+    "chinese": "一种",
+    "korean": "하나",
+    "spanish": "un",
+    "french": "un"
   },
   {
     "id": 58,
     "furigana": "いちにち",
     "english": "one day (duration)",
-    "emoji": "📻"
+    "emoji": "📻",
+    "chinese": "一天",
+    "korean": "하루(기간)",
+    "spanish": "un día (duración)",
+    "french": "un jour (durée)"
   },
   {
     "id": 59,
     "furigana": "いちばん",
     "english": "best (most), first, number one",
-    "emoji": "🎾"
+    "emoji": "🎾",
+    "chinese": "最好（最）、第一、第一",
+    "korean": "최고(대부분), 첫 번째, 1위",
+    "spanish": "mejor (más), primero, número uno",
+    "french": "meilleur (le plus), premier, numéro un"
   },
   {
     "id": 60,
     "furigana": "いつ",
     "english": "when",
-    "emoji": "😼"
+    "emoji": "😼",
+    "chinese": "当",
+    "korean": "언제",
+    "spanish": "cuando",
+    "french": "quand"
   },
   {
     "id": 61,
     "furigana": "いつか",
     "english": "five days; fifth day of the month",
-    "emoji": "✈️"
+    "emoji": "✈️",
+    "chinese": "五天；每月第五天",
+    "korean": "5일; 매월 다섯째 날",
+    "spanish": "cinco días; quinto día del mes",
+    "french": "cinq jours ; cinquième jour du mois"
   },
   {
     "id": 62,
     "furigana": "いっしょ",
     "english": "together",
-    "emoji": "😐"
+    "emoji": "😐",
+    "chinese": "在一起",
+    "korean": "함께",
+    "spanish": "juntos",
+    "french": "ensemble"
   },
   {
     "id": 63,
     "furigana": "いつつ",
     "english": "five things",
-    "emoji": "🐥"
+    "emoji": "🐥",
+    "chinese": "五件事",
+    "korean": "다섯 가지",
+    "spanish": "cinco cosas",
+    "french": "cinq choses"
   },
   {
     "id": 64,
     "furigana": "いつも",
     "english": "always, usually, every time, never (with neg. verb)",
-    "emoji": "🦦"
+    "emoji": "🦦",
+    "chinese": "总是、通常、每次、从不（带否定动词）",
+    "korean": "항상, 보통, 매번, 절대로(부정 동사 포함)",
+    "spanish": "siempre, generalmente, cada vez, nunca (con verbo neg.)",
+    "french": "toujours, habituellement, chaque fois, jamais (avec verbe négatif)"
   },
   {
     "id": 65,
     "furigana": "いぬ",
     "english": "dog",
-    "emoji": "🤩"
+    "emoji": "🤩",
+    "chinese": "狗",
+    "korean": "개",
+    "spanish": "perro",
+    "french": "chien"
   },
   {
     "id": 66,
     "furigana": "いま",
     "english": "now",
-    "emoji": "🧂"
+    "emoji": "🧂",
+    "chinese": "现在",
+    "korean": "지금",
+    "spanish": "ahora",
+    "french": "maintenant"
   },
   {
     "id": 67,
     "furigana": "いみ",
     "english": "meaning, significance",
-    "emoji": "😻"
+    "emoji": "😻",
+    "chinese": "含义、意义",
+    "korean": "의미, 중요성",
+    "spanish": "sentido, significado",
+    "french": "sens, signification"
   },
   {
     "id": 68,
     "furigana": "いもうと",
     "english": "younger sister (humble)",
-    "emoji": "🌭"
+    "emoji": "🌭",
+    "chinese": "妹",
+    "korean": "여동생(겸손)",
+    "spanish": "hermana menor (humilde)",
+    "french": "sœur cadette (humble)"
   },
   {
     "id": 69,
     "furigana": "いや",
     "english": "disagreeable, detestable, unpleasant",
-    "emoji": "🤯"
+    "emoji": "🤯",
+    "chinese": "令人讨厌的",
+    "korean": "불쾌함, 혐오감, 불쾌함",
+    "spanish": "desagradable, detestable, desagradable",
+    "french": "désagréable, détestable, déplaisant"
   },
   {
     "id": 70,
     "furigana": "いりぐち",
     "english": "entrance",
-    "emoji": "☕"
+    "emoji": "☕",
+    "chinese": "入口处",
+    "korean": "입구",
+    "spanish": "entrada",
+    "french": "entrée"
   },
   {
     "id": 71,
     "furigana": "いる",
     "english": "(humble) to be (animate), to exist",
-    "emoji": "🤛"
+    "emoji": "🤛",
+    "chinese": "存",
+    "korean": "(겸손하게) 존재하다, (움직이다), 존재하다",
+    "spanish": "(humilde) ser (animado), existir",
+    "french": "(humble) être (animé), exister"
   },
   {
     "id": 72,
     "furigana": "いる",
     "english": "to need",
-    "emoji": "👚"
+    "emoji": "👚",
+    "chinese": "需要",
+    "korean": "필요",
+    "spanish": "necesitar",
+    "french": "de besoin"
   },
   {
     "id": 73,
     "furigana": "いれる",
     "english": "to put in",
-    "emoji": "🛎️"
+    "emoji": "🛎️",
+    "chinese": "放进",
+    "korean": "에 넣으려면",
+    "spanish": "para poner en",
+    "french": "à mettre en place"
   },
   {
     "id": 74,
     "furigana": "いろ",
     "english": "color",
-    "emoji": "🪡"
+    "emoji": "🪡",
+    "chinese": "肤色",
+    "korean": "색상",
+    "spanish": "color",
+    "french": "couleur"
   },
   {
     "id": 75,
     "furigana": "いろいろ",
     "english": "various",
-    "emoji": "🐠"
+    "emoji": "🐠",
+    "chinese": "多项",
+    "korean": "다양한",
+    "spanish": "varios",
+    "french": "divers"
   },
   {
     "id": 76,
     "furigana": "うえ",
     "english": "above (up, top, etc.), over, on top of",
-    "emoji": "🤌"
+    "emoji": "🤌",
+    "chinese": "之上",
+    "korean": "위(위, 위 등), 위, 위에, 위에",
+    "spanish": "por encima (arriba, encima, etc.), sobre, encima de",
+    "french": "au-dessus (en haut, en haut, etc.), sur, au dessus de"
   },
   {
     "id": 77,
     "furigana": "うしろ",
     "english": "back, behind, rear",
-    "emoji": "🍍"
+    "emoji": "🍍",
+    "chinese": "后",
+    "korean": "뒤, 뒤, 뒤",
+    "spanish": "atrás, detrás, trasero",
+    "french": "derrière, derrière, derrière"
   },
   {
     "id": 78,
     "furigana": "うすい",
     "english": "thin, weak",
-    "emoji": "🌿"
+    "emoji": "🌿",
+    "chinese": "瘦弱",
+    "korean": "얇고 약한",
+    "spanish": "delgado, débil",
+    "french": "mince, faible"
   },
   {
     "id": 79,
     "furigana": "うた",
     "english": "a song",
-    "emoji": "💜"
+    "emoji": "💜",
+    "chinese": "一首歌",
+    "korean": "노래",
+    "spanish": "una canción",
+    "french": "une chanson"
   },
   {
     "id": 80,
     "furigana": "うたう",
     "english": "to sing",
-    "emoji": "🤿"
+    "emoji": "🤿",
+    "chinese": "要唱",
+    "korean": "노래하다",
+    "spanish": "cantar",
+    "french": "chanter"
   },
   {
     "id": 81,
     "furigana": "うち",
     "english": "home; house; my place",
-    "emoji": "😕"
+    "emoji": "😕",
+    "chinese": "家；房子；我的地方",
+    "korean": "집; 집; 내 집",
+    "spanish": "hogar; casa; mi lugar",
+    "french": "maison ; maison ; chez moi"
   },
   {
     "id": 82,
     "furigana": "うまれる",
     "english": "to be born",
-    "emoji": "🙉"
+    "emoji": "🙉",
+    "chinese": "诞生",
+    "korean": "태어나다",
+    "spanish": "nacer",
+    "french": "naître"
   },
   {
     "id": 83,
     "furigana": "うみ",
     "english": "sea, beach",
-    "emoji": "💕"
+    "emoji": "💕",
+    "chinese": "大海、沙滩",
+    "korean": "바다, 해변",
+    "spanish": "mar, playa",
+    "french": "mer, plage"
   },
   {
     "id": 84,
     "furigana": "うる",
     "english": "to sell (v.t.)",
-    "emoji": "🤘"
+    "emoji": "🤘",
+    "chinese": "出售（v.t.）",
+    "korean": "판매하다 (v.t.)",
+    "spanish": "vender (v.t.)",
+    "french": "vendre (v.t.)"
   },
   {
     "id": 85,
     "furigana": "うるさい",
     "english": "noisy; annoying",
-    "emoji": "👋"
+    "emoji": "👋",
+    "chinese": "嘈杂；烦人",
+    "korean": "시끄러운; 성가신",
+    "spanish": "ruidoso; molesto",
+    "french": "bruyant ; gênant"
   },
   {
     "id": 86,
     "furigana": "うわぎ",
     "english": "coat, jacket",
-    "emoji": "🚂"
+    "emoji": "🚂",
+    "chinese": "外套",
+    "korean": "코트, 재킷",
+    "spanish": "abrigo, chaqueta",
+    "french": "manteau, veste"
   },
   {
     "id": 87,
     "furigana": "え",
     "english": "a painting; a picture; a drawing",
-    "emoji": "🐠"
+    "emoji": "🐠",
+    "chinese": "一幅画；一幅画；一幅图画",
+    "korean": "그림; 사진; 그림",
+    "spanish": "una pintura; un cuadro; un dibujo",
+    "french": "une peinture ; une image ; un dessin"
   },
   {
     "id": 88,
     "furigana": "えいが",
     "english": "movie, film",
-    "emoji": "🤥"
+    "emoji": "🤥",
+    "chinese": "电影",
+    "korean": "영화, 영화",
+    "spanish": "cine, película",
+    "french": "film, film"
   },
   {
     "id": 89,
     "furigana": "えいがかん",
     "english": "movie theater, cinema",
-    "emoji": "🛻"
+    "emoji": "🛻",
+    "chinese": "电影院",
+    "korean": "영화관, 영화관",
+    "spanish": "cine, sala de cine",
+    "french": "salle de cinéma, cinéma"
   },
   {
     "id": 90,
     "furigana": "えいご",
     "english": "English (language)",
-    "emoji": "🍼"
+    "emoji": "🍼",
+    "chinese": "英语",
+    "korean": "영어(언어)",
+    "spanish": "Inglés (lengua)",
+    "french": "Anglais (langue)"
   },
   {
     "id": 91,
     "furigana": "ええ",
     "english": "yes",
-    "emoji": "😡"
+    "emoji": "😡",
+    "chinese": "是",
+    "korean": "yes",
+    "spanish": "sí",
+    "french": "oui"
   },
   {
     "id": 92,
     "furigana": "えき",
     "english": "station",
-    "emoji": "🍇"
+    "emoji": "🍇",
+    "chinese": "火车站",
+    "korean": "역",
+    "spanish": "estación",
+    "french": "station"
   },
   {
     "id": 93,
     "furigana": "エレベーター",
     "english": "elevator",
-    "emoji": "😇"
+    "emoji": "😇",
+    "chinese": "升降机",
+    "korean": "엘리베이터",
+    "spanish": "ascensor",
+    "french": "ascenseur"
   },
   {
     "id": 94,
     "furigana": "～えん",
     "english": "Yen",
-    "emoji": "🤒"
+    "emoji": "🤒",
+    "chinese": "日元",
+    "korean": "엔",
+    "spanish": "Yen",
+    "french": "Yen"
   },
   {
     "id": 95,
     "furigana": "えんぴつ",
     "english": "pencil",
-    "emoji": "🧈"
+    "emoji": "🧈",
+    "chinese": "笔",
+    "korean": "연필",
+    "spanish": "lápiz",
+    "french": "crayon"
   },
   {
     "id": 96,
     "furigana": "お～",
     "english": "honorable ~ (honorific)",
-    "emoji": "🤤"
+    "emoji": "🤤",
+    "chinese": "光荣～（光荣）",
+    "korean": "명예로운 ~(경어)",
+    "spanish": "honorable ~ (honorífico)",
+    "french": "honorable ~ (honorifique)"
   },
   {
     "id": 97,
     "furigana": "おいしい",
     "english": "delicious, tasty",
-    "emoji": "🥤"
+    "emoji": "🥤",
+    "chinese": "美味可口",
+    "korean": "맛있는, 맛있는",
+    "spanish": "delicioso, sabroso",
+    "french": "délicieux, savoureux"
   },
   {
     "id": 98,
     "furigana": "おおい",
     "english": "many; there are a lot",
-    "emoji": "🍼"
+    "emoji": "🍼",
+    "chinese": "很多；有很多",
+    "korean": "많은; 많은",
+    "spanish": "muchos; hay muchos",
+    "french": "nombreux ; il y en a beaucoup"
   },
   {
     "id": 99,
     "furigana": "おおきい",
     "english": "big, large",
-    "emoji": "🛣️"
+    "emoji": "🛣️",
+    "chinese": "大",
+    "korean": "큰, 큰",
+    "spanish": "grande, grande",
+    "french": "grand, large"
   },
   {
     "id": 100,
     "furigana": "おおきな",
     "english": "big",
-    "emoji": "🧊"
+    "emoji": "🧊",
+    "chinese": "大",
+    "korean": "큰",
+    "spanish": "gran",
+    "french": "grand"
   },
   {
     "id": 101,
     "furigana": "おおぜい",
     "english": "great number of people",
-    "emoji": "💞"
+    "emoji": "💞",
+    "chinese": "万民",
+    "korean": "많은 수의 사람들",
+    "spanish": "gran número de personas",
+    "french": "un grand nombre de personnes"
   },
   {
     "id": 102,
     "furigana": "おかあさん",
     "english": "mother (formal)",
-    "emoji": "🥙"
+    "emoji": "🥙",
+    "chinese": "恃",
+    "korean": "어머니(공식)",
+    "spanish": "madre (formal)",
+    "french": "mère (formelle)"
   },
   {
     "id": 103,
     "furigana": "おかし",
     "english": "confections, sweets, snack",
-    "emoji": "🐋"
+    "emoji": "🐋",
+    "chinese": "糖果, 甜点, 小吃",
+    "korean": "과자, 과자, 스낵",
+    "spanish": "dulces, golosinas, snack",
+    "french": "confiseries, sucreries, snack"
   },
   {
     "id": 104,
     "furigana": "おかね",
     "english": "money",
-    "emoji": "🍋"
+    "emoji": "🍋",
+    "chinese": "钱",
+    "korean": "돈",
+    "spanish": "dinero",
+    "french": "argent"
   },
   {
     "id": 105,
     "furigana": "おきる",
     "english": "to get up (e.g., from sleeping); to happen",
-    "emoji": "🔥"
+    "emoji": "🔥",
+    "chinese": "起床；发生",
+    "korean": "일어나다(예: 잠에서 깨어나다); 발생하다",
+    "spanish": "levantarse (por ejemplo, de dormir); suceder",
+    "french": "se lever (par exemple, après avoir dormi) ; se produire"
   },
   {
     "id": 106,
     "furigana": "おく",
     "english": "to put; to lay; to place",
-    "emoji": "🏀"
+    "emoji": "🏀",
+    "chinese": "放；放置",
+    "korean": "놓다; 놓다; 놓다",
+    "spanish": "poner; colocar; colocar",
+    "french": "mettre ; poser ; placer"
   },
   {
     "id": 107,
     "furigana": "おくさん",
     "english": "(someone else's) wife (hon.)",
-    "emoji": "✌️"
+    "emoji": "✌️",
+    "chinese": "夫人",
+    "korean": "(다른 사람의) 아내(본명)",
+    "spanish": "esposa (de otra persona) (hon.)",
+    "french": "épouse (de quelqu'un d'autre) (hon.)"
   },
   {
     "id": 108,
     "furigana": "おさけ",
     "english": "sake; alcohol",
-    "emoji": "⛵"
+    "emoji": "⛵",
+    "chinese": "清酒；酒精",
+    "korean": "술; 알코올",
+    "spanish": "sake; alcohol",
+    "french": "Saké ; alcool"
   },
   {
     "id": 109,
     "furigana": "おさら",
     "english": "plate, dish",
-    "emoji": "🧺"
+    "emoji": "🧺",
+    "chinese": "盘",
+    "korean": "접시, 접시",
+    "spanish": "plato, fuente",
+    "french": "assiette, plat"
   },
   {
     "id": 110,
     "furigana": "おじさん",
     "english": "uncle, middle-aged man",
-    "emoji": "🦑"
+    "emoji": "🦑",
+    "chinese": "老伯",
+    "korean": "삼촌, 중년 남성",
+    "spanish": "tío, hombre de mediana edad",
+    "french": "oncle, homme d'âge moyen"
   },
   {
     "id": 111,
     "furigana": "おじいさん",
     "english": "grandfather, male senior citizen",
-    "emoji": "🎡"
+    "emoji": "🎡",
+    "chinese": "爷爷",
+    "korean": "할아버지, 남성 노인",
+    "spanish": "abuelo, hombre mayor",
+    "french": "grand-père, homme âgé"
   },
   {
     "id": 112,
     "furigana": "おしえる",
     "english": "to teach, to inform, to instruct",
-    "emoji": "🏎️"
+    "emoji": "🏎️",
+    "chinese": "传道、授业、解惑",
+    "korean": "가르치고, 알리고, 지시하기",
+    "spanish": "enseñar, informar, instruir",
+    "french": "enseigner, informer, instruire"
   },
   {
     "id": 113,
     "furigana": "おす",
     "english": "to push, to press, to stamp (e.g., a passport)",
-    "emoji": "🦇"
+    "emoji": "🦇",
+    "chinese": "推、按、盖章（如护照）",
+    "korean": "밀기, 누르기, 도장 찍기(예: 여권)",
+    "spanish": "empujar, presionar, sellar (por ejemplo, un pasaporte)",
+    "french": "pousser, presser, tamponner (par exemple, un passeport)"
   },
   {
     "id": 114,
     "furigana": "おそい",
     "english": "slow; (to be) late",
-    "emoji": "🦷"
+    "emoji": "🦷",
+    "chinese": "姗姗来迟",
+    "korean": "느리다; (늦다)",
+    "spanish": "lento; (llegar) tarde",
+    "french": "lent ; (être) en retard"
   },
   {
     "id": 115,
     "furigana": "おちゃ",
     "english": "(green) tea",
-    "emoji": "☘️"
+    "emoji": "☘️",
+    "chinese": "绿茶",
+    "korean": "(녹차) 차",
+    "spanish": "té (verde)",
+    "french": "Thé (vert)"
   },
   {
     "id": 116,
     "furigana": "おてあらい",
     "english": "toilet, restroom, bathroom (lit., a place to wash one's hands)",
-    "emoji": "⚡"
+    "emoji": "⚡",
+    "chinese": "卫生间",
+    "korean": "화장실, 화장실, 욕실(조명, 손을 씻을 수 있는 장소)",
+    "spanish": "aseo, baño, cuarto de baño (lit., un lugar para lavarse las manos)",
+    "french": "toilettes, salle de repos, salle de bain (littéralement, un endroit où l'on se lave les mains)"
   },
   {
     "id": 117,
     "furigana": "おとうさん",
     "english": "father (formal)",
-    "emoji": "🤜"
+    "emoji": "🤜",
+    "chinese": "怙",
+    "korean": "아버지(공식)",
+    "spanish": "padre (formal)",
+    "french": "père (formel)"
   },
   {
     "id": 118,
     "furigana": "おとうと",
     "english": "younger brother",
-    "emoji": "⏳"
+    "emoji": "⏳",
+    "chinese": "弟弟",
+    "korean": "남동생",
+    "spanish": "hermano menor",
+    "french": "frère cadet"
   },
   {
     "id": 119,
     "furigana": "おとこ",
     "english": "man, male",
-    "emoji": "🙉"
+    "emoji": "🙉",
+    "chinese": "男人",
+    "korean": "남자, 남성",
+    "spanish": "hombre, masculino",
+    "french": "homme, mâle"
   },
   {
     "id": 120,
     "furigana": "おとこのこ",
     "english": "boy",
-    "emoji": "🎃"
+    "emoji": "🎃",
+    "chinese": "男孩",
+    "korean": "boy",
+    "spanish": "chico",
+    "french": "garçon"
   },
   {
     "id": 121,
     "furigana": "おととい",
     "english": "the day before yesterday",
-    "emoji": "🖐️"
+    "emoji": "🖐️",
+    "chinese": "前天",
+    "korean": "어제 전날",
+    "spanish": "anteayer",
+    "french": "avant-hier"
   },
   {
     "id": 122,
     "furigana": "おととし",
     "english": "year before last",
-    "emoji": "🐊"
+    "emoji": "🐊",
+    "chinese": "前年",
+    "korean": "재작년",
+    "spanish": "antepenúltimo año",
+    "french": "avant-dernière année"
   },
   {
     "id": 123,
     "furigana": "おとな",
     "english": "adult",
-    "emoji": "💕"
+    "emoji": "💕",
+    "chinese": "成人",
+    "korean": "성인",
+    "spanish": "para adultos",
+    "french": "adulte"
   },
   {
     "id": 124,
     "furigana": "おなか",
     "english": "stomach",
-    "emoji": "🌏"
+    "emoji": "🌏",
+    "chinese": "胃",
+    "korean": "위",
+    "spanish": "estómago",
+    "french": "estomac"
   },
   {
     "id": 125,
     "furigana": "おなじ",
     "english": "same, identical",
-    "emoji": "👆"
+    "emoji": "👆",
+    "chinese": "相同",
+    "korean": "동일, 동일",
+    "spanish": "igual, idéntico",
+    "french": "même, identique"
   },
   {
     "id": 126,
     "furigana": "おにいさん",
     "english": "(someone else's) older brother (formal)",
-    "emoji": "💾"
+    "emoji": "💾",
+    "chinese": "哥哥",
+    "korean": "(다른 사람의) 오빠(공식적인)",
+    "spanish": "hermano mayor (de otra persona) (formal)",
+    "french": "frère aîné (de quelqu'un d'autre) (formel)"
   },
   {
     "id": 127,
     "furigana": "おねえさん",
     "english": "older sister (formal)",
-    "emoji": "😕"
+    "emoji": "😕",
+    "chinese": "姊姊",
+    "korean": "누나(공식)",
+    "spanish": "hermana mayor (formal)",
+    "french": "sœur aînée (formelle)"
   },
   {
     "id": 128,
     "furigana": "おばさん",
     "english": "aunt",
-    "emoji": "👍"
+    "emoji": "👍",
+    "chinese": "伯母",
+    "korean": "이모",
+    "spanish": "tía",
+    "french": "tante"
   },
   {
     "id": 129,
     "furigana": "おばあさん",
     "english": "grandmother, female senior-citizen",
-    "emoji": "🐻‍❄️"
+    "emoji": "🐻‍❄️",
+    "chinese": "老奶奶",
+    "korean": "할머니, 여성 노인",
+    "spanish": "abuela, mujer mayor",
+    "french": "grand-mère, citoyenne âgée"
   },
   {
     "id": 130,
     "furigana": "おふろ",
     "english": "a bath",
-    "emoji": "🖤"
+    "emoji": "🖤",
+    "chinese": "浴缸",
+    "korean": "목욕",
+    "spanish": "un baño",
+    "french": "un bain"
   },
   {
     "id": 131,
     "furigana": "おべんとう",
     "english": "a boxed lunch",
-    "emoji": "🤍"
+    "emoji": "🤍",
+    "chinese": "盒饭",
+    "korean": "도시락",
+    "spanish": "un almuerzo en caja",
+    "french": "une boîte à lunch"
   },
   {
     "id": 132,
     "furigana": "おぼえる",
     "english": "to learn, to commit to memory, to remember, to memorize",
-    "emoji": "📻"
+    "emoji": "📻",
+    "chinese": "学习、记忆、记住、背诵",
+    "korean": "배우기, 기억하기, 기억하기, 암기하기",
+    "spanish": "aprender, memorizar, recordar, memorizar",
+    "french": "apprendre, mémoriser, se souvenir, mémoriser"
   },
   {
     "id": 133,
     "furigana": "おまわりさん",
     "english": "policeman (friendly term)",
-    "emoji": "🦶"
+    "emoji": "🦶",
+    "chinese": "员警",
+    "korean": "경찰관(친근한 용어)",
+    "spanish": "policía (término amistoso)",
+    "french": "policier (terme amical)"
   },
   {
     "id": 134,
     "furigana": "おもい",
     "english": "heavy; serious",
-    "emoji": "🍿"
+    "emoji": "🍿",
+    "chinese": "沉重；严肃",
+    "korean": "무거운; 심각한",
+    "spanish": "pesado; serio",
+    "french": "lourd ; sérieux"
   },
   {
     "id": 135,
     "furigana": "おもしろい",
     "english": "interesting, amusing",
-    "emoji": "🏖️"
+    "emoji": "🏖️",
+    "chinese": "有趣、好玩",
+    "korean": "흥미롭고 재미있는",
+    "spanish": "interesante, divertido",
+    "french": "intéressant, amusant"
   },
   {
     "id": 136,
     "furigana": "およぐ",
     "english": "to swim",
-    "emoji": "🙌"
+    "emoji": "🙌",
+    "chinese": "游泳",
+    "korean": "수영하기",
+    "spanish": "nadar",
+    "french": "nager"
   },
   {
     "id": 137,
     "furigana": "おりる",
     "english": "to get off",
-    "emoji": "💞"
+    "emoji": "💞",
+    "chinese": "下车",
+    "korean": "내리려면",
+    "spanish": "para bajar",
+    "french": "descendre"
   },
   {
     "id": 138,
     "furigana": "おわる",
     "english": "to finish, to close",
-    "emoji": "🎳"
+    "emoji": "🎳",
+    "chinese": "结束，关闭",
+    "korean": "끝내려면, 닫으려면",
+    "spanish": "terminar, cerrar",
+    "french": "terminer, clore"
   },
   {
     "id": 139,
     "furigana": "おんがく",
     "english": "Music",
-    "emoji": "🍰"
+    "emoji": "🍰",
+    "chinese": "音乐",
+    "korean": "음악",
+    "spanish": "Música",
+    "french": "Musique"
   },
   {
     "id": 140,
     "furigana": "おんな",
     "english": "woman, female",
-    "emoji": "🧅"
+    "emoji": "🧅",
+    "chinese": "女性",
+    "korean": "여성, 여성",
+    "spanish": "mujer, femenino",
+    "french": "femme, femelle"
   },
   {
     "id": 141,
     "furigana": "おんなのこ",
     "english": "girl",
-    "emoji": "😰"
+    "emoji": "😰",
+    "chinese": "女孩",
+    "korean": "girl",
+    "spanish": "chica",
+    "french": "fille"
   },
   {
     "id": 142,
     "furigana": "～かい",
     "english": "counter for occurrences (~ times)",
-    "emoji": "🙁"
+    "emoji": "🙁",
+    "chinese": "发生次数计数器（~次）",
+    "korean": "발생 횟수 카운터(~회)",
+    "spanish": "contador de ocurrencias (~ veces)",
+    "french": "compteur d'occurrences (~ fois)"
   },
   {
     "id": 143,
     "furigana": "～かい",
     "english": "counter for stories (floors) of a building",
-    "emoji": "💡"
+    "emoji": "💡",
+    "chinese": "层",
+    "korean": "건물의 층수(층)에 대한 카운터",
+    "spanish": "contador de plantas de un edificio",
+    "french": "compteur d'étages d'un bâtiment"
   },
   {
     "id": 144,
     "furigana": "がいこく",
     "english": "foreign country; abroad",
-    "emoji": "😂"
+    "emoji": "😂",
+    "chinese": "外国；国外",
+    "korean": "외국; 해외",
+    "spanish": "país extranjero; en el extranjero",
+    "french": "pays étranger ; à l'étranger"
   },
   {
     "id": 145,
     "furigana": "がいこくじん",
     "english": "foreigner",
-    "emoji": "🧤"
+    "emoji": "🧤",
+    "chinese": "外国",
+    "korean": "외국인",
+    "spanish": "extranjero",
+    "french": "étranger"
   },
   {
     "id": 146,
     "furigana": "かいしゃ",
     "english": "company, corporation",
-    "emoji": "🐠"
+    "emoji": "🐠",
+    "chinese": "公司",
+    "korean": "회사, 법인",
+    "spanish": "empresa, corporación",
+    "french": "entreprise, société"
   },
   {
     "id": 147,
     "furigana": "かいだん",
     "english": "stairs",
-    "emoji": "🐴"
+    "emoji": "🐴",
+    "chinese": "楼梯",
+    "korean": "계단",
+    "spanish": "escaleras",
+    "french": "escaliers"
   },
   {
     "id": 148,
     "furigana": "かいもの",
     "english": "shopping",
-    "emoji": "💌"
+    "emoji": "💌",
+    "chinese": "购物",
+    "korean": "쇼핑",
+    "spanish": "ir de compras",
+    "french": "achats"
   },
   {
     "id": 149,
     "furigana": "かう",
     "english": "to buy",
-    "emoji": "🥦"
+    "emoji": "🥦",
+    "chinese": "购买",
+    "korean": "구매하기",
+    "spanish": "comprar",
+    "french": "acheter"
   },
   {
     "id": 150,
     "furigana": "かえす",
     "english": "to return something",
-    "emoji": "⛺"
+    "emoji": "⛺",
+    "chinese": "归还",
+    "korean": "무언가를 반환하려면",
+    "spanish": "devolver algo",
+    "french": "rendre quelque chose"
   },
   {
     "id": 151,
     "furigana": "かえる",
     "english": "to go back, to go home, to return",
-    "emoji": "🦷"
+    "emoji": "🦷",
+    "chinese": "回去，回家，回来",
+    "korean": "돌아가다, 집으로 돌아가다, 돌아오다",
+    "spanish": "volver, volver a casa, regresar",
+    "french": "retourner, retourner à la maison, retourner"
   },
   {
     "id": 152,
     "furigana": "かお",
     "english": "face (body part)",
-    "emoji": "🙂"
+    "emoji": "🙂",
+    "chinese": "面部",
+    "korean": "얼굴(신체 부위)",
+    "spanish": "cara (parte del cuerpo)",
+    "french": "visage (partie du corps)"
   },
   {
     "id": 153,
     "furigana": "かかる",
     "english": "it takes (amount of time, money) (v.i.)",
-    "emoji": "🥦"
+    "emoji": "🥦",
+    "chinese": "耗时",
+    "korean": "(시간, 비용) 소요 (V.I.) (V.I.)",
+    "spanish": "requiere (cantidad de tiempo, dinero) (v.i.)",
+    "french": "il faut (du temps, de l'argent) (v.i.)"
   },
   {
     "id": 154,
     "furigana": "かぎ",
     "english": "a lock; a key",
-    "emoji": "✊"
+    "emoji": "✊",
+    "chinese": "一把锁；一把钥匙",
+    "korean": "자물쇠, 열쇠",
+    "spanish": "una cerradura; una llave",
+    "french": "une serrure ; une clé"
   },
   {
     "id": 155,
     "furigana": "かく",
     "english": "to write",
-    "emoji": "🍥"
+    "emoji": "🍥",
+    "chinese": "写",
+    "korean": "작성하려면",
+    "spanish": "escribir",
+    "french": "écrire"
   },
   {
     "id": 156,
     "furigana": "がくせい",
     "english": "student",
-    "emoji": "🐼"
+    "emoji": "🐼",
+    "chinese": "学生",
+    "korean": "학생",
+    "spanish": "estudiante",
+    "french": "étudiant"
   },
   {
     "id": 157,
     "furigana": "～かげつ",
     "english": "(number of) months",
-    "emoji": "🥿"
+    "emoji": "🥿",
+    "chinese": "月数",
+    "korean": "(개월 수)",
+    "spanish": "(número de) meses",
+    "french": "(nombre de) mois"
   },
   {
     "id": 158,
     "furigana": "かける",
     "english": "to put on (e.g., glasses); to hang (e.g., on a wall)",
-    "emoji": "☕"
+    "emoji": "☕",
+    "chinese": "戴（如戴眼镜）；挂（如挂在墙上）",
+    "korean": "착용하다(예: 안경); 걸다(예: 벽에 걸다)",
+    "spanish": "ponerse (por ejemplo, gafas); colgar (por ejemplo, en una pared)",
+    "french": "mettre (par exemple, des lunettes) ; accrocher (par exemple, sur un mur)"
   },
   {
     "id": 159,
     "furigana": "かける",
     "english": "to dial/call (e.g., phone); to sit down",
-    "emoji": "🍅"
+    "emoji": "🍅",
+    "chinese": "拨号/打电话（如电话）；坐下",
+    "korean": "전화 걸기/전화 걸기(예: 전화), 앉기",
+    "spanish": "marcar/llamar (por ejemplo, por teléfono); sentarse",
+    "french": "composer/appeler (par exemple, le téléphone) ; s'asseoir"
   },
   {
     "id": 160,
     "furigana": "かさ",
     "english": "umbrella, parasol",
-    "emoji": "🏫"
+    "emoji": "🏫",
+    "chinese": "伞、阳伞",
+    "korean": "우산, 파라솔",
+    "spanish": "paraguas, sombrilla",
+    "french": "parapluie, parasol"
   },
   {
     "id": 161,
