@@ -496,7 +496,7 @@
       position: relative;
       width: 90%;
       max-width: 500px;
-      max-height: 80vh;
+      height: 80vh;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 16px;
       display: flex;
@@ -546,6 +546,51 @@
       transform: scale(0.95);
     }
 
+    .my-words-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .my-words-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .my-words-tab {
+      padding: 12px 20px;
+      border: none;
+      background: transparent;
+      color: rgba(31, 75, 114, 0.6);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .my-words-tab:hover {
+      background: rgba(0, 0, 0, 0.03);
+      color: rgba(31, 75, 114, 0.8);
+    }
+
+    .my-words-tab.active {
+      color: #1E2D3C;
+      font-weight: 600;
+      border-bottom-color: #1EA0F2;
+      background: rgba(30, 160, 242, 0.05);
+    }
+
+    .my-words-tab:active {
+      transform: scale(0.98);
+    }
+
     .my-words-list-container {
       flex: 1;
       overflow-y: auto;
@@ -566,6 +611,17 @@
       gap: 0;
     }
 
+    .my-word-item-wrapper {
+      position: relative;
+      margin-bottom: 8px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .my-word-item-wrapper:last-child {
+      margin-bottom: 0;
+    }
+
     .my-word-item {
       display: flex;
       justify-content: space-between;
@@ -574,8 +630,14 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       background: rgba(255, 255, 255, 0.6);
       border-radius: 8px;
-      margin-bottom: 8px;
-      transition: background-color 0.2s, border-color 0.2s;
+      transition: transform 0.3s ease-out, background-color 0.2s, border-color 0.2s;
+      position: relative;
+      z-index: 1;
+      touch-action: pan-y;
+    }
+
+    .my-word-item-wrapper.swiping .my-word-item {
+      transition: transform 0.1s ease-out;
     }
 
     .my-word-item:last-child {
@@ -593,7 +655,7 @@
       justify-content: space-between;
       align-items: center;
       flex: 1;
-      gap: 16px;
+      gap: 8px;
       min-width: 0;
     }
 
@@ -604,12 +666,107 @@
       flex-shrink: 0;
     }
 
+    .my-word-en-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 0;
+      justify-content: flex-end;
+      margin-right: 8px;
+    }
+
     .my-word-en {
       color: rgba(31, 75, 114, 0.7);
       font-size: 14px;
       text-align: right;
-      flex: 1;
-      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    .my-word-favorite-btn {
+      width: 24px;
+      height: 24px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border-radius: 50%;
+      transition: background-color 0.2s, transform 0.1s, color 0.2s;
+      flex-shrink: 0;
+      box-shadow: none;
+      color: rgba(31, 75, 114, 0.4);
+    }
+
+    .my-word-favorite-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: rgba(31, 75, 114, 0.6);
+    }
+
+    .my-word-favorite-btn:active {
+      transform: scale(0.95);
+    }
+
+    .my-word-favorite-btn.active {
+      color: #ffd700;
+    }
+
+    .my-word-favorite-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+    }
+
+    .my-word-favorite-btn.active svg {
+      fill: currentColor;
+    }
+
+    .my-word-delete-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      background: #ff4444;
+      border: none;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+      border-radius: 0 8px 8px 0;
+      box-shadow: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .my-word-item-wrapper.swiping .my-word-delete-btn {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .my-word-delete-btn:hover {
+      background: #ff3333;
+    }
+
+    .my-word-delete-btn:active {
+      background: #ff2222;
+    }
+
+    .my-word-delete-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      stroke: currentColor;
+      stroke-width: 1.5;
     }
 
     .my-word-highlight-btn {
@@ -714,6 +871,7 @@
         <h2>My Words</h2>
         <button id="my-words-close" class="my-words-close">×</button>
       </div>
+      <div id="my-words-tabs" class="my-words-tabs"></div>
       <div id="my-words-list-container" class="my-words-list-container">
         <div id="my-words-loading" class="my-words-loading">Loading...</div>
         <div id="my-words-list" class="my-words-list"></div>
@@ -752,6 +910,7 @@
     const myWordsModal = document.getElementById("my-words-modal");
     const myWordsClose = document.getElementById("my-words-close");
     const myWordsOverlay = document.getElementById("my-words-overlay");
+    const myWordsTabs = document.getElementById("my-words-tabs");
     const myWordsList = document.getElementById("my-words-list");
     const myWordsLoading = document.getElementById("my-words-loading");
     const gameFrame = document.getElementById("game-frame");
@@ -833,6 +992,31 @@
       "Español": "abcdefghijklmnopqrstuvwxyzñáéíóúü",
       "Français": "abcdefghijklmnopqrstuvwxyzàâçéèêëîïôûùüÿ"
     };
+
+    // Language code mapping for Tab display
+    const LANG_CODE_MAP = {
+      "中文": "CN",
+      "日本語": "JA",
+      "English": "EN",
+      "한국어": "KR",
+      "Español": "ES",
+      "Français": "FR"
+    };
+
+    // Get language code from language name
+    function getLangCode(langName) {
+      return LANG_CODE_MAP[langName] || langName;
+    }
+
+    // Normalize language pair to ensure consistent representation
+    // CN ⇄ EN and EN ⇄ CN should be treated as the same pair
+    function normalizeLanguagePair(learningLang, baseLang) {
+      const code1 = getLangCode(learningLang || "日本語");
+      const code2 = getLangCode(baseLang || "English");
+      // Sort codes alphabetically to ensure consistent representation
+      const codes = [code1, code2].sort();
+      return codes[0] + " ⇄ " + codes[1];
+    }
 
     // Get word text for a specific language (from games/game.js)
     function getWordText(wordItem, langName, strictValidation) {
@@ -1035,6 +1219,301 @@
       myWordsModal.style.display = "none";
     }
 
+    // Current selected tab for filtering words
+    let currentSelectedTab = null;
+
+    function renderWordsList(words, selectedTab) {
+      if (!words || words.length === 0) {
+        myWordsList.innerHTML = '<div class="my-words-empty">No words found. Play games to collect words!</div>';
+        return;
+      }
+
+      // Filter words by selected tab
+      const filteredWords = words.filter(function(word) {
+        const wordLearningLang = word.learningLang || "日本語";
+        const wordBaseLang = word.baseLang || "English";
+        const wordPair = normalizeLanguagePair(wordLearningLang, wordBaseLang);
+        return wordPair === selectedTab;
+      });
+
+      if (filteredWords.length === 0) {
+        myWordsList.innerHTML = '<div class="my-words-empty">No words in this language pair.</div>';
+        return;
+      }
+
+      // Sort by creation date (newest first)
+      filteredWords.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      myWordsList.innerHTML = filteredWords.map(function(word) {
+        const highlightedClass = word.isHighlighted ? "highlighted" : "";
+        const wordId = escapeAttribute(word.id || "");
+        
+        // Get learning and base languages from word data (with backward compatibility)
+        const wordLearningLang = word.learningLang || "日本語";
+        const wordBaseLang = word.baseLang || "English";
+        
+        // Use getWordText to get text in the correct languages
+        // Fallback to furigana/english for backward compatibility
+        var learningText = getWordText(word, wordLearningLang);
+        if (!learningText) {
+          learningText = word.furigana || "";
+        }
+        var baseText = getWordText(word, wordBaseLang, false);
+        if (!baseText) {
+          baseText = word.english || "";
+        }
+        
+        const learningTextEscaped = escapeHtml(learningText);
+        const baseTextEscaped = escapeHtml(baseText);
+        const ariaLabel = word.isHighlighted ? "Remove highlight" : "Highlight word";
+        const activeClass = word.isHighlighted ? "active" : "";
+        
+        return '<div class="my-word-item-wrapper" data-word-id="' + wordId + '">' +
+          '<div class="my-word-item ' + highlightedClass + '" data-word-id="' + wordId + '">' +
+          '<div class="my-word-content">' +
+          '<span class="my-word-kana">' + learningTextEscaped + '</span>' +
+          '<div class="my-word-en-wrapper">' +
+          '<span class="my-word-en">' + baseTextEscaped + '</span>' +
+          '<button class="my-word-favorite-btn ' + activeClass + '" ' +
+          'data-word-id="' + wordId + '" ' +
+          'aria-label="' + escapeAttribute(ariaLabel) + '">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
+          '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>' +
+          '</svg>' +
+          '</button>' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
+          '<button class="my-word-delete-btn" data-word-id="' + wordId + '" aria-label="Delete word">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
+          '<path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/>' +
+          '</svg>' +
+          '</button>' +
+          '</div>';
+      }).join("");
+
+      // 绑定收藏按钮点击事件（基础语言旁边的星星按钮）
+      myWordsList.querySelectorAll(".my-word-favorite-btn").forEach(btn => {
+        btn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          const wordId = this.getAttribute("data-word-id");
+          const wordItem = this.closest(".my-word-item");
+          const isCurrentlyHighlighted = wordItem.classList.contains("highlighted");
+          const newHighlightState = !isCurrentlyHighlighted;
+
+          // 更新数据库
+          window.instantDBService.toggleWordHighlight(wordId, newHighlightState).then(function() {
+            // 更新UI
+            wordItem.classList.toggle("highlighted", newHighlightState);
+            // 更新按钮的状态
+            this.classList.toggle("active", newHighlightState);
+          }.bind(this)).catch(function(error) {
+            console.warn("[myWords] Failed to toggle highlight", error);
+          });
+        });
+      });
+
+      // 初始化滑动删除功能
+      initSwipeToDelete();
+    }
+
+    // 滑动删除功能
+    let swipeState = {
+      startX: 0,
+      startY: 0,
+      currentX: 0,
+      currentY: 0,
+      isSwiping: false,
+      currentWrapper: null,
+      deleteButtonWidth: 80
+    };
+
+    function initSwipeToDelete() {
+      const wrappers = myWordsList.querySelectorAll(".my-word-item-wrapper");
+      
+      wrappers.forEach(wrapper => {
+        const item = wrapper.querySelector(".my-word-item");
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isDragging = false;
+        let startTime = 0;
+
+        // 触摸事件（移动端）
+        item.addEventListener("touchstart", function(e) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          startTime = Date.now();
+          isDragging = false;
+          swipeState.currentWrapper = wrapper;
+        }, { passive: true });
+
+        item.addEventListener("touchmove", function(e) {
+          if (!touchStartX) return;
+          
+          const touchX = e.touches[0].clientX;
+          const touchY = e.touches[0].clientY;
+          const deltaX = touchX - touchStartX;
+          const deltaY = touchY - touchStartY;
+
+          // 判断是否为水平滑动
+          if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+            isDragging = true;
+            e.preventDefault();
+            
+            // 只允许向左滑动
+            if (deltaX < 0) {
+              const translateX = Math.max(deltaX, -swipeState.deleteButtonWidth);
+              item.style.transform = `translateX(${translateX}px)`;
+              wrapper.classList.add("swiping");
+            }
+          }
+        }, { passive: false });
+
+        item.addEventListener("touchend", function(e) {
+          if (!touchStartX) return;
+          
+          const touchX = e.changedTouches[0].clientX;
+          const deltaX = touchX - touchStartX;
+          const timeDelta = Date.now() - startTime;
+
+          if (isDragging && deltaX < 0) {
+            // 如果滑动超过一半或速度足够快，显示删除按钮
+            if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 || 
+                (Math.abs(deltaX) > 30 && timeDelta < 300)) {
+              item.style.transform = `translateX(-${swipeState.deleteButtonWidth}px)`;
+              // 保持 swiping 类以显示删除按钮
+            } else {
+              // 否则恢复原状
+              item.style.transform = "translateX(0)";
+              wrapper.classList.remove("swiping");
+            }
+          } else {
+            item.style.transform = "translateX(0)";
+            wrapper.classList.remove("swiping");
+          }
+
+          touchStartX = 0;
+          isDragging = false;
+        }, { passive: true });
+
+        // 鼠标事件（桌面端）
+        item.addEventListener("mousedown", function(e) {
+          touchStartX = e.clientX;
+          touchStartY = e.clientY;
+          startTime = Date.now();
+          isDragging = false;
+          swipeState.currentWrapper = wrapper;
+        });
+
+        item.addEventListener("mousemove", function(e) {
+          if (!touchStartX || e.buttons !== 1) return;
+          
+          const deltaX = e.clientX - touchStartX;
+          const deltaY = e.clientY - touchStartY;
+
+          // 判断是否为水平滑动
+          if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+            isDragging = true;
+            
+            // 只允许向左滑动
+            if (deltaX < 0) {
+              const translateX = Math.max(deltaX, -swipeState.deleteButtonWidth);
+              item.style.transform = `translateX(${translateX}px)`;
+              wrapper.classList.add("swiping");
+            }
+          }
+        });
+
+        item.addEventListener("mouseup", function(e) {
+          if (!touchStartX) return;
+          
+          const deltaX = e.clientX - touchStartX;
+          const timeDelta = Date.now() - startTime;
+
+          if (isDragging && deltaX < 0) {
+            // 如果滑动超过一半或速度足够快，显示删除按钮
+            if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 || 
+                (Math.abs(deltaX) > 30 && timeDelta < 300)) {
+              item.style.transform = `translateX(-${swipeState.deleteButtonWidth}px)`;
+              // 保持 swiping 类以显示删除按钮
+            } else {
+              // 否则恢复原状
+              item.style.transform = "translateX(0)";
+              wrapper.classList.remove("swiping");
+            }
+          } else {
+            item.style.transform = "translateX(0)";
+            wrapper.classList.remove("swiping");
+          }
+
+          touchStartX = 0;
+          isDragging = false;
+        });
+
+        item.addEventListener("mouseleave", function(e) {
+          if (isDragging && touchStartX) {
+            const deltaX = e.clientX - touchStartX;
+            if (deltaX < 0 && Math.abs(deltaX) > swipeState.deleteButtonWidth / 2) {
+              item.style.transform = `translateX(-${swipeState.deleteButtonWidth}px)`;
+              // 保持 swiping 类以显示删除按钮
+            } else {
+              item.style.transform = "translateX(0)";
+              wrapper.classList.remove("swiping");
+            }
+            touchStartX = 0;
+            isDragging = false;
+          }
+        });
+      });
+
+      // 绑定删除按钮点击事件
+      myWordsList.querySelectorAll(".my-word-delete-btn").forEach(btn => {
+        btn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          const wordId = this.getAttribute("data-word-id");
+          deleteWord(wordId);
+        });
+      });
+
+      // 点击其他地方时关闭已打开的删除按钮
+      document.addEventListener("click", function(e) {
+        if (!e.target.closest(".my-word-item-wrapper")) {
+          myWordsList.querySelectorAll(".my-word-item").forEach(item => {
+            item.style.transform = "translateX(0)";
+            item.closest(".my-word-item-wrapper").classList.remove("swiping");
+          });
+        }
+      });
+    }
+
+    // 删除单词
+    function deleteWord(wordId) {
+      // 保存已删除的单词ID到localStorage
+      const deletedWordsKey = 'fishwordlingo_deleted_words';
+      let deletedWords = JSON.parse(localStorage.getItem(deletedWordsKey) || '[]');
+      if (!deletedWords.includes(wordId)) {
+        deletedWords.push(wordId);
+        localStorage.setItem(deletedWordsKey, JSON.stringify(deletedWords));
+      }
+
+      // 从UI中移除
+      const wrapper = myWordsList.querySelector(`.my-word-item-wrapper[data-word-id="${wordId}"]`);
+      if (wrapper) {
+        wrapper.style.transition = "transform 0.3s ease-out, opacity 0.3s ease-out";
+        wrapper.style.transform = "translateX(-100%)";
+        wrapper.style.opacity = "0";
+        
+        setTimeout(function() {
+          wrapper.remove();
+          
+          // 检查是否还有单词，如果没有则显示空状态
+          if (myWordsList.querySelectorAll(".my-word-item-wrapper").length === 0) {
+            myWordsList.innerHTML = '<div class="my-words-empty">No words in this language pair.</div>';
+          }
+        }, 300);
+      }
+    }
+
     function loadMyWords() {
       if (!window.instantDBService) {
         myWordsLoading.textContent = "Database not available";
@@ -1043,6 +1522,7 @@
 
       myWordsLoading.style.display = "block";
       myWordsList.innerHTML = "";
+      myWordsTabs.innerHTML = "";
 
       const userId = window.instantDBService.getOrCreateUserId();
       window.instantDBService.getAllUserWords(userId).then(function(words) {
@@ -1050,8 +1530,17 @@
         
         if (!words || words.length === 0) {
           myWordsList.innerHTML = '<div class="my-words-empty">No words found. Play games to collect words!</div>';
+          myWordsTabs.innerHTML = "";
           return;
         }
+
+        // 过滤已删除的单词
+        const deletedWordsKey = 'fishwordlingo_deleted_words';
+        const deletedWords = JSON.parse(localStorage.getItem(deletedWordsKey) || '[]');
+        words = words.filter(word => {
+          const wordId = (word.furigana || "") + "|" + (word.english || "");
+          return !deletedWords.includes(wordId);
+        });
 
         // 去重：相同 furigana 和 english 的单词只显示一次（保留最新的）
         const wordMap = new Map();
@@ -1062,66 +1551,58 @@
           }
         });
         const uniqueWords = Array.from(wordMap.values());
-        uniqueWords.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-        myWordsList.innerHTML = uniqueWords.map(function(word) {
-          const highlightedClass = word.isHighlighted ? "highlighted" : "";
-          const wordId = escapeAttribute(word.id || "");
-          
-          // Get learning and base languages from word data (with backward compatibility)
+        // Extract unique language pairs
+        const languagePairs = new Set();
+        uniqueWords.forEach(function(word) {
           const wordLearningLang = word.learningLang || "日本語";
           const wordBaseLang = word.baseLang || "English";
-          
-          // Use getWordText to get text in the correct languages
-          // Fallback to furigana/english for backward compatibility
-          var learningText = getWordText(word, wordLearningLang);
-          if (!learningText) {
-            learningText = word.furigana || "";
-          }
-          var baseText = getWordText(word, wordBaseLang, false);
-          if (!baseText) {
-            baseText = word.english || "";
-          }
-          
-          const learningTextEscaped = escapeHtml(learningText);
-          const baseTextEscaped = escapeHtml(baseText);
-          const ariaLabel = word.isHighlighted ? "Remove highlight" : "Highlight word";
-          const activeClass = word.isHighlighted ? "active" : "";
-          
-          return '<div class="my-word-item ' + highlightedClass + '" data-word-id="' + wordId + '">' +
-            '<div class="my-word-content">' +
-            '<span class="my-word-kana">' + learningTextEscaped + '</span>' +
-            '<span class="my-word-en">' + baseTextEscaped + '</span>' +
-            '</div>' +
-            '<button class="my-word-highlight-btn ' + activeClass + '" ' +
-            'data-word-id="' + wordId + '" ' +
-            'aria-label="' + escapeAttribute(ariaLabel) + '">' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
-            '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>' +
-            '</svg>' +
-            '</button>' +
-            '</div>';
+          const pair = normalizeLanguagePair(wordLearningLang, wordBaseLang);
+          languagePairs.add(pair);
+        });
+
+        // Sort language pairs alphabetically
+        const sortedPairs = Array.from(languagePairs).sort();
+
+        // Generate tabs
+        if (sortedPairs.length === 0) {
+          myWordsTabs.innerHTML = "";
+          myWordsList.innerHTML = '<div class="my-words-empty">No words found. Play games to collect words!</div>';
+          return;
+        }
+
+        // Use saved selected tab or default to first tab
+        const savedTab = localStorage.getItem('fishwordlingo_selected_tab');
+        const defaultTab = savedTab && sortedPairs.includes(savedTab) ? savedTab : sortedPairs[0];
+        currentSelectedTab = defaultTab;
+
+        // Render tabs
+        myWordsTabs.innerHTML = sortedPairs.map(function(pair) {
+          const isActive = pair === currentSelectedTab ? "active" : "";
+          return '<button class="my-words-tab ' + isActive + '" data-tab="' + escapeAttribute(pair) + '">' + 
+                 escapeHtml(pair) + '</button>';
         }).join("");
 
-        // 绑定高亮按钮点击事件
-        myWordsList.querySelectorAll(".my-word-highlight-btn").forEach(btn => {
-          btn.addEventListener("click", function(e) {
-            e.stopPropagation();
-            const wordId = this.getAttribute("data-word-id");
-            const wordItem = this.closest(".my-word-item");
-            const isCurrentlyHighlighted = wordItem.classList.contains("highlighted");
-            const newHighlightState = !isCurrentlyHighlighted;
-
-            // 更新数据库
-            window.instantDBService.toggleWordHighlight(wordId, newHighlightState).then(function() {
-              // 更新UI
-              wordItem.classList.toggle("highlighted", newHighlightState);
-              this.classList.toggle("active", newHighlightState);
-            }.bind(this)).catch(function(error) {
-              console.warn("[myWords] Failed to toggle highlight", error);
-            });
+        // Bind tab click events
+        myWordsTabs.querySelectorAll(".my-words-tab").forEach(tab => {
+          tab.addEventListener("click", function() {
+            const tabPair = this.getAttribute("data-tab");
+            currentSelectedTab = tabPair;
+            
+            // Update active state
+            myWordsTabs.querySelectorAll(".my-words-tab").forEach(t => t.classList.remove("active"));
+            this.classList.add("active");
+            
+            // Save selected tab
+            localStorage.setItem('fishwordlingo_selected_tab', tabPair);
+            
+            // Re-render word list
+            renderWordsList(uniqueWords, tabPair);
           });
         });
+
+        // Render initial word list
+        renderWordsList(uniqueWords, currentSelectedTab);
       }).catch(function(error) {
         console.warn("[myWords] Failed to load words", error);
         myWordsLoading.textContent = "Failed to load words. Please try again.";
