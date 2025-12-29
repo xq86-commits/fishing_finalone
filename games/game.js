@@ -22,8 +22,8 @@ for (let i = 1; i <= TOTAL_FISH_TYPES; i++) {
   ASSETS.fish.push({ src: `../fish_assets/fish${i}.png`, img: null });
 }
 
-const LEVEL_OPTIONS = ["N5", "N4", "N3", "N2", "N1"];
-const DEFAULT_LEVEL = "N5";
+const LEVEL_OPTIONS = ["Beginner", "Intermediate", "Advanced"];
+const DEFAULT_LEVEL = "Beginner";
 const LEVEL_FILES = {
   N1: "../n1_vocab.json",
   N2: "../n2_vocab.json",
@@ -31,6 +31,16 @@ const LEVEL_FILES = {
   N4: "../n4_vocab.json",
   N5: "../n5_vocab.json"
 };
+
+// Map generic level to JLPT levels for vocabulary loading
+function genericLevelToJLPTLevels(genericLevel) {
+  const mapping = {
+    "Beginner": ["N5", "N4"],      // 初级合并N5和N4
+    "Intermediate": ["N3", "N2"],  // 中级合并N3和N2
+    "Advanced": ["N1"]             // 高级使用N1
+  };
+  return mapping[genericLevel] || ["N5"];
+}
 
 // Vocabulary Data (N5 seed with multilingual translations)
 const N5_SEED_VOCAB = [
@@ -395,20 +405,32 @@ function enrichVocabulary(list = []) {
   return list.map(enrichWord).filter(item => item.furigana && item.english);
 }
 
+// Helper function to merge vocabularies and remove duplicates based on furigana
+function mergeVocabularies(vocabLists) {
+  const merged = [];
+  const seen = new Set();
+  vocabLists.forEach(vocabList => {
+    vocabList.forEach(item => {
+      const key = item.furigana || item.english || '';
+      if (key && !seen.has(key)) {
+        seen.add(key);
+        merged.push(item);
+      }
+    });
+  });
+  return merged;
+}
+
 const vocabCache = {
-  [DEFAULT_LEVEL]: enrichVocabulary(N5_SEED_VOCAB),
-  N4: enrichVocabulary(N4_SEED_VOCAB),
-  N3: enrichVocabulary(N3_SEED_VOCAB),
-  N2: enrichVocabulary(N2_SEED_VOCAB),
-  N1: enrichVocabulary(N1_SEED_VOCAB)
+  "Beginner": enrichVocabulary(mergeVocabularies([N5_SEED_VOCAB, N4_SEED_VOCAB])),
+  "Intermediate": enrichVocabulary(mergeVocabularies([N3_SEED_VOCAB, N2_SEED_VOCAB])),
+  "Advanced": enrichVocabulary(N1_SEED_VOCAB)
 };
 
 const vocabLoadedFromFile = {
-  [DEFAULT_LEVEL]: false,
-  N4: false,
-  N3: false,
-  N2: false,
-  N1: false
+  "Beginner": false,
+  "Intermediate": false,
+  "Advanced": false
 };
 
 const CHAR_SETS = {
@@ -429,7 +451,9 @@ const LANG_MAP = {
   "Français": { key: "french", locale: "fr-FR" }
 };
 const LANGUAGE_OPTIONS = ["中文", "日本語", "한국어", "English", "Español", "Français"];
-const BASE_LANGUAGE_OPTIONS = LANGUAGE_OPTIONS.filter(l => l !== "日本語"); // Hide Japanese for Using
+// BASE_LANGUAGE_OPTIONS is now computed dynamically based on selectedLearningLang
+// Legacy: kept for backward compatibility, but will be computed dynamically
+const BASE_LANGUAGE_OPTIONS = LANGUAGE_OPTIONS.filter(l => l !== "日本語"); // Deprecated: use dynamic calculation instead
 let hintAdListenerAttached = false;
 
 function getAdManager() {
@@ -475,7 +499,7 @@ let state = {
   selectedBaseLang: "English",
   selectedLevel: DEFAULT_LEVEL,
   activeLevel: DEFAULT_LEVEL,
-  activeVocab: vocabCache[DEFAULT_LEVEL],
+  activeVocab: vocabCache[DEFAULT_LEVEL] || vocabCache["Beginner"],
   levelRects: [],
   isLoadingVocab: false,
 
@@ -507,14 +531,14 @@ async function ensureActiveVocab(level) {
   state.isLoadingVocab = true;
   const vocab = await loadVocabForLevel(targetLevel);
   state.isLoadingVocab = false;
-  state.activeVocab = vocab && vocab.length ? vocab : vocabCache[DEFAULT_LEVEL];
+  state.activeVocab = vocab && vocab.length ? vocab : (vocabCache[targetLevel] || vocabCache[DEFAULT_LEVEL] || vocabCache["Beginner"]);
   state.activeLevel = targetLevel;
   return state.activeVocab;
 }
 
 async function applyLanguageSettings() {
   if (state.selectedLearningLang === state.selectedBaseLang) {
-    showToast("Use different languages\nPlease change");
+    showToast("Please Choose Different Language");
     return;
   }
 
@@ -615,36 +639,51 @@ async function loadVocabForLevel(level = DEFAULT_LEVEL) {
   const targetLevel = LEVEL_OPTIONS.includes(level) ? level : DEFAULT_LEVEL;
   if (vocabCache[targetLevel] && vocabLoadedFromFile[targetLevel]) return vocabCache[targetLevel];
 
-  const file = LEVEL_FILES[targetLevel];
-  if (!file) return vocabCache[DEFAULT_LEVEL];
+  // Get JLPT levels for this generic level
+  const jlptLevels = genericLevelToJLPTLevels(targetLevel);
+  const allLoadedVocab = [];
+  const seen = new Set();
 
-  try {
-    const res = await fetch(file);
-    const text = await res.text();
-    // Some source files may contain NaN; replace with null before parsing
-    const safeText = text.replace(/\bNaN\b/g, "null");
-    const rawList = JSON.parse(safeText);
-    let normalized = enrichVocabulary(rawList);
+  // Load vocabularies for all mapped JLPT levels
+  for (const jlptLevel of jlptLevels) {
+    const file = LEVEL_FILES[jlptLevel];
+    if (!file) continue;
 
-    // Keep the richer N5 seed translations even after loading the larger list
-    if (targetLevel === DEFAULT_LEVEL) {
-      const seedList = vocabCache[DEFAULT_LEVEL] ? [...vocabCache[DEFAULT_LEVEL]] : [];
-      const seen = new Set(normalized.map(item => item.furigana));
-      seedList.forEach(item => {
-        if (!seen.has(item.furigana)) {
-          normalized.push(item);
+    try {
+      const res = await fetch(file);
+      const text = await res.text();
+      // Some source files may contain NaN; replace with null before parsing
+      const safeText = text.replace(/\bNaN\b/g, "null");
+      const rawList = JSON.parse(safeText);
+      const normalized = enrichVocabulary(rawList);
+
+      // Merge vocabularies, avoiding duplicates based on furigana
+      normalized.forEach(item => {
+        const key = item.furigana || item.english || '';
+        if (key && !seen.has(key)) {
+          seen.add(key);
+          allLoadedVocab.push(item);
         }
       });
+    } catch (err) {
+      console.error(`Failed to load vocab for ${jlptLevel}`, err);
     }
-
-    vocabCache[targetLevel] = normalized.length ? normalized : vocabCache[DEFAULT_LEVEL];
-    vocabLoadedFromFile[targetLevel] = true;
-  } catch (err) {
-    console.error(`Failed to load vocab for level ${targetLevel}`, err);
-    showToast("Failed to load vocab\nFallback to N5");
-    vocabCache[targetLevel] = vocabCache[DEFAULT_LEVEL];
-    vocabLoadedFromFile[targetLevel] = false;
   }
+
+  // Merge with seed vocabulary if available
+  if (vocabCache[targetLevel] && vocabCache[targetLevel].length) {
+    const seedList = [...vocabCache[targetLevel]];
+    seedList.forEach(item => {
+      const key = item.furigana || item.english || '';
+      if (key && !seen.has(key)) {
+        seen.add(key);
+        allLoadedVocab.push(item);
+      }
+    });
+  }
+
+  vocabCache[targetLevel] = allLoadedVocab.length ? allLoadedVocab : (vocabCache[targetLevel] || vocabCache[DEFAULT_LEVEL] || vocabCache["Beginner"]);
+  vocabLoadedFromFile[targetLevel] = true;
 
   return vocabCache[targetLevel];
 }
@@ -652,16 +691,71 @@ async function loadVocabForLevel(level = DEFAULT_LEVEL) {
 function getActiveVocabList() {
   if (state.activeVocab && state.activeVocab.length) return state.activeVocab;
   if (state.activeLevel && vocabCache[state.activeLevel]) return vocabCache[state.activeLevel];
-  return vocabCache[DEFAULT_LEVEL];
+  return vocabCache[DEFAULT_LEVEL] || vocabCache["Beginner"];
 }
 
-function getWordText(wordItem, langName) {
+function getWordText(wordItem, langName, strictValidation = true) {
   const config = LANG_MAP[langName];
   if (!config) return "";
-  let text = wordItem[config.key] || wordItem.english || wordItem.furigana || "";
+  // 优先使用指定语言的字段，如果不存在或为空，返回空字符串（不回退到其他语言）
+  let text = wordItem[config.key];
+  if (!text || (typeof text === 'string' && text.trim() === "")) {
+    return ""; // 返回空字符串，让调用者知道这个单词没有该语言的翻译
+  }
   // Clean up: take first part before delimiters
   text = text.split(/[,;\/]/)[0];
-  return text.trim();
+  text = text.trim();
+  
+  // 验证文本是否真的包含指定语言的字符（防止使用回退值）
+  const charSet = CHAR_SETS[langName] || "";
+  if (charSet && text.length > 0) {
+    // 如果是基础语言（提示文本），使用宽松验证
+    if (!strictValidation) {
+      // 对于基础语言，即使字符不完全匹配字符集，也返回文本（因为可能是有效的翻译）
+      // 只做基本检查：如果文本完全由空格和标点组成，返回空字符串
+      const hasContent = text.split('').some(char => {
+        return !/[\s\.,;:!?\-\(\)\[\]{}]/.test(char);
+      });
+      if (!hasContent) {
+        return "";
+      }
+      // 对于基础语言，直接返回文本，不进行严格的字符集验证
+      return text;
+    }
+    
+    // 学习语言使用严格验证（现有逻辑）
+    // 检查文本中的字符是否主要属于指定语言字符集
+    let validCharCount = 0;
+    let totalCharCount = 0;
+    
+    text.split('').forEach(char => {
+      // 跳过空格和标点符号
+      if (/[\s\.,;:!?\-\(\)\[\]{}]/.test(char)) {
+        return;
+      }
+      totalCharCount++;
+      
+      // 对于大小写敏感的语言（如英语），检查小写和大写
+      if (langName === "English" || langName === "Español" || langName === "Français") {
+        if (charSet.includes(char.toLowerCase()) || charSet.includes(char.toUpperCase())) {
+          validCharCount++;
+        }
+      } else {
+        // 对于其他语言，直接检查
+        if (charSet.includes(char)) {
+          validCharCount++;
+        }
+      }
+    });
+    
+    // 如果文本中大部分字符都不属于指定语言字符集，说明这是回退值，返回空字符串
+    // 要求至少50%的字符属于指定语言字符集
+    if (totalCharCount > 0 && validCharCount / totalCharCount < 0.5) {
+      return "";
+    }
+  }
+  
+  return text;
 }
 
 function isPointInRect(x, y, rect) {
@@ -674,7 +768,7 @@ let dpr = window.devicePixelRatio || 1;
 let toastTimeout = null;
 let toastLines = [];
 
-function showToast(message, duration = 1500) {
+function showToast(message, duration = 800) {
   state.toastMessage = message; // Keep for compatibility if needed, but we use toastLines now
   toastLines = message.split('\n');
 
@@ -797,6 +891,18 @@ function pickNewWordAndSpawn() {
     attempts++;
   } while ((!text || text.length > 12) && attempts < 50); // Avoid overly long words if possible
 
+  // 如果还是找不到有对应学习语言字段的单词，尝试更严格的筛选
+  if (!text) {
+    const validWords = vocabList.filter(w => {
+      const langText = getWordText(w, state.selectedLearningLang);
+      return langText && langText.length > 0 && langText.length <= 12;
+    });
+    if (validWords.length > 0) {
+      word = validWords[Math.floor(Math.random() * validWords.length)];
+      text = getWordText(word, state.selectedLearningLang);
+    }
+  }
+
   if (!text) text = "Error"; // Fallback
 
   state.currentWord = word;
@@ -847,9 +953,22 @@ function spawnFishes(fromSides = false) {
   state.fishes = [];
 
   const neededChars = [];
+  const charSet = CHAR_SETS[state.selectedLearningLang] || "";
   state.targetChars.forEach((char, index) => {
     if (!state.revealedIndices[index]) {
-      neededChars.push(char);
+      // 确保只添加学习语言的字符（过滤掉空格、标点等特殊字符）
+      // 对于大小写敏感的语言（如英语），检查小写和大写
+      let isValidChar = false;
+      if (state.selectedLearningLang === "English" || state.selectedLearningLang === "Español" || state.selectedLearningLang === "Français") {
+        isValidChar = charSet.includes(char.toLowerCase()) || charSet.includes(char.toUpperCase());
+      } else {
+        // 对于其他语言，直接检查
+        isValidChar = charSet.includes(char);
+      }
+      
+      if (isValidChar) {
+        neededChars.push(char);
+      }
     }
   });
 
@@ -1193,14 +1312,14 @@ function draw() {
 
     // Calculate size based on lines
     const lineHeight = 30;
-    const paddingV = 20;
+    const paddingV = 0;
     const paddingH = 40;
     const boxHeight = toastLines.length * lineHeight + paddingV;
     const boxWidth = 300; // Fixed width for simplicity or measure
 
     // Use fillRect for compatibility if roundRect is not supported, or check support
     const boxX = logicalWidth / 2 - boxWidth / 2;
-    const boxY = logicalHeight / 2 - boxHeight / 2;
+    const boxY = logicalHeight * 0.7 - boxHeight / 2;
 
     if (ctx.roundRect) {
       ctx.beginPath();
@@ -1211,7 +1330,7 @@ function draw() {
     }
 
     ctx.fillStyle = '#fff';
-    ctx.font = 'bold 20px Arial';
+    ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
@@ -1276,7 +1395,7 @@ function drawUI() {
   ctx.font = `${englishFontSize}px Arial`;
 
   // Translation: selectedBaseLang
-  let translation = getWordText(state.currentWord, state.selectedBaseLang);
+  let translation = getWordText(state.currentWord, state.selectedBaseLang, false);
 
   const englishWidth = ctx.measureText(translation).width;
   const englishHeight = englishFontSize;
@@ -1631,7 +1750,7 @@ function drawNoteOverlay() {
 
       const startTransX = speakerX + speakerSize + 12;
 
-      let translation = getWordText(w, state.selectedBaseLang);
+      let translation = getWordText(w, state.selectedBaseLang, false);
 
 
       ctx.fillStyle = '#2c3e50'; // Dark blue-gray like image
@@ -1647,7 +1766,7 @@ function drawLanguageOverlay() {
   state.langPanelRect = null;
   state.langCloseRect = null;
   state.langConfirmRect = null;
-  state.languageLearningRects = []; // kept for compatibility but unused when learning language fixed
+  state.languageLearningRects = [];
   state.languageBaseRects = [];
   state.levelRects = [];
   return;
@@ -1663,12 +1782,18 @@ function drawLanguageOverlay() {
   const chipHeight = 36;
   const chipGapY = 10;
   const chipGapX = 10;
-  const baseOptions = BASE_LANGUAGE_OPTIONS;
+  
+  // Dynamic language options calculation
+  const learningOptions = LANGUAGE_OPTIONS; // All languages can be selected as learning language
+  const baseOptions = LANGUAGE_OPTIONS; // Show all 6 languages
+  
+  const learningRows = Math.ceil(learningOptions.length / 2);
+  const learningSectionHeight = learningRows * (chipHeight + chipGapY) + 30;
   const baseRows = Math.ceil(baseOptions.length / 2);
   const baseSectionHeight = baseRows * (chipHeight + chipGapY) + 30;
-  const levelRows = Math.ceil(LEVEL_OPTIONS.length / 2);
+  const levelRows = Math.ceil(LEVEL_OPTIONS.length / 3);
   const levelSectionHeight = levelRows * (chipHeight + chipGapY) + 30;
-  const sectionsHeight = levelSectionHeight + baseSectionHeight;
+  const sectionsHeight = levelSectionHeight + learningSectionHeight + baseSectionHeight;
   const neededHeight = 50 + 16 + sectionsHeight + 20 + 44 + 24;
 
   const panelWidth = Math.min(380, logicalWidth - 40);
@@ -1737,9 +1862,9 @@ function drawLanguageOverlay() {
   ctx.lineTo(closeX + pad, closeY + closeSize - pad);
   ctx.stroke();
 
-  ctx.restore(); // End clip
+  // Note: clip restore moved to end of function after all content is drawn
 
-  // Border (Stroke) for the whole panel
+  // Border (Stroke) for the whole panel (draw inside clip for rounded corners)
   ctx.strokeStyle = 'rgba(0,0,0,0.08)';
   ctx.lineWidth = 1;
   if (ctx.roundRect) {
@@ -1752,7 +1877,9 @@ function drawLanguageOverlay() {
 
   // Content Area
   const contentStartY = y + headerHeight + 16;
-  const chipWidth = (panelWidth - 32 - 16 - chipGapX) / 2; // Adjusted for inner padding
+  // Calculate chipWidth for level buttons (3 columns) and language buttons (2 columns)
+  const levelChipWidth = (panelWidth - 32 - 16 - chipGapX * 2) / 3; // 3 columns for level buttons
+  const chipWidth = (panelWidth - 32 - 16 - chipGapX) / 2; // 2 columns for language buttons
   let cursorY = contentStartY;
 
   // Level Section
@@ -1770,21 +1897,21 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  const jlptLabel = 'JLPT Level';
-  ctx.fillText(jlptLabel, x + 28, levelSectionY + 12);
+  const levelLabel = 'Difficulty Level';
+  ctx.fillText(levelLabel, x + 28, levelSectionY + 12);
   ctx.font = '12px Arial';
   ctx.fillStyle = '#57738c';
-  const jlptLabelWidth = ctx.measureText(jlptLabel).width;
-  ctx.fillText(`Current: ${state.activeLevel}`, x + 28 + jlptLabelWidth + 22, levelSectionY + 14);
+  const levelLabelWidth = ctx.measureText(levelLabel).width;
+  ctx.fillText(`Current: ${state.activeLevel}`, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
 
   state.levelRects = [];
   const levelGridStartY = levelSectionY + 40;
   LEVEL_OPTIONS.forEach((level, idx) => {
-    const col = idx % 2;
-    const row = Math.floor(idx / 2);
-    const chipX = x + 28 + col * (chipWidth + chipGapX);
+    const col = idx % 3;
+    const row = Math.floor(idx / 3);
+    const chipX = x + 28 + col * (levelChipWidth + chipGapX);
     const chipY = levelGridStartY + row * (chipHeight + chipGapY);
-    const rect = { x: chipX, y: chipY, width: chipWidth, height: chipHeight, level, type: 'level' };
+    const rect = { x: chipX, y: chipY, width: levelChipWidth, height: chipHeight, level, type: 'level' };
     state.levelRects.push(rect);
 
     const selected = state.selectedLevel === level;
@@ -1803,6 +1930,65 @@ function drawLanguageOverlay() {
     ctx.lineWidth = 1;
     if (ctx.roundRect) {
       ctx.beginPath();
+      ctx.roundRect(chipX, chipY, levelChipWidth, chipHeight, 8);
+      ctx.fill();
+      ctx.stroke();
+    } else {
+      ctx.fillRect(chipX, chipY, levelChipWidth, chipHeight);
+      ctx.strokeRect(chipX, chipY, levelChipWidth, chipHeight);
+    }
+
+    ctx.fillStyle = selected ? '#fff' : '#2c3e50';
+    ctx.font = 'bold 14px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(level, chipX + levelChipWidth / 2, chipY + chipHeight / 2);
+  });
+
+  cursorY += levelSectionHeight + 16;
+
+  // Learning Language Section
+  ctx.fillStyle = '#E8F5E9';
+  if (ctx.roundRect) {
+    ctx.beginPath();
+    ctx.roundRect(x + 16, cursorY, panelWidth - 32, learningSectionHeight, 12);
+    ctx.fill();
+  } else {
+    ctx.fillRect(x + 16, cursorY, panelWidth - 32, learningSectionHeight);
+  }
+
+  ctx.fillStyle = '#2c3e50';
+  ctx.font = 'bold 14px Arial';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('Learning', x + 28, cursorY + 12);
+
+  state.languageLearningRects = [];
+  const learningKeyStartY = cursorY + 36;
+  learningOptions.forEach((lang, idx) => {
+    const col = idx % 2;
+    const row = Math.floor(idx / 2);
+    const chipX = x + 28 + col * (chipWidth + chipGapX);
+    const chipY = learningKeyStartY + row * (chipHeight + chipGapY);
+    const rect = { x: chipX, y: chipY, width: chipWidth, height: chipHeight, lang, type: 'learning' };
+    state.languageLearningRects.push(rect);
+
+    const selected = state.selectedLearningLang === lang;
+
+    if (selected) {
+      const grad = ctx.createLinearGradient(chipX, chipY, chipX, chipY + chipHeight);
+      grad.addColorStop(0, '#4CAF50');
+      grad.addColorStop(1, '#388E3C');
+      ctx.fillStyle = grad;
+      ctx.strokeStyle = '#2E7D32';
+    } else {
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#C8E6C9';
+    }
+
+    ctx.lineWidth = 1;
+    if (ctx.roundRect) {
+      ctx.beginPath();
       ctx.roundRect(chipX, chipY, chipWidth, chipHeight, 8);
       ctx.fill();
       ctx.stroke();
@@ -1815,10 +2001,10 @@ function drawLanguageOverlay() {
     ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(level, chipX + chipWidth / 2, chipY + chipHeight / 2);
+    ctx.fillText(lang, chipX + chipWidth / 2, chipY + chipHeight / 2);
   });
 
-  cursorY += levelSectionHeight + 16;
+  cursorY += learningSectionHeight + 16;
 
   // Base Language (Using)
   ctx.fillStyle = '#FFF0D4';
@@ -1927,7 +2113,9 @@ function drawLanguageOverlay() {
     ctx.fillText('Loading vocab...', confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height + 18);
   }
 
-  ctx.restore();
+  ctx.restore(); // End clip
+
+  ctx.restore(); // End outer save
 }
 
 function completeCurrentWord() {
@@ -2046,9 +2234,31 @@ async function handleInputClick(e) {
     }
 
     if (!handledLang) {
+      for (const opt of state.languageLearningRects) {
+        if (isPointInRect(clickX, clickY, opt)) {
+          const previousLearningLang = state.selectedLearningLang; // Save previous value
+          state.selectedLearningLang = opt.lang;
+          // If base language is the same as new learning language, revert and show toast
+          if (state.selectedBaseLang === opt.lang) {
+            state.selectedLearningLang = previousLearningLang; // Revert to previous value
+            showToast("Please Choose Different Language");
+          }
+          handledLang = true;
+          break;
+        }
+      }
+    }
+
+    if (!handledLang) {
       for (const opt of state.languageBaseRects) {
         if (isPointInRect(clickX, clickY, opt)) {
+          const previousBaseLang = state.selectedBaseLang; // Save previous value
           state.selectedBaseLang = opt.lang;
+          // If learning language is the same as new base language, revert and show toast
+          if (state.selectedLearningLang === opt.lang) {
+            state.selectedBaseLang = previousBaseLang; // Revert to previous value
+            showToast("Please Choose Different Language");
+          }
           handledLang = true;
           break;
         }
@@ -2108,8 +2318,14 @@ async function handleInputClick(e) {
   // Language button
   if (state.langButtonRect && isPointInRect(clickX, clickY, state.langButtonRect)) {
     state.selectedLevel = state.activeLevel || state.selectedLevel || DEFAULT_LEVEL;
-    if (!BASE_LANGUAGE_OPTIONS.includes(state.selectedBaseLang)) {
-      state.selectedBaseLang = "English";
+    // Ensure base language is valid (but allow same as learning - will be validated on click)
+    if (!LANGUAGE_OPTIONS.includes(state.selectedBaseLang)) {
+      const availableBaseLang = LANGUAGE_OPTIONS.find(l => l !== state.selectedLearningLang);
+      if (availableBaseLang) {
+        state.selectedBaseLang = availableBaseLang;
+      } else {
+        state.selectedBaseLang = "English"; // Fallback
+      }
     }
     state.languageOpen = true;
     state.noteOpen = false;

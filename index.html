@@ -386,8 +386,8 @@
       top: 16px;
       right: 16px;
       z-index: 5;
-      width: 44px;
-      height: 44px;
+      width: 57px;
+      height: 57px;
       padding: 0;
       border: none;
       background: transparent;
@@ -399,9 +399,11 @@
     }
 
     .music-toggle svg {
-      width: 24px;
-      height: 24px;
-      display: block;
+      width: 31px;
+      height: 31px;
+      display: flex;
+      flex-wrap: wrap;
+      font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     .music-toggle.is-off {
@@ -442,6 +444,25 @@
       transform: scale(0.96);
     }
 
+    #music-toggle-start {
+      background-color: unset;
+      background: unset;
+      background-image: none;
+      box-shadow: none;
+      left: 322px;
+      top: 11px;
+      right: unset;
+    }
+
+    #music-toggle-game {
+      box-shadow: none;
+      top: 400px;
+      left: 15px;
+      right: unset;
+      width: 65px;
+      height: 65px;
+    }
+
     @keyframes wavePulse {
       0% {
         opacity: 0.6;
@@ -452,6 +473,180 @@
       100% {
         opacity: 0.6;
       }
+    }
+
+    /* My Words Modal */
+    #my-words-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .my-words-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+    }
+
+    .my-words-content {
+      position: relative;
+      width: 90%;
+      max-width: 500px;
+      max-height: 80vh;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .my-words-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .my-words-header h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #1E2D3C;
+      font-weight: 700;
+    }
+
+    .my-words-close {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 50%;
+      font-size: 24px;
+      line-height: 1;
+      color: #1E2D3C;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      box-shadow: none;
+    }
+
+    .my-words-close:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .my-words-close:active {
+      transform: scale(0.95);
+    }
+
+    .my-words-list-container {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px;
+    }
+
+    .my-words-loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: rgba(31, 75, 114, 0.7);
+      font-size: 14px;
+    }
+
+    .my-words-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .my-word-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .my-word-item:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    .my-word-item.highlighted {
+      background: rgba(255, 215, 0, 0.25);
+      border: 1px solid rgba(255, 215, 0, 0.5);
+    }
+
+    .my-word-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex: 1;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .my-word-kana {
+      font-weight: bold;
+      color: #ffd700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .my-word-en {
+      color: rgba(31, 75, 114, 0.7);
+      font-size: 14px;
+      text-align: right;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .my-word-highlight-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+      flex-shrink: 0;
+      box-shadow: none;
+    }
+
+    .my-word-highlight-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .my-word-highlight-btn.active {
+      color: #ffd700;
+    }
+
+    .my-word-highlight-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .my-words-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: rgba(31, 75, 114, 0.7);
+      font-size: 14px;
     }
   </style>
 </head>
@@ -473,6 +668,7 @@
     <h1> Words Fishing</h1>
     <button id="start-btn">Start</button>
     <button id="share-btn">Share</button>
+    <button id="my-words-btn">My Words</button>
   </div>
 
   <!-- Loading / 游戏 / 结算 / 排行榜（都默认隐藏） -->
@@ -510,11 +706,27 @@
     <div id="rank-list"></div>
   </div>
 
+  <!-- My Words Modal -->
+  <div id="my-words-modal" class="is-hidden">
+    <div id="my-words-overlay" class="my-words-overlay"></div>
+    <div id="my-words-content" class="my-words-content">
+      <div id="my-words-header" class="my-words-header">
+        <h2>My Words</h2>
+        <button id="my-words-close" class="my-words-close">×</button>
+      </div>
+      <div id="my-words-list-container" class="my-words-list-container">
+        <div id="my-words-loading" class="my-words-loading">Loading...</div>
+        <div id="my-words-list" class="my-words-list"></div>
+      </div>
+    </div>
+  </div>
+
   <script src="./scripts/fireworks.js"></script>
   <script src="./scripts/game-data.js"></script>
   <script src="./scripts/share.js"></script>
   <script src="./scripts/advertising-manager.js"></script>
   <script src="./scripts/app-communication.js"></script>
+  <script src="./scripts/instantdb.js"></script>
   <script>
     /* 工具：状态切换（只留一个层可见） */
     const LAYERS = ["start-screen", "loading", "game-wrapper", "result-screen", "rank-screen"];
@@ -536,6 +748,12 @@
     const share2Btn = document.getElementById("share2-btn");
     const nextBtn = document.getElementById("next-btn");
     const homeBtn = document.getElementById("home-btn");
+    const myWordsBtn = document.getElementById("my-words-btn");
+    const myWordsModal = document.getElementById("my-words-modal");
+    const myWordsClose = document.getElementById("my-words-close");
+    const myWordsOverlay = document.getElementById("my-words-overlay");
+    const myWordsList = document.getElementById("my-words-list");
+    const myWordsLoading = document.getElementById("my-words-loading");
     const gameFrame = document.getElementById("game-frame");
     const bgm = document.getElementById("bgm");
     const musicToggleStart = document.getElementById("music-toggle-start");
@@ -720,6 +938,120 @@
       stopFireworks();
     };
 
+    /* My Words Modal */
+    function showMyWordsModal() {
+      myWordsModal.classList.remove("is-hidden");
+      myWordsModal.style.display = "flex";
+      loadMyWords();
+    }
+
+    function hideMyWordsModal() {
+      myWordsModal.classList.add("is-hidden");
+      myWordsModal.style.display = "none";
+    }
+
+    function loadMyWords() {
+      if (!window.instantDBService) {
+        myWordsLoading.textContent = "Database not available";
+        return;
+      }
+
+      myWordsLoading.style.display = "block";
+      myWordsList.innerHTML = "";
+
+      const userId = window.instantDBService.getOrCreateUserId();
+      window.instantDBService.getAllUserWords(userId).then(function(words) {
+        myWordsLoading.style.display = "none";
+        
+        if (!words || words.length === 0) {
+          myWordsList.innerHTML = '<div class="my-words-empty">No words found. Play games to collect words!</div>';
+          return;
+        }
+
+        // 去重：相同 furigana 和 english 的单词只显示一次（保留最新的）
+        const wordMap = new Map();
+        words.forEach(word => {
+          const key = (word.furigana || "") + "|" + (word.english || "");
+          if (!wordMap.has(key) || new Date(word.createdAt) > new Date(wordMap.get(key).createdAt)) {
+            wordMap.set(key, word);
+          }
+        });
+        const uniqueWords = Array.from(wordMap.values());
+        uniqueWords.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+        myWordsList.innerHTML = uniqueWords.map(function(word) {
+          const highlightedClass = word.isHighlighted ? "highlighted" : "";
+          const wordId = escapeAttribute(word.id || "");
+          const furigana = escapeHtml(word.furigana || "");
+          const english = escapeHtml(word.english || "");
+          const ariaLabel = word.isHighlighted ? "Remove highlight" : "Highlight word";
+          const activeClass = word.isHighlighted ? "active" : "";
+          
+          return '<div class="my-word-item ' + highlightedClass + '" data-word-id="' + wordId + '">' +
+            '<div class="my-word-content">' +
+            '<span class="my-word-kana">' + furigana + '</span>' +
+            '<span class="my-word-en">' + english + '</span>' +
+            '</div>' +
+            '<button class="my-word-highlight-btn ' + activeClass + '" ' +
+            'data-word-id="' + wordId + '" ' +
+            'aria-label="' + escapeAttribute(ariaLabel) + '">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+            '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>' +
+            '</svg>' +
+            '</button>' +
+            '</div>';
+        }).join("");
+
+        // 绑定高亮按钮点击事件
+        myWordsList.querySelectorAll(".my-word-highlight-btn").forEach(btn => {
+          btn.addEventListener("click", function(e) {
+            e.stopPropagation();
+            const wordId = this.getAttribute("data-word-id");
+            const wordItem = this.closest(".my-word-item");
+            const isCurrentlyHighlighted = wordItem.classList.contains("highlighted");
+            const newHighlightState = !isCurrentlyHighlighted;
+
+            // 更新数据库
+            window.instantDBService.toggleWordHighlight(wordId, newHighlightState).then(function() {
+              // 更新UI
+              wordItem.classList.toggle("highlighted", newHighlightState);
+              this.classList.toggle("active", newHighlightState);
+            }.bind(this)).catch(function(error) {
+              console.warn("[myWords] Failed to toggle highlight", error);
+            });
+          });
+        });
+      }).catch(function(error) {
+        console.warn("[myWords] Failed to load words", error);
+        myWordsLoading.textContent = "Failed to load words. Please try again.";
+      });
+    }
+
+    if (myWordsBtn) {
+      myWordsBtn.onclick = () => {
+        showMyWordsModal();
+      };
+    }
+
+    if (myWordsClose) {
+      myWordsClose.onclick = () => {
+        hideMyWordsModal();
+      };
+    }
+
+    if (myWordsOverlay) {
+      myWordsOverlay.onclick = () => {
+        hideMyWordsModal();
+      };
+    }
+
+    // 按 ESC 键关闭弹窗
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && myWordsModal && !myWordsModal.classList.contains("is-hidden")) {
+        hideMyWordsModal();
+      }
+    });
+
     /* 分享 */
     shareBtn.onclick = () => {
       if (window.gameShare && typeof window.gameShare.shareHome === "function") {
@@ -805,6 +1137,19 @@
             console.warn("[gameDataService] submitResult failed", error);
           });
         }
+
+        // Save game session and words to InstantDB
+        if (window.instantDBService) {
+          const userId = window.instantDBService.getOrCreateUserId();
+          window.instantDBService.saveGameSession({
+            score: latestScore,
+            level: levelValue,
+            completionTimeMs: completionTimeMs
+          }, foundWords).catch(function (error) {
+            console.warn("[instantDB] Failed to save game session", error);
+          });
+        }
+
         triggerFireworks();
       }
     });
