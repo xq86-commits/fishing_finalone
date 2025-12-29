@@ -2,3341 +2,6013 @@
   {
     "id": 1,
     "furigana": "ふむ",
-    "english": "to step on, to tread on"
+    "english": "to step on, to tread on",
+    "chinese": "to step on, to tread on",
+    "korean": "to step on, to tread on",
+    "spanish": "to step on, to tread on",
+    "french": "to step on, to tread on"
   },
   {
     "id": 2,
     "furigana": "～く",
-    "english": "~ district, ~ ward, ~ borough"
+    "english": "~ district, ~ ward, ~ borough",
+    "chinese": "~ district, ~ ward, ~ borough",
+    "korean": "~ district, ~ ward, ~ borough",
+    "spanish": "~ district, ~ ward, ~ borough",
+    "french": "~ district, ~ ward, ~ borough"
   },
   {
     "id": 3,
     "furigana": "すっと",
-    "english": "straight, quickly"
+    "english": "straight, quickly",
+    "chinese": "straight, quickly",
+    "korean": "straight, quickly",
+    "spanish": "straight, quickly",
+    "french": "straight, quickly"
   },
   {
     "id": 4,
     "furigana": "ぬすむ",
-    "english": "to steal; to rob"
+    "english": "to steal; to rob",
+    "chinese": "to steal; to rob",
+    "korean": "to steal; to rob",
+    "spanish": "to steal; to rob",
+    "french": "to steal; to rob"
   },
   {
     "id": 5,
     "furigana": "たいてい",
-    "english": "generally, usually"
+    "english": "generally, usually",
+    "chinese": "generally, usually",
+    "korean": "generally, usually",
+    "spanish": "generally, usually",
+    "french": "generally, usually"
   },
   {
     "id": 6,
     "furigana": "とうとう",
-    "english": "finally, at last"
+    "english": "finally, at last",
+    "chinese": "finally, at last",
+    "korean": "finally, at last",
+    "spanish": "finally, at last",
+    "french": "finally, at last"
   },
   {
     "id": 7,
     "furigana": "ガソリン",
-    "english": "gasoline, petrol"
+    "english": "gasoline, petrol",
+    "chinese": "gasoline, petrol",
+    "korean": "gasoline, petrol",
+    "spanish": "gasoline, petrol",
+    "french": "gasoline, petrol"
   },
   {
     "id": 8,
     "furigana": "なる",
-    "english": "to sound, to ring (v.i.)"
+    "english": "to sound, to ring (v.i.)",
+    "chinese": "to sound, to ring (v.i.)",
+    "korean": "to sound, to ring (v.i.)",
+    "spanish": "to sound, to ring (v.i.)",
+    "french": "to sound, to ring (v.i.)"
   },
   {
     "id": 9,
     "furigana": "しっかり",
-    "english": "firmly, steady"
+    "english": "firmly, steady",
+    "chinese": "firmly, steady",
+    "korean": "firmly, steady",
+    "spanish": "firmly, steady",
+    "french": "firmly, steady"
   },
   {
     "id": 10,
     "furigana": "いきる",
-    "english": "to live"
+    "english": "to live",
+    "chinese": "to live",
+    "korean": "to live",
+    "spanish": "to live",
+    "french": "to live"
   },
   {
     "id": 11,
     "furigana": "にがい",
-    "english": "bitter"
+    "english": "bitter",
+    "chinese": "bitter",
+    "korean": "bitter",
+    "spanish": "bitter",
+    "french": "bitter"
   },
   {
     "id": 12,
     "furigana": "わく",
-    "english": "to boil, to grow hot"
+    "english": "to boil, to grow hot",
+    "chinese": "to boil, to grow hot",
+    "korean": "to boil, to grow hot",
+    "spanish": "to boil, to grow hot",
+    "french": "to boil, to grow hot"
   },
   {
     "id": 13,
     "furigana": "いけん",
-    "english": "opinion, view, idea"
+    "english": "opinion, view, idea",
+    "chinese": "opinion, view, idea",
+    "korean": "opinion, view, idea",
+    "spanish": "opinion, view, idea",
+    "french": "opinion, view, idea"
   },
   {
     "id": 14,
     "furigana": "やはり; やっぱり",
-    "english": "as I thought, absolutely"
+    "english": "as I thought, absolutely",
+    "chinese": "as I thought, absolutely",
+    "korean": "as I thought, absolutely",
+    "spanish": "as I thought, absolutely",
+    "french": "as I thought, absolutely"
   },
   {
     "id": 15,
     "furigana": "まんが",
-    "english": "comic (book), cartoon"
+    "english": "comic (book), cartoon",
+    "chinese": "comic (book), cartoon",
+    "korean": "comic (book), cartoon",
+    "spanish": "comic (book), cartoon",
+    "french": "comic (book), cartoon"
   },
   {
     "id": 16,
     "furigana": "ステレオ",
-    "english": "stereo"
+    "english": "stereo",
+    "chinese": "stereo",
+    "korean": "stereo",
+    "spanish": "stereo",
+    "french": "stereo"
   },
   {
     "id": 17,
     "furigana": "いがく",
-    "english": "medical science"
+    "english": "medical science",
+    "chinese": "medical science",
+    "korean": "medical science",
+    "spanish": "medical science",
+    "french": "medical science"
   },
   {
     "id": 18,
     "furigana": "テキスト",
-    "english": "text; text book"
+    "english": "text; text book",
+    "chinese": "text; text book",
+    "korean": "text; text book",
+    "spanish": "text; text book",
+    "french": "text; text book"
   },
   {
     "id": 19,
     "furigana": "～つき",
-    "english": "month"
+    "english": "month",
+    "chinese": "month",
+    "korean": "month",
+    "spanish": "month",
+    "french": "month"
   },
   {
     "id": 20,
     "furigana": "おる",
-    "english": "to snap, to break; to bend"
+    "english": "to snap, to break; to bend",
+    "chinese": "to snap, to break; to bend",
+    "korean": "to snap, to break; to bend",
+    "spanish": "to snap, to break; to bend",
+    "french": "to snap, to break; to bend"
   },
   {
     "id": 21,
     "furigana": "～かい",
-    "english": "~ meeting"
+    "english": "~ meeting",
+    "chinese": "~ meeting",
+    "korean": "~ meeting",
+    "spanish": "~ meeting",
+    "french": "~ meeting"
   },
   {
     "id": 22,
     "furigana": "うかがう",
-    "english": "to ask"
+    "english": "to ask",
+    "chinese": "to ask",
+    "korean": "to ask",
+    "spanish": "to ask",
+    "french": "to ask"
   },
   {
     "id": 23,
     "furigana": "きこえる",
-    "english": "to be heard, to be audible"
+    "english": "to be heard, to be audible",
+    "chinese": "to be heard, to be audible",
+    "korean": "to be heard, to be audible",
+    "spanish": "to be heard, to be audible",
+    "french": "to be heard, to be audible"
   },
   {
     "id": 24,
     "furigana": "ぼく",
-    "english": "I (used by men towards those of equal or lower status)"
+    "english": "I (used by men towards those of equal or lower status)",
+    "chinese": "I (used by men towards those of equal or lower status)",
+    "korean": "I (used by men towards those of equal or lower status)",
+    "spanish": "I (used by men towards those of equal or lower status)",
+    "french": "I (used by men towards those of equal or lower status)"
   },
   {
     "id": 25,
     "furigana": "かならず",
-    "english": "surely, certainly"
+    "english": "surely, certainly",
+    "chinese": "surely, certainly",
+    "korean": "surely, certainly",
+    "spanish": "surely, certainly",
+    "french": "surely, certainly"
   },
   {
     "id": 26,
     "furigana": "こわす",
-    "english": "to break, to break down"
+    "english": "to break, to break down",
+    "chinese": "to break, to break down",
+    "korean": "to break, to break down",
+    "spanish": "to break, to break down",
+    "french": "to break, to break down"
   },
   {
     "id": 27,
     "furigana": "おこる",
-    "english": "to get angry; to scold angrily"
+    "english": "to get angry; to scold angrily",
+    "chinese": "to get angry; to scold angrily",
+    "korean": "to get angry; to scold angrily",
+    "spanish": "to get angry; to scold angrily",
+    "french": "to get angry; to scold angrily"
   },
   {
     "id": 28,
     "furigana": "とこや",
-    "english": "barber's (shop)"
+    "english": "barber's (shop)",
+    "chinese": "barber's (shop)",
+    "korean": "barber's (shop)",
+    "spanish": "barber's (shop)",
+    "french": "barber's (shop)"
   },
   {
     "id": 29,
     "furigana": "オートバイ",
-    "english": "motorcycle (lit: auto-bi(ke))"
+    "english": "motorcycle (lit: auto-bi(ke))",
+    "chinese": "motorcycle (lit: auto-bi(ke))",
+    "korean": "motorcycle (lit: auto-bi(ke))",
+    "spanish": "motorcycle (lit: auto-bi(ke))",
+    "french": "motorcycle (lit: auto-bi(ke))"
   },
   {
     "id": 30,
     "furigana": "うんどうする",
-    "english": "exercise"
+    "english": "exercise",
+    "chinese": "exercise",
+    "korean": "exercise",
+    "spanish": "exercise",
+    "french": "exercise"
   },
   {
     "id": 31,
     "furigana": "やむ",
-    "english": "to cease, to stop"
+    "english": "to cease, to stop",
+    "chinese": "to cease, to stop",
+    "korean": "to cease, to stop",
+    "spanish": "to cease, to stop",
+    "french": "to cease, to stop"
   },
   {
     "id": 32,
     "furigana": "もし",
-    "english": "if"
+    "english": "if",
+    "chinese": "if",
+    "korean": "if",
+    "spanish": "if",
+    "french": "if"
   },
   {
     "id": 33,
     "furigana": "おもて",
-    "english": "surface; front; outside"
+    "english": "surface; front; outside",
+    "chinese": "surface; front; outside",
+    "korean": "surface; front; outside",
+    "spanish": "surface; front; outside",
+    "french": "surface; front; outside"
   },
   {
     "id": 34,
     "furigana": "だいがくせい",
-    "english": "college student, university student"
+    "english": "college student, university student",
+    "chinese": "college student, university student",
+    "korean": "college student, university student",
+    "spanish": "college student, university student",
+    "french": "college student, university student"
   },
   {
     "id": 35,
     "furigana": "うんてんしゅ",
-    "english": "driver (by occupation)"
+    "english": "driver (by occupation)",
+    "chinese": "driver (by occupation)",
+    "korean": "driver (by occupation)",
+    "spanish": "driver (by occupation)",
+    "french": "driver (by occupation)"
   },
   {
     "id": 36,
     "furigana": "よしゅう",
-    "english": "preparation of lessons (for class)"
+    "english": "preparation of lessons (for class)",
+    "chinese": "preparation of lessons (for class)",
+    "korean": "preparation of lessons (for class)",
+    "spanish": "preparation of lessons (for class)",
+    "french": "preparation of lessons (for class)"
   },
   {
     "id": 37,
     "furigana": "しんぱいする",
-    "english": "worry, concern"
+    "english": "worry, concern",
+    "chinese": "worry, concern",
+    "korean": "worry, concern",
+    "spanish": "worry, concern",
+    "french": "worry, concern"
   },
   {
     "id": 38,
     "furigana": "べつ",
-    "english": "distinction, different"
+    "english": "distinction, different",
+    "chinese": "distinction, different",
+    "korean": "distinction, different",
+    "spanish": "distinction, different",
+    "french": "distinction, different"
   },
   {
     "id": 39,
     "furigana": "ひじょうに",
-    "english": "extremely; very"
+    "english": "extremely; very",
+    "chinese": "extremely; very",
+    "korean": "extremely; very",
+    "spanish": "extremely; very",
+    "french": "extremely; very"
   },
   {
     "id": 40,
     "furigana": "おたく",
-    "english": "(someone else's) house; home -- polite word for 家 (いえ) --"
+    "english": "(someone else's) house; home -- polite word for 家 (いえ) --",
+    "chinese": "(someone else's) house; home -- polite word for 家 (いえ) --",
+    "korean": "(someone else's) house; home -- polite word for 家 (いえ) --",
+    "spanish": "(someone else's) house; home -- polite word for 家 (いえ) --",
+    "french": "(someone else's) house; home -- polite word for 家 (いえ) --"
   },
   {
     "id": 41,
     "furigana": "やわらかい",
-    "english": "soft (in reference to texture), tender"
+    "english": "soft (in reference to texture), tender",
+    "chinese": "soft (in reference to texture), tender",
+    "korean": "soft (in reference to texture), tender",
+    "spanish": "soft (in reference to texture), tender",
+    "french": "soft (in reference to texture), tender"
   },
   {
     "id": 42,
     "furigana": "ひろう",
-    "english": "to pick up (something), to find"
+    "english": "to pick up (something), to find",
+    "chinese": "to pick up (something), to find",
+    "korean": "to pick up (something), to find",
+    "spanish": "to pick up (something), to find",
+    "french": "to pick up (something), to find"
   },
   {
     "id": 43,
     "furigana": "～ございます",
-    "english": "to be (polite), to exist"
+    "english": "to be (polite), to exist",
+    "chinese": "to be (polite), to exist",
+    "korean": "to be (polite), to exist",
+    "spanish": "to be (polite), to exist",
+    "french": "to be (polite), to exist"
   },
   {
     "id": 44,
     "furigana": "き",
-    "english": "spirit, mood"
+    "english": "spirit, mood",
+    "chinese": "spirit, mood",
+    "korean": "spirit, mood",
+    "spanish": "spirit, mood",
+    "french": "spirit, mood"
   },
   {
     "id": 45,
     "furigana": "くらべる",
-    "english": "to compare"
+    "english": "to compare",
+    "chinese": "to compare",
+    "korean": "to compare",
+    "spanish": "to compare",
+    "french": "to compare"
   },
   {
     "id": 46,
     "furigana": "ほとんど",
-    "english": "mostly, almost"
+    "english": "mostly, almost",
+    "chinese": "mostly, almost",
+    "korean": "mostly, almost",
+    "spanish": "mostly, almost",
+    "french": "mostly, almost"
   },
   {
     "id": 47,
     "furigana": "つもり",
-    "english": "intention, plan"
+    "english": "intention, plan",
+    "chinese": "intention, plan",
+    "korean": "intention, plan",
+    "spanish": "intention, plan",
+    "french": "intention, plan"
   },
   {
     "id": 48,
     "furigana": "こうがい",
-    "english": "suburb, outskirts"
+    "english": "suburb, outskirts",
+    "chinese": "suburb, outskirts",
+    "korean": "suburb, outskirts",
+    "spanish": "suburb, outskirts",
+    "french": "suburb, outskirts"
   },
   {
     "id": 49,
     "furigana": "だめ",
-    "english": "useless, no good, hopeless"
+    "english": "useless, no good, hopeless",
+    "chinese": "useless, no good, hopeless",
+    "korean": "useless, no good, hopeless",
+    "spanish": "useless, no good, hopeless",
+    "french": "useless, no good, hopeless"
   },
   {
     "id": 50,
     "furigana": "うりば",
-    "english": "place where things are sold"
+    "english": "place where things are sold",
+    "chinese": "place where things are sold",
+    "korean": "place where things are sold",
+    "spanish": "place where things are sold",
+    "french": "place where things are sold"
   },
   {
     "id": 51,
     "furigana": "しょうがつ",
-    "english": "New Year, New Year's Day"
+    "english": "New Year, New Year's Day",
+    "chinese": "New Year, New Year's Day",
+    "korean": "New Year, New Year's Day",
+    "spanish": "New Year, New Year's Day",
+    "french": "New Year, New Year's Day"
   },
   {
     "id": 52,
     "furigana": "きそく",
-    "english": "rule, regulation"
+    "english": "rule, regulation",
+    "chinese": "rule, regulation",
+    "korean": "rule, regulation",
+    "spanish": "rule, regulation",
+    "french": "rule, regulation"
   },
   {
     "id": 53,
     "furigana": "うん",
-    "english": "yes (informal), all right (ok)"
+    "english": "yes (informal), all right (ok)",
+    "chinese": "yes (informal), all right (ok)",
+    "korean": "yes (informal), all right (ok)",
+    "spanish": "yes (informal), all right (ok)",
+    "french": "yes (informal), all right (ok)"
   },
   {
     "id": 54,
     "furigana": "はつおん",
-    "english": "pronunciation"
+    "english": "pronunciation",
+    "chinese": "pronunciation",
+    "korean": "pronunciation",
+    "spanish": "pronunciation",
+    "french": "pronunciation"
   },
   {
     "id": 55,
     "furigana": "やく",
-    "english": "to bake, to grill"
+    "english": "to bake, to grill",
+    "chinese": "to bake, to grill",
+    "korean": "to bake, to grill",
+    "spanish": "to bake, to grill",
+    "french": "to bake, to grill"
   },
   {
     "id": 56,
     "furigana": "おくじょう",
-    "english": "rooftop"
+    "english": "rooftop",
+    "chinese": "rooftop",
+    "korean": "rooftop",
+    "spanish": "rooftop",
+    "french": "rooftop"
   },
   {
     "id": 57,
     "furigana": "しつれい",
-    "english": "discourtesy, impoliteness; Excuse me"
+    "english": "discourtesy, impoliteness; Excuse me",
+    "chinese": "discourtesy, impoliteness; Excuse me",
+    "korean": "discourtesy, impoliteness; Excuse me",
+    "spanish": "discourtesy, impoliteness; Excuse me",
+    "french": "discourtesy, impoliteness; Excuse me"
   },
   {
     "id": 58,
     "furigana": "ごみ",
-    "english": "trash, garbage"
+    "english": "trash, garbage",
+    "chinese": "trash, garbage",
+    "korean": "trash, garbage",
+    "spanish": "trash, garbage",
+    "french": "trash, garbage"
   },
   {
     "id": 59,
     "furigana": "アフリカ",
-    "english": "Africa"
+    "english": "Africa",
+    "chinese": "Africa",
+    "korean": "Africa",
+    "spanish": "Africa",
+    "french": "Africa"
   },
   {
     "id": 60,
     "furigana": "てん",
-    "english": "mark, score, grade; point, dot"
+    "english": "mark, score, grade; point, dot",
+    "chinese": "mark, score, grade; point, dot",
+    "korean": "mark, score, grade; point, dot",
+    "spanish": "mark, score, grade; point, dot",
+    "french": "mark, score, grade; point, dot"
   },
   {
     "id": 61,
     "furigana": "いっしょうけんめい",
-    "english": "very hard (as in \"to work hard\"), with utmost effort"
+    "english": "very hard (as in \"to work hard\"), with utmost effort",
+    "chinese": "煞费苦心",
+    "korean": "매우 열심히(\"열심히 일하다\"에서와 같이), 최대한의 노력으로",
+    "spanish": "muy duro (como en \"trabajar duro\"), con sumo esfuerzo",
+    "french": "très dur (comme dans \"travailler dur\"), avec le plus grand effort possible"
   },
   {
     "id": 62,
     "furigana": "こんど",
-    "english": "now, this time, near future, one of these days, next time"
+    "english": "now, this time, near future, one of these days, next time",
+    "chinese": "现在、这次、不久的将来、总有一天、下次",
+    "korean": "지금, 이번, 가까운 미래, 언젠가, 다음에",
+    "spanish": "ahora, esta vez, futuro próximo, uno de estos días, la próxima vez",
+    "french": "maintenant, cette fois-ci, dans un avenir proche, un de ces jours, la prochaine fois"
   },
   {
     "id": 63,
     "furigana": "きかい",
-    "english": "chance, opportunity"
+    "english": "chance, opportunity",
+    "chinese": "机遇",
+    "korean": "기회, 기회",
+    "spanish": "oportunidad",
+    "french": "chance, opportunité"
   },
   {
     "id": 64,
     "furigana": "たてる",
-    "english": "to build"
+    "english": "to build",
+    "chinese": "建立",
+    "korean": "구축하려면",
+    "spanish": "construir",
+    "french": "pour construire"
   },
   {
     "id": 65,
     "furigana": "ふくざつ",
-    "english": "complexity, complication"
+    "english": "complexity, complication",
+    "chinese": "复杂性、复杂性",
+    "korean": "복잡성, 복잡성",
+    "spanish": "complejidad, complicación",
+    "french": "complexité, complication"
   },
   {
     "id": 66,
     "furigana": "かれ",
-    "english": "he, boyfriend"
+    "english": "he, boyfriend",
+    "chinese": "他，男朋友",
+    "korean": "그, 남자 친구",
+    "spanish": "él, novio",
+    "french": "il, petit ami"
   },
   {
     "id": 67,
     "furigana": "いらっしゃる",
-    "english": "-- honorific expression for いく, くる, and いる --"
+    "english": "-- honorific expression for いく, くる, and いる --",
+    "chinese": "-- いく、くる和いる的敬语 --",
+    "korean": "いく, くる, いる의 경어 표현 -- いく, くる, いる의 경어 표현 --",
+    "spanish": "-- Expresión honorífica para いく, くる, y いる --",
+    "french": "-- expression honorifique pour いく, くる, et いる --"
   },
   {
     "id": 68,
     "furigana": "ふとん",
-    "english": "futon"
+    "english": "futon",
+    "chinese": "被褥",
+    "korean": "이불",
+    "spanish": "futón",
+    "french": "futon"
   },
   {
     "id": 69,
     "furigana": "だいじ",
-    "english": "important, valuable, serious matter"
+    "english": "important, valuable, serious matter",
+    "chinese": "要事",
+    "korean": "중요하고, 가치 있고, 심각한 문제",
+    "spanish": "importante, valioso, asunto serio",
+    "french": "important, précieux, sérieux"
   },
   {
     "id": 70,
     "furigana": "おくりもの",
-    "english": "a gift; a present"
+    "english": "a gift; a present",
+    "chinese": "礼物",
+    "korean": "선물; 선물",
+    "spanish": "un regalo; un obsequio",
+    "french": "un cadeau ; un présent"
   },
   {
     "id": 71,
     "furigana": "どろぼう",
-    "english": "thief; burglar"
+    "english": "thief; burglar",
+    "chinese": "小偷",
+    "korean": "도둑; 도둑",
+    "spanish": "ladrón",
+    "french": "voleur ; cambrioleur"
   },
   {
     "id": 72,
     "furigana": "～せい",
-    "english": "made in ~"
+    "english": "made in ~",
+    "chinese": "在 ~ 制造",
+    "korean": "만든 ~에서",
+    "spanish": "hecho en ~",
+    "french": "fabriqué en ~"
   },
   {
     "id": 73,
     "furigana": "ちゅうい",
-    "english": "caution, attention"
+    "english": "caution, attention",
+    "chinese": "注意",
+    "korean": "주의, 주의",
+    "spanish": "precaución, atención",
+    "french": "prudence, attention"
   },
   {
     "id": 74,
     "furigana": "たいふう",
-    "english": "typhoon"
+    "english": "typhoon",
+    "chinese": "台",
+    "korean": "태풍",
+    "spanish": "tifón",
+    "french": "typhon"
   },
   {
     "id": 75,
     "furigana": "ひ",
-    "english": "sun, sunshine, day"
+    "english": "sun, sunshine, day",
+    "chinese": "太阳、阳光、白天",
+    "korean": "태양, 햇살, 날",
+    "spanish": "sol, sol, día",
+    "french": "soleil, soleil, jour"
   },
   {
     "id": 76,
     "furigana": "～けん",
-    "english": "counter for houses"
+    "english": "counter for houses",
+    "chinese": "柜台",
+    "korean": "주택용 카운터",
+    "spanish": "mostrador para viviendas",
+    "french": "compteur de maisons"
   },
   {
     "id": 77,
     "furigana": "そう",
-    "english": "really, (is that) so; yes, right"
+    "english": "really, (is that) so; yes, right",
+    "chinese": "真是这样；是的，没错",
+    "korean": "정말, (그런가요?) 네, 맞습니다.",
+    "spanish": "realmente, (es eso) así; sí, correcto",
+    "french": "vraiment, (est-ce) ainsi ; oui, bien"
   },
   {
     "id": 78,
     "furigana": "とおる",
-    "english": "to pass (by), to go through"
+    "english": "to pass (by), to go through",
+    "chinese": "经过",
+    "korean": "지나가다, 통과하다",
+    "spanish": "pasar, atravesar",
+    "french": "passer (par), traverser"
   },
   {
     "id": 79,
     "furigana": "すぎる",
-    "english": "to exceed, to go beyond"
+    "english": "to exceed, to go beyond",
+    "chinese": "超过",
+    "korean": "뛰어넘다, 뛰어넘다",
+    "spanish": "superar, ir más allá",
+    "french": "dépasser, aller au-delà"
   },
   {
     "id": 80,
     "furigana": "レポート; リポート",
-    "english": "report"
+    "english": "report",
+    "chinese": "报告",
+    "korean": "보고",
+    "spanish": "informe",
+    "french": "rapport"
   },
   {
     "id": 81,
     "furigana": "は",
-    "english": "leaf"
+    "english": "leaf",
+    "chinese": "树叶",
+    "korean": "leaf",
+    "spanish": "hoja",
+    "french": "feuille"
   },
   {
     "id": 82,
     "furigana": "ひつよう",
-    "english": "necessary"
+    "english": "necessary",
+    "chinese": "必要的",
+    "korean": "필요",
+    "spanish": "necesario",
+    "french": "nécessaire"
   },
   {
     "id": 83,
     "furigana": "かちょう",
-    "english": "section manager"
+    "english": "section manager",
+    "chinese": "科长",
+    "korean": "섹션 관리자",
+    "spanish": "jefe de sección",
+    "french": "responsable de section"
   },
   {
     "id": 84,
     "furigana": "じしん",
-    "english": "earthquake"
+    "english": "earthquake",
+    "chinese": "earthquake",
+    "korean": "earthquake",
+    "spanish": "earthquake",
+    "french": "earthquake"
   },
   {
     "id": 85,
     "furigana": "すると",
-    "english": "and, then"
+    "english": "and, then",
+    "chinese": "然后",
+    "korean": "그리고",
+    "spanish": "y, a continuación",
+    "french": "et, ensuite"
   },
   {
     "id": 86,
     "furigana": "やめる",
-    "english": "to end, to stop"
+    "english": "to end, to stop",
+    "chinese": "结束，停止",
+    "korean": "끝내다, 멈추다",
+    "spanish": "terminar, parar",
+    "french": "de se terminer, de s'arrêter"
   },
   {
     "id": 87,
     "furigana": "ガラス",
-    "english": "glass, pane"
+    "english": "glass, pane",
+    "chinese": "玻璃、窗格",
+    "korean": "유리, 창",
+    "spanish": "vidrio, cristal",
+    "french": "verre, vitre"
   },
   {
     "id": 88,
     "furigana": "～がくぶ",
-    "english": "department of a university"
+    "english": "department of a university",
+    "chinese": "系",
+    "korean": "대학 학과",
+    "spanish": "departamento de una universidad",
+    "french": "département d'une université"
   },
   {
     "id": 89,
     "furigana": "きびしい",
-    "english": "hard; rigorous; strict"
+    "english": "hard; rigorous; strict",
+    "chinese": "艰苦；严谨；严格",
+    "korean": "딱딱한; 엄격한; 엄격한",
+    "spanish": "duro; riguroso; estricto",
+    "french": "dur ; rigoureux ; strict"
   },
   {
     "id": 90,
     "furigana": "エスカレーター",
-    "english": "escalator"
+    "english": "escalator",
+    "chinese": "自动扶梯",
+    "korean": "에스컬레이터",
+    "spanish": "escalera mecánica",
+    "french": "escalator"
   },
   {
     "id": 91,
     "furigana": "じんこう",
-    "english": "population"
+    "english": "population",
+    "chinese": "人口",
+    "korean": "인구",
+    "spanish": "población",
+    "french": "population"
   },
   {
     "id": 92,
     "furigana": "つき",
-    "english": "moon"
+    "english": "moon",
+    "chinese": "月相",
+    "korean": "moon",
+    "spanish": "luna",
+    "french": "lune"
   },
   {
     "id": 93,
     "furigana": "きぬ",
-    "english": "silk"
+    "english": "silk",
+    "chinese": "蚕丝",
+    "korean": "실크",
+    "spanish": "seda",
+    "french": "soie"
   },
   {
     "id": 94,
     "furigana": "ちっとも",
-    "english": "not at all (neg. verb)"
+    "english": "not at all (neg. verb)",
+    "chinese": "才不",
+    "korean": "전혀(부정 동사)",
+    "spanish": "en absoluto (verbo neg.)",
+    "french": "pas du tout (verbe négatif)"
   },
   {
     "id": 95,
     "furigana": "ふかい",
-    "english": "deep, profound"
+    "english": "deep, profound",
+    "chinese": "窕邃",
+    "korean": "깊고 심오한",
+    "spanish": "profundo, hondo",
+    "french": "profond, profonde"
   },
   {
     "id": 96,
     "furigana": "こわれる",
-    "english": "to be broken, to break"
+    "english": "to be broken, to break",
+    "chinese": "被打破，打破",
+    "korean": "깨지다, 부수다",
+    "spanish": "romperse, romperse",
+    "french": "à briser, à rompre"
   },
   {
     "id": 97,
     "furigana": "ゆれる",
-    "english": "to shake, to sway"
+    "english": "to shake, to sway",
+    "chinese": "搖晃、擺動",
+    "korean": "흔들다, 흔들다",
+    "spanish": "temblar, balancearse",
+    "french": "trembler, osciller"
   },
   {
     "id": 98,
     "furigana": "おちる",
-    "english": "to fall, to drop"
+    "english": "to fall, to drop",
+    "chinese": "陨落，坠落",
+    "korean": "떨어지다, 떨어지다",
+    "spanish": "caer, dejar caer",
+    "french": "tomber, laisser tomber"
   },
   {
     "id": 99,
     "furigana": "できるだけ",
-    "english": "if at all possible, as much as possible"
+    "english": "if at all possible, as much as possible",
+    "chinese": "尽可能",
+    "korean": "가능하면 가능한 한 많이",
+    "spanish": "en la medida de lo posible",
+    "french": "si possible, autant que possible"
   },
   {
     "id": 100,
     "furigana": "かなしい",
-    "english": "sad, sorrowful"
+    "english": "sad, sorrowful",
+    "chinese": "凄凉",
+    "korean": "슬픈, 슬픈",
+    "spanish": "triste, apenado",
+    "french": "triste, chagrin"
   },
   {
     "id": 101,
     "furigana": "ちゅうがっこう",
-    "english": "junior high school pupil"
+    "english": "junior high school pupil",
+    "chinese": "初中生",
+    "korean": "중학생 학생",
+    "spanish": "alumno de secundaria",
+    "french": "élève du collège"
   },
   {
     "id": 102,
     "furigana": "ガス",
-    "english": "gas"
+    "english": "gas",
+    "chinese": "燃气",
+    "korean": "가스",
+    "spanish": "gas",
+    "french": "gaz"
   },
   {
     "id": 103,
     "furigana": "いのる",
-    "english": "to pray; to wish"
+    "english": "to pray; to wish",
+    "chinese": "祈祷；祝愿",
+    "korean": "기도하다; 소원하다",
+    "spanish": "rezar; desear",
+    "french": "prier ; souhaiter"
   },
   {
     "id": 104,
     "furigana": "さかん",
-    "english": "prosperous, active, thriving"
+    "english": "prosperous, active, thriving",
+    "chinese": "繁荣、活跃、兴旺",
+    "korean": "번영, 활동, 번성",
+    "spanish": "próspero, activo, floreciente",
+    "french": "prospère, actif, florissant"
   },
   {
     "id": 105,
     "furigana": "アルバイト",
-    "english": "part-time job"
+    "english": "part-time job",
+    "chinese": "兼职",
+    "korean": "아르바이트",
+    "spanish": "trabajo a tiempo parcial",
+    "french": "emploi à temps partiel"
   },
   {
     "id": 106,
     "furigana": "おこす",
-    "english": "to wake (someone) up"
+    "english": "to wake (someone) up",
+    "chinese": "叫醒",
+    "korean": "(누군가를) 깨우다",
+    "spanish": "despertar (a alguien)",
+    "french": "réveiller (quelqu'un)"
   },
   {
     "id": 107,
     "furigana": "いたす",
-    "english": "-- extra-modest expression for する --"
+    "english": "-- extra-modest expression for する --",
+    "chinese": "-- する的模外表达 --",
+    "korean": "-- する에 대한 매우 겸손한 표현입니다.",
+    "spanish": "-- Expresión extra-modesta para する --",
+    "french": "-- expression extra-moderne pour する --"
   },
   {
     "id": 108,
     "furigana": "かむ",
-    "english": "to bite, to chew"
+    "english": "to bite, to chew",
+    "chinese": "咬，咀嚼",
+    "korean": "물다, 씹다",
+    "spanish": "morder, masticar",
+    "french": "mordre, mâcher"
   },
   {
     "id": 109,
     "furigana": "あかちゃん",
-    "english": "baby, infant"
+    "english": "baby, infant",
+    "chinese": "婴儿",
+    "korean": "아기, 유아",
+    "spanish": "bebé, niño",
+    "french": "bébé, enfant"
   },
   {
     "id": 110,
     "furigana": "あさい",
-    "english": "shallow, superficial"
+    "english": "shallow, superficial",
+    "chinese": "肤浅",
+    "korean": "얕고 피상적인",
+    "spanish": "superficial",
+    "french": "superficiel, superficielle"
   },
   {
     "id": 111,
     "furigana": "うそ",
-    "english": "lie"
+    "english": "lie",
+    "chinese": "谎言",
+    "korean": "거짓말",
+    "spanish": "mentir",
+    "french": "mentir"
   },
   {
     "id": 112,
     "furigana": "しょうせつ",
-    "english": "novel"
+    "english": "novel",
+    "chinese": "新奇",
+    "korean": "소설",
+    "spanish": "novela",
+    "french": "roman"
   },
   {
     "id": 113,
     "furigana": "おや",
-    "english": "a parent"
+    "english": "a parent",
+    "chinese": "父母",
+    "korean": "부모",
+    "spanish": "un padre",
+    "french": "un parent"
   },
   {
     "id": 114,
     "furigana": "それに",
-    "english": "moreover; besides"
+    "english": "moreover; besides",
+    "chinese": "况且",
+    "korean": "게다가; 게다가",
+    "spanish": "además; además",
+    "french": "en outre ; en plus"
   },
   {
     "id": 115,
     "furigana": "せいよう",
-    "english": "the West, Western countries"
+    "english": "the West, Western countries",
+    "chinese": "西方国家",
+    "korean": "서구, 서구 국가",
+    "spanish": "Occidente, los países occidentales",
+    "french": "l'Occident, les pays occidentaux"
   },
   {
     "id": 116,
     "furigana": "おもう",
-    "english": "to think, to feel"
+    "english": "to think, to feel",
+    "chinese": "思考，感受",
+    "korean": "생각하기, 느끼기",
+    "spanish": "pensar, sentir",
+    "french": "penser, sentir"
   },
   {
     "id": 117,
     "furigana": "パート (タイム)",
-    "english": "part time (esp. female part time employees)"
+    "english": "part time (esp. female part time employees)",
+    "chinese": "兼职（尤其是女性兼职雇员）",
+    "korean": "파트타임(특히 여성 파트타임 직원)",
+    "spanish": "a tiempo parcial (especialmente mujeres)",
+    "french": "temps partiel (en particulier les femmes employées à temps partiel)"
   },
   {
     "id": 118,
     "furigana": "じだい",
-    "english": "age, period, epoch, era"
+    "english": "age, period, epoch, era",
+    "chinese": "时代",
+    "korean": "나이, 기간, 시대, 시대",
+    "spanish": "edad, periodo, época, era",
+    "french": "âge, période, époque, ère"
   },
   {
     "id": 119,
     "furigana": "もうしあげる",
-    "english": "(humble)to say, to tell"
+    "english": "(humble)to say, to tell",
+    "chinese": "说",
+    "korean": "(겸손한)말하기, 말하기",
+    "spanish": "(humilde)decir, contar",
+    "french": "(humble) dire, raconter"
   },
   {
     "id": 120,
     "furigana": "～しき",
-    "english": "~ ceremony; ~ style"
+    "english": "~ ceremony; ~ style",
+    "chinese": "~ 仪式； ~ 风格",
+    "korean": "~ 행사; ~ 스타일",
+    "spanish": "~ ceremonia; ~ estilo",
+    "french": "~ cérémonie ; ~ style"
   },
   {
     "id": 121,
     "furigana": "しゅっせきする",
-    "english": "attendance"
+    "english": "attendance",
+    "chinese": "出席人数",
+    "korean": "출석",
+    "spanish": "asistencia",
+    "french": "présence"
   },
   {
     "id": 122,
     "furigana": "～か",
-    "english": "person who is specialized in ~"
+    "english": "person who is specialized in ~",
+    "chinese": "专业人员",
+    "korean": "를 전문으로 하는 사람",
+    "spanish": "persona especializada en ~",
+    "french": "personne spécialisée en ~"
   },
   {
     "id": 123,
     "furigana": "むかえる",
-    "english": "to welcome; to meet; to greet"
+    "english": "to welcome; to meet; to greet",
+    "chinese": "欢迎；迎接；问候",
+    "korean": "환영하다, 만나다, 인사하다",
+    "spanish": "dar la bienvenida; reunirse; saludar",
+    "french": "accueillir ; rencontrer ; saluer"
   },
   {
     "id": 124,
     "furigana": "さわる",
-    "english": "to touch, to feel"
+    "english": "to touch, to feel",
+    "chinese": "触摸，感受",
+    "korean": "만지고, 느끼고",
+    "spanish": "tocar, sentir",
+    "french": "toucher, sentir"
   },
   {
     "id": 125,
     "furigana": "～だて",
-    "english": "~ storied, separate housing"
+    "english": "~ storied, separate housing",
+    "chinese": "~ 层，独立住房",
+    "korean": "~층형, 별도 주택",
+    "spanish": "~ pisos, viviendas independientes",
+    "french": "~ étages, logements séparés"
   },
   {
     "id": 126,
     "furigana": "しゃちょう",
-    "english": "president of a company"
+    "english": "president of a company",
+    "chinese": "总裁",
+    "korean": "회사 사장",
+    "spanish": "presidente de una empresa",
+    "french": "président d'une société"
   },
   {
     "id": 127,
     "furigana": "どうぶつえん",
-    "english": "zoo"
+    "english": "zoo",
+    "chinese": "动物园",
+    "korean": "동물원",
+    "spanish": "zoo",
+    "french": "zoo"
   },
   {
     "id": 128,
     "furigana": "つかまえる",
-    "english": "to catch, to arrest"
+    "english": "to catch, to arrest",
+    "chinese": "缉捕",
+    "korean": "잡다, 체포하다",
+    "spanish": "atrapar, detener",
+    "french": "attraper, arrêter"
   },
   {
     "id": 129,
     "furigana": "きせつ",
-    "english": "season (in reference to weather)"
+    "english": "season (in reference to weather)",
+    "chinese": "季节",
+    "korean": "계절(날씨 기준)",
+    "spanish": "estación (en referencia al tiempo)",
+    "french": "saison (en référence au temps)"
   },
   {
     "id": 130,
     "furigana": "よる",
-    "english": "to stop by"
+    "english": "to stop by",
+    "chinese": "来访",
+    "korean": "에 들러",
+    "spanish": "pasar por",
+    "french": "de s'arrêter à"
   },
   {
     "id": 131,
     "furigana": "きまる",
-    "english": "to be set; fixed (v.i.)"
+    "english": "to be set; fixed (v.i.)",
+    "chinese": "被设定；固定（v.i.）",
+    "korean": "설정하다; 고정(동사)",
+    "spanish": "estar establecido; fijo (v.i.)",
+    "french": "être fixé (v.i.)"
   },
   {
     "id": 132,
     "furigana": "ひらく",
-    "english": "to open; to hold (an event)"
+    "english": "to open; to hold (an event)",
+    "chinese": "开幕；举行",
+    "korean": "열다; 개최하다 (이벤트)",
+    "spanish": "abrir; celebrar (un acontecimiento)",
+    "french": "ouvrir ; tenir (un événement)"
   },
   {
     "id": 133,
     "furigana": "にげる",
-    "english": "to escape, to run away"
+    "english": "to escape, to run away",
+    "chinese": "逃跑",
+    "korean": "탈출하다, 도망치다",
+    "spanish": "escapar, huir",
+    "french": "s'échapper, s'enfuir"
   },
   {
     "id": 134,
     "furigana": "だから",
-    "english": "so; therefore"
+    "english": "so; therefore",
+    "chinese": "所以",
+    "korean": "그래서; 따라서",
+    "spanish": "por lo tanto",
+    "french": "donc ; par conséquent"
   },
   {
     "id": 135,
     "furigana": "ざんねん",
-    "english": "regret; regrettable"
+    "english": "regret; regrettable",
+    "chinese": "遗憾；遗憾",
+    "korean": "후회; 유감스러운",
+    "spanish": "lamentar; lamentable",
+    "french": "regretter ; regrettable"
   },
   {
     "id": 136,
     "furigana": "たたみ",
-    "english": "tatami mat (Japanese straw mat)"
+    "english": "tatami mat (Japanese straw mat)",
+    "chinese": "榻榻米",
+    "korean": "다다미 매트(일본식 짚 매트)",
+    "spanish": "tatami (estera de paja japonesa)",
+    "french": "tatami (paillasse japonaise)"
   },
   {
     "id": 137,
     "furigana": "ていねい",
-    "english": "polite, courteous, careful"
+    "english": "polite, courteous, careful",
+    "chinese": "彬彬有礼",
+    "korean": "예의 바르고, 정중하고, 조심스러운",
+    "spanish": "educado, cortés, cuidadoso",
+    "french": "poli, courtois, prudent"
   },
   {
     "id": 138,
     "furigana": "ちり",
-    "english": "geography"
+    "english": "geography",
+    "chinese": "地理",
+    "korean": "지리",
+    "spanish": "geografía",
+    "french": "géographie"
   },
   {
     "id": 139,
     "furigana": "さっき",
-    "english": "a little while ago"
+    "english": "a little while ago",
+    "chinese": "顷",
+    "korean": "조금 전",
+    "spanish": "hace un rato",
+    "french": "il y a peu de temps"
   },
   {
     "id": 140,
     "furigana": "こわい",
-    "english": "scary, frightening"
+    "english": "scary, frightening",
+    "chinese": "可怕、恐怖",
+    "korean": "무섭고, 무서운",
+    "spanish": "aterrador, espantoso",
+    "french": "effrayant, effrayant"
   },
   {
     "id": 141,
     "furigana": "つつむ",
-    "english": "to wrap, to cover"
+    "english": "to wrap, to cover",
+    "chinese": "包裹，覆盖",
+    "korean": "감싸기, 덮기",
+    "spanish": "envolver, cubrir",
+    "french": "envelopper, couvrir"
   },
   {
     "id": 142,
     "furigana": "なるべく",
-    "english": "if possible, as much as possible"
+    "english": "if possible, as much as possible",
+    "chinese": "尽可能",
+    "korean": "가능하면 가능한 한 많이",
+    "spanish": "en la medida de lo posible",
+    "french": "si possible, autant que possible"
   },
   {
     "id": 143,
     "furigana": "むり",
-    "english": "unreasonable, impossible"
+    "english": "unreasonable, impossible",
+    "chinese": "不合理，不可能",
+    "korean": "불합리하고 불가능한",
+    "spanish": "irrazonable, imposible",
+    "french": "déraisonnable, impossible"
   },
   {
     "id": 144,
     "furigana": "サンドイッチ",
-    "english": "sandwich"
+    "english": "sandwich",
+    "chinese": "夹心",
+    "korean": "샌드위치",
+    "spanish": "sándwich",
+    "french": "sandwich"
   },
   {
     "id": 145,
     "furigana": "かいぎしつ",
-    "english": "conference room"
+    "english": "conference room",
+    "chinese": "会议厅",
+    "korean": "회의실",
+    "spanish": "sala de conferencias",
+    "french": "salle de conférence"
   },
   {
     "id": 146,
     "furigana": "しなもの",
-    "english": "goods"
+    "english": "goods",
+    "chinese": "货",
+    "korean": "상품",
+    "spanish": "mercancías",
+    "french": "biens"
   },
   {
     "id": 147,
     "furigana": "にんぎょう",
-    "english": "doll, figure"
+    "english": "doll, figure",
+    "chinese": "娃娃、人物",
+    "korean": "인형, 피규어",
+    "spanish": "muñeca, figura",
+    "french": "poupée, figurine"
   },
   {
     "id": 148,
     "furigana": "りよう",
-    "english": "use, utilization"
+    "english": "use, utilization",
+    "chinese": "使用、利用",
+    "korean": "사용, 활용",
+    "spanish": "uso, utilización",
+    "french": "utilisation, utilisation"
   },
   {
     "id": 149,
     "furigana": "かざる",
-    "english": "to decorate, to adorn"
+    "english": "to decorate, to adorn",
+    "chinese": "装饰",
+    "korean": "꾸미기, 장식하기",
+    "spanish": "decorar, adornar",
+    "french": "décorer, orner"
   },
   {
     "id": 150,
     "furigana": "とめる",
-    "english": "to stop (something)"
+    "english": "to stop (something)",
+    "chinese": "停止",
+    "korean": "(무언가를) 멈추다",
+    "spanish": "detener (algo)",
+    "french": "arrêter (quelque chose)"
   },
   {
     "id": 151,
     "furigana": "はずかしい",
-    "english": "ashamed, embarrassed"
+    "english": "ashamed, embarrassed",
+    "chinese": "惭愧",
+    "korean": "부끄러움, 부끄러움",
+    "spanish": "avergonzado, abochornado",
+    "french": "honteux, embarrassé"
   },
   {
     "id": 152,
     "furigana": "いくら～ても",
-    "english": "however much one may ~"
+    "english": "however much one may ~",
+    "chinese": "无论如何",
+    "korean": "아무리 많이 해도 ~",
+    "spanish": "por mucho que uno pueda ~",
+    "french": "même si l'on peut ~"
   },
   {
     "id": 153,
     "furigana": "ようじ",
-    "english": "business to take care of; tasks; errands"
+    "english": "business to take care of; tasks; errands",
+    "chinese": "事务；任务；差事",
+    "korean": "처리해야 할 사업; 업무; 심부름",
+    "spanish": "asuntos de los que ocuparse; tareas; recados",
+    "french": "affaires à régler ; tâches ; courses"
   },
   {
     "id": 154,
     "furigana": "ビル",
-    "english": "(abbr.) building"
+    "english": "(abbr.) building",
+    "chinese": "楼宇",
+    "korean": "(약어) 건물",
+    "spanish": "(abbr.) edificio",
+    "french": "(abbr.) bâtiment"
   },
   {
     "id": 155,
     "furigana": "けんかする",
-    "english": "quarrel"
+    "english": "quarrel",
+    "chinese": "斗嘴",
+    "korean": "싸움",
+    "spanish": "disputa",
+    "french": "querelle"
   },
   {
     "id": 156,
     "furigana": "がんばる",
-    "english": "to try one's best, to try hard, to persist"
+    "english": "to try one's best, to try hard, to persist",
+    "chinese": "尽力、努力、坚持",
+    "korean": "최선을 다하고, 열심히 노력하고, 끈기 있게 노력하는 것",
+    "spanish": "hacer todo lo posible, esforzarse, persistir",
+    "french": "faire de son mieux, faire des efforts, persévérer"
   },
   {
     "id": 157,
     "furigana": "なげる",
-    "english": "to pitch, to cast away"
+    "english": "to pitch, to cast away",
+    "chinese": "丢弃",
+    "korean": "던지다, 버리다",
+    "spanish": "lanzar, desechar",
+    "french": "de jeter, de rejeter"
   },
   {
     "id": 158,
     "furigana": "こしょうする",
-    "english": "breakdown"
+    "english": "breakdown",
+    "chinese": "细数",
+    "korean": "고장",
+    "spanish": "avería",
+    "french": "répartition"
   },
   {
     "id": 159,
     "furigana": "ちから",
-    "english": "strength, power"
+    "english": "strength, power",
+    "chinese": "力量、权力",
+    "korean": "힘, 파워",
+    "spanish": "fuerza, poder",
+    "french": "force, puissance"
   },
   {
     "id": 160,
     "furigana": "うける",
-    "english": "to take (an examination, interview, etc.); to receive"
+    "english": "to take (an examination, interview, etc.); to receive",
+    "chinese": "参加（考试、面试等）；接受",
+    "korean": "응시(시험, 면접 등); 받기",
+    "spanish": "realizar (un examen, una entrevista, etc.); recibir",
+    "french": "passer (un examen, un entretien, etc.) ; recevoir"
   },
   {
     "id": 161,
     "furigana": "きぶん",
-    "english": "feeling, mood"
+    "english": "feeling, mood",
+    "chinese": "感觉、情绪",
+    "korean": "느낌, 기분",
+    "spanish": "sentimiento, estado de ánimo",
+    "french": "sentiment, humeur"
   },
   {
     "id": 162,
     "furigana": "まちがえる",
-    "english": "to make a mistake"
+    "english": "to make a mistake",
+    "chinese": "犯错误",
+    "korean": "실수하기",
+    "spanish": "cometer un error",
+    "french": "commettre une erreur"
   },
   {
     "id": 163,
     "furigana": "そんな",
-    "english": "such, like that, that sort of"
+    "english": "such, like that, that sort of",
+    "chinese": "这样的",
+    "korean": "그런, 그런 종류의",
+    "spanish": "tal, así, ese tipo de",
+    "french": "tel, tel, tel, tel, tel, tel, tel, tel, tel, tel, tel, tel, tel"
   },
   {
     "id": 164,
     "furigana": "ほし",
-    "english": "star"
+    "english": "star",
+    "chinese": "明星",
+    "korean": "별",
+    "spanish": "estrella",
+    "french": "étoile"
   },
   {
     "id": 165,
     "furigana": "ばあい",
-    "english": "case, situation"
+    "english": "case, situation",
+    "chinese": "情况",
+    "korean": "사례, 상황",
+    "spanish": "caso, situación",
+    "french": "cas, situation"
   },
   {
     "id": 166,
     "furigana": "やっと",
-    "english": "at last, finally"
+    "english": "at last, finally",
+    "chinese": "终于",
+    "korean": "마침내, 마침내",
+    "spanish": "por fin",
+    "french": "enfin, enfin"
   },
   {
     "id": 167,
     "furigana": "たりる",
-    "english": "to be sufficient; to be enough"
+    "english": "to be sufficient; to be enough",
+    "chinese": "足够；足够",
+    "korean": "충분하다; 충분하다",
+    "spanish": "ser suficiente; bastar",
+    "french": "être suffisant ; être suffisant"
   },
   {
     "id": 168,
     "furigana": "おこなう",
-    "english": "to carry out; to conduct (typically used in written language)"
+    "english": "to carry out; to conduct (typically used in written language)",
+    "chinese": "进行",
+    "korean": "수행하다; 실시하다 (일반적으로 서면 언어로 사용됨)",
+    "spanish": "llevar a cabo; conducir (típicamente utilizado en el lenguaje escrito)",
+    "french": "réaliser ; conduire (généralement utilisé dans la langue écrite)"
   },
   {
     "id": 169,
     "furigana": "ぶどう",
-    "english": "grapes"
+    "english": "grapes",
+    "chinese": "萄",
+    "korean": "포도",
+    "spanish": "uvas",
+    "french": "raisins"
   },
   {
     "id": 170,
     "furigana": "なくなる",
-    "english": "to disappear, to get lost"
+    "english": "to disappear, to get lost",
+    "chinese": "消失，迷失",
+    "korean": "사라지다, 길을 잃다",
+    "spanish": "desaparecer, perderse",
+    "french": "disparaître, se perdre"
   },
   {
     "id": 171,
     "furigana": "じゅんびする",
-    "english": "prepare"
+    "english": "prepare",
+    "chinese": "编写",
+    "korean": "준비",
+    "spanish": "prepare",
+    "french": "préparer"
   },
   {
     "id": 172,
     "furigana": "せかい",
-    "english": "world"
+    "english": "world",
+    "chinese": "世界",
+    "korean": "세계",
+    "spanish": "mundo",
+    "french": "monde"
   },
   {
     "id": 173,
     "furigana": "じゅうしょ",
-    "english": "address; place of residence"
+    "english": "address; place of residence",
+    "chinese": "地址；居住地",
+    "korean": "주소; 거주지",
+    "spanish": "dirección; lugar de residencia",
+    "french": "adresse ; lieu de résidence"
   },
   {
     "id": 174,
     "furigana": "さらいげつ",
-    "english": "the month after next"
+    "english": "the month after next",
+    "chinese": "后月",
+    "korean": "다음 달",
+    "spanish": "pasado mañana",
+    "french": "le mois suivant"
   },
   {
     "id": 175,
     "furigana": "はやし",
-    "english": "woods, forest"
+    "english": "woods, forest",
+    "chinese": "树林",
+    "korean": "숲, 숲",
+    "spanish": "bosque, selva",
+    "french": "bois, forêt"
   },
   {
     "id": 176,
     "furigana": "ばい",
-    "english": "double"
+    "english": "double",
+    "chinese": "双人",
+    "korean": "double",
+    "spanish": "doble",
+    "french": "double"
   },
   {
     "id": 177,
     "furigana": "やせる",
-    "english": "to lose weight"
+    "english": "to lose weight",
+    "chinese": "减肥",
+    "korean": "체중 감량",
+    "spanish": "para adelgazar",
+    "french": "perdre du poids"
   },
   {
     "id": 178,
     "furigana": "せん",
-    "english": "line, wire"
+    "english": "line, wire",
+    "chinese": "线路、电线",
+    "korean": "라인, 와이어",
+    "spanish": "línea, cable",
+    "french": "ligne, fil"
   },
   {
     "id": 179,
     "furigana": "せんそう",
-    "english": "war"
+    "english": "war",
+    "chinese": "战",
+    "korean": "전쟁",
+    "spanish": "guerra",
+    "french": "guerre"
   },
   {
     "id": 180,
     "furigana": "きめる",
-    "english": "to decide (v.t.)"
+    "english": "to decide (v.t.)",
+    "chinese": "决定（v.t.）",
+    "korean": "결정하다 (v.t.)",
+    "spanish": "decidir (v.t.)",
+    "french": "décider (v.t.)"
   },
   {
     "id": 181,
     "furigana": "しらべる",
-    "english": "to check; to look up; to inquire; to search"
+    "english": "to check; to look up; to inquire; to search",
+    "chinese": "检查；查找；询问；搜索",
+    "korean": "확인하다; 조회하다; 문의하다; 검색하다",
+    "spanish": "comprobar; buscar; indagar; buscar",
+    "french": "vérifier ; rechercher ; s'informer ; chercher"
   },
   {
     "id": 182,
     "furigana": "ねぼう",
-    "english": "sleeping in late"
+    "english": "sleeping in late",
+    "chinese": "晚睡",
+    "korean": "늦잠 자기",
+    "spanish": "dormir hasta tarde",
+    "french": "faire la grasse matinée"
   },
   {
     "id": 183,
     "furigana": "パパ",
-    "english": "papa, daddy"
+    "english": "papa, daddy",
+    "chinese": "爸爸",
+    "korean": "아빠, 아빠",
+    "spanish": "papá, papi",
+    "french": "papa, papa"
   },
   {
     "id": 184,
     "furigana": "ひかる",
-    "english": "to shine, to glitter"
+    "english": "to shine, to glitter",
+    "chinese": "熠熠生辉",
+    "korean": "빛나다, 반짝이다",
+    "spanish": "brillar, resplandecer",
+    "french": "briller, scintiller"
   },
   {
     "id": 185,
     "furigana": "おっと",
-    "english": "husband"
+    "english": "husband",
+    "chinese": "丈夫",
+    "korean": "남편",
+    "spanish": "marido",
+    "french": "mari"
   },
   {
     "id": 186,
     "furigana": "くも",
-    "english": "cloud"
+    "english": "cloud",
+    "chinese": "云层",
+    "korean": "클라우드",
+    "spanish": "nube",
+    "french": "nuage"
   },
   {
     "id": 187,
     "furigana": "さか",
-    "english": "slope, hill"
+    "english": "slope, hill",
+    "chinese": "山坡",
+    "korean": "경사, 언덕",
+    "spanish": "pendiente, colina",
+    "french": "pente, colline"
   },
   {
     "id": 188,
     "furigana": "～(て) しまう",
-    "english": "to end up ~"
+    "english": "to end up ~",
+    "chinese": "结束 ~",
+    "korean": "결국 ~로 끝납니다.",
+    "spanish": "para terminar ~",
+    "french": "pour finir ~"
   },
   {
     "id": 189,
     "furigana": "ひこうじょう",
-    "english": "airport"
+    "english": "airport",
+    "chinese": "机场",
+    "korean": "공항",
+    "spanish": "aeropuerto",
+    "french": "aéroport"
   },
   {
     "id": 190,
     "furigana": "じゅうどう",
-    "english": "judo"
+    "english": "judo",
+    "chinese": "柔道",
+    "korean": "유도",
+    "spanish": "judo",
+    "french": "judo"
   },
   {
     "id": 191,
     "furigana": "けっして",
-    "english": "never"
+    "english": "never",
+    "chinese": "从不",
+    "korean": "절대",
+    "spanish": "nunca",
+    "french": "jamais"
   },
   {
     "id": 192,
     "furigana": "じむしょ",
-    "english": "office"
+    "english": "office",
+    "chinese": "办公室",
+    "korean": "사무실",
+    "spanish": "oficina",
+    "french": "bureau"
   },
   {
     "id": 193,
     "furigana": "れんらく",
-    "english": "communication, contact, connection"
+    "english": "communication, contact, connection",
+    "chinese": "沟通、联系、连接",
+    "korean": "커뮤니케이션, 연락처, 연결",
+    "spanish": "comunicación, contacto, conexión",
+    "french": "communication, contact, connexion"
   },
   {
     "id": 194,
     "furigana": "しょうがっこう",
-    "english": "elementary school"
+    "english": "elementary school",
+    "chinese": "初级小学",
+    "korean": "초등학교",
+    "spanish": "escuela primaria",
+    "french": "école primaire"
   },
   {
     "id": 195,
     "furigana": "きゃく",
-    "english": "guest, customer"
+    "english": "guest, customer",
+    "chinese": "客人、顾客",
+    "korean": "게스트, 고객",
+    "spanish": "invitado, cliente",
+    "french": "invité, client"
   },
   {
     "id": 196,
     "furigana": "むかし",
-    "english": "old days; past"
+    "english": "old days; past",
+    "chinese": "旧日",
+    "korean": "옛날; 과거",
+    "spanish": "viejos tiempos; pasado",
+    "french": "ancien temps ; passé"
   },
   {
     "id": 197,
     "furigana": "うつくしい",
-    "english": "beautiful, lovely"
+    "english": "beautiful, lovely",
+    "chinese": "美丽、可爱",
+    "korean": "아름답고 사랑스러운",
+    "spanish": "hermoso, encantador",
+    "french": "belle, belle"
   },
   {
     "id": 198,
     "furigana": "すてる",
-    "english": "throw away (trash), dump, discard"
+    "english": "throw away (trash), dump, discard",
+    "chinese": "丢弃",
+    "korean": "버리기(쓰레기), 덤프, 폐기",
+    "spanish": "tirar (basura), tirar, descartar",
+    "french": "jeter (ordures), se débarrasser, se défaire"
   },
   {
     "id": 199,
     "furigana": "なさる",
-    "english": "-- honorific expression for する --"
+    "english": "-- honorific expression for する --",
+    "chinese": "-- する的敬语 --",
+    "korean": "する에 대한 경어 표현 -- --.",
+    "spanish": "-- expresión honorífica para する --",
+    "french": "-- expression honorifique pour する --"
   },
   {
     "id": 200,
     "furigana": "こと",
-    "english": "thing(s), matter(s), fact"
+    "english": "thing(s), matter(s), fact",
+    "chinese": "物、事、事实",
+    "korean": "사물, 물질, 사실",
+    "spanish": "cosa(s), asunto(s), hecho",
+    "french": "chose(s), matière(s), fait"
   },
   {
     "id": 201,
     "furigana": "どんどん",
-    "english": "quickly and steadily; at a rapid pace"
+    "english": "quickly and steadily; at a rapid pace",
+    "chinese": "快速、稳定；快速",
+    "korean": "빠르고 꾸준히, 빠른 속도로",
+    "spanish": "con rapidez y constancia; a un ritmo rápido",
+    "french": "rapidement et régulièrement ; à un rythme rapide"
   },
   {
     "id": 202,
     "furigana": "しあい",
-    "english": "match, game, competition"
+    "english": "match, game, competition",
+    "chinese": "比赛、游戏、竞争",
+    "korean": "경기, 게임, 경쟁",
+    "spanish": "partido, juego, competición",
+    "french": "match, jeu, compétition"
   },
   {
     "id": 203,
     "furigana": "てきとう",
-    "english": "fitness, suitability"
+    "english": "fitness, suitability",
+    "chinese": "适宜性",
+    "korean": "피트니스, 적합성",
+    "spanish": "aptitud, idoneidad",
+    "french": "l'aptitude, l'adéquation"
   },
   {
     "id": 204,
     "furigana": "すばらしい",
-    "english": "wonderful; terrific"
+    "english": "wonderful; terrific",
+    "chinese": "精彩；了不起",
+    "korean": "훌륭하다; 대단하다",
+    "spanish": "maravilloso; estupendo",
+    "french": "merveilleux ; formidable"
   },
   {
     "id": 205,
     "furigana": "びじゅつかん",
-    "english": "art gallery, art museum"
+    "english": "art gallery, art museum",
+    "chinese": "艺术画廊、艺术博物馆",
+    "korean": "아트 갤러리, 미술관",
+    "spanish": "galería de arte, museo de arte",
+    "french": "galerie d'art, musée d'art"
   },
   {
     "id": 206,
     "furigana": "ぶんぽう",
-    "english": "grammar"
+    "english": "grammar",
+    "chinese": "词汇",
+    "korean": "문법",
+    "spanish": "gramática",
+    "french": "grammaire"
   },
   {
     "id": 207,
     "furigana": "おわり",
-    "english": "end"
+    "english": "end",
+    "chinese": "最后",
+    "korean": "끝",
+    "spanish": "fin",
+    "french": "fin"
   },
   {
     "id": 208,
     "furigana": "かべ",
-    "english": "wall"
+    "english": "wall",
+    "chinese": "墙壁",
+    "korean": "벽",
+    "spanish": "pared",
+    "french": "mur"
   },
   {
     "id": 209,
     "furigana": "いちど",
-    "english": "once, one time"
+    "english": "once, one time",
+    "chinese": "一次",
+    "korean": "한 번, 한 번",
+    "spanish": "una vez, una vez",
+    "french": "une fois, une seule fois"
   },
   {
     "id": 210,
     "furigana": "おれい",
-    "english": "expression of gratitude; thanking; gift of appreciation; bow"
+    "english": "expression of gratitude; thanking; gift of appreciation; bow",
+    "chinese": "表示感谢；致谢；致谢礼；鞠躬",
+    "korean": "감사의 표현; 감사; 감사; 감사 선물; 절",
+    "spanish": "expresión de gratitud; agradecimiento; obsequio de aprecio; reverencia",
+    "french": "expression de la gratitude ; remerciement ; cadeau d'appréciation ; salut"
   },
   {
     "id": 211,
     "furigana": "しんせつ",
-    "english": "kindness"
+    "english": "kindness",
+    "chinese": "仁慈",
+    "korean": "친절",
+    "spanish": "amabilidad",
+    "french": "gentillesse"
   },
   {
     "id": 212,
     "furigana": "しらせる",
-    "english": "to notify"
+    "english": "to notify",
+    "chinese": "通知",
+    "korean": "를 사용하여",
+    "spanish": "notificar",
+    "french": "pour notifier"
   },
   {
     "id": 213,
     "furigana": "はいしゃ",
-    "english": "dentist"
+    "english": "dentist",
+    "chinese": "牙科医生",
+    "korean": "치과 의사",
+    "spanish": "dentista",
+    "french": "dentiste"
   },
   {
     "id": 214,
     "furigana": "ねっしん",
-    "english": "enthusiasm"
+    "english": "enthusiasm",
+    "chinese": "热情",
+    "korean": "열정",
+    "spanish": "entusiasmo",
+    "french": "l'enthousiasme"
   },
   {
     "id": 215,
     "furigana": "はじめる",
-    "english": "to start, to begin"
+    "english": "to start, to begin",
+    "chinese": "开始，开始",
+    "korean": "시작하려면, 시작하려면",
+    "spanish": "empezar, comenzar",
+    "french": "commencer, débuter"
   },
   {
     "id": 216,
     "furigana": "もらう",
-    "english": "to receive"
+    "english": "to receive",
+    "chinese": "接受",
+    "korean": "수신하려면",
+    "spanish": "recibir",
+    "french": "recevoir"
   },
   {
     "id": 217,
     "furigana": "なく",
-    "english": "to cry"
+    "english": "to cry",
+    "chinese": "哭",
+    "korean": "울다",
+    "spanish": "llorar",
+    "french": "pleurer"
   },
   {
     "id": 218,
     "furigana": "なおる",
-    "english": "to get better; to recover from illness (v.i.)"
+    "english": "to get better; to recover from illness (v.i.)",
+    "chinese": "好起来；从疾病中恢复过来（v.i.）",
+    "korean": "나아지다; 병에서 회복하다 (v.i.)",
+    "spanish": "mejorar; recuperarse de una enfermedad (v.i.)",
+    "french": "se rétablir ; se remettre d'une maladie (v.i.)"
   },
   {
     "id": 219,
     "furigana": "ねつ",
-    "english": "fever, temperature"
+    "english": "fever, temperature",
+    "chinese": "发烧、体温",
+    "korean": "발열, 체온",
+    "spanish": "fiebre, temperatura",
+    "french": "fièvre, température"
   },
   {
     "id": 220,
     "furigana": "おまつり",
-    "english": "festival"
+    "english": "festival",
+    "chinese": "庆典",
+    "korean": "축제",
+    "spanish": "festival",
+    "french": "festival"
   },
   {
     "id": 221,
     "furigana": "すいどう",
-    "english": "water service, water line"
+    "english": "water service, water line",
+    "chinese": "供水服务，水管",
+    "korean": "수도 서비스, 수도 라인",
+    "spanish": "servicio de agua, línea de agua",
+    "french": "service d'eau, conduite d'eau"
   },
   {
     "id": 222,
     "furigana": "におい",
-    "english": "odor, smell"
+    "english": "odor, smell",
+    "chinese": "气味",
+    "korean": "냄새, 냄새",
+    "spanish": "olor, olor",
+    "french": "odeur, odeur"
   },
   {
     "id": 223,
     "furigana": "ベル",
-    "english": "bell"
+    "english": "bell",
+    "chinese": "铃",
+    "korean": "bell",
+    "spanish": "campana",
+    "french": "cloche"
   },
   {
     "id": 224,
     "furigana": "あかんぼう",
-    "english": "baby"
+    "english": "baby",
+    "chinese": "婴幼儿",
+    "korean": "baby",
+    "spanish": "bebé",
+    "french": "bébé"
   },
   {
     "id": 225,
     "furigana": "おかしい",
-    "english": "strange; odd; funny"
+    "english": "strange; odd; funny",
+    "chinese": "奇怪；古怪；有趣",
+    "korean": "이상한; 이상한; 재미있는",
+    "spanish": "extraño; raro; divertido",
+    "french": "étrange ; bizarre ; drôle"
   },
   {
     "id": 226,
     "furigana": "じこ",
-    "english": "accident"
+    "english": "accident",
+    "chinese": "意外",
+    "korean": "사고",
+    "spanish": "accidente",
+    "french": "accident"
   },
   {
     "id": 227,
     "furigana": "へん",
-    "english": "strange, odd"
+    "english": "strange, odd",
+    "chinese": "千奇百怪",
+    "korean": "이상한, 이상한",
+    "spanish": "extraño, raro",
+    "french": "étrange, bizarre"
   },
   {
     "id": 228,
     "furigana": "じてん",
-    "english": "encyclopedia, reference book"
+    "english": "encyclopedia, reference book",
+    "chinese": "百科全书、参考书",
+    "korean": "백과사전, 참고서",
+    "spanish": "enciclopedia, libro de referencia",
+    "french": "encyclopédie, ouvrage de référence"
   },
   {
     "id": 229,
     "furigana": "のこる",
-    "english": "to remain (v.i.), to be left"
+    "english": "to remain (v.i.), to be left",
+    "chinese": "留下（v.i.），离开",
+    "korean": "남다(동사), 떠나다",
+    "spanish": "permanecer (v.i.), quedar",
+    "french": "rester (v.i.), être laissé"
   },
   {
     "id": 230,
     "furigana": "たてる",
-    "english": "to stand (something) up, to erect (something)"
+    "english": "to stand (something) up, to erect (something)",
+    "chinese": "竖起来，直立起来",
+    "korean": "(무언가를) 세우다, (무언가를) 세우다",
+    "spanish": "levantar (algo), erigir (algo)",
+    "french": "de dresser (quelque chose), d'ériger (quelque chose)"
   },
   {
     "id": 231,
     "furigana": "くれる",
-    "english": "to give, to do for"
+    "english": "to give, to do for",
+    "chinese": "给，为",
+    "korean": "베풀고, 위해",
+    "spanish": "dar, hacer por",
+    "french": "donner, faire pour"
   },
   {
     "id": 232,
     "furigana": "～いん",
-    "english": "member of ~"
+    "english": "member of ~",
+    "chinese": "成员 ~",
+    "korean": "의 회원",
+    "spanish": "miembro de ~",
+    "french": "membre de ~"
   },
   {
     "id": 233,
     "furigana": "げんいん",
-    "english": "cause, origin, source"
+    "english": "cause, origin, source",
+    "chinese": "原因、起源、源头",
+    "korean": "원인, 출처, 소스",
+    "spanish": "causa, origen, fuente",
+    "french": "cause, origine, source"
   },
   {
     "id": 234,
     "furigana": "おどろく",
-    "english": "to be surprised, to be astonished"
+    "english": "to be surprised, to be astonished",
+    "chinese": "讶异、诧异",
+    "korean": "놀라다, 놀라움을 느끼다",
+    "spanish": "sorprenderse, asombrarse",
+    "french": "être surpris, être étonné"
   },
   {
     "id": 235,
     "furigana": "頂く",
-    "english": "-- extra-modest expression for たべる and のむ; humble expression for もらう --"
+    "english": "-- extra-modest expression for たべる and のむ; humble expression for もらう --",
+    "chinese": "-- たべる和のむ的格外谦逊的表达；もらう的谦逊的表达 --",
+    "korean": "-- たべる와 のむ는 매우 겸손한 표현, もらう는 겸손한 표현입니다.",
+    "spanish": "-- expresión extra-moderna para たべる y のむ; expresión humilde para もらう --",
+    "french": "-- expression extra-modeste pour たべる et のむ ; expression humble pour もらう --"
   },
   {
     "id": 236,
     "furigana": "そぼ",
-    "english": "grandmother"
+    "english": "grandmother",
+    "chinese": "祖母",
+    "korean": "할머니",
+    "spanish": "abuela",
+    "french": "grand-mère"
   },
   {
     "id": 237,
     "furigana": "ばしょ",
-    "english": "place, location"
+    "english": "place, location",
+    "chinese": "地点",
+    "korean": "장소, 위치",
+    "spanish": "lugar, ubicación",
+    "french": "lieu, emplacement"
   },
   {
     "id": 238,
     "furigana": "こたえ",
-    "english": "answer, response"
+    "english": "answer, response",
+    "chinese": "回答、回应",
+    "korean": "답변, 응답",
+    "spanish": "respuesta, respuesta",
+    "french": "réponse, réponse"
   },
   {
     "id": 239,
     "furigana": "もちろん",
-    "english": "certainly, of course"
+    "english": "certainly, of course",
+    "chinese": "当然",
+    "korean": "물론, 물론",
+    "spanish": "por supuesto",
+    "french": "certainement, bien sûr"
   },
   {
     "id": 240,
     "furigana": "つける",
-    "english": "to soak, to moisten, to pickle"
+    "english": "to soak, to moisten, to pickle",
+    "chinese": "浸泡、浸润、腌制",
+    "korean": "담그기, 적시기, 피클하기",
+    "spanish": "remojar, humedecer, encurtir",
+    "french": "tremper, humidifier, mariner"
   },
   {
     "id": 241,
     "furigana": "うけつけ",
-    "english": "reception(ist) desk"
+    "english": "reception(ist) desk",
+    "chinese": "前台",
+    "korean": "리셉션(IST) 데스크",
+    "spanish": "mostrador de recepción",
+    "french": "bureau d'accueil"
   },
   {
     "id": 242,
     "furigana": "うち",
-    "english": "within, inside"
+    "english": "within, inside",
+    "chinese": "内",
+    "korean": "내부, 내부",
+    "spanish": "dentro, en el interior",
+    "french": "à l'intérieur, à l'intérieur"
   },
   {
     "id": 243,
     "furigana": "スクリーン",
-    "english": "screen"
+    "english": "screen",
+    "chinese": "筛查",
+    "korean": "화면",
+    "spanish": "pantalla",
+    "french": "écran"
   },
   {
     "id": 244,
     "furigana": "ふえる",
-    "english": "to increase, to multiply"
+    "english": "to increase, to multiply",
+    "chinese": "增加，倍增",
+    "korean": "증가, 곱하기",
+    "spanish": "aumentar, multiplicar",
+    "french": "augmenter, multiplier"
   },
   {
     "id": 245,
     "furigana": "または",
-    "english": "or, otherwise"
+    "english": "or, otherwise",
+    "chinese": "否则",
+    "korean": "또는",
+    "spanish": "o, en caso contrario",
+    "french": "ou, dans le cas contraire"
   },
   {
     "id": 246,
     "furigana": "けがする",
-    "english": "injury (to animate object), hurt"
+    "english": "injury (to animate object), hurt",
+    "chinese": "伤害",
+    "korean": "부상(움직이는 물체에), 상처",
+    "spanish": "lesión (a un objeto animado), herida",
+    "french": "blessure (à un objet animé), blessure"
   },
   {
     "id": 247,
     "furigana": "いか",
-    "english": "less than, below"
+    "english": "less than, below",
+    "chinese": "小于",
+    "korean": "미만, 아래",
+    "spanish": "menos que, por debajo de",
+    "french": "inférieur à, en dessous de"
   },
   {
     "id": 248,
     "furigana": "えらぶ",
-    "english": "to choose; to select"
+    "english": "to choose; to select",
+    "chinese": "选择；挑选",
+    "korean": "선택하려면; 선택하려면",
+    "spanish": "elegir; seleccionar",
+    "french": "choisir ; sélectionner"
   },
   {
     "id": 249,
     "furigana": "～ばかり",
-    "english": "just did ~, only"
+    "english": "just did ~, only",
+    "chinese": "只是",
+    "korean": "방금 ~만",
+    "spanish": "acaba de hacer ~, sólo",
+    "french": "vient de faire ~, seulement"
   },
   {
     "id": 250,
     "furigana": "こころ",
-    "english": "heart, mind"
+    "english": "heart, mind",
+    "chinese": "心、思想",
+    "korean": "마음, 마음",
+    "spanish": "corazón, mente",
+    "french": "cœur, esprit"
   },
   {
     "id": 251,
     "furigana": "～だす",
-    "english": "to start doing ~"
+    "english": "to start doing ~",
+    "chinese": "开始做 ~",
+    "korean": "를 시작하려면",
+    "spanish": "para empezar a hacer ~",
+    "french": "pour commencer à faire ~"
   },
   {
     "id": 252,
     "furigana": "サラダ",
-    "english": "salad"
+    "english": "salad",
+    "chinese": "沙拉",
+    "korean": "샐러드",
+    "spanish": "ensalada",
+    "french": "salade"
   },
   {
     "id": 253,
     "furigana": "とどける",
-    "english": "to deliver (v.t.)"
+    "english": "to deliver (v.t.)",
+    "chinese": "交付（v.t.）",
+    "korean": "전달하다 (v.t.)",
+    "spanish": "entregar (v.t.)",
+    "french": "délivrer (v.t.)"
   },
   {
     "id": 254,
     "furigana": "あいさつする",
-    "english": "greet(ing)"
+    "english": "greet(ing)",
+    "chinese": "打招呼",
+    "korean": "greet(ing)",
+    "spanish": "saludar",
+    "french": "saluer(s)"
   },
   {
     "id": 255,
     "furigana": "けしき",
-    "english": "scenery, landscape"
+    "english": "scenery, landscape",
+    "chinese": "风景",
+    "korean": "풍경, 풍경",
+    "spanish": "escenario, paisaje",
+    "french": "paysage, paysage"
   },
   {
     "id": 256,
     "furigana": "たしか",
-    "english": "if I remember correctly; certain, definite"
+    "english": "if I remember correctly; certain, definite",
+    "chinese": "如果我没记错的话",
+    "korean": "내 기억이 맞다면; 확실하고 확실한",
+    "spanish": "si no recuerdo mal; cierto, definitivo",
+    "french": "si je me souviens bien ; certain, définitif"
   },
   {
     "id": 257,
     "furigana": "ステーキ",
-    "english": "steak"
+    "english": "steak",
+    "chinese": "牛排",
+    "korean": "스테이크",
+    "spanish": "filete",
+    "french": "steak"
   },
   {
     "id": 258,
     "furigana": "しょくりょうひん",
-    "english": "foodstuff, groceries"
+    "english": "foodstuff, groceries",
+    "chinese": "食品、杂货",
+    "korean": "식료품, 식료품",
+    "spanish": "alimentos, comestibles",
+    "french": "denrées alimentaires, épicerie"
   },
   {
     "id": 259,
     "furigana": "もり",
-    "english": "forest"
+    "english": "forest",
+    "chinese": "森林",
+    "korean": "숲",
+    "spanish": "bosque",
+    "french": "forêt"
   },
   {
     "id": 260,
     "furigana": "いない",
-    "english": "within, less (no more) than"
+    "english": "within, less (no more) than",
+    "chinese": "内，少于（不超过",
+    "korean": "이내, 이하(초과하지 않음)",
+    "spanish": "dentro, menos (no más) que",
+    "french": "dans la limite de, moins de (pas plus de)"
   },
   {
     "id": 261,
     "furigana": "よてい",
-    "english": "plans, arrangement, schedule"
+    "english": "plans, arrangement, schedule",
+    "chinese": "计划、安排、日程",
+    "korean": "계획, 준비, 일정",
+    "spanish": "planes, disposiciones, calendario",
+    "french": "plan, arrangement, calendrier"
   },
   {
     "id": 262,
     "furigana": "オーバー",
-    "english": "overcoat; over, exceeding, exaggeration"
+    "english": "overcoat; over, exceeding, exaggeration",
+    "chinese": "氅；超过、超过、夸张",
+    "korean": "오버코트; 지나치다, 초과하다, 과장하다",
+    "spanish": "abrigo; exceso, exageración",
+    "french": "pardessus ; au-dessus, excédant, exagération"
   },
   {
     "id": 263,
     "furigana": "かわく",
-    "english": "to get dry"
+    "english": "to get dry",
+    "chinese": "干燥",
+    "korean": "건조해지려면",
+    "spanish": "secarse",
+    "french": "se dessécher"
   },
   {
     "id": 264,
     "furigana": "いし",
-    "english": "stone"
+    "english": "stone",
+    "chinese": "石材",
+    "korean": "돌",
+    "spanish": "piedra",
+    "french": "pierre"
   },
   {
     "id": 265,
     "furigana": "おもいだす",
-    "english": "to recall, to remember"
+    "english": "to recall, to remember",
+    "chinese": "忆及，记住",
+    "korean": "기억하기, 기억하기",
+    "spanish": "recordar, rememorar",
+    "french": "se rappeler, se souvenir"
   },
   {
     "id": 266,
     "furigana": "おどる",
-    "english": "to dance"
+    "english": "to dance",
+    "chinese": "跳舞",
+    "korean": "춤추기",
+    "spanish": "para bailar",
+    "french": "danser"
   },
   {
     "id": 267,
     "furigana": "こまかい",
-    "english": "small; fine, minute"
+    "english": "small; fine, minute",
+    "chinese": "小；细，微小",
+    "korean": "작은, 미세한, 미세한",
+    "spanish": "pequeño; fino, diminuto",
+    "french": "petit ; fin, minuscule"
   },
   {
     "id": 268,
     "furigana": "ぬる",
-    "english": "to paint, to plaster"
+    "english": "to paint, to plaster",
+    "chinese": "涂漆、抹灰",
+    "korean": "페인트 칠하기, 석고 칠하기",
+    "spanish": "pintar, enlucir",
+    "french": "peindre, plâtrer"
   },
   {
     "id": 269,
     "furigana": "ごしゅじん",
-    "english": "(your, her) husband"
+    "english": "(your, her) husband",
+    "chinese": "夫婿",
+    "korean": "(당신, 그녀의) 남편",
+    "spanish": "(tu, su) marido",
+    "french": "(votre, son) mari"
   },
   {
     "id": 270,
     "furigana": "めずらしい",
-    "english": "unusual, rare"
+    "english": "unusual, rare",
+    "chinese": "异",
+    "korean": "특이, 희귀",
+    "spanish": "inusual, raro",
+    "french": "inhabituel, rare"
   },
   {
     "id": 271,
     "furigana": "よう",
-    "english": "errand, task, business (to take care of)"
+    "english": "errand, task, business (to take care of)",
+    "chinese": "差事",
+    "korean": "심부름, 작업, 사업(처리하다)",
+    "spanish": "recado, tarea, negocio (ocuparse de algo)",
+    "french": "course, tâche, affaire (s'occuper de)"
   },
   {
     "id": 272,
     "furigana": "こうむいん",
-    "english": "government worker, public servant"
+    "english": "government worker, public servant",
+    "chinese": "政府工作人员、公务员",
+    "korean": "공무원, 공무원",
+    "spanish": "funcionario, empleado público",
+    "french": "travailleur du gouvernement, fonctionnaire"
   },
   {
     "id": 273,
     "furigana": "おじょうさん",
-    "english": "(someone's) daughter (polite)"
+    "english": "(someone's) daughter (polite)",
+    "chinese": "(大小姐",
+    "korean": "(누군가의) 딸(공손한)",
+    "spanish": "hija (de alguien) (cortés)",
+    "french": "la fille (de quelqu'un) (polie)"
   },
   {
     "id": 274,
     "furigana": "ようい",
-    "english": "preparation"
+    "english": "preparation",
+    "chinese": "编制",
+    "korean": "준비",
+    "spanish": "preparación",
+    "french": "préparation"
   },
   {
     "id": 275,
     "furigana": "さがす",
-    "english": "to search, to seek, to look for"
+    "english": "to search, to seek, to look for",
+    "chinese": "搜索、寻找",
+    "korean": "검색하다, 찾다, 찾다",
+    "spanish": "buscar, buscar, buscar",
+    "french": "chercher, rechercher, chercher"
   },
   {
     "id": 276,
     "furigana": "かたち",
-    "english": "shape"
+    "english": "shape",
+    "chinese": "形状",
+    "korean": "모양",
+    "spanish": "forma",
+    "french": "forme"
   },
   {
     "id": 277,
     "furigana": "うんてんする",
-    "english": "driving"
+    "english": "driving",
+    "chinese": "驾驶",
+    "korean": "운전",
+    "spanish": "conducir",
+    "french": "conduite"
   },
   {
     "id": 278,
     "furigana": "すっかり",
-    "english": "all, completely"
+    "english": "all, completely",
+    "chinese": "全部",
+    "korean": "모두, 완전히",
+    "spanish": "todo, completamente",
+    "french": "tous, complètement"
   },
   {
     "id": 279,
     "furigana": "アナウンサー",
-    "english": "announcer"
+    "english": "announcer",
+    "chinese": "播音员",
+    "korean": "아나운서",
+    "spanish": "locutor",
+    "french": "annonceur"
   },
   {
     "id": 280,
     "furigana": "おみやげ",
-    "english": "souvenir"
+    "english": "souvenir",
+    "chinese": "记念品",
+    "korean": "기념품",
+    "spanish": "recuerdo",
+    "french": "souvenir"
   },
   {
     "id": 281,
     "furigana": "けしゴム",
-    "english": "eraser"
+    "english": "eraser",
+    "chinese": "橡皮擦",
+    "korean": "지우개",
+    "spanish": "borrador",
+    "french": "gomme"
   },
   {
     "id": 282,
     "furigana": "りょかん",
-    "english": "a Japanese inn"
+    "english": "a Japanese inn",
+    "chinese": "栈房",
+    "korean": "일본 여관",
+    "spanish": "una posada japonesa",
+    "french": "une auberge japonaise"
   },
   {
     "id": 283,
     "furigana": "かいがん",
-    "english": "coast, seashore"
+    "english": "coast, seashore",
+    "chinese": "海岸、海边",
+    "korean": "해안, 해변",
+    "spanish": "costa, orilla del mar",
+    "french": "côte, bord de mer"
   },
   {
     "id": 284,
     "furigana": "さびしい",
-    "english": "lonely, lonesome"
+    "english": "lonely, lonesome",
+    "chinese": "寂寞，孤独",
+    "korean": "외롭고 쓸쓸한",
+    "spanish": "solitario, solitario",
+    "french": "solitaire, solitaire"
   },
   {
     "id": 285,
     "furigana": "ひ",
-    "english": "fire"
+    "english": "fire",
+    "chinese": "抨击",
+    "korean": "fire",
+    "spanish": "fuego",
+    "french": "incendie"
   },
   {
     "id": 286,
     "furigana": "そだてる",
-    "english": "to raise (v.t.); to bring up"
+    "english": "to raise (v.t.); to bring up",
+    "chinese": "抚养（v.t.）；扶养",
+    "korean": "키우다 (v.t.); 키우다",
+    "spanish": "levantar (v.t.); hacer subir",
+    "french": "élever (v.t.) ; élever"
   },
   {
     "id": 287,
     "furigana": "みそ",
-    "english": "miso, bean paste"
+    "english": "miso, bean paste",
+    "chinese": "味噌、豆酱",
+    "korean": "된장, 된장",
+    "spanish": "miso, pasta de judías",
+    "french": "miso, pâte de haricots"
   },
   {
     "id": 288,
     "furigana": "おいわい",
-    "english": "congratulation, celebration"
+    "english": "congratulation, celebration",
+    "chinese": "祝贺、庆祝",
+    "korean": "축하, 축하",
+    "spanish": "felicitación, celebración",
+    "french": "félicitation, célébration"
   },
   {
     "id": 289,
     "furigana": "のりもの",
-    "english": "vehicle"
+    "english": "vehicle",
+    "chinese": "车辆",
+    "korean": "차량",
+    "spanish": "vehículo",
+    "french": "véhicule"
   },
   {
     "id": 290,
     "furigana": "あんないする",
-    "english": "information, guidance"
+    "english": "information, guidance",
+    "chinese": "信息、指导",
+    "korean": "정보, 안내",
+    "spanish": "información, orientación",
+    "french": "l'information, l'orientation"
   },
   {
     "id": 291,
     "furigana": "かよう",
-    "english": "to go back and forth; to commute"
+    "english": "to go back and forth; to commute",
+    "chinese": "往返；通勤",
+    "korean": "오가다; 출퇴근하다",
+    "spanish": "ir y venir; desplazarse",
+    "french": "aller et venir ; faire la navette"
   },
   {
     "id": 292,
     "furigana": "つれる",
-    "english": "to lead, to take (a person)"
+    "english": "to lead, to take (a person)",
+    "chinese": "引导，带",
+    "korean": "이끌다, 데려가다 (사람)",
+    "spanish": "guiar, llevar (a una persona)",
+    "french": "conduire, emmener (une personne)"
   },
   {
     "id": 293,
     "furigana": "ぎじゅつ",
-    "english": "technique, technology, skill"
+    "english": "technique, technology, skill",
+    "chinese": "技巧、技术、技能",
+    "korean": "기술, 기술, 기술",
+    "spanish": "técnica, tecnología, habilidad",
+    "french": "technique, technologie, compétence"
   },
   {
     "id": 294,
     "furigana": "ことり",
-    "english": "small bird"
+    "english": "small bird",
+    "chinese": "雀",
+    "korean": "작은 새",
+    "spanish": "pajarito",
+    "french": "petit oiseau"
   },
   {
     "id": 295,
     "furigana": "げしゅく",
-    "english": "lodging, boarding house"
+    "english": "lodging, boarding house",
+    "chinese": "住宿、寄宿家庭",
+    "korean": "숙박, 하숙집",
+    "spanish": "alojamiento, pensión",
+    "french": "hébergement, pension de famille"
   },
   {
     "id": 296,
     "furigana": "ジャム",
-    "english": "jam"
+    "english": "jam",
+    "chinese": "卡住",
+    "korean": "jam",
+    "spanish": "mermelada",
+    "french": "confiture"
   },
   {
     "id": 297,
     "furigana": "しょうたいする",
-    "english": "invitation"
+    "english": "invitation",
+    "chinese": "邀请",
+    "korean": "초대",
+    "spanish": "invitación",
+    "french": "invitation"
   },
   {
     "id": 298,
     "furigana": "かがみ",
-    "english": "mirror"
+    "english": "mirror",
+    "chinese": "镜面",
+    "korean": "mirror",
+    "spanish": "espejo",
+    "french": "miroir"
   },
   {
     "id": 299,
     "furigana": "はず",
-    "english": "it should be so"
+    "english": "it should be so",
+    "chinese": "理应如此",
+    "korean": "그렇게 해야 합니다.",
+    "spanish": "debería ser así",
+    "french": "il devrait en être ainsi"
   },
   {
     "id": 300,
     "furigana": "ほうりつ",
-    "english": "law"
+    "english": "law",
+    "chinese": "法学",
+    "korean": "법률",
+    "spanish": "ley",
+    "french": "loi"
   },
   {
     "id": 301,
     "furigana": "すすむ",
-    "english": "to advance, to proceed"
+    "english": "to advance, to proceed",
+    "chinese": "前进，继续",
+    "korean": "진행하려면, 진행하려면",
+    "spanish": "avanzar, proceder",
+    "french": "avancer, procéder"
   },
   {
     "id": 302,
     "furigana": "たのしむ",
-    "english": "to enjoy"
+    "english": "to enjoy",
+    "chinese": "享受",
+    "korean": "즐길 수 있습니다.",
+    "spanish": "para disfrutar",
+    "french": "de profiter"
   },
   {
     "id": 303,
     "furigana": "ぼうえき",
-    "english": "trade"
+    "english": "trade",
+    "chinese": "贸易",
+    "korean": "무역",
+    "spanish": "comercio",
+    "french": "commerce"
   },
   {
     "id": 304,
     "furigana": "はんたい",
-    "english": "oppose, opposition, resistance"
+    "english": "oppose, opposition, resistance",
+    "chinese": "反对、反对派、抵抗",
+    "korean": "반대, 반대, 저항",
+    "spanish": "oponerse, oposición, resistencia",
+    "french": "s'opposer, opposition, résistance"
   },
   {
     "id": 305,
     "furigana": "おる",
-    "english": "-- extra-modest expression for いる --"
+    "english": "-- extra-modest expression for いる --",
+    "chinese": "-- いる的模外表达 --",
+    "korean": "いる에 대한 매우 겸손한 표현 -- --.",
+    "spanish": "-- expresión extra-modesta para いる --",
+    "french": "-- expression extra-moderne pour いる --"
   },
   {
     "id": 306,
     "furigana": "もうす",
-    "english": "-- extra-modest (humble) expression for 言う (いう) --"
+    "english": "-- extra-modest (humble) expression for 言う (いう) --",
+    "chinese": "-- 言う (いう)的格外谦虚（卑微）的表达方式 --",
+    "korean": "言う(いう)에 대한 매우 겸손한(겸손한) 표현 -- -- 言う(いう)에 대한 매우 겸손한(겸손한) 표현.",
+    "spanish": "-- expresión extra-modesta (humilde) para 言う (いう) --",
+    "french": "-- expression extra-moderne (humble) pour 言う (いう) --"
   },
   {
     "id": 307,
     "furigana": "しけん",
-    "english": "an exam"
+    "english": "an exam",
+    "chinese": "考试",
+    "korean": "시험",
+    "spanish": "un examen",
+    "french": "un examen"
   },
   {
     "id": 308,
     "furigana": "まじめ",
-    "english": "diligent, serious"
+    "english": "diligent, serious",
+    "chinese": "勤奋、认真",
+    "korean": "부지런하고 진지한",
+    "spanish": "diligente, serio",
+    "french": "diligent, sérieux"
   },
   {
     "id": 309,
-    "furigana": NaN,
-    "english": "-- honorific expression for みる --"
+    "furigana": null,
+    "english": "-- honorific expression for みる --",
+    "chinese": "-- みる的敬语 --",
+    "korean": "みる에 대한 경어 표현 -- --.",
+    "spanish": "-- expresión honorífica para みる --",
+    "french": "-- expression honorifique pour みる --"
   },
   {
     "id": 310,
     "furigana": "てんいん",
-    "english": "clerk; shop-employee"
+    "english": "clerk; shop-employee",
+    "chinese": "店员",
+    "korean": "점원; 매장 직원",
+    "spanish": "dependiente; empleado de tienda",
+    "french": "commis ; employé de magasin"
   },
   {
     "id": 311,
     "furigana": "とまる",
-    "english": "to stay (over night) (v.i.)"
+    "english": "to stay (over night) (v.i.)",
+    "chinese": "过夜",
+    "korean": "(하룻밤 이상) 숙박하다 (v.i.)",
+    "spanish": "pasar la noche (v.i.)",
+    "french": "séjourner (nuit) (v.i.)"
   },
   {
     "id": 312,
     "furigana": "よろしい",
-    "english": "(hon.) good, OK, all right"
+    "english": "(hon.) good, OK, all right",
+    "chinese": "(好好好",
+    "korean": "(여보) 좋아, 좋아, 알았어.",
+    "spanish": "(Bien, vale, de acuerdo.",
+    "french": "(hon.) bien, OK, très bien"
   },
   {
     "id": 313,
     "furigana": "こんや",
-    "english": "this evening, tonight"
+    "english": "this evening, tonight",
+    "chinese": "今晚",
+    "korean": "오늘 저녁, 오늘 밤",
+    "spanish": "esta tarde, esta noche",
+    "french": "ce soir, ce soir"
   },
   {
     "id": 314,
     "furigana": "おつり",
-    "english": "change; balance of money returned to the purchaser"
+    "english": "change; balance of money returned to the purchaser",
+    "chinese": "找零；余款退还买方",
+    "korean": "잔돈, 구매자에게 반환된 금액의 잔액",
+    "spanish": "cambio; el resto del dinero se devuelve al comprador",
+    "french": "changement ; le solde de l'argent est restitué à l'acheteur"
   },
   {
     "id": 315,
     "furigana": "チェックする",
-    "english": "check"
+    "english": "check",
+    "chinese": "查看",
+    "korean": "확인",
+    "spanish": "consulte",
+    "french": "vérifier"
   },
   {
     "id": 316,
     "furigana": "かいわ",
-    "english": "conversation"
+    "english": "conversation",
+    "chinese": "会话",
+    "korean": "대화",
+    "spanish": "conversación",
+    "french": "conversation"
   },
   {
     "id": 317,
     "furigana": "くうき",
-    "english": "air, atmosphere"
+    "english": "air, atmosphere",
+    "chinese": "空气、大气",
+    "korean": "공기, 대기",
+    "spanish": "aire, atmósfera",
+    "french": "air, atmosphère"
   },
   {
     "id": 318,
     "furigana": "こうつう",
-    "english": "traffic, transportation"
+    "english": "traffic, transportation",
+    "chinese": "交通、运输",
+    "korean": "교통, 운송",
+    "spanish": "tráfico, transporte",
+    "french": "trafic, transport"
   },
   {
     "id": 319,
     "furigana": "ワープロ",
-    "english": "word processor"
+    "english": "word processor",
+    "chinese": "字处理器",
+    "korean": "워드 프로세서",
+    "spanish": "procesador de textos",
+    "french": "traitement de texte"
   },
   {
     "id": 320,
     "furigana": "よろこぶ",
-    "english": "to rejoice, to be delighted, to be glad"
+    "english": "to rejoice, to be delighted, to be glad",
+    "chinese": "怿、悦、喜",
+    "korean": "기뻐하고, 즐거워하고, 기뻐하는 것",
+    "spanish": "alegrarse, alegrarse, alegrarse",
+    "french": "se réjouir, être ravi, être heureux"
   },
   {
     "id": 321,
     "furigana": "きゅうこう",
-    "english": "express train or bus"
+    "english": "express train or bus",
+    "chinese": "快车",
+    "korean": "고속 열차 또는 버스",
+    "spanish": "tren exprés o autobús",
+    "french": "train ou bus express"
   },
   {
     "id": 322,
     "furigana": "みな",
-    "english": "everyone"
+    "english": "everyone",
+    "chinese": "每个人",
+    "korean": "모두",
+    "spanish": "todo el mundo",
+    "french": "tout le monde"
   },
   {
     "id": 323,
     "furigana": "あじ",
-    "english": "flavor, taste"
+    "english": "flavor, taste",
+    "chinese": "味道",
+    "korean": "풍미, 맛",
+    "spanish": "sabor, gusto",
+    "french": "goût, saveur"
   },
   {
     "id": 324,
     "furigana": "くうこう",
-    "english": "airport"
+    "english": "airport",
+    "chinese": "机场",
+    "korean": "공항",
+    "spanish": "aeropuerto",
+    "french": "aéroport"
   },
   {
     "id": 325,
     "furigana": "てぶくろ",
-    "english": "glove(s)"
+    "english": "glove(s)",
+    "chinese": "手套",
+    "korean": "장갑",
+    "spanish": "guante(s)",
+    "french": "gant(s)"
   },
   {
     "id": 326,
     "furigana": "こうちょう",
-    "english": "principal, headmaster"
+    "english": "principal, headmaster",
+    "chinese": "校长",
+    "korean": "교장, 교장",
+    "spanish": "director, jefe de estudios",
+    "french": "directeur, directrice"
   },
   {
     "id": 327,
     "furigana": "ごちそう",
-    "english": "feast, treating (someone)"
+    "english": "feast, treating (someone)",
+    "chinese": "宴请",
+    "korean": "잔치, 대접하다 (누군가)",
+    "spanish": "agasajar, tratar (a alguien)",
+    "french": "fêter, traiter (quelqu'un)"
   },
   {
     "id": 328,
     "furigana": "おどり",
-    "english": "dance"
+    "english": "dance",
+    "chinese": "舞蹈",
+    "korean": "댄스",
+    "spanish": "baile",
+    "french": "danse"
   },
   {
     "id": 329,
     "furigana": "きょうみ",
-    "english": "interest (in something)"
+    "english": "interest (in something)",
+    "chinese": "兴趣",
+    "korean": "관심(무언가에 대한)",
+    "spanish": "interés (en algo)",
+    "french": "intérêt (pour quelque chose)"
   },
   {
     "id": 330,
     "furigana": "ひっこす",
-    "english": "to move to a new place of residence"
+    "english": "to move to a new place of residence",
+    "chinese": "迁居",
+    "korean": "새 거주지로 이사하기 위해",
+    "spanish": "trasladarse a un nuevo lugar de residencia",
+    "french": "déménager dans un nouveau lieu de résidence"
   },
   {
     "id": 331,
     "furigana": "れいぼう",
-    "english": "cooling, air conditioning"
+    "english": "cooling, air conditioning",
+    "chinese": "冷却、空调",
+    "korean": "냉각, 에어컨",
+    "spanish": "refrigeración, aire acondicionado",
+    "french": "refroidissement, climatisation"
   },
   {
     "id": 332,
     "furigana": "つごう",
-    "english": "circumstances, convenience"
+    "english": "circumstances, convenience",
+    "chinese": "环境、便利",
+    "korean": "상황, 편의성",
+    "spanish": "circunstancias, conveniencia",
+    "french": "circonstances, commodité"
   },
   {
     "id": 333,
     "furigana": "えんりょする",
-    "english": "restraint, reserve, hesitate"
+    "english": "restraint, reserve, hesitate",
+    "chinese": "克制、保留、犹豫",
+    "korean": "자제, 예비, 망설임",
+    "spanish": "moderación, reserva, vacilación",
+    "french": "retenue, réserve, hésitation"
   },
   {
     "id": 334,
     "furigana": "なくなる",
-    "english": "to pass away"
+    "english": "to pass away",
+    "chinese": "逝去",
+    "korean": "사망",
+    "spanish": "fallecer",
+    "french": "de s'éteindre"
   },
   {
     "id": 335,
     "furigana": "かがく",
-    "english": "science"
+    "english": "science",
+    "chinese": "科学",
+    "korean": "과학",
+    "spanish": "ciencia",
+    "french": "science"
   },
   {
     "id": 336,
     "furigana": "はっきり",
-    "english": "clearly, distinctly"
+    "english": "clearly, distinctly",
+    "chinese": "彰彰",
+    "korean": "명확하고 뚜렷하게",
+    "spanish": "claramente, distintamente",
+    "french": "clairement, distinctement"
   },
   {
     "id": 337,
     "furigana": "さしあげる",
-    "english": "-- humble expression for あげる --"
+    "english": "-- humble expression for あげる --",
+    "chinese": "-- あげる的謙遜表達 --",
+    "korean": "あげる의 겸손한 표현 -- --.",
+    "spanish": "-- expresión humilde para あげる --",
+    "french": "-- expression humble pour あげる --"
   },
   {
     "id": 338,
     "furigana": "きもち",
-    "english": "feeling, sensation, mood"
+    "english": "feeling, sensation, mood",
+    "chinese": "感觉、感觉、情绪",
+    "korean": "느낌, 감각, 기분",
+    "spanish": "sentimiento, sensación, estado de ánimo",
+    "french": "sentiment, sensation, humeur"
   },
   {
     "id": 339,
     "furigana": "そふ",
-    "english": "grandfather"
+    "english": "grandfather",
+    "chinese": "祖父",
+    "korean": "할아버지",
+    "spanish": "abuelo",
+    "french": "grand-père"
   },
   {
     "id": 340,
     "furigana": "みなと",
-    "english": "harbor, port"
+    "english": "harbor, port",
+    "chinese": "港口",
+    "korean": "항구, 항구",
+    "spanish": "puerto",
+    "french": "port, port"
   },
   {
     "id": 341,
     "furigana": "よやく",
-    "english": "reservation"
+    "english": "reservation",
+    "chinese": "保留",
+    "korean": "예약",
+    "spanish": "reserva",
+    "french": "réservation"
   },
   {
     "id": 342,
     "furigana": "すごい",
-    "english": "terrific, great"
+    "english": "terrific, great",
+    "chinese": "太棒了",
+    "korean": "훌륭, 훌륭",
+    "spanish": "estupendo, genial",
+    "french": "formidable, génial"
   },
   {
     "id": 343,
     "furigana": "にゅうがくする",
-    "english": "entry to school or university"
+    "english": "entry to school or university",
+    "chinese": "入学",
+    "korean": "학교 또는 대학 입학",
+    "spanish": "acceso a la escuela o a la universidad",
+    "french": "l'entrée à l'école ou à l'université"
   },
   {
     "id": 344,
     "furigana": "かたづける",
-    "english": "to (clean) tidy up (v.t.), to put away"
+    "english": "to (clean) tidy up (v.t.), to put away",
+    "chinese": "整理（v.t.），收起",
+    "korean": "(청소하다) 정리하다 (동사), 치우다",
+    "spanish": "(limpiar) ordenar (v.t.), guardar",
+    "french": "(nettoyer) ranger (v.t.), ranger"
   },
   {
     "id": 345,
     "furigana": "うつす",
-    "english": "to copy (v.t.); to photograph"
+    "english": "to copy (v.t.); to photograph",
+    "chinese": "复制（v.t.）；拍照",
+    "korean": "복사하다(v.t.); 사진 찍다",
+    "spanish": "copiar (v.t.); fotografiar",
+    "french": "copier (v.t.) ; photographier"
   },
   {
     "id": 346,
     "furigana": "パソコン",
-    "english": "(personal) computer"
+    "english": "(personal) computer",
+    "chinese": "电脑",
+    "korean": "(개인용) 컴퓨터",
+    "spanish": "ordenador (personal)",
+    "french": "ordinateur (personnel)"
   },
   {
     "id": 347,
     "furigana": "ぶちょう",
-    "english": "department (division) manager"
+    "english": "department (division) manager",
+    "chinese": "部门经理",
+    "korean": "부서(부서) 관리자",
+    "spanish": "director de departamento (división)",
+    "french": "directeur de département (division)"
   },
   {
     "id": 348,
     "furigana": "かじ",
-    "english": "fire"
+    "english": "fire",
+    "chinese": "抨击",
+    "korean": "fire",
+    "spanish": "fuego",
+    "french": "incendie"
   },
   {
     "id": 349,
     "furigana": "たす",
-    "english": "to add (numbers)"
+    "english": "to add (numbers)",
+    "chinese": "加",
+    "korean": "추가하려면 (숫자)",
+    "spanish": "sumar (números)",
+    "french": "ajouter (nombres)"
   },
   {
     "id": 350,
     "furigana": "きょうかい",
-    "english": "church"
+    "english": "church",
+    "chinese": "教堂",
+    "korean": "교회",
+    "spanish": "iglesia",
+    "french": "église"
   },
   {
     "id": 351,
     "furigana": "かれら",
-    "english": "they (usually male)"
+    "english": "they (usually male)",
+    "chinese": "他们",
+    "korean": "그들(보통 남성)",
+    "spanish": "ellos (normalmente hombres)",
+    "french": "ils (généralement de sexe masculin)"
   },
   {
     "id": 352,
     "furigana": "いっぱい",
-    "english": "full, to the utmost"
+    "english": "full, to the utmost",
+    "chinese": "尽",
+    "korean": "최대로 가득",
+    "spanish": "completo, al máximo",
+    "french": "complète, jusqu'à l'extrême"
   },
   {
     "id": 353,
     "furigana": "アメリカ",
-    "english": "America, U.S.A."
+    "english": "America, U.S.A.",
+    "chinese": "美国",
+    "korean": "미국, 미국",
+    "spanish": "América, EE.UU.",
+    "french": "Amérique, U.S.A."
   },
   {
     "id": 354,
     "furigana": "だんせい",
-    "english": "man; male"
+    "english": "man; male",
+    "chinese": "男人；雄性",
+    "korean": "남자; 남성",
+    "spanish": "hombre; masculino",
+    "french": "homme ; mâle"
   },
   {
     "id": 355,
     "furigana": "りゆう",
-    "english": "reason"
+    "english": "reason",
+    "chinese": "理由",
+    "korean": "이유",
+    "spanish": "motivo",
+    "french": "raison"
   },
   {
     "id": 356,
     "furigana": "せいさんする",
-    "english": "production; to produce"
+    "english": "production; to produce",
+    "chinese": "生产；生产",
+    "korean": "생산; 생산하다",
+    "spanish": "producción; producir",
+    "french": "production ; produire"
   },
   {
     "id": 357,
     "furigana": "きもの",
-    "english": "kimono; Japanese traditional dress"
+    "english": "kimono; Japanese traditional dress",
+    "chinese": "和服",
+    "korean": "기모노; 일본 전통 의상",
+    "spanish": "kimono; traje tradicional japonés",
+    "french": "kimono ; robe traditionnelle japonaise"
   },
   {
     "id": 358,
     "furigana": "おもちゃ",
-    "english": "a toy"
+    "english": "a toy",
+    "chinese": "玩具",
+    "korean": "장난감",
+    "spanish": "un juguete",
+    "french": "un jouet"
   },
   {
     "id": 359,
     "furigana": "くれる",
-    "english": "to get dark, to come to an end"
+    "english": "to get dark, to come to an end",
+    "chinese": "天黑，结束",
+    "korean": "어두워지다, 끝나다",
+    "spanish": "oscurecer, llegar a su fin",
+    "french": "s'assombrir, se terminer"
   },
   {
     "id": 360,
     "furigana": "つる",
-    "english": "to fish"
+    "english": "to fish",
+    "chinese": "捕鱼",
+    "korean": "낚시",
+    "spanish": "para pescar",
+    "french": "pour pêcher"
   },
   {
     "id": 361,
     "furigana": "～ちゃん",
-    "english": "suffix for familiar (female) person"
+    "english": "suffix for familiar (female) person",
+    "chinese": "熟人",
+    "korean": "친숙한(여성) 사람을 위한 접미사",
+    "spanish": "sufijo para persona familiar (femenina)",
+    "french": "suffixe de la personne (féminine) familière"
   },
   {
     "id": 362,
     "furigana": "うつ",
-    "english": "to hit, to strike"
+    "english": "to hit, to strike",
+    "chinese": "擊中，打擊",
+    "korean": "치다, 공격하다",
+    "spanish": "golpear",
+    "french": "heurter, frapper"
   },
   {
     "id": 363,
     "furigana": "あんな",
-    "english": "such, like that"
+    "english": "such, like that",
+    "chinese": "如此这般",
+    "korean": "그런, 그런",
+    "spanish": "tal, así",
+    "french": "tel, tel"
   },
   {
     "id": 364,
     "furigana": "あやまる",
-    "english": "to apologize"
+    "english": "to apologize",
+    "chinese": "道歉",
+    "korean": "사과하기",
+    "spanish": "para disculparse",
+    "french": "s'excuser"
   },
   {
     "id": 365,
     "furigana": "ひるま",
-    "english": "daytime, during the day"
+    "english": "daytime, during the day",
+    "chinese": "白天",
+    "korean": "주간, 낮 시간대",
+    "spanish": "de día, durante el día",
+    "french": "le jour, pendant le jour"
   },
   {
     "id": 366,
     "furigana": "きょういく",
-    "english": "education"
+    "english": "education",
+    "chinese": "教育",
+    "korean": "교육",
+    "spanish": "educación",
+    "french": "l'éducation"
   },
   {
     "id": 367,
     "furigana": "じょせい",
-    "english": "woman"
+    "english": "woman",
+    "chinese": "女性",
+    "korean": "여자",
+    "spanish": "mujer",
+    "french": "femme"
   },
   {
     "id": 368,
     "furigana": "こめ",
-    "english": "uncooked rice"
+    "english": "uncooked rice",
+    "chinese": "生米",
+    "korean": "익히지 않은 쌀",
+    "spanish": "arroz crudo",
+    "french": "riz non cuit"
   },
   {
     "id": 369,
     "furigana": "じゃま",
-    "english": "hindrance, intrusion"
+    "english": "hindrance, intrusion",
+    "chinese": "阻碍、侵入",
+    "korean": "방해, 침입",
+    "spanish": "obstáculo, intrusión",
+    "french": "entrave, intrusion"
   },
   {
     "id": 370,
     "furigana": "こくさい",
-    "english": "international"
+    "english": "international",
+    "chinese": "国际",
+    "korean": "국제",
+    "spanish": "internacional",
+    "french": "internationale"
   },
   {
     "id": 371,
     "furigana": "すみ",
-    "english": "corner"
+    "english": "corner",
+    "chinese": "角",
+    "korean": "코너",
+    "spanish": "esquina",
+    "french": "coin"
   },
   {
     "id": 372,
     "furigana": "うかがう",
-    "english": "humble form of 行く (いく), 聞く (きく) and 来る (くる)"
+    "english": "humble form of 行く (いく), 聞く (きく) and 来る (くる)",
+    "chinese": "卑",
+    "korean": "갈 갈(いく), 들을 구(聞く), 올 구(来る)의 겸손한 형태",
+    "spanish": "forma humilde de ir, oír y venir",
+    "french": "forme humble de go, hear et come"
   },
   {
     "id": 373,
     "furigana": "さらいしゅう",
-    "english": "the week after next"
+    "english": "the week after next",
+    "chinese": "后周",
+    "korean": "다음 주",
+    "spanish": "pasado mañana",
+    "french": "la semaine suivante"
   },
   {
     "id": 374,
     "furigana": "ゆめ",
-    "english": "a dream"
+    "english": "a dream",
+    "chinese": "理想",
+    "korean": "꿈",
+    "spanish": "un sueño",
+    "french": "un rêve"
   },
   {
     "id": 375,
     "furigana": "のど",
-    "english": "throat"
+    "english": "throat",
+    "chinese": "咽喉",
+    "korean": "목구멍",
+    "spanish": "garganta",
+    "french": "gorge"
   },
   {
     "id": 376,
     "furigana": "さいきん",
-    "english": "recently, nowadays, in recent years, most recent, latest"
+    "english": "recently, nowadays, in recent years, most recent, latest",
+    "chinese": "最近, 如今, 近年来, 最近, 最近",
+    "korean": "최근, 최근, 최근, 가장 최근, 최신",
+    "spanish": "recientemente, hoy en día, en los últimos años, más reciente, último",
+    "french": "récemment, de nos jours, au cours des dernières années, le plus récent, le plus récent"
   },
   {
     "id": 377,
     "furigana": "まわり",
-    "english": "surroundings"
+    "english": "surroundings",
+    "chinese": "周围环境",
+    "korean": "주변 환경",
+    "spanish": "alrededores",
+    "french": "environnement"
   },
   {
     "id": 378,
     "furigana": "れきし",
-    "english": "history"
+    "english": "history",
+    "chinese": "历史",
+    "korean": "역사",
+    "spanish": "historia",
+    "french": "l'histoire"
   },
   {
     "id": 379,
     "furigana": "ふべん",
-    "english": "inconvenience"
+    "english": "inconvenience",
+    "chinese": "不便",
+    "korean": "불편함",
+    "spanish": "inconveniente",
+    "french": "inconvénient"
   },
   {
     "id": 380,
     "furigana": "ち",
-    "english": "blood"
+    "english": "blood",
+    "chinese": "血液",
+    "korean": "혈액",
+    "spanish": "sangre",
+    "french": "sang"
   },
   {
     "id": 381,
     "furigana": "～つづける",
-    "english": "to continue doing ~"
+    "english": "to continue doing ~",
+    "chinese": "继续做 ~",
+    "korean": "를 계속하려면",
+    "spanish": "seguir haciendo ~",
+    "french": "continuer à faire ~"
   },
   {
     "id": 382,
     "furigana": "け",
-    "english": "hair, fur"
+    "english": "hair, fur",
+    "chinese": "毛发",
+    "korean": "머리카락, 모피",
+    "spanish": "pelo, piel",
+    "french": "poils, fourrure"
   },
   {
     "id": 383,
     "furigana": "ひどい",
-    "english": "terrible, awful, unfair, cruel"
+    "english": "terrible, awful, unfair, cruel",
+    "chinese": "可怕、可怕、不公平、残酷",
+    "korean": "끔찍하고, 끔찍하고, 불공평하고, 잔인한",
+    "spanish": "terrible, horrible, injusto, cruel",
+    "french": "terrible, horrible, injuste, cruel"
   },
   {
     "id": 384,
     "furigana": "たとえば",
-    "english": "for example, e.g."
+    "english": "for example, e.g.",
+    "chinese": "例如",
+    "korean": "예를 들어",
+    "spanish": "por ejemplo",
+    "french": "par exemple, par exemple"
   },
   {
     "id": 385,
     "furigana": "なかなか",
-    "english": "very, considerably, quite"
+    "english": "very, considerably, quite",
+    "chinese": "非常、相当、相当",
+    "korean": "매우, 상당히, 꽤",
+    "spanish": "muy, considerablemente, bastante",
+    "french": "très, considérablement, tout à fait"
   },
   {
     "id": 386,
     "furigana": "ずいぶん",
-    "english": "extremely"
+    "english": "extremely",
+    "chinese": "极",
+    "korean": "매우",
+    "spanish": "extremadamente",
+    "french": "extrêmement"
   },
   {
     "id": 387,
     "furigana": "～やすい",
-    "english": "easy to do ~"
+    "english": "easy to do ~",
+    "chinese": "容易做到 ~",
+    "korean": "쉬운 ~",
+    "spanish": "fácil de hacer ~",
+    "french": "facile à faire ~"
   },
   {
     "id": 388,
     "furigana": "おしいれ",
-    "english": "closet"
+    "english": "closet",
+    "chinese": "橱",
+    "korean": "옷장",
+    "spanish": "armario",
+    "french": "placard"
   },
   {
     "id": 389,
     "furigana": "でんとう",
-    "english": "electric light"
+    "english": "electric light",
+    "chinese": "电灯",
+    "korean": "전기 조명",
+    "spanish": "luz eléctrica",
+    "french": "lumière électrique"
   },
   {
     "id": 390,
     "furigana": "しかる",
-    "english": "to scold"
+    "english": "to scold",
+    "chinese": "骂",
+    "korean": "꾸짖다",
+    "spanish": "regañar",
+    "french": "gronder"
   },
   {
     "id": 391,
     "furigana": "サンダル",
-    "english": "sandal"
+    "english": "sandal",
+    "chinese": "凉鞋",
+    "korean": "샌들",
+    "spanish": "sandalia",
+    "french": "sandale"
   },
   {
     "id": 392,
     "furigana": "びっくりする",
-    "english": "to be surprised"
+    "english": "to be surprised",
+    "chinese": "惊奇",
+    "korean": "놀라움",
+    "spanish": "sorprenderse",
+    "french": "être surpris"
   },
   {
     "id": 393,
     "furigana": "うまい",
-    "english": "delicious; skillful; fortunate"
+    "english": "delicious; skillful; fortunate",
+    "chinese": "美味；技巧；幸运",
+    "korean": "맛있는; 숙련된; 운이 좋은",
+    "spanish": "delicioso; hábil; afortunado",
+    "french": "délicieux ; habile ; chanceux"
   },
   {
     "id": 394,
     "furigana": "かえる",
-    "english": "to change, to alter, to vary"
+    "english": "to change, to alter, to vary",
+    "chinese": "改变, 更改, 变化",
+    "korean": "바꾸다, 변경하다, 변화하다",
+    "spanish": "cambiar, alterar, variar",
+    "french": "changer, modifier, varier"
   },
   {
     "id": 395,
     "furigana": "こうどう",
-    "english": "auditorium"
+    "english": "auditorium",
+    "chinese": "礼堂",
+    "korean": "강당",
+    "spanish": "auditorio",
+    "french": "auditorium"
   },
   {
     "id": 396,
     "furigana": "こ",
-    "english": "child"
+    "english": "child",
+    "chinese": "孩子",
+    "korean": "child",
+    "spanish": "niño",
+    "french": "enfant"
   },
   {
     "id": 397,
     "furigana": "わかす",
-    "english": "to boil"
+    "english": "to boil",
+    "chinese": "沸腾",
+    "korean": "끓이다",
+    "spanish": "hervir",
+    "french": "faire bouillir"
   },
   {
     "id": 398,
     "furigana": "レジ",
-    "english": "register"
+    "english": "register",
+    "chinese": "登记",
+    "korean": "등록",
+    "spanish": "regístrese en",
+    "french": "registre"
   },
   {
     "id": 399,
     "furigana": "しばらく",
-    "english": "little while"
+    "english": "little while",
+    "chinese": "臾",
+    "korean": "조금 동안",
+    "spanish": "poco tiempo",
+    "french": "peu de temps"
   },
   {
     "id": 400,
     "furigana": "とくに",
-    "english": "particularly"
+    "english": "particularly",
+    "chinese": "特别是",
+    "korean": "특히",
+    "spanish": "especialmente",
+    "french": "en particulier"
   },
   {
     "id": 401,
     "furigana": "あく",
-    "english": "to open, to become empty (vacant)"
+    "english": "to open, to become empty (vacant)",
+    "chinese": "开放，成为空的(空置的)",
+    "korean": "열리다, 비어 있다(비어 있음)",
+    "spanish": "abrirse, quedar vacío (vacante)",
+    "french": "ouvrir, devenir vide (vacant)"
   },
   {
     "id": 402,
     "furigana": "けいかくする",
-    "english": "plan, project, schedule"
+    "english": "plan, project, schedule",
+    "chinese": "计划、项目、时间表",
+    "korean": "계획, 프로젝트, 일정",
+    "spanish": "plan, proyecto, calendario",
+    "french": "plan, projet, calendrier"
   },
   {
     "id": 403,
     "furigana": "とおり",
-    "english": "~ Street, ~ Avenue"
+    "english": "~ Street, ~ Avenue",
+    "chinese": "~ 街道，大道",
+    "korean": "~ 거리, ~ 애비뉴",
+    "spanish": "~ Calle, ~ Avenida",
+    "french": "~ Rue, ~ Avenue"
   },
   {
     "id": 404,
     "furigana": "したぎ",
-    "english": "underwear"
+    "english": "underwear",
+    "chinese": "内衣裤",
+    "korean": "속옷",
+    "spanish": "ropa interior",
+    "french": "sous-vêtements"
   },
   {
     "id": 405,
     "furigana": "けいざい",
-    "english": "economics, finance, economy"
+    "english": "economics, finance, economy",
+    "chinese": "经济、金融、经济",
+    "korean": "경제, 금융, 경제",
+    "spanish": "economía, finanzas, economía",
+    "french": "économie, finance, économie"
   },
   {
     "id": 406,
     "furigana": "こう",
-    "english": "like this, this way"
+    "english": "like this, this way",
+    "chinese": "这样，这样",
+    "korean": "이렇게, 이렇게",
+    "spanish": "así, de esta manera",
+    "french": "comme ceci, comme cela"
   },
   {
     "id": 407,
     "furigana": "ぜひ",
-    "english": "certainly, by all means; without fail"
+    "english": "certainly, by all means; without fail",
+    "chinese": "当然",
+    "korean": "확실히, 반드시, 반드시",
+    "spanish": "sin duda, por todos los medios; sin falta",
+    "french": "certainement, par tous les moyens ; sans faute"
   },
   {
     "id": 408,
     "furigana": "うら",
-    "english": "reverse side, back"
+    "english": "reverse side, back",
+    "chinese": "反面，背面",
+    "korean": "뒷면, 뒷면",
+    "spanish": "reverso, dorso",
+    "french": "le verso, l'arrière"
   },
   {
     "id": 409,
     "furigana": "ため",
-    "english": "good, advantage, in order to"
+    "english": "good, advantage, in order to",
+    "chinese": "好、好处，以便",
+    "korean": "좋은, 장점",
+    "spanish": "bien, ventaja, para",
+    "french": "bon, avantage, afin de"
   },
   {
     "id": 410,
     "furigana": "おいでになる",
-    "english": "(hon.) to be"
+    "english": "(hon.) to be",
+    "chinese": "将",
+    "korean": "(명예)가 되려면",
+    "spanish": "(hon.) para ser",
+    "french": "(hon.) être"
   },
   {
     "id": 411,
     "furigana": "かわる",
-    "english": "to change (v.i.), to be transformed, to vary"
+    "english": "to change (v.i.), to be transformed, to vary",
+    "chinese": "改变（v.i.），转变，变化",
+    "korean": "변화하다(동사), 변형되다, 달라지다",
+    "spanish": "cambiar (v.i.), transformarse, variar",
+    "french": "changer (v.i.), être transformé, varier"
   },
   {
     "id": 412,
     "furigana": "いがい",
-    "english": "other than, with the exception of, excepting"
+    "english": "other than, with the exception of, excepting",
+    "chinese": "除了、除了、除了",
+    "korean": "를 제외하고는 다음을 제외합니다.",
+    "spanish": "salvo, con excepción de, exceptuando",
+    "french": "autres que, à l'exception de, à l'exception de"
   },
   {
     "id": 413,
     "furigana": "すむ",
-    "english": "to finish, to end"
+    "english": "to finish, to end",
+    "chinese": "完成，结束",
+    "korean": "끝내기, 끝내기",
+    "spanish": "acabar, terminar",
+    "french": "Finir, terminer"
   },
   {
     "id": 414,
     "furigana": "ハンバーグ",
-    "english": "hamburger steak"
+    "english": "hamburger steak",
+    "chinese": "汉堡牛排",
+    "korean": "햄버거 스테이크",
+    "spanish": "filete de hamburguesa",
+    "french": "steak haché"
   },
   {
     "id": 415,
     "furigana": "し",
-    "english": "city"
+    "english": "city",
+    "chinese": "城市",
+    "korean": "도시",
+    "spanish": "ciudad",
+    "french": "ville"
   },
   {
     "id": 416,
     "furigana": "ひきだし",
-    "english": "drawer"
+    "english": "drawer",
+    "chinese": "出票人",
+    "korean": "서랍",
+    "spanish": "cajón",
+    "french": "tiroir"
   },
   {
     "id": 417,
     "furigana": "あそび",
-    "english": "play"
+    "english": "play",
+    "chinese": "游戏",
+    "korean": "플레이",
+    "spanish": "jugar",
+    "french": "jouer"
   },
   {
     "id": 418,
     "furigana": "したくする",
-    "english": "preparation"
+    "english": "preparation",
+    "chinese": "编制",
+    "korean": "준비",
+    "spanish": "preparación",
+    "french": "préparation"
   },
   {
     "id": 419,
     "furigana": "～はじめる",
-    "english": "to start doing ~"
+    "english": "to start doing ~",
+    "chinese": "开始做 ~",
+    "korean": "를 시작하려면",
+    "spanish": "para empezar a hacer ~",
+    "french": "pour commencer à faire ~"
   },
   {
     "id": 420,
     "furigana": "みえる",
-    "english": "to be visible; -- polite verb meaning 来る (くる) --"
+    "english": "to be visible; -- polite verb meaning 来る (くる) --",
+    "chinese": "可见；--礼貌动词，意为 来る (くる)--",
+    "korean": "보이다; -- 공손한 동사 의미 来る(くる) --",
+    "spanish": "ser visible; -- verbo cortés que significa 来る (くる) --",
+    "french": "être visible ; -- verbe de politesse signifiant 来る (くる) --"
   },
   {
     "id": 421,
     "furigana": "じゅうぶん",
-    "english": "enough"
+    "english": "enough",
+    "chinese": "足够",
+    "korean": "충분",
+    "spanish": "suficiente",
+    "french": "assez"
   },
   {
     "id": 422,
     "furigana": "おと",
-    "english": "sound, note"
+    "english": "sound, note",
+    "chinese": "音，音符",
+    "korean": "사운드, 노트",
+    "spanish": "sonido, nota",
+    "french": "son, note"
   },
   {
     "id": 423,
     "furigana": "きっと",
-    "english": "surely, definitely, undoubtedly, certainly"
+    "english": "surely, definitely, undoubtedly, certainly",
+    "chinese": "当然、肯定、毋庸置疑、当然",
+    "korean": "확실히, 확실히, 의심의 여지없이, 확실히",
+    "spanish": "seguramente, definitivamente, indudablemente, ciertamente",
+    "french": "sûrement, définitivement, sans aucun doute, certainement"
   },
   {
     "id": 424,
     "furigana": "まず",
-    "english": "first (of all), to start with"
+    "english": "first (of all), to start with",
+    "chinese": "首先",
+    "korean": "먼저 (무엇보다도) 다음과 같이 시작하십시오.",
+    "spanish": "primero (de todo), para empezar",
+    "french": "premièrement (de toutes), pour commencer"
   },
   {
     "id": 425,
     "furigana": "とおく",
-    "english": "far away, distant"
+    "english": "far away, distant",
+    "chinese": "攸远",
+    "korean": "멀리, 멀리",
+    "spanish": "lejos, distante",
+    "french": "lointain, éloigné"
   },
   {
     "id": 426,
     "furigana": "だいたい",
-    "english": "approximately; in most cases; in general; to begin with (same as もともと)"
+    "english": "approximately; in most cases; in general; to begin with (same as もともと)",
+    "chinese": "大约；在大多数情况下；一般；开始（同 もともと）",
+    "korean": "대략; 대부분의 경우; 일반적으로; 시작하다(もともと와 동일)",
+    "spanish": "aproximadamente; en la mayoría de los casos; en general; para empezar (igual que もともと)",
+    "french": "approximativement ; dans la plupart des cas ; en général ; pour commencer (idem もともと)"
   },
   {
     "id": 427,
     "furigana": "おれる",
-    "english": "to break, to be folded, to give in; to turn (a corner)"
+    "english": "to break, to be folded, to give in; to turn (a corner)",
+    "chinese": "折断、折叠、屈服；转角",
+    "korean": "깨지다, 접히다, 굴복하다; 돌리다 (모퉁이를 돌다)",
+    "spanish": "romperse, doblarse, ceder; doblar (una esquina)",
+    "french": "casser, être plié, céder ; tourner (un coin)"
   },
   {
     "id": 428,
     "furigana": "ただしい",
-    "english": "correct"
+    "english": "correct",
+    "chinese": "正确的",
+    "korean": "올바른",
+    "spanish": "correcto",
+    "french": "correctes"
   },
   {
     "id": 429,
     "furigana": "ゆにゅう",
-    "english": "import"
+    "english": "import",
+    "chinese": "舶来品",
+    "korean": "가져오기",
+    "spanish": "importar",
+    "french": "l'importation"
   },
   {
     "id": 430,
     "furigana": "へんじ",
-    "english": "reply, answer"
+    "english": "reply, answer",
+    "chinese": "回答",
+    "korean": "답글, 답변",
+    "spanish": "responder, contestar",
+    "french": "répondre, répondre"
   },
   {
     "id": 431,
     "furigana": "と",
-    "english": "metropolitan"
+    "english": "metropolitan",
+    "chinese": "大都会",
+    "korean": "메트로폴리탄",
+    "spanish": "metropolitana",
+    "french": "métropolitain"
   },
   {
     "id": 432,
     "furigana": "さんぎょう",
-    "english": "industry"
+    "english": "industry",
+    "chinese": "产业",
+    "korean": "산업",
+    "spanish": "industria",
+    "french": "l'industrie"
   },
   {
     "id": 433,
     "furigana": "つたえる",
-    "english": "to convey (a message); to tell, to report"
+    "english": "to convey (a message); to tell, to report",
+    "chinese": "传递；告诉，报告",
+    "korean": "전달하다(메시지); 말하다, 보고하다",
+    "spanish": "transmitir (un mensaje); contar, informar",
+    "french": "transmettre (un message) ; raconter, rapporter"
   },
   {
     "id": 434,
     "furigana": "かねもち; おかねもち",
-    "english": "rich person"
+    "english": "rich person",
+    "chinese": "富翁",
+    "korean": "부자",
+    "spanish": "persona rica",
+    "french": "personne riche"
   },
   {
     "id": 435,
     "furigana": "せつめい",
-    "english": "explanation"
+    "english": "explanation",
+    "chinese": "解释",
+    "korean": "설명",
+    "spanish": "explicación",
+    "french": "explication"
   },
   {
     "id": 436,
     "furigana": "しま",
-    "english": "island"
+    "english": "island",
+    "chinese": "小岛",
+    "korean": "섬",
+    "spanish": "isla",
+    "french": "île"
   },
   {
     "id": 437,
     "furigana": "どうぐ",
-    "english": "tool"
+    "english": "tool",
+    "chinese": "工具",
+    "korean": "도구",
+    "spanish": "herramienta",
+    "french": "outil"
   },
   {
     "id": 438,
     "furigana": "すべる",
-    "english": "to slide, to slip"
+    "english": "to slide, to slip",
+    "chinese": "滑动、滑落",
+    "korean": "미끄러지다, 미끄러지다",
+    "spanish": "deslizarse, resbalar",
+    "french": "glisser, glisser"
   },
   {
     "id": 439,
     "furigana": "それほど",
-    "english": "to that degree; extent"
+    "english": "to that degree; extent",
+    "chinese": "程度；范围",
+    "korean": "그 정도까지; 범위",
+    "spanish": "en ese grado; medida",
+    "french": "à ce point ; dans cette mesure"
   },
   {
     "id": 440,
     "furigana": "いじょう",
-    "english": "more than; this is all"
+    "english": "more than; this is all",
+    "chinese": "岂止这些",
+    "korean": "이상; 이것이 전부입니다.",
+    "spanish": "más que; esto es todo",
+    "french": "plus que ; c'est tout"
   },
   {
     "id": 441,
     "furigana": "～まま",
-    "english": "as it is"
+    "english": "as it is",
+    "chinese": "因为",
+    "korean": "있는 그대로",
+    "spanish": "tal como es",
+    "french": "tel qu'il est"
   },
   {
     "id": 442,
     "furigana": "とっきゅう",
-    "english": "limited express (train faster than an express)"
+    "english": "limited express (train faster than an express)",
+    "chinese": "特快",
+    "korean": "특급(특급보다 빠른 열차)",
+    "spanish": "limited express (tren más rápido que un expreso)",
+    "french": "express limité (train plus rapide qu'un express)"
   },
   {
     "id": 443,
     "furigana": "プレゼント",
-    "english": "present, gift"
+    "english": "present, gift",
+    "chinese": "礼物",
+    "korean": "선물, 선물",
+    "spanish": "regalo, obsequio",
+    "french": "cadeau, cadeau"
   },
   {
     "id": 444,
     "furigana": "～(に) よると",
-    "english": "according to ~"
+    "english": "according to ~",
+    "chinese": "根据",
+    "korean": "에 따르면",
+    "spanish": "según ~",
+    "french": "selon ~"
   },
   {
     "id": 445,
     "furigana": "つま",
-    "english": "wife (humble)"
+    "english": "wife (humble)",
+    "chinese": "夫人",
+    "korean": "아내(겸손)",
+    "spanish": "esposa (humilde)",
+    "french": "épouse (humble)"
   },
   {
     "id": 446,
     "furigana": "かえり",
-    "english": "return, coming back"
+    "english": "return, coming back",
+    "chinese": "回来",
+    "korean": "돌아오다, 돌아오다",
+    "spanish": "volver, regresar",
+    "french": "retour, revenir"
   },
   {
     "id": 447,
     "furigana": "ぐあい",
-    "english": "condition, state, health"
+    "english": "condition, state, health",
+    "chinese": "状况、状态、健康",
+    "korean": "상태, 상태, 건강",
+    "spanish": "condición, estado, salud",
+    "french": "état, condition, santé"
   },
   {
     "id": 448,
     "furigana": "かたい",
-    "english": "solid, hard, firm"
+    "english": "solid, hard, firm",
+    "chinese": "坚实、坚硬、牢固",
+    "korean": "단단하고 단단하며 견고함",
+    "spanish": "sólido, duro, firme",
+    "french": "solide, dur, ferme"
   },
   {
     "id": 449,
     "furigana": "ちゅうしゃじょう",
-    "english": "parking lot"
+    "english": "parking lot",
+    "chinese": "停车场",
+    "korean": "주차장",
+    "spanish": "aparcamiento",
+    "french": "parking"
   },
   {
     "id": 450,
     "furigana": "スーツ",
-    "english": "suit"
+    "english": "suit",
+    "chinese": "适合",
+    "korean": "suit",
+    "spanish": "traje",
+    "french": "costume"
   },
   {
     "id": 451,
     "furigana": "きけん",
-    "english": "danger, risk, hazard"
+    "english": "danger, risk, hazard",
+    "chinese": "危险、风险、危害",
+    "korean": "위험, 위험, 위험",
+    "spanish": "peligro, riesgo, peligro",
+    "french": "danger, risque, aléa"
   },
   {
     "id": 452,
     "furigana": "かみ",
-    "english": "hair"
+    "english": "hair",
+    "chinese": "发",
+    "korean": "머리카락",
+    "spanish": "pelo",
+    "french": "cheveux"
   },
   {
     "id": 453,
     "furigana": "てんきよほう",
-    "english": "weather forecast"
+    "english": "weather forecast",
+    "chinese": "天气预报",
+    "korean": "일기 예보",
+    "spanish": "previsión meteorológica",
+    "french": "prévisions météorologiques"
   },
   {
     "id": 454,
     "furigana": "かのじょ",
-    "english": "girlfriend; she"
+    "english": "girlfriend; she",
+    "chinese": "女朋友；她",
+    "korean": "여자친구; 그녀",
+    "spanish": "novia; ella",
+    "french": "petite amie ; elle"
   },
   {
     "id": 455,
     "furigana": "あいだ",
-    "english": "space, interval"
+    "english": "space, interval",
+    "chinese": "空间、间隔",
+    "korean": "공간, 간격",
+    "spanish": "espacio, intervalo",
+    "french": "espace, intervalle"
   },
   {
     "id": 456,
     "furigana": "そつぎょう",
-    "english": "graduation"
+    "english": "graduation",
+    "chinese": "毕业",
+    "korean": "졸업",
+    "spanish": "graduación",
+    "french": "diplôme"
   },
   {
     "id": 457,
     "furigana": "それで",
-    "english": "and (conj.), thereupon, because of that"
+    "english": "and (conj.), thereupon, because of that",
+    "chinese": "于是",
+    "korean": "그리고 (동사), 따라서, 그 때문에",
+    "spanish": "y (conj.), por eso, a causa de eso",
+    "french": "et (conj.), en conséquence, à cause de cela"
   },
   {
     "id": 458,
     "furigana": "えだ",
-    "english": "branch, twig"
+    "english": "branch, twig",
+    "chinese": "杈",
+    "korean": "가지, 나뭇가지",
+    "spanish": "rama, ramita",
+    "french": "branche, rameau"
   },
   {
     "id": 459,
     "furigana": "せんもん",
-    "english": "major; speciality"
+    "english": "major; speciality",
+    "chinese": "专业",
+    "korean": "전공; 전문 분야",
+    "spanish": "especialidad",
+    "french": "majeur ; spécialité"
   },
   {
     "id": 460,
     "furigana": "そろそろ",
-    "english": "gradually, soon"
+    "english": "gradually, soon",
+    "chinese": "冉冉",
+    "korean": "점차적으로, 곧",
+    "spanish": "gradualmente, pronto",
+    "french": "progressivement, bientôt"
   },
   {
     "id": 461,
     "furigana": "おくる",
-    "english": "to send, to dispatch"
+    "english": "to send, to dispatch",
+    "chinese": "发送，派遣",
+    "korean": "보내다, 발송하다",
+    "spanish": "enviar, despachar",
+    "french": "d'envoyer, d'expédier"
   },
   {
     "id": 462,
     "furigana": "あげる",
-    "english": "to give"
+    "english": "to give",
+    "chinese": "给以",
+    "korean": "제공",
+    "spanish": "dar",
+    "french": "donner"
   },
   {
     "id": 463,
     "furigana": "さわぐ",
-    "english": "to make noise, to clamor"
+    "english": "to make noise, to clamor",
+    "chinese": "喧哗",
+    "korean": "소음을 내고, 소란을 피우다",
+    "spanish": "hacer ruido, clamar",
+    "french": "faire du bruit, clamer"
   },
   {
     "id": 464,
     "furigana": "たずねる",
-    "english": "to inquire (same as 質問する)"
+    "english": "to inquire (same as 質問する)",
+    "chinese": "质问する",
+    "korean": "문의(質問する와 동일)",
+    "spanish": "preguntar (igual que 質問する)",
+    "french": "se renseigner (même chose que 質問する)"
   },
   {
     "id": 465,
     "furigana": "ほうそうする",
-    "english": "broadcasting"
+    "english": "broadcasting",
+    "chinese": "广播",
+    "korean": "방송",
+    "spanish": "radiodifusión",
+    "french": "diffusion"
   },
   {
     "id": 466,
     "furigana": "せいじ",
-    "english": "politics"
+    "english": "politics",
+    "chinese": "政治",
+    "korean": "정치",
+    "spanish": "política",
+    "french": "politique"
   },
   {
     "id": 467,
     "furigana": "しみん",
-    "english": "citizen"
+    "english": "citizen",
+    "chinese": "公民",
+    "korean": "시민",
+    "spanish": "ciudadano",
+    "french": "citoyen"
   },
   {
     "id": 468,
     "furigana": "ファックス",
-    "english": "fax"
+    "english": "fax",
+    "chinese": "用传真机发送",
+    "korean": "팩스",
+    "spanish": "fax",
+    "french": "fax"
   },
   {
     "id": 469,
     "furigana": "まける",
-    "english": "to lose (a game) (v.i.), to be defeated"
+    "english": "to lose (a game) (v.i.), to be defeated",
+    "chinese": "败北",
+    "korean": "지다 (게임) (v.i.), 패배하다",
+    "spanish": "perder (un partido) (v.i.), ser derrotado",
+    "french": "perdre (un jeu) (v.i.), être vaincu"
   },
   {
     "id": 470,
     "furigana": "ゆびわ",
-    "english": "(finger) ring"
+    "english": "(finger) ring",
+    "chinese": "戒指",
+    "korean": "(손가락) 반지",
+    "spanish": "(dedo) anillo",
+    "french": "(doigt) anneau"
   },
   {
     "id": 471,
     "furigana": "いなか",
-    "english": "rural, countryside"
+    "english": "rural, countryside",
+    "chinese": "乡村",
+    "korean": "시골, 시골",
+    "spanish": "rural, campo",
+    "french": "rural, campagne"
   },
   {
     "id": 472,
     "furigana": "みつける",
-    "english": "to discover, to find (v.t.)"
+    "english": "to discover, to find (v.t.)",
+    "chinese": "发现，找到（v.t.）",
+    "korean": "발견하다, 찾다 (v.t.)",
+    "spanish": "descubrir, encontrar (v.t.)",
+    "french": "découvrir, trouver (v.t.)"
   },
   {
     "id": 473,
     "furigana": "こうこうせい",
-    "english": "high school student"
+    "english": "high school student",
+    "chinese": "中学生",
+    "korean": "고등학생",
+    "spanish": "estudiante de secundaria",
+    "french": "lycéen"
   },
   {
     "id": 474,
     "furigana": "こうぎ",
-    "english": "a lecture"
+    "english": "a lecture",
+    "chinese": "读本",
+    "korean": "읽기",
+    "spanish": "una lectura",
+    "french": "a lecture"
   },
   {
     "id": 475,
     "furigana": "そんなに",
-    "english": "so much, like that"
+    "english": "so much, like that",
+    "chinese": "如此这般",
+    "korean": "너무 많이, 그렇게",
+    "spanish": "tanto, así",
+    "french": "tellement, comme ça"
   },
   {
     "id": 476,
     "furigana": "ひるやすみ",
-    "english": "lunch break, noon recess"
+    "english": "lunch break, noon recess",
+    "chinese": "午休",
+    "korean": "점심 시간, 정오 쉬는 시간",
+    "spanish": "pausa para comer, recreo de mediodía",
+    "french": "pause déjeuner, pause midi"
   },
   {
     "id": 477,
     "furigana": "わすれもの",
-    "english": "lost article, something forgotten"
+    "english": "lost article, something forgotten",
+    "chinese": "遗文",
+    "korean": "분실물, 잊어버린 물건",
+    "spanish": "artículo perdido, algo olvidado",
+    "french": "article perdu, oublié"
   },
   {
     "id": 478,
     "furigana": "おりる",
-    "english": "to get down, to go; come down"
+    "english": "to get down, to go; come down",
+    "chinese": "下来，去；下来",
+    "korean": "내려가다, 가다; 내려오다",
+    "spanish": "bajar, ir; bajar",
+    "french": "descendre, aller ; descendre"
   },
   {
     "id": 479,
     "furigana": "うで",
-    "english": "arm (in reference to body)"
+    "english": "arm (in reference to body)",
+    "chinese": "手臂",
+    "korean": "팔(몸통 기준)",
+    "spanish": "brazo (en referencia al cuerpo)",
+    "french": "bras (en référence au corps)"
   },
   {
     "id": 480,
     "furigana": "わけ",
-    "english": "reason; explanation"
+    "english": "reason; explanation",
+    "chinese": "理由；解释",
+    "korean": "이유; 설명",
+    "spanish": "razón; explicación",
+    "french": "raison ; explication"
   },
   {
     "id": 481,
     "furigana": "しょうちする",
-    "english": "consent, acceptance"
+    "english": "consent, acceptance",
+    "chinese": "同意、接受",
+    "korean": "동의, 수락",
+    "spanish": "consentimiento, aceptación",
+    "french": "consentement, acceptation"
   },
   {
     "id": 482,
     "furigana": "にっき",
-    "english": "diary, journal"
+    "english": "diary, journal",
+    "chinese": "日记、日志",
+    "korean": "일기, 저널",
+    "spanish": "diario, agenda",
+    "french": "journal, journal intime"
   },
   {
     "id": 483,
     "furigana": "こうこう; こうとうがっこう",
-    "english": "high school; senior high school"
+    "english": "high school; senior high school",
+    "chinese": "高中；高级中学",
+    "korean": "고등학교; 고등학교",
+    "spanish": "escuela secundaria; escuela secundaria superior",
+    "french": "école secondaire ; école secondaire supérieure"
   },
   {
     "id": 484,
     "furigana": "にる",
-    "english": "to resemble, to be similar"
+    "english": "to resemble, to be similar",
+    "chinese": "相似",
+    "korean": "닮다, 비슷하다",
+    "spanish": "parecerse, ser similar",
+    "french": "ressembler, être similaire"
   },
   {
     "id": 485,
     "furigana": "～おわる",
-    "english": "to finish doing ~"
+    "english": "to finish doing ~",
+    "chinese": "做完 ~",
+    "korean": "완료하려면",
+    "spanish": "terminar de hacer ~",
+    "french": "finir de faire ~"
   },
   {
     "id": 486,
     "furigana": "だんぼう",
-    "english": "heating"
+    "english": "heating",
+    "chinese": "采暖",
+    "korean": "난방",
+    "spanish": "calefacción",
+    "french": "chauffage"
   },
   {
     "id": 487,
     "furigana": "るす",
-    "english": "absence; not at home"
+    "english": "absence; not at home",
+    "chinese": "不在家",
+    "korean": "부재; 집에 없음",
+    "spanish": "ausencia; no está en casa",
+    "french": "absence ; pas à la maison"
   },
   {
     "id": 488,
     "furigana": "わりあい",
-    "english": "rate, ratio, percentage"
+    "english": "rate, ratio, percentage",
+    "chinese": "比率、比例、百分比",
+    "korean": "요금, 비율, 백분율",
+    "spanish": "tasa, ratio, porcentaje",
+    "french": "taux, ratio, pourcentage"
   },
   {
     "id": 489,
     "furigana": "てら",
-    "english": "Buddhist temple"
+    "english": "Buddhist temple",
+    "chinese": "寺庙",
+    "korean": "불교 사원",
+    "spanish": "Templo budista",
+    "french": "Temple bouddhiste"
   },
   {
     "id": 490,
     "furigana": "なれる",
-    "english": "to grow accustomed to"
+    "english": "to grow accustomed to",
+    "chinese": "习惯",
+    "korean": "에 익숙해지려면",
+    "spanish": "acostumbrarse",
+    "french": "s'habituer à"
   },
   {
     "id": 491,
     "furigana": "ふつう",
-    "english": "common; usual"
+    "english": "common; usual",
+    "chinese": "常见；惯常",
+    "korean": "일반; 보통",
+    "spanish": "común; habitual",
+    "french": "commun ; habituel"
   },
   {
     "id": 492,
     "furigana": "てつだう",
-    "english": "to help"
+    "english": "to help",
+    "chinese": "以帮助",
+    "korean": "도움을 주기 위해",
+    "spanish": "para ayudar",
+    "french": "pour aider"
   },
   {
     "id": 493,
     "furigana": "なるほど",
-    "english": "I see; I now understand"
+    "english": "I see; I now understand",
+    "chinese": "我明白了，我现在明白了",
+    "korean": "알겠습니다. 이제 이해합니다.",
+    "spanish": "Ya veo; ahora entiendo",
+    "french": "Je vois ; je comprends maintenant"
   },
   {
     "id": 494,
     "furigana": "くださる",
-    "english": "(hon.) to give, to confer"
+    "english": "(hon.) to give, to confer",
+    "chinese": "赐",
+    "korean": "(hon.) 주다, 수여하다",
+    "spanish": "(hon.) dar, conferir",
+    "french": "(hon.) donner, conférer"
   },
   {
     "id": 495,
     "furigana": "むすこ",
-    "english": "(humble) son"
+    "english": "(humble) son",
+    "chinese": "家儿",
+    "korean": "(겸손한) 아들",
+    "spanish": "(humilde) hijo",
+    "french": "fils (humble)"
   },
   {
     "id": 496,
     "furigana": "おこさん",
-    "english": "(someone else's) child (polite)"
+    "english": "(someone else's) child (polite)",
+    "chinese": "小子",
+    "korean": "(다른 사람의) 자녀(공손한)",
+    "spanish": "hijo (ajeno) (educado)",
+    "french": "l'enfant (de quelqu'un d'autre) (politesse)"
   },
   {
     "id": 497,
     "furigana": "かいじょう",
-    "english": "venue, meeting place"
+    "english": "venue, meeting place",
+    "chinese": "会场",
+    "korean": "장소, 미팅 장소",
+    "spanish": "lugar de reunión",
+    "french": "lieu, lieu de réunion"
   },
   {
     "id": 498,
     "furigana": "わらう",
-    "english": "to laugh, to smile"
+    "english": "to laugh, to smile",
+    "chinese": "笑，微笑",
+    "korean": "웃다, 웃다",
+    "spanish": "reír, sonreír",
+    "french": "rire, sourire"
   },
   {
     "id": 499,
     "furigana": "はこぶ",
-    "english": "to transport, to carry"
+    "english": "to transport, to carry",
+    "chinese": "运输、携带",
+    "korean": "운송, 휴대",
+    "spanish": "transportar, llevar",
+    "french": "transporter, porter"
   },
   {
     "id": 500,
     "furigana": "ぶんがく",
-    "english": "literature"
+    "english": "literature",
+    "chinese": "文献",
+    "korean": "문학",
+    "spanish": "literatura",
+    "french": "littérature"
   },
   {
     "id": 501,
     "furigana": "ひかり",
-    "english": "light"
+    "english": "light",
+    "chinese": "轻",
+    "korean": "빛",
+    "spanish": "luz",
+    "french": "lumière"
   },
   {
     "id": 502,
     "furigana": "おみまい",
-    "english": "calling on someone who is ill, visit"
+    "english": "calling on someone who is ill, visit",
+    "chinese": "探望病人，请访问",
+    "korean": "아픈 사람에게 전화, 방문",
+    "spanish": "visitar a un enfermo",
+    "french": "rendre visite à une personne malade, visiter"
   },
   {
     "id": 503,
     "furigana": "せき",
-    "english": "a seat"
+    "english": "a seat",
+    "chinese": "座席",
+    "korean": "좌석",
+    "spanish": "un asiento",
+    "french": "un siège"
   },
   {
     "id": 504,
     "furigana": "～さま",
-    "english": "Mr., Mrs., Ms."
+    "english": "Mr., Mrs., Ms.",
+    "chinese": "先生、夫人、女士",
+    "korean": "미스터, 미스터, 미시즈",
+    "spanish": "Sr., Sra., Srta.",
+    "french": "M., Mme, Mlle"
   },
   {
     "id": 505,
     "furigana": "ごぞんじ",
-    "english": "knowing, acquaintance"
+    "english": "knowing, acquaintance",
+    "chinese": "认识、相识",
+    "korean": "아는, 지인",
+    "spanish": "conocer, conocido",
+    "french": "Connaissance"
   },
   {
     "id": 506,
     "furigana": "さがる",
-    "english": "to descend, to drop, to fall"
+    "english": "to descend, to drop, to fall",
+    "chinese": "降, 下降, 坠落",
+    "korean": "내려가다, 떨어지다, 떨어지다",
+    "spanish": "descender, bajar, caer",
+    "french": "descendre, laisser tomber, tomber"
   },
   {
     "id": 507,
     "furigana": "じ",
-    "english": "letter; character"
+    "english": "letter; character",
+    "chinese": "字母；字符",
+    "korean": "문자; 문자",
+    "spanish": "letra; carácter",
+    "french": "lettre ; caractère"
   },
   {
     "id": 508,
     "furigana": "アジア",
-    "english": "Asia"
+    "english": "Asia",
+    "chinese": "亚洲",
+    "korean": "아시아",
+    "spanish": "Asia",
+    "french": "Asie"
   },
   {
     "id": 509,
     "furigana": "ほめる",
-    "english": "to praise; to say nice things"
+    "english": "to praise; to say nice things",
+    "chinese": "赞美；说好话",
+    "korean": "칭찬하다; 좋은 말을 하다",
+    "spanish": "elogiar; decir cosas buenas",
+    "french": "faire des éloges ; dire des choses agréables"
   },
   {
     "id": 510,
     "furigana": "すく",
-    "english": "to be empty (in reference to people), to be less crowded"
+    "english": "to be empty (in reference to people), to be less crowded",
+    "chinese": "空旷（指人），不那么拥挤",
+    "korean": "(사람과 관련하여) 비어있는 것, 덜 붐비는 것",
+    "spanish": "estar vacío (en referencia a la gente), estar menos concurrido",
+    "french": "être vide (en ce qui concerne les personnes), être moins encombré"
   },
   {
     "id": 511,
     "furigana": "あ",
-    "english": "Ah"
+    "english": "Ah",
+    "chinese": "啊",
+    "korean": "아",
+    "spanish": "Ah",
+    "french": "Ah"
   },
   {
     "id": 512,
     "furigana": "もっとも",
-    "english": "most"
+    "english": "most",
+    "chinese": "大多数",
+    "korean": "대부분",
+    "spanish": "más",
+    "french": "le plus"
   },
   {
     "id": 513,
     "furigana": "あう",
-    "english": "to fit, to match"
+    "english": "to fit, to match",
+    "chinese": "相配",
+    "korean": "맞춤, 매칭",
+    "spanish": "encajar, hacer juego",
+    "french": "s'adapter, correspondre"
   },
   {
     "id": 514,
     "furigana": "～だい",
-    "english": "~ age; period"
+    "english": "~ age; period",
+    "chinese": "~ 年龄；时期",
+    "korean": "~ 연령; 기간",
+    "spanish": "~ edad; periodo",
+    "french": "~ âge ; période"
   },
   {
     "id": 515,
     "furigana": "さいご",
-    "english": "last, end"
+    "english": "last, end",
+    "chinese": "last, end",
+    "korean": "마지막, 끝",
+    "spanish": "último, fin",
+    "french": "dernier, fin"
   },
   {
     "id": 516,
     "furigana": "ねだん",
-    "english": "price"
+    "english": "price",
+    "chinese": "价格",
+    "korean": "가격",
+    "spanish": "precio",
+    "french": "prix"
   },
   {
     "id": 517,
     "furigana": "たいいんする",
-    "english": "leaving hospital"
+    "english": "leaving hospital",
+    "chinese": "出院",
+    "korean": "퇴원",
+    "spanish": "salida del hospital",
+    "french": "quitter l'hôpital"
   },
   {
     "id": 518,
     "furigana": "てんらんかい",
-    "english": "exhibition"
+    "english": "exhibition",
+    "chinese": "展会",
+    "korean": "전시회",
+    "spanish": "exposición",
+    "french": "exposition"
   },
   {
     "id": 519,
     "furigana": "ひさしぶり",
-    "english": "it has been a long time; for the first time in a long time"
+    "english": "it has been a long time; for the first time in a long time",
+    "chinese": "好久不见；好久以来第一次",
+    "korean": "오랜만에 오랜만에 처음으로",
+    "spanish": "ha pasado mucho tiempo; por primera vez en mucho tiempo",
+    "french": "cela fait longtemps ; pour la première fois depuis longtemps"
   },
   {
     "id": 520,
     "furigana": "カーテン",
-    "english": "curtain"
+    "english": "curtain",
+    "chinese": "帷幕",
+    "korean": "커튼",
+    "spanish": "cortina",
+    "french": "rideau"
   },
   {
     "id": 521,
     "furigana": "きしゃ",
-    "english": "train (steam)"
+    "english": "train (steam)",
+    "chinese": "蒸汽火车",
+    "korean": "기차(증기)",
+    "spanish": "tren (vapor)",
+    "french": "train (à vapeur)"
   },
   {
     "id": 522,
     "furigana": "おくれる",
-    "english": "to (be) become late"
+    "english": "to (be) become late",
+    "chinese": "姗姗来迟",
+    "korean": "지각하다(되다)",
+    "spanish": "llegar tarde",
+    "french": "(être) devenir en retard"
   },
   {
     "id": 523,
     "furigana": "みつかる",
-    "english": "to be found (v.i.), to be discovered"
+    "english": "to be found (v.i.), to be discovered",
+    "chinese": "被发现（v.i.），被发现",
+    "korean": "발견하다 (동사), 발견하다",
+    "spanish": "ser encontrado (v.i.), ser descubierto",
+    "french": "être trouvé (v.i.), être découvert"
   },
   {
     "id": 524,
     "furigana": "めしあがる",
-    "english": "-- honorific form of 食べる (たべる) and 飲む (のむ) --"
+    "english": "-- honorific form of 食べる (たべる) and 飲む (のむ) --",
+    "chinese": "-- 食べる(たべる)和飲む(のむ)的尊稱形式 --",
+    "korean": "食べる(たべる) 및 飲む(のむ)의 경어형 -- -- 食べる(たべる) 및 飲む(のむ)의 경어형.",
+    "spanish": "-- Forma honorífica de 食べる (たべる) y 飲む (のむ) --",
+    "french": "-- Forme honorifique de 食べる (たべる) et 飲む (のむ) --"
   },
   {
     "id": 525,
     "furigana": "ふとる",
-    "english": "to gain weight"
+    "english": "to gain weight",
+    "chinese": "发胖",
+    "korean": "체중 증가",
+    "spanish": "ganar peso",
+    "french": "prendre du poids"
   },
   {
     "id": 526,
     "furigana": "ちゅうしゃ",
-    "english": "injection"
+    "english": "injection",
+    "chinese": "注射",
+    "korean": "주입",
+    "spanish": "inyección",
+    "french": "injection"
   },
   {
     "id": 527,
     "furigana": "よう",
-    "english": "way, manner, kind"
+    "english": "way, manner, kind",
+    "chinese": "way, manner, kind",
+    "korean": "방식, 태도, 친절",
+    "spanish": "modo, manera, clase",
+    "french": "façon, manière, genre"
   },
   {
     "id": 528,
     "furigana": "～おき",
-    "english": "after every ~"
+    "english": "after every ~",
+    "chinese": "每 ~ 次之后",
+    "korean": "매 ~마다",
+    "spanish": "después de cada ~",
+    "french": "après chaque ~"
   },
   {
     "id": 529,
     "furigana": "さいしょ",
-    "english": "beginning, first"
+    "english": "beginning, first",
+    "chinese": "开始, 第一次",
+    "korean": "시작, 먼저",
+    "spanish": "principio, primero",
+    "french": "début, premier"
   },
   {
     "id": 530,
     "furigana": "ご～",
-    "english": "honorable ~"
+    "english": "honorable ~",
+    "chinese": "光荣~",
+    "korean": "명예로운 ~",
+    "spanish": "honorable ~",
+    "french": "honorable ~"
   },
   {
     "id": 531,
     "furigana": "あんしん",
-    "english": "peace of mind, relief"
+    "english": "peace of mind, relief",
+    "chinese": "安心、舒畅",
+    "korean": "마음의 평화, 안도감",
+    "spanish": "tranquilidad, alivio",
+    "french": "tranquillité d'esprit, soulagement"
   },
   {
     "id": 532,
     "furigana": "なおる",
-    "english": "to be fixed"
+    "english": "to be fixed",
+    "chinese": "待定",
+    "korean": "수정할",
+    "spanish": "a fijar",
+    "french": "à fixer"
   },
   {
     "id": 533,
     "furigana": "あつめる",
-    "english": "to collect, to gather (v.t.), to assemble"
+    "english": "to collect, to gather (v.t.), to assemble",
+    "chinese": "收集，聚集（v.t.），集合",
+    "korean": "수집하다, 모으다(동사), 조립하다",
+    "spanish": "recoger, reunir (v.t.), congregar",
+    "french": "rassembler, rassembler (v.t.), assembler"
   },
   {
     "id": 534,
     "furigana": "なおす",
-    "english": "to correct (v.t.); to fix"
+    "english": "to correct (v.t.); to fix",
+    "chinese": "纠正（动词）；固定",
+    "korean": "수정하다 (v.t.); 고치다",
+    "spanish": "corregir (v.t.); fijar",
+    "french": "corriger (v.t.) ; fixer"
   },
   {
     "id": 535,
     "furigana": "つづく",
-    "english": "to be continued"
+    "english": "to be continued",
+    "chinese": "待续",
+    "korean": "계속하기",
+    "spanish": "continuará",
+    "french": "à suivre"
   },
   {
     "id": 536,
     "furigana": "せんぱい",
-    "english": "senior members of a group"
+    "english": "senior members of a group",
+    "chinese": "老大",
+    "korean": "그룹의 선임 멤버",
+    "spanish": "miembros veteranos de un grupo",
+    "french": "les membres seniors d'un groupe"
   },
   {
     "id": 537,
     "furigana": "やくそく",
-    "english": "arrangement, appointment, promise"
+    "english": "arrangement, appointment, promise",
+    "chinese": "安排、任命、承诺",
+    "korean": "준비, 약속, 약속",
+    "spanish": "acuerdo, cita, promesa",
+    "french": "arrangement, rendez-vous, promesse"
   },
   {
     "id": 538,
     "furigana": "せわする",
-    "english": "looking after; to look after"
+    "english": "looking after; to look after",
+    "chinese": "照顾；照看",
+    "korean": "돌보다; 돌보다",
+    "spanish": "cuidar; velar por",
+    "french": "s'occuper de ; s'occuper de"
   },
   {
     "id": 539,
     "furigana": "きんじょ",
-    "english": "neighborhood"
+    "english": "neighborhood",
+    "chinese": "街区",
+    "korean": "이웃",
+    "spanish": "barrio",
+    "french": "le voisinage"
   },
   {
     "id": 540,
     "furigana": "しょうらい",
-    "english": "(in the) future; prospects"
+    "english": "(in the) future; prospects",
+    "chinese": "未来",
+    "korean": "(미래) 전망",
+    "spanish": "(en el) futuro; perspectivas",
+    "french": "(à l'avenir) ; perspectives"
   },
   {
     "id": 541,
     "furigana": "おく",
-    "english": "hundred million"
+    "english": "hundred million",
+    "chinese": "十亿",
+    "korean": "백억",
+    "spanish": "cien millones",
+    "french": "cent millions"
   },
   {
     "id": 542,
     "furigana": "すうがく",
-    "english": "mathematics"
+    "english": "mathematics",
+    "chinese": "数学",
+    "korean": "수학",
+    "spanish": "matemáticas",
+    "french": "mathématiques"
   },
   {
     "id": 543,
     "furigana": "ぶんか",
-    "english": "culture"
+    "english": "culture",
+    "chinese": "文化",
+    "korean": "문화",
+    "spanish": "cultura",
+    "french": "culture"
   },
   {
     "id": 544,
     "furigana": "はらう",
-    "english": "to pay"
+    "english": "to pay",
+    "chinese": "支付",
+    "korean": "결제하려면",
+    "spanish": "pagar",
+    "french": "à payer"
   },
   {
     "id": 545,
     "furigana": "しゅうかん",
-    "english": "custom (in reference to culture)"
+    "english": "custom (in reference to culture)",
+    "chinese": "风俗",
+    "korean": "사용자 지정(문화 관련)",
+    "spanish": "costumbre (en referencia a la cultura)",
+    "french": "coutume (en référence à la culture)"
   },
   {
     "id": 546,
     "furigana": "やける",
-    "english": "to burn, to be roasted"
+    "english": "to burn, to be roasted",
+    "chinese": "烧，烤",
+    "korean": "태우다, 구우다",
+    "spanish": "quemarse, asarse",
+    "french": "brûler, être rôti"
   },
   {
     "id": 547,
     "furigana": "きみ",
-    "english": "you (informal for men)"
+    "english": "you (informal for men)",
+    "chinese": "您",
+    "korean": "당신(남성의 경우 비공식)",
+    "spanish": "tú (informal para hombres)",
+    "french": "vous (informel pour les hommes)"
   },
   {
     "id": 548,
     "furigana": "ひえる",
-    "english": "to grow cold, to cool down"
+    "english": "to grow cold, to cool down",
+    "chinese": "变冷，冷却",
+    "korean": "추워지다, 식히다",
+    "spanish": "enfriarse, enfriarse",
+    "french": "se refroidir, se refroidir"
   },
   {
     "id": 549,
     "furigana": "つく",
-    "english": "to be started, to be switched on"
+    "english": "to be started, to be switched on",
+    "chinese": "启动，接通",
+    "korean": "시작, 전원 켜기",
+    "spanish": "arrancar, encender",
+    "french": "à mettre en marche, à allumer"
   },
   {
     "id": 550,
     "furigana": "このあいだ",
-    "english": "the other day, recently"
+    "english": "the other day, recently",
+    "chinese": "日前，最近",
+    "korean": "얼마 전, 최근",
+    "spanish": "el otro día, recientemente",
+    "french": "l'autre jour, récemment"
   },
   {
     "id": 551,
     "furigana": "かっこう",
-    "english": "appearance, manner, shape, form, posture"
+    "english": "appearance, manner, shape, form, posture",
+    "chinese": "外貌、举止、形状、形态、姿态",
+    "korean": "외모, 태도, 모양, 형태, 자세",
+    "spanish": "aspecto, manera, forma, postura",
+    "french": "l'apparence, la manière, la forme, la posture"
   },
   {
     "id": 552,
-    "furigana": NaN,
-    "english": "to mind, to care about, to be concerned about"
+    "furigana": null,
+    "english": "to mind, to care about, to be concerned about",
+    "chinese": "惦记、关心、牵挂",
+    "korean": "염두에 두고, 관심을 갖고, 걱정하는 것",
+    "spanish": "preocuparse, ocuparse, ocuparse de",
+    "french": "se préoccuper, se soucier, se préoccuper de"
   },
   {
     "id": 553,
     "furigana": "つづける",
-    "english": "to continue, to keep up"
+    "english": "to continue, to keep up",
+    "chinese": "继续",
+    "korean": "계속하기 위해, 계속 따라잡기 위해",
+    "spanish": "continuar, seguir",
+    "french": "continuer, maintenir"
   },
   {
     "id": 554,
     "furigana": "おとす",
-    "english": "to drop, to lose"
+    "english": "to drop, to lose",
+    "chinese": "坠落，失去",
+    "korean": "떨어뜨리다, 잃다",
+    "spanish": "dejar caer, perder",
+    "french": "laisser tomber, perdre"
   },
   {
     "id": 555,
     "furigana": "あす",
-    "english": "tomorrow"
+    "english": "tomorrow",
+    "chinese": "明天",
+    "korean": "내일",
+    "spanish": "tomorrow",
+    "french": "demain"
   },
   {
     "id": 556,
     "furigana": "しゅっぱつする",
-    "english": "departure"
+    "english": "departure",
+    "chinese": "离职",
+    "korean": "출발",
+    "spanish": "salida",
+    "french": "départ"
   },
   {
     "id": 557,
     "furigana": "はいけんする",
-    "english": "(humble) (polite) seeing, look at"
+    "english": "(humble) (polite) seeing, look at",
+    "chinese": "喏",
+    "korean": "(겸손한) (정중하게) 보고, 보세요.",
+    "spanish": "(humilde) (cortés) ver, mirar",
+    "french": "(humble) (poli) voir, regarder"
   },
   {
     "id": 558,
     "furigana": "われる",
-    "english": "to break"
+    "english": "to break",
+    "chinese": "打破",
+    "korean": "끊다",
+    "spanish": "romper",
+    "french": "pour rompre"
   },
   {
     "id": 559,
     "furigana": "せなか",
-    "english": "back (of body)"
+    "english": "back (of body)",
+    "chinese": "背部",
+    "korean": "등(몸통)",
+    "spanish": "espalda (del cuerpo)",
+    "french": "dos (du corps)"
   },
   {
     "id": 560,
     "furigana": "しんぶんしゃ",
-    "english": "newspaper company"
+    "english": "newspaper company",
+    "chinese": "报社",
+    "korean": "신문사",
+    "spanish": "empresa periodística",
+    "french": "entreprise de presse"
   },
   {
     "id": 561,
     "furigana": "いじめる",
-    "english": "to bully, to torment"
+    "english": "to bully, to torment",
+    "chinese": "欺凌、折磨",
+    "korean": "괴롭히기, 괴롭히기",
+    "spanish": "intimidar, atormentar",
+    "french": "de malmener, de tourmenter"
   },
   {
     "id": 562,
     "furigana": "まわる、まわす",
-    "english": "to go around, to revolve"
+    "english": "to go around, to revolve",
+    "chinese": "绕，旋转",
+    "korean": "돌아다니다, 회전하다",
+    "spanish": "dar vueltas, girar",
+    "french": "faire le tour, tourner"
   },
   {
     "id": 563,
     "furigana": "～くん",
-    "english": "Mr. (junior) ~, master ~"
+    "english": "Mr. (junior) ~, master ~",
+    "chinese": "先生（初级）～，主人～",
+    "korean": "(주니어) 씨 ~, 마스터 ~.",
+    "spanish": "Sr. (junior) ~, maestro ~",
+    "french": "M. (junior) ~, maître ~"
   },
   {
     "id": 564,
     "furigana": "おっしゃる",
-    "english": "-- honorific expression for いう --"
+    "english": "-- honorific expression for いう --",
+    "chinese": "-- いう 的尊称 --",
+    "korean": "いう에 대한 경어 표현 -- --.",
+    "spanish": "-- expresión honorífica para いう --",
+    "french": "-- expression honorifique pour いう --"
   },
   {
     "id": 565,
     "furigana": "ねむい",
-    "english": "sleepy, drowsy"
+    "english": "sleepy, drowsy",
+    "chinese": "昏昏欲睡",
+    "korean": "졸음, 졸음",
+    "spanish": "soñoliento, somnoliento",
+    "french": "endormi, somnolent"
   },
   {
     "id": 566,
     "furigana": "ぬれる",
-    "english": "to get wet"
+    "english": "to get wet",
+    "chinese": "淋湿",
+    "korean": "젖다",
+    "spanish": "mojarse",
+    "french": "se mouiller"
   },
   {
     "id": 567,
     "furigana": "たおれる",
-    "english": "to collapse, to break down"
+    "english": "to collapse, to break down",
+    "chinese": "崩溃，瓦解",
+    "korean": "무너지다, 무너뜨리다",
+    "spanish": "derrumbarse, desmoronarse",
+    "french": "s'effondrer, se briser"
   },
   {
     "id": 568,
     "furigana": "スーパー (マーケット)",
-    "english": "supermarket"
+    "english": "supermarket",
+    "chinese": "超级市场",
+    "korean": "슈퍼마켓",
+    "spanish": "supermercado",
+    "french": "supermarché"
   },
   {
     "id": 569,
     "furigana": "アクセサリー",
-    "english": "accessory"
+    "english": "accessory",
+    "chinese": "附属品",
+    "korean": "액세서리",
+    "spanish": "accesorio",
+    "french": "accessoire"
   },
   {
     "id": 570,
     "furigana": "かんがえる",
-    "english": "to think (about); to consider"
+    "english": "to think (about); to consider",
+    "chinese": "考虑",
+    "korean": "생각하다(에 대해); 고려하다",
+    "spanish": "pensar (sobre); considerar",
+    "french": "penser (à) ; considérer"
   },
   {
     "id": 571,
     "furigana": "むかう",
-    "english": "to face, to go towards"
+    "english": "to face, to go towards",
+    "chinese": "面对，走向",
+    "korean": "마주보고, 향해",
+    "spanish": "encarar, ir hacia",
+    "french": "faire face, aller vers"
   },
   {
     "id": 572,
     "furigana": "じゆう",
-    "english": "freedom"
+    "english": "freedom",
+    "chinese": "自由",
+    "korean": "자유",
+    "spanish": "libertad",
+    "french": "liberté"
   },
   {
     "id": 573,
     "furigana": "しかた",
-    "english": "way (of doing something)"
+    "english": "way (of doing something)",
+    "chinese": "办法",
+    "korean": "(무언가를 하는) 방법",
+    "spanish": "manera (de hacer algo)",
+    "french": "manière (de faire quelque chose)"
   },
   {
     "id": 574,
     "furigana": "くび",
-    "english": "neck"
+    "english": "neck",
+    "chinese": "颈项",
+    "korean": "neck",
+    "spanish": "cuello",
+    "french": "cou"
   },
   {
     "id": 575,
     "furigana": "ほど",
-    "english": "degree, extent"
+    "english": "degree, extent",
+    "chinese": "程度、范围",
+    "korean": "정도, 범위",
+    "spanish": "grado, extensión",
+    "french": "degré, étendue"
   },
   {
     "id": 576,
     "furigana": "かわり",
-    "english": "substitute, replacement"
+    "english": "substitute, replacement",
+    "chinese": "替补",
+    "korean": "대체, 대체",
+    "spanish": "sustituto, reemplazo",
+    "french": "substitut, remplacement"
   },
   {
     "id": 577,
     "furigana": "しっぱい",
-    "english": "failure, mistake"
+    "english": "failure, mistake",
+    "chinese": "失败、错误",
+    "korean": "실패, 실수",
+    "spanish": "fracaso, error",
+    "french": "échec, erreur"
   },
   {
     "id": 578,
     "furigana": "こうぎょう",
-    "english": "(manufacturing) industry"
+    "english": "(manufacturing) industry",
+    "chinese": "(制造业",
+    "korean": "(제조) 산업",
+    "spanish": "industria (manufacturera)",
+    "french": "Industrie (manufacturière)"
   },
   {
     "id": 579,
     "furigana": "うつる",
-    "english": "to move (from a house); to transfer (from a department); to shift"
+    "english": "to move (from a house); to transfer (from a department); to shift",
+    "chinese": "搬家；调离（部门）；转移",
+    "korean": "(집에서) 이사하다; (부서에서) 전근하다; 교대하다",
+    "spanish": "mudarse (de casa); trasladarse (de departamento); cambiar de lugar",
+    "french": "déménager (d'une maison) ; transférer (d'un département) ; déplacer"
   },
   {
     "id": 580,
     "furigana": "スーツケース",
-    "english": "suitcase"
+    "english": "suitcase",
+    "chinese": "箧",
+    "korean": "수트케이스",
+    "spanish": "maleta",
+    "french": "valise"
   },
   {
     "id": 581,
     "furigana": "ひげ",
-    "english": "beard"
+    "english": "beard",
+    "chinese": "髯毛",
+    "korean": "수염",
+    "spanish": "barba",
+    "french": "barbe"
   },
   {
     "id": 582,
     "furigana": "けんきゅうしつ",
-    "english": "the professor's office; laboratory"
+    "english": "the professor's office; laboratory",
+    "chinese": "教授办公室；实验室",
+    "korean": "교수 사무실; 실험실",
+    "spanish": "despacho del profesor; laboratorio",
+    "french": "le bureau du professeur ; le laboratoire"
   },
   {
     "id": 583,
     "furigana": "こうじょう",
-    "english": "factory"
+    "english": "factory",
+    "chinese": "工厂",
+    "korean": "공장",
+    "spanish": "fábrica",
+    "french": "usine"
   },
   {
     "id": 584,
     "furigana": "しょうかい",
-    "english": "an introduction"
+    "english": "an introduction",
+    "chinese": "导论",
+    "korean": "소개",
+    "spanish": "introducción",
+    "french": "une introduction"
   },
   {
     "id": 585,
     "furigana": "けれど; けれども",
-    "english": "but, although"
+    "english": "but, although",
+    "chinese": "虽然",
+    "korean": "하지만",
+    "spanish": "pero, aunque",
+    "french": "mais, bien que"
   },
   {
     "id": 586,
     "furigana": "ふね",
-    "english": "ship, boat"
+    "english": "ship, boat",
+    "chinese": "船",
+    "korean": "배, 보트",
+    "spanish": "barco",
+    "french": "navire, bateau"
   },
   {
     "id": 587,
     "furigana": "うごく",
-    "english": "to move"
+    "english": "to move",
+    "chinese": "要移动",
+    "korean": "이동하려면",
+    "spanish": "mover",
+    "french": "de se déplacer"
   },
   {
     "id": 588,
     "furigana": "～(に) ついて",
-    "english": "about, concerning"
+    "english": "about, concerning",
+    "chinese": "关于",
+    "korean": "약, 관련",
+    "spanish": "sobre, relativo a",
+    "french": "à propos de, concernant"
   },
   {
     "id": 589,
     "furigana": "コンサート",
-    "english": "concert"
+    "english": "concert",
+    "chinese": "音乐会",
+    "korean": "콘서트",
+    "spanish": "concierto",
+    "french": "concert"
   },
   {
     "id": 590,
     "furigana": "むし",
-    "english": "insect"
+    "english": "insect",
+    "chinese": "虫子",
+    "korean": "곤충",
+    "spanish": "insecto",
+    "french": "insecte"
   },
   {
     "id": 591,
     "furigana": "やさしい",
-    "english": "kind (person), gentle (person), easy (problem)"
+    "english": "kind (person), gentle (person), easy (problem)",
+    "chinese": "仁慈（人），温柔（人），容易（问题）",
+    "korean": "친절(사람), 온화한(사람), 쉬운(문제)",
+    "spanish": "amable (persona), gentil (persona), fácil (problema)",
+    "french": "gentil (personne), doux (personne), facile (problème)"
   },
   {
     "id": 592,
     "furigana": "コンピュータ; コンピューター",
-    "english": "computer"
+    "english": "computer",
+    "chinese": "计算机",
+    "korean": "컴퓨터",
+    "spanish": "ordenador",
+    "french": "ordinateur"
   },
   {
     "id": 593,
     "furigana": "うえる",
-    "english": "to plant"
+    "english": "to plant",
+    "chinese": "种植",
+    "korean": "심기",
+    "spanish": "plantar",
+    "french": "pour planter"
   },
   {
     "id": 594,
     "furigana": "りょうほう",
-    "english": "both sides, both parties"
+    "english": "both sides, both parties",
+    "chinese": "双方",
+    "korean": "양측, 양 당사자",
+    "spanish": "ambas partes",
+    "french": "les deux côtés, les deux parties"
   },
   {
     "id": 595,
     "furigana": "よごれる",
-    "english": "to become dirty"
+    "english": "to become dirty",
+    "chinese": "变脏",
+    "korean": "더러워지다",
+    "spanish": "ensuciarse",
+    "french": "se salir"
   },
   {
     "id": 596,
     "furigana": "すいえい",
-    "english": "swimming"
+    "english": "swimming",
+    "chinese": "游泳",
+    "korean": "수영",
+    "spanish": "natación",
+    "french": "natation"
   },
   {
     "id": 597,
     "furigana": "けいけんする",
-    "english": "experience"
+    "english": "experience",
+    "chinese": "经历",
+    "korean": "경험",
+    "spanish": "experiencia",
+    "french": "expérience"
   },
   {
     "id": 598,
     "furigana": "かつ",
-    "english": "to win"
+    "english": "to win",
+    "chinese": "赢得",
+    "korean": "승리하려면",
+    "spanish": "para ganar",
+    "french": "pour gagner"
   },
   {
     "id": 599,
     "furigana": "すな",
-    "english": "sand"
+    "english": "sand",
+    "chinese": "沙子",
+    "korean": "모래",
+    "spanish": "arena",
+    "french": "sable"
   },
   {
     "id": 600,
     "furigana": "けいさつ",
-    "english": "police; police station"
+    "english": "police; police station",
+    "chinese": "警察；警察局",
+    "korean": "경찰; 경찰서",
+    "spanish": "policía; comisaría",
+    "french": "police ; poste de police"
   },
   {
     "id": 601,
     "furigana": "とりかえる",
-    "english": "to exchange, to replace"
+    "english": "to exchange, to replace",
+    "chinese": "交换、取代",
+    "korean": "교환, 교체",
+    "spanish": "intercambiar, sustituir",
+    "french": "échanger, remplacer"
   },
   {
     "id": 602,
     "furigana": "いそぐ",
-    "english": "to hurry, to be in a hurry, to rush"
+    "english": "to hurry, to be in a hurry, to rush",
+    "chinese": "赶时间、赶时间、赶时间",
+    "korean": "서두르다, 서두르다, 서두르다, 서두르다",
+    "spanish": "apresurarse, tener prisa, precipitarse",
+    "french": "se dépêcher, être pressé, se précipiter"
   },
   {
     "id": 603,
     "furigana": "かんたん",
-    "english": "simple"
+    "english": "simple",
+    "chinese": "简单",
+    "korean": "simple",
+    "spanish": "simple",
+    "french": "simple"
   },
   {
     "id": 604,
     "furigana": "まいる",
-    "english": "humble expression for 行く and 来る"
+    "english": "humble expression for 行く and 来る",
+    "chinese": "行く 和 来る 的简式",
+    "korean": "行く와 来る의 겸손한 표현",
+    "spanish": "humilde expresión de 行く y 来る",
+    "french": "expression humble pour 行く et 来る"
   },
   {
     "id": 605,
     "furigana": "ぜんぜん",
-    "english": "not at all; wholly, entirely"
+    "english": "not at all; wholly, entirely",
+    "chinese": "完全",
+    "korean": "전혀; 전적으로, 전적으로",
+    "spanish": "en absoluto; totalmente, enteramente",
+    "french": "pas du tout ; entièrement, entièrement"
   },
   {
     "id": 606,
     "furigana": "とくべつ",
-    "english": "special"
+    "english": "special",
+    "chinese": "特殊",
+    "korean": "특별",
+    "spanish": "especial",
+    "french": "spécial"
   },
   {
     "id": 607,
     "furigana": "ふくしゅう",
-    "english": "review (of lessons), revision"
+    "english": "review (of lessons), revision",
+    "chinese": "复习",
+    "korean": "(수업의) 복습, 수정",
+    "spanish": "repaso (de lecciones), revisión",
+    "french": "révision (des leçons), révision"
   },
   {
     "id": 608,
     "furigana": "まにあう",
-    "english": "to be in time for"
+    "english": "to be in time for",
+    "chinese": "以赶上",
+    "korean": "에 맞춰서",
+    "spanish": "a tiempo para",
+    "french": "pour être à temps pour"
   },
   {
     "id": 609,
     "furigana": "やくにたつ",
-    "english": "to be helpful, to be useful"
+    "english": "to be helpful, to be useful",
+    "chinese": "有帮助，有用",
+    "korean": "도움이 되려면, 유용하려면",
+    "spanish": "ser útil",
+    "french": "être utile, se rendre utile"
   },
   {
     "id": 610,
     "furigana": "もうすぐ",
-    "english": "very soon; in a few moments; days"
+    "english": "very soon; in a few moments; days",
+    "chinese": "很快；一会儿；几天",
+    "korean": "곧; 잠시 후; 며칠",
+    "spanish": "muy pronto; en unos momentos; días",
+    "french": "très bientôt ; dans quelques instants ; jours"
   },
   {
     "id": 611,
     "furigana": "まんなか",
-    "english": "middle, center"
+    "english": "middle, center",
+    "chinese": "中间",
+    "korean": "가운데, 가운데",
+    "spanish": "medio, centro",
+    "french": "milieu, centre"
   },
   {
     "id": 612,
     "furigana": "もどる",
-    "english": "to return (v.i.); to come back"
+    "english": "to return (v.i.); to come back",
+    "chinese": "返回（v.i.）；回来",
+    "korean": "돌아오다 (동사); 돌아오다",
+    "spanish": "volver (v.i.); regresar",
+    "french": "revenir (v.i.) ; revenir"
   },
   {
     "id": 613,
     "furigana": "けんきゅう",
-    "english": "study, research, investigation"
+    "english": "study, research, investigation",
+    "chinese": "研究、调查",
+    "korean": "공부, 연구, 조사",
+    "spanish": "estudio, búsqueda, investigación",
+    "french": "étude, recherche, investigation"
   },
   {
     "id": 614,
     "furigana": "ケーキ",
-    "english": "cake"
+    "english": "cake",
+    "chinese": "蛋糕",
+    "korean": "케이크",
+    "spanish": "tarta",
+    "french": "gâteau"
   },
   {
     "id": 615,
     "furigana": "くさ",
-    "english": "grass"
+    "english": "grass",
+    "chinese": "草地",
+    "korean": "잔디",
+    "spanish": "hierba",
+    "french": "herbe"
   },
   {
     "id": 616,
     "furigana": "こむ",
-    "english": "to be crowded"
+    "english": "to be crowded",
+    "chinese": "挤",
+    "korean": "붐비다",
+    "spanish": "estar abarrotado",
+    "french": "être encombré"
   },
   {
     "id": 617,
     "furigana": "このごろ",
-    "english": "these days, nowadays"
+    "english": "these days, nowadays",
+    "chinese": "如今",
+    "korean": "요즘은",
+    "spanish": "hoy en día",
+    "french": "de nos jours, de nos jours"
   },
   {
     "id": 618,
     "furigana": "たずねる",
-    "english": "to visit"
+    "english": "to visit",
+    "chinese": "参观",
+    "korean": "방문하기",
+    "spanish": "para visitar",
+    "french": "à visiter"
   },
   {
     "id": 619,
     "furigana": "さげる",
-    "english": "to lower (v.t.); to hang"
+    "english": "to lower (v.t.); to hang",
+    "chinese": "降低（v.t.）；悬挂",
+    "korean": "낮추다(동사); 매달다",
+    "spanish": "bajar (v.t.); colgar",
+    "french": "abaisser (v.t.) ; suspendre"
   },
   {
     "id": 620,
     "furigana": "はなみ",
-    "english": "cherry-blossom viewing"
+    "english": "cherry-blossom viewing",
+    "chinese": "赏樱",
+    "korean": "벚꽃놀이",
+    "spanish": "observación de cerezos en flor",
+    "french": "observation des fleurs de cerisier"
   },
   {
     "id": 621,
     "furigana": "とちゅう",
-    "english": "on the way, midway"
+    "english": "on the way, midway",
+    "chinese": "途中",
+    "korean": "도중에, 중간에",
+    "spanish": "en el camino, a medio camino",
+    "french": "en cours de route, à mi-chemin"
   },
   {
     "id": 622,
     "furigana": "にゅういんする",
-    "english": "hospitalization"
+    "english": "hospitalization",
+    "chinese": "住院治疗",
+    "korean": "입원",
+    "spanish": "hospitalización",
+    "french": "hospitalisation"
   },
   {
     "id": 623,
     "furigana": "のりかえる",
-    "english": "to transfer (trains), to change (bus, train, etc.)"
+    "english": "to transfer (trains), to change (bus, train, etc.)",
+    "chinese": "转乘（火车）、换乘（汽车、火车等）",
+    "korean": "환승(기차), 변경(버스, 기차 등)",
+    "spanish": "transbordar (trenes), cambiar (autobús, tren, etc.)",
+    "french": "transférer (trains), changer (bus, train, etc.)"
   },
   {
     "id": 624,
     "furigana": "わかれる",
-    "english": "to part from, to separate"
+    "english": "to part from, to separate",
+    "chinese": "分离",
+    "korean": "헤어지다, 분리하다",
+    "spanish": "separarse de, separar",
+    "french": "se séparer de, séparer"
   },
   {
     "id": 625,
     "furigana": "～ちょう",
-    "english": "the town of ~"
+    "english": "the town of ~",
+    "chinese": "~ 镇",
+    "korean": "의 마을",
+    "spanish": "la ciudad de ~",
+    "french": "la ville de ~"
   },
   {
     "id": 626,
     "furigana": "あんぜん",
-    "english": "safety, security"
+    "english": "safety, security",
+    "chinese": "安全、安保",
+    "korean": "안전, 보안",
+    "spanish": "seguridad",
+    "french": "sécurité, sûreté"
   },
   {
     "id": 627,
     "furigana": "かんごふ",
-    "english": "(female) nurse"
+    "english": "(female) nurse",
+    "chinese": "护士",
+    "korean": "(여성) 간호사",
+    "spanish": "(mujer) enfermera",
+    "french": "infirmière (femme)"
   },
   {
     "id": 628,
     "furigana": "けんぶつ",
-    "english": "sightseeing"
+    "english": "sightseeing",
+    "chinese": "观光",
+    "korean": "관광",
+    "spanish": "visitas turísticas",
+    "french": "tourisme"
   },
   {
     "id": 629,
     "furigana": "そうだんする",
-    "english": "consultation"
+    "english": "consultation",
+    "chinese": "协商",
+    "korean": "상담",
+    "spanish": "consulta",
+    "french": "consultation"
   },
   {
     "id": 630,
     "furigana": "ガソリンスタンド",
-    "english": "gas station, service station"
+    "english": "gas station, service station",
+    "chinese": "加油站、服务站",
+    "korean": "주유소, 휴게소",
+    "spanish": "gasolinera, estación de servicio",
+    "french": "station-service, station d'essence"
   },
   {
     "id": 631,
     "furigana": "テニス",
-    "english": "tennis"
+    "english": "tennis",
+    "chinese": "网球",
+    "korean": "테니스",
+    "spanish": "tenis",
+    "french": "tennis"
   },
   {
     "id": 632,
     "furigana": "ねむる",
-    "english": "to sleep"
+    "english": "to sleep",
+    "chinese": "睡觉",
+    "korean": "잠들기",
+    "spanish": "para dormir",
+    "french": "dormir"
   },
   {
     "id": 633,
     "furigana": "あがる",
-    "english": "to rise, to go up"
+    "english": "to rise, to go up",
+    "chinese": "上升，上升",
+    "korean": "상승하다, 올라가다",
+    "spanish": "elevarse, subir",
+    "french": "s'élever, monter"
   },
   {
     "id": 634,
     "furigana": "ほんやく",
-    "english": "translation"
+    "english": "translation",
+    "chinese": "译文",
+    "korean": "번역",
+    "spanish": "traducción",
+    "french": "la traduction"
   },
   {
     "id": 635,
     "furigana": "しょくじする",
-    "english": "meal"
+    "english": "meal",
+    "chinese": "膳食",
+    "korean": "식사",
+    "spanish": "comida",
+    "french": "repas"
   },
   {
     "id": 636,
     "furigana": "おかげ",
-    "english": "thanks or owing to"
+    "english": "thanks or owing to",
+    "chinese": "应",
+    "korean": "감사 또는 덕분",
+    "spanish": "gracias a o debido a",
+    "french": "grâce ou à cause de"
   },
   {
     "id": 637,
     "furigana": "むすめ",
-    "english": "daughter (humble)"
+    "english": "daughter (humble)",
+    "chinese": "小女儿",
+    "korean": "딸(겸손)",
+    "spanish": "hija (humilde)",
+    "french": "fille (humble)"
   },
   {
     "id": 638,
     "furigana": "ゆ",
-    "english": "hot water"
+    "english": "hot water",
+    "chinese": "热水",
+    "korean": "온수",
+    "spanish": "agua caliente",
+    "french": "eau chaude"
   },
   {
     "id": 639,
     "furigana": "きょうそう",
-    "english": "competition, contest"
+    "english": "competition, contest",
+    "chinese": "比赛、竞赛",
+    "korean": "경쟁, 콘테스트",
+    "spanish": "competición, concurso",
+    "french": "concours, compétition"
   },
   {
     "id": 640,
     "furigana": "かいぎ",
-    "english": "business meeting; conference"
+    "english": "business meeting; conference",
+    "chinese": "商务会议；大会",
+    "korean": "비즈니스 미팅; 컨퍼런스",
+    "spanish": "reunión de negocios; conferencia",
+    "french": "réunion d'affaires ; conférence"
   },
   {
     "id": 641,
     "furigana": "みずうみ",
-    "english": "lake"
+    "english": "lake",
+    "chinese": "湖",
+    "korean": "호수",
+    "spanish": "lago",
+    "french": "lac"
   },
   {
     "id": 642,
     "furigana": "あつまる",
-    "english": "to gather (v.i.), to collect"
+    "english": "to gather (v.i.), to collect",
+    "chinese": "收集（v.i.），收集",
+    "korean": "모으다 (동사), 수집하다",
+    "spanish": "reunir (v.i.), recoger",
+    "french": "rassembler (v.i.), collecter"
   },
   {
     "id": 643,
     "furigana": "～にくい",
-    "english": "difficult to do ~"
+    "english": "difficult to do ~",
+    "chinese": "难以做到 ~",
+    "korean": "어렵습니다~",
+    "spanish": "difícil de hacer ~",
+    "french": "difficile à faire ~"
   },
   {
     "id": 644,
     "furigana": "せいかつする",
-    "english": "living, life; to live"
+    "english": "living, life; to live",
+    "chinese": "生活，生命；活着",
+    "korean": "생활, 삶; 살다",
+    "spanish": "vivir, vida; vivir",
+    "french": "vivre, vie ; vivre"
   },
   {
     "id": 645,
     "furigana": "いと",
-    "english": "thread"
+    "english": "thread",
+    "chinese": "线程",
+    "korean": "스레드",
+    "spanish": "hilo",
+    "french": "fil"
   },
   {
     "id": 646,
     "furigana": "かんけい",
-    "english": "relation(ship), connection"
+    "english": "relation(ship), connection",
+    "chinese": "关系（船舶），连接",
+    "korean": "관계(선박), 연결",
+    "spanish": "relación(nave), conexión",
+    "french": "relation(navire), connexion"
   },
   {
     "id": 647,
     "furigana": "ピアノ",
-    "english": "piano"
+    "english": "piano",
+    "chinese": "钢琴",
+    "korean": "피아노",
+    "spanish": "piano",
+    "french": "piano"
   },
   {
     "id": 648,
     "furigana": "～め",
-    "english": "number ~ sequence, ~nd; ~th"
+    "english": "number ~ sequence, ~nd; ~th",
+    "chinese": "数字 ~ 序列 ~nd; ~th",
+    "korean": "번호 ~ 시퀀스, ~nd; ~번째",
+    "spanish": "número ~ secuencia, ~nd; ~th",
+    "french": "nombre ~ séquence, ~nd ; ~th"
   },
   {
     "id": 649,
     "furigana": "ばんぐみ",
-    "english": "broadcast program"
+    "english": "broadcast program",
+    "chinese": "广播节目",
+    "korean": "방송 프로그램",
+    "spanish": "programa de difusión",
+    "french": "programme de diffusion"
   },
   {
     "id": 650,
     "furigana": "きゅう",
-    "english": "urgent, sudden; steep"
+    "english": "urgent, sudden; steep",
+    "chinese": "紧急、突然；陡峭",
+    "korean": "긴급, 갑작스러운; 가파른",
+    "spanish": "urgente, repentino; empinado",
+    "french": "urgent, soudain ; abrupt"
   },
   {
     "id": 651,
     "furigana": "たな",
-    "english": "shelves, rack"
+    "english": "shelves, rack",
+    "chinese": "货架",
+    "korean": "선반, 랙",
+    "spanish": "estantes, estantería",
+    "french": "étagères, rack"
   },
   {
     "id": 652,
     "furigana": "もめん",
-    "english": "cotton"
+    "english": "cotton",
+    "chinese": "棉花",
+    "korean": "면",
+    "spanish": "algodón",
+    "french": "coton"
   },
   {
     "id": 653,
     "furigana": "ゆしゅつする",
-    "english": "export"
+    "english": "export",
+    "chinese": "出口",
+    "korean": "내보내기",
+    "spanish": "exportar",
+    "french": "l'exportation"
   },
   {
     "id": 654,
     "furigana": "タイプ",
-    "english": "type, style"
+    "english": "type, style",
+    "chinese": "类型、风格",
+    "korean": "유형, 스타일",
+    "spanish": "tipo, estilo",
+    "french": "type, style"
   },
   {
     "id": 655,
     "furigana": "すり",
-    "english": "pickpocket"
+    "english": "pickpocket",
+    "chinese": "扒手",
+    "korean": "소매치기",
+    "spanish": "carterista",
+    "french": "pickpocket"
   },
   {
     "id": 656,
     "furigana": "うれしい",
-    "english": "to be happy; to be glad"
+    "english": "to be happy; to be glad",
+    "chinese": "高兴",
+    "korean": "행복하다; 기쁘다",
+    "spanish": "ser feliz; alegrarse",
+    "french": "être heureux ; se réjouir"
   },
   {
     "id": 657,
     "furigana": "アルコール",
-    "english": "alcohol"
+    "english": "alcohol",
+    "chinese": "酒精",
+    "korean": "알코올",
+    "spanish": "alcohol",
+    "french": "l'alcool"
   },
   {
     "id": 658,
     "furigana": "ソフト",
-    "english": "soft; soft hat; software"
+    "english": "soft; soft hat; software",
+    "chinese": "软；软帽；软件",
+    "korean": "소프트; 소프트 모자; 소프트웨어",
+    "spanish": "soft; soft hat; software",
+    "french": "soft ; soft hat ; software"
   },
   {
     "id": 659,
     "furigana": "じんじゃ",
-    "english": "Shinto shrine"
+    "english": "Shinto shrine",
+    "chinese": "神社",
+    "korean": "신사",
+    "spanish": "Santuario sintoísta",
+    "french": "Sanctuaire shintoïste"
   },
   {
     "id": 660,
     "furigana": "だいぶ",
-    "english": "fairly well, to a large extent, considerably, pretty much"
+    "english": "fairly well, to a large extent, considerably, pretty much",
+    "chinese": "相当好，很大程度上，相当多，差不多",
+    "korean": "꽤 잘, 대체로, 상당히, 꽤 많이",
+    "spanish": "bastante bien, en gran medida, considerablemente, bastante",
+    "french": "assez bien, dans une large mesure, considérablement, à peu près"
   },
   {
     "id": 661,
     "furigana": "たのしみ",
-    "english": "pleasure, joy"
+    "english": "pleasure, joy",
+    "chinese": "快乐、喜悦",
+    "korean": "즐거움, 기쁨",
+    "spanish": "placer, alegría",
+    "french": "plaisir, joie"
   },
   {
     "id": 662,
     "furigana": "しゅみ",
-    "english": "hobby; pastime"
+    "english": "hobby; pastime",
+    "chinese": "爱好；消遣",
+    "korean": "취미; 취미",
+    "spanish": "afición; pasatiempo",
+    "french": "hobby ; passe-temps"
   },
   {
     "id": 663,
     "furigana": "でんぽう",
-    "english": "telegram"
+    "english": "telegram",
+    "chinese": "电传",
+    "korean": "텔레그램",
+    "spanish": "telegrama",
+    "french": "télégramme"
   },
   {
     "id": 664,
     "furigana": "かない",
-    "english": "(one's own) wife"
+    "english": "(one's own) wife",
+    "chinese": "内人",
+    "korean": "(자신의) 아내",
+    "spanish": "esposa (propia)",
+    "french": "(sa propre) femme"
   },
   {
     "id": 665,
     "furigana": "ゆび",
-    "english": "finger"
+    "english": "finger",
+    "chinese": "手指",
+    "korean": "손가락",
+    "spanish": "dedo",
+    "french": "doigt"
   },
   {
     "id": 666,
     "furigana": "これから",
-    "english": "from now on, after this"
+    "english": "from now on, after this",
+    "chinese": "从此以后",
+    "korean": "지금부터 이 이후부터는",
+    "spanish": "a partir de ahora, después de esto",
+    "french": "à partir de maintenant, après cela"
   },
   {
     "id": 667,
     "furigana": "たまに",
-    "english": "occasionally"
+    "english": "occasionally",
+    "chinese": "有时",
+    "korean": "가끔",
+    "spanish": "ocasionalmente",
+    "french": "occasionnellement"
   },
   {
     "id": 668,
     "furigana": "しゃかい",
-    "english": "society"
+    "english": "society",
+    "chinese": "社团",
+    "korean": "사회",
+    "spanish": "sociedad",
+    "french": "société"
   }
 ]
