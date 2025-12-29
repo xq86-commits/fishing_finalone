@@ -1853,6 +1853,207 @@ function drawNoteOverlay() {
   ctx.restore(); // End list clip
 }
 
+// Helper function to draw enhanced button with gradient, highlight, and shadow
+function drawEnhancedButton(ctx, x, y, width, height, radius, selected, text) {
+  ctx.save();
+  
+  if (selected) {
+    // Selected button: gradient from medium blue to lighter blue
+    const grad = ctx.createLinearGradient(x, y, x, y + height);
+    grad.addColorStop(0, '#5FB3D3');
+    grad.addColorStop(0.5, '#4A9BCA');
+    grad.addColorStop(1, '#3A9BC8');
+    ctx.fillStyle = grad;
+    
+    // Shadow for depth (lighter)
+    ctx.shadowColor = 'rgba(58, 155, 200, 0.3)';
+    ctx.shadowBlur = 4;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 2;
+    
+    // Draw button
+    if (ctx.roundRect) {
+      ctx.beginPath();
+      ctx.roundRect(x, y, width, height, radius);
+      ctx.fill();
+    } else {
+      ctx.fillRect(x, y, width, height);
+    }
+    
+    // Reset shadow
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetY = 0;
+    
+    // Top highlight
+    const highlightGrad = ctx.createLinearGradient(x, y, x, y + height * 0.3);
+    highlightGrad.addColorStop(0, 'rgba(255, 255, 255, 0.25)');
+    highlightGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    ctx.fillStyle = highlightGrad;
+    if (ctx.roundRect) {
+      ctx.beginPath();
+      ctx.roundRect(x, y, width, height * 0.3, radius);
+      ctx.fill();
+    } else {
+      ctx.fillRect(x, y, width, height * 0.3);
+    }
+    
+    // Border
+    ctx.strokeStyle = '#3A9BC8';
+    ctx.lineWidth = 1;
+    if (ctx.roundRect) {
+      ctx.beginPath();
+      ctx.roundRect(x, y, width, height, radius);
+      ctx.stroke();
+    } else {
+      ctx.strokeRect(x, y, width, height);
+    }
+    
+    // Text
+    ctx.fillStyle = '#FFFFFF';
+  } else {
+    // Unselected button: subtle gradient from light sky blue to white
+    const grad = ctx.createLinearGradient(x, y, x, y + height);
+    grad.addColorStop(0, '#FFFFFF');
+    grad.addColorStop(1, '#E8F4FF');
+    ctx.fillStyle = grad;
+    
+    // Draw button
+    if (ctx.roundRect) {
+      ctx.beginPath();
+      ctx.roundRect(x, y, width, height, radius);
+      ctx.fill();
+    } else {
+      ctx.fillRect(x, y, width, height);
+    }
+    
+    // Border
+    ctx.strokeStyle = '#87CEEB';
+    ctx.lineWidth = 1.5;
+    if (ctx.roundRect) {
+      ctx.beginPath();
+      ctx.roundRect(x, y, width, height, radius);
+      ctx.stroke();
+    } else {
+      ctx.strokeRect(x, y, width, height);
+    }
+    
+    // Text
+    ctx.fillStyle = '#1E3A5F';
+  }
+  
+  ctx.restore();
+}
+
+// Helper function to draw bubble with highlight
+function drawBubble(ctx, x, y, size) {
+  ctx.save();
+  
+  // Main bubble
+  ctx.beginPath();
+  ctx.arc(x, y, size, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+  ctx.fill();
+  
+  // Border
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+  
+  // Highlight (top-left)
+  const highlightSize = size * 0.4;
+  const highlightX = x - size * 0.3;
+  const highlightY = y - size * 0.3;
+  ctx.beginPath();
+  ctx.arc(highlightX, highlightY, highlightSize, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+  ctx.fill();
+  
+  ctx.restore();
+}
+
+// Helper function to draw wave decoration
+function drawWaveDecoration(ctx, x, y, width, amplitude, frequency) {
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  
+  ctx.beginPath();
+  for (let i = 0; i <= width; i += 2) {
+    const waveY = y + amplitude * Math.sin((i / width) * Math.PI * frequency);
+    if (i === 0) {
+      ctx.moveTo(x + i, waveY);
+    } else {
+      ctx.lineTo(x + i, waveY);
+    }
+  }
+  ctx.stroke();
+  
+  ctx.restore();
+}
+
+// Helper function to draw small starfish decoration
+function drawStarfish(ctx, x, y, size) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(-Math.PI / 2); // Rotate so top arm points up
+  
+  ctx.fillStyle = 'rgba(255, 200, 150, 0.6)';
+  ctx.strokeStyle = 'rgba(255, 180, 120, 0.8)';
+  ctx.lineWidth = 1;
+  
+  const arms = 5;
+  const outerRadius = size;
+  const innerRadius = size * 0.4;
+  
+  ctx.beginPath();
+  for (let i = 0; i < arms * 2; i++) {
+    const angle = (i * Math.PI) / arms;
+    const radius = i % 2 === 0 ? outerRadius : innerRadius;
+    const px = Math.cos(angle) * radius;
+    const py = Math.sin(angle) * radius;
+    if (i === 0) {
+      ctx.moveTo(px, py);
+    } else {
+      ctx.lineTo(px, py);
+    }
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  
+  ctx.restore();
+}
+
+// Helper function to draw small shell decoration
+function drawShell(ctx, x, y, size) {
+  ctx.save();
+  ctx.translate(x, y);
+  
+  // Shell body (semi-circle)
+  ctx.fillStyle = 'rgba(255, 220, 180, 0.7)';
+  ctx.strokeStyle = 'rgba(255, 200, 150, 0.9)';
+  ctx.lineWidth = 1;
+  
+  ctx.beginPath();
+  ctx.arc(0, 0, size, 0, Math.PI, false);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  
+  // Shell lines
+  ctx.strokeStyle = 'rgba(255, 180, 120, 0.6)';
+  ctx.lineWidth = 0.5;
+  for (let i = 1; i <= 3; i++) {
+    ctx.beginPath();
+    ctx.arc(0, 0, size * (i / 4), 0, Math.PI, false);
+    ctx.stroke();
+  }
+  
+  ctx.restore();
+}
+
 function drawLanguageOverlay() {
   if (!state.languageOpen) {
   state.langPanelRect = null;
@@ -1868,7 +2069,7 @@ function drawLanguageOverlay() {
   const logicalHeight = canvas.height / dpr;
 
   ctx.save();
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+  ctx.fillStyle = 'rgba(30, 95, 143, 0.3)';
   ctx.fillRect(0, 0, logicalWidth, logicalHeight);
 
   const chipHeight = 36;
@@ -1905,17 +2106,52 @@ function drawLanguageOverlay() {
   }
   ctx.clip();
 
-  // Background (Body)
-  ctx.fillStyle = '#ffffff';
+  // Background (Body) - with gradient
+  const bgGrad = ctx.createLinearGradient(x, y, x, y + panelHeight);
+  bgGrad.addColorStop(0, '#F0F8FF');
+  bgGrad.addColorStop(0.5, '#E8F4FF');
+  bgGrad.addColorStop(1, '#E0F0FF');
+  ctx.fillStyle = bgGrad;
   ctx.fillRect(x, y, panelWidth, panelHeight);
 
+  // Enhanced decorative bubbles (ocean theme) - more bubbles with highlights
+  const bubblePositions = [
+    { x: x + 20, y: y + panelHeight - 40, size: 12 },
+    { x: x + panelWidth - 35, y: y + panelHeight - 25, size: 8 },
+    { x: x + panelWidth - 50, y: y + 70, size: 10 },
+    { x: x + 30, y: y + 100, size: 6 },
+    { x: x + panelWidth - 60, y: y + 120, size: 9 },
+    { x: x + 15, y: y + 180, size: 7 },
+    { x: x + panelWidth - 25, y: y + 200, size: 11 },
+    { x: x + 45, y: y + 250, size: 8 },
+    { x: x + panelWidth - 70, y: y + 280, size: 6 },
+    { x: x + 25, y: y + 320, size: 9 }
+  ];
+  
+  bubblePositions.forEach(bubble => {
+    drawBubble(ctx, bubble.x, bubble.y, bubble.size);
+  });
+  
+  // Ocean decorative elements (starfish and shells)
+  drawStarfish(ctx, x + panelWidth - 20, y + panelHeight - 30, 8);
+  drawShell(ctx, x + 12, y + panelHeight - 20, 6);
+  drawStarfish(ctx, x + panelWidth - 65, y + 60, 6);
+  drawShell(ctx, x + 35, y + 140, 5);
+
   const headerHeight = 50;
-  // Header Background
-  ctx.fillStyle = '#F5F9FF';
+  // Header Background - with rich gradient
+  const headerGrad = ctx.createLinearGradient(x, y, x, y + headerHeight);
+  headerGrad.addColorStop(0, '#87CEEB');
+  headerGrad.addColorStop(0.5, '#5FB3D3');
+  headerGrad.addColorStop(1, '#3A9BC8');
+  ctx.fillStyle = headerGrad;
   ctx.fillRect(x, y, panelWidth, headerHeight);
+  
+  // Wave decoration at bottom of header
+  drawWaveDecoration(ctx, x + 10, y + headerHeight - 8, panelWidth - 20, 3, 3);
 
   // Divider
-  ctx.strokeStyle = '#E0E0E0';
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(x, y + headerHeight);
@@ -1923,7 +2159,7 @@ function drawLanguageOverlay() {
   ctx.stroke();
 
   // Header Title
-  ctx.fillStyle = '#2c3e50';
+  ctx.fillStyle = '#FFFFFF';
   ctx.font = '600 18px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
@@ -1939,11 +2175,11 @@ function drawLanguageOverlay() {
   // Close Button Background (Circle)
   ctx.beginPath();
   ctx.arc(closeX + closeSize / 2, closeY + closeSize / 2, closeSize / 2, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
   ctx.fill();
 
   // Close X
-  ctx.strokeStyle = '#666';
+  ctx.strokeStyle = '#FFFFFF';
   ctx.lineWidth = 2;
   ctx.lineCap = 'round';
   ctx.beginPath();
@@ -1957,7 +2193,7 @@ function drawLanguageOverlay() {
   // Note: clip restore moved to end of function after all content is drawn
 
   // Border (Stroke) for the whole panel (draw inside clip for rounded corners)
-  ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+  ctx.strokeStyle = 'rgba(30, 95, 143, 0.15)';
   ctx.lineWidth = 1;
   if (ctx.roundRect) {
     ctx.beginPath();
@@ -1976,7 +2212,7 @@ function drawLanguageOverlay() {
 
   // Level Section
   const levelSectionY = cursorY;
-  ctx.fillStyle = '#E8F3FF';
+  ctx.fillStyle = '#D6EBF5';
   if (ctx.roundRect) {
     ctx.beginPath();
     ctx.roundRect(x + 16, levelSectionY, panelWidth - 32, levelSectionHeight, 12);
@@ -1985,14 +2221,14 @@ function drawLanguageOverlay() {
     ctx.fillRect(x + 16, levelSectionY, panelWidth - 32, levelSectionHeight);
   }
 
-  ctx.fillStyle = '#2c3e50';
+  ctx.fillStyle = '#1E3A5F';
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
   const levelLabel = 'Difficulty Level';
   ctx.fillText(levelLabel, x + 28, levelSectionY + 12);
   ctx.font = '12px Arial';
-  ctx.fillStyle = '#57738c';
+  ctx.fillStyle = '#1E5F8F';
   const levelLabelWidth = ctx.measureText(levelLabel).width;
   ctx.fillText(`Current: ${state.activeLevel}`, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
 
@@ -2008,29 +2244,10 @@ function drawLanguageOverlay() {
 
     const selected = state.selectedLevel === level;
 
-    if (selected) {
-      const grad = ctx.createLinearGradient(chipX, chipY, chipX, chipY + chipHeight);
-      grad.addColorStop(0, '#57C3FF');
-      grad.addColorStop(1, '#1E94F5');
-      ctx.fillStyle = grad;
-      ctx.strokeStyle = '#1C7BC8';
-    } else {
-      ctx.fillStyle = '#ffffff';
-      ctx.strokeStyle = '#C4D7EB';
-    }
-
-    ctx.lineWidth = 1;
-    if (ctx.roundRect) {
-      ctx.beginPath();
-      ctx.roundRect(chipX, chipY, levelChipWidth, chipHeight, 8);
-      ctx.fill();
-      ctx.stroke();
-    } else {
-      ctx.fillRect(chipX, chipY, levelChipWidth, chipHeight);
-      ctx.strokeRect(chipX, chipY, levelChipWidth, chipHeight);
-    }
-
-    ctx.fillStyle = selected ? '#fff' : '#2c3e50';
+    // Draw enhanced button
+    drawEnhancedButton(ctx, chipX, chipY, levelChipWidth, chipHeight, 8, selected, level);
+    
+    // Draw text
     ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -2040,7 +2257,7 @@ function drawLanguageOverlay() {
   cursorY += levelSectionHeight + 16;
 
   // Learning Language Section
-  ctx.fillStyle = '#E8F5E9';
+  ctx.fillStyle = '#D6EBF5';
   if (ctx.roundRect) {
     ctx.beginPath();
     ctx.roundRect(x + 16, cursorY, panelWidth - 32, learningSectionHeight, 12);
@@ -2049,7 +2266,7 @@ function drawLanguageOverlay() {
     ctx.fillRect(x + 16, cursorY, panelWidth - 32, learningSectionHeight);
   }
 
-  ctx.fillStyle = '#2c3e50';
+  ctx.fillStyle = '#1E3A5F';
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
@@ -2067,29 +2284,10 @@ function drawLanguageOverlay() {
 
     const selected = state.selectedLearningLang === lang;
 
-    if (selected) {
-      const grad = ctx.createLinearGradient(chipX, chipY, chipX, chipY + chipHeight);
-      grad.addColorStop(0, '#4CAF50');
-      grad.addColorStop(1, '#388E3C');
-      ctx.fillStyle = grad;
-      ctx.strokeStyle = '#2E7D32';
-    } else {
-      ctx.fillStyle = '#ffffff';
-      ctx.strokeStyle = '#C8E6C9';
-    }
-
-    ctx.lineWidth = 1;
-    if (ctx.roundRect) {
-      ctx.beginPath();
-      ctx.roundRect(chipX, chipY, chipWidth, chipHeight, 8);
-      ctx.fill();
-      ctx.stroke();
-    } else {
-      ctx.fillRect(chipX, chipY, chipWidth, chipHeight);
-      ctx.strokeRect(chipX, chipY, chipWidth, chipHeight);
-    }
-
-    ctx.fillStyle = selected ? '#fff' : '#2c3e50';
+    // Draw enhanced button
+    drawEnhancedButton(ctx, chipX, chipY, chipWidth, chipHeight, 8, selected, lang);
+    
+    // Draw text
     ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -2099,7 +2297,7 @@ function drawLanguageOverlay() {
   cursorY += learningSectionHeight + 16;
 
   // Base Language (Using)
-  ctx.fillStyle = '#FFF0D4';
+  ctx.fillStyle = '#D6EBF5';
   if (ctx.roundRect) {
     ctx.beginPath();
     ctx.roundRect(x + 16, cursorY, panelWidth - 32, baseSectionHeight, 12);
@@ -2108,7 +2306,7 @@ function drawLanguageOverlay() {
     ctx.fillRect(x + 16, cursorY, panelWidth - 32, baseSectionHeight);
   }
 
-  ctx.fillStyle = '#2c3e50';
+  ctx.fillStyle = '#1E3A5F';
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
@@ -2126,29 +2324,10 @@ function drawLanguageOverlay() {
 
     const selected = state.selectedBaseLang === lang;
 
-    if (selected) {
-      const grad = ctx.createLinearGradient(chipX, chipY, chipX, chipY + chipHeight);
-      grad.addColorStop(0, '#1EA0F2');
-      grad.addColorStop(1, '#0F83D1');
-      ctx.fillStyle = grad;
-      ctx.strokeStyle = '#0C70B6';
-    } else {
-      ctx.fillStyle = '#ffffff';
-      ctx.strokeStyle = '#E2D1B3'; // Light border for unselected
-    }
-
-    ctx.lineWidth = 1;
-    if (ctx.roundRect) {
-      ctx.beginPath();
-      ctx.roundRect(chipX, chipY, chipWidth, chipHeight, 8);
-      ctx.fill();
-      ctx.stroke();
-    } else {
-      ctx.fillRect(chipX, chipY, chipWidth, chipHeight);
-      ctx.strokeRect(chipX, chipY, chipWidth, chipHeight);
-    }
-
-    ctx.fillStyle = selected ? '#fff' : '#2c3e50';
+    // Draw enhanced button
+    drawEnhancedButton(ctx, chipX, chipY, chipWidth, chipHeight, 8, selected, lang);
+    
+    // Draw text
     ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -2168,39 +2347,70 @@ function drawLanguageOverlay() {
   };
   state.langConfirmRect = confirmRect;
 
-  const btnGrad = ctx.createLinearGradient(confirmRect.x, confirmRect.y, confirmRect.x, confirmRect.y + confirmHeight);
-  btnGrad.addColorStop(0, '#1E94F5');
-  btnGrad.addColorStop(1, '#1074CF');
-
-  ctx.fillStyle = btnGrad;
-  ctx.strokeStyle = '#0E63B0';
-  ctx.lineWidth = 1;
-  ctx.shadowColor = 'rgba(0,0,0,0.15)';
-  ctx.shadowBlur = 4;
-  ctx.shadowOffsetY = 2;
-
+  // Enhanced Apply button with gradient, highlight, and shadow
+  ctx.save();
+  
+  // Shadow (lighter)
+  ctx.shadowColor = 'rgba(58, 155, 200, 0.4)';
+  ctx.shadowBlur = 6;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 3;
+  
+  // Gradient background (lighter)
+  const applyGrad = ctx.createLinearGradient(confirmRect.x, confirmRect.y, confirmRect.x, confirmRect.y + confirmRect.height);
+  applyGrad.addColorStop(0, '#5FB3D3');
+  applyGrad.addColorStop(0.5, '#4A9BCA');
+  applyGrad.addColorStop(1, '#3A9BC8');
+  ctx.fillStyle = applyGrad;
+  
   if (ctx.roundRect) {
     ctx.beginPath();
     ctx.roundRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height, 22);
     ctx.fill();
-    ctx.stroke();
   } else {
     ctx.fillRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height);
-    ctx.strokeRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height);
   }
-
+  
+  // Reset shadow
   ctx.shadowColor = 'transparent';
   ctx.shadowBlur = 0;
   ctx.shadowOffsetY = 0;
-
-  ctx.fillStyle = '#fff';
+  
+  // Top highlight
+  const highlightGrad = ctx.createLinearGradient(confirmRect.x, confirmRect.y, confirmRect.x, confirmRect.y + confirmRect.height * 0.4);
+  highlightGrad.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+  highlightGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+  ctx.fillStyle = highlightGrad;
+  if (ctx.roundRect) {
+    ctx.beginPath();
+    ctx.roundRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height * 0.4, 22);
+    ctx.fill();
+  } else {
+    ctx.fillRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height * 0.4);
+  }
+  
+  // Border with highlight
+  ctx.strokeStyle = '#3A9BC8';
+  ctx.lineWidth = 1.5;
+  if (ctx.roundRect) {
+    ctx.beginPath();
+    ctx.roundRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height, 22);
+    ctx.stroke();
+  } else {
+    ctx.strokeRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height);
+  }
+  
+  // Text
+  ctx.fillStyle = '#FFFFFF';
   ctx.font = 'bold 18px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('Apply', confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height / 2);
+  
+  ctx.restore();
 
   if (state.isLoadingVocab) {
-    ctx.fillStyle = '#2c3e50';
+    ctx.fillStyle = '#1E3A5F';
     ctx.font = '12px Arial';
     ctx.fillText('Loading vocab...', confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height + 18);
   }
