@@ -2121,7 +2121,42 @@ function drawLanguageOverlay() {
 function completeCurrentWord() {
   state.score += 100;
   state.foundWords.push(state.currentWord);
-  nextWord();
+  
+  // 播放单词发音（使用学习语言）
+  unlockSpeech();
+  const wordText = getWordText(state.currentWord, state.selectedLearningLang);
+  
+  if (wordText && 'speechSynthesis' in window) {
+    // 创建 utterance 并设置回调，等待播放完成后再进入下一个单词
+    window.speechSynthesis.cancel(); // 取消之前的发音
+    
+    const utterance = new SpeechSynthesisUtterance(wordText);
+    const mapItem = LANG_MAP[state.selectedLearningLang] || LANG_MAP["日本語"];
+    utterance.lang = mapItem.locale;
+    utterance.rate = 1.0;
+    
+    // 选择匹配的语音
+    if (voices.length === 0) loadVoices();
+    const voice = voices.find(v => v.lang === utterance.lang || v.lang.startsWith(utterance.lang.split('-')[0]));
+    if (voice) {
+      utterance.voice = voice;
+    }
+    
+    // 等待发音完成后再进入下一个单词
+    utterance.onend = () => {
+      nextWord();
+    };
+    
+    utterance.onerror = () => {
+      // 如果发音出错，立即进入下一个单词（避免卡住）
+      nextWord();
+    };
+    
+    window.speechSynthesis.speak(utterance);
+  } else {
+    // 如果没有文本或语音功能不可用，立即进入下一个单词
+    nextWord();
+  }
 }
 
 // Consolidated input handlers
