@@ -815,6 +815,91 @@
       return escapeHtml(value).replace(/`/g, "&#96;");
     }
 
+    // Language mapping constants (from games/game.js)
+    const LANG_MAP = {
+      "日本語": { key: "furigana", locale: "ja-JP" },
+      "English": { key: "english", locale: "en-US" },
+      "中文": { key: "chinese", locale: "zh-CN" },
+      "한국어": { key: "korean", locale: "ko-KR" },
+      "Español": { key: "spanish", locale: "es-ES" },
+      "Français": { key: "french", locale: "fr-FR" }
+    };
+
+    const CHAR_SETS = {
+      "日本語": "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん",
+      "English": "abcdefghijklmnopqrstuvwxyz",
+      "中文": "的一是在不了有和人这中大为上个国我以要他时来用们生到作地于出就分对成会可主发年动同工也能下过子说产种面而方后多定行学法所民得经十三之进着等部度家电力里如水化高自二理起小物现实主义量都两体制机当使点从业本去把性好应开它合还因由其些然前外天政四日那社义事平形相全表间样与关各重新线内数正心反你明看原又么利比或但质气第向道命此变条只没结解问意建月公无系军很情者最立代想已通并提直题党程展五果料象员革位入常文总次品式活设及管特件长求老头基资边流路级少图山统接知较将组见计别她手角期根论运农指几九区强放决西被干做必战先回则任取完热志反目华快难早照鱼水",
+      "한국어": "가나다라마바사아자차카타파하거너더러머버서어저처커터퍼허고노도로모보소오조초코토포호구누두루무부수우주추쿠투푸후그느드르므브스으즈츠크트프흐기니디리미비시이지치키티피히애에얘예와왜외워웨위의",
+      "Español": "abcdefghijklmnopqrstuvwxyzñáéíóúü",
+      "Français": "abcdefghijklmnopqrstuvwxyzàâçéèêëîïôûùüÿ"
+    };
+
+    // Get word text for a specific language (from games/game.js)
+    function getWordText(wordItem, langName, strictValidation) {
+      if (strictValidation === undefined) strictValidation = true;
+      const config = LANG_MAP[langName];
+      if (!config) return "";
+      // 优先使用指定语言的字段，如果不存在或为空，返回空字符串（不回退到其他语言）
+      let text = wordItem[config.key];
+      if (!text || (typeof text === 'string' && text.trim() === "")) {
+        return ""; // 返回空字符串，让调用者知道这个单词没有该语言的翻译
+      }
+      // Clean up: take first part before delimiters
+      text = text.split(/[,;\/]/)[0];
+      text = text.trim();
+      
+      // 验证文本是否真的包含指定语言的字符（防止使用回退值）
+      const charSet = CHAR_SETS[langName] || "";
+      if (charSet && text.length > 0) {
+        // 如果是基础语言（提示文本），使用宽松验证
+        if (!strictValidation) {
+          // 对于基础语言，即使字符不完全匹配字符集，也返回文本（因为可能是有效的翻译）
+          // 只做基本检查：如果文本完全由空格和标点组成，返回空字符串
+          const hasContent = text.split('').some(function(char) {
+            return !/[\s\.,;:!?\-\(\)\[\]{}]/.test(char);
+          });
+          if (!hasContent) {
+            return "";
+          }
+          // 对于基础语言，直接返回文本，不进行严格的字符集验证
+          return text;
+        }
+        
+        // 学习语言使用严格验证（现有逻辑）
+        // 检查文本中的字符是否主要属于指定语言字符集
+        var validCharCount = 0;
+        var totalCharCount = 0;
+        
+        text.split('').forEach(function(char) {
+          // 跳过空格和标点符号
+          if (/[\s\.,;:!?\-\(\)\[\]{}]/.test(char)) {
+            return;
+          }
+          totalCharCount++;
+          
+          // 对于大小写敏感的语言（如英语），检查小写和大写
+          if (langName === "English" || langName === "Español" || langName === "Français") {
+            if (charSet.indexOf(char.toLowerCase()) !== -1 || charSet.indexOf(char.toUpperCase()) !== -1) {
+              validCharCount++;
+            }
+          } else {
+            // 对于其他语言，直接检查
+            if (charSet.indexOf(char) !== -1) {
+              validCharCount++;
+            }
+          }
+        });
+        
+        // 如果文本中大部分字符都不属于指定语言字符集，说明这是回退值，返回空字符串
+        // 要求至少50%的字符属于指定语言字符集
+        if (totalCharCount > 0 && validCharCount / totalCharCount < 0.5) {
+          return "";
+        }
+      }
+      
+      return text;
+    }
+
     function getInitial(name) {
       var trimmed = (name || "").trim();
       if (!trimmed) return "?";
@@ -982,15 +1067,31 @@
         myWordsList.innerHTML = uniqueWords.map(function(word) {
           const highlightedClass = word.isHighlighted ? "highlighted" : "";
           const wordId = escapeAttribute(word.id || "");
-          const furigana = escapeHtml(word.furigana || "");
-          const english = escapeHtml(word.english || "");
+          
+          // Get learning and base languages from word data (with backward compatibility)
+          const wordLearningLang = word.learningLang || "日本語";
+          const wordBaseLang = word.baseLang || "English";
+          
+          // Use getWordText to get text in the correct languages
+          // Fallback to furigana/english for backward compatibility
+          var learningText = getWordText(word, wordLearningLang);
+          if (!learningText) {
+            learningText = word.furigana || "";
+          }
+          var baseText = getWordText(word, wordBaseLang, false);
+          if (!baseText) {
+            baseText = word.english || "";
+          }
+          
+          const learningTextEscaped = escapeHtml(learningText);
+          const baseTextEscaped = escapeHtml(baseText);
           const ariaLabel = word.isHighlighted ? "Remove highlight" : "Highlight word";
           const activeClass = word.isHighlighted ? "active" : "";
           
           return '<div class="my-word-item ' + highlightedClass + '" data-word-id="' + wordId + '">' +
             '<div class="my-word-content">' +
-            '<span class="my-word-kana">' + furigana + '</span>' +
-            '<span class="my-word-en">' + english + '</span>' +
+            '<span class="my-word-kana">' + learningTextEscaped + '</span>' +
+            '<span class="my-word-en">' + baseTextEscaped + '</span>' +
             '</div>' +
             '<button class="my-word-highlight-btn ' + activeClass + '" ' +
             'data-word-id="' + wordId + '" ' +
@@ -1098,21 +1199,34 @@
         const completionTimeMs = Number.isFinite(Number(data.completionTimeMs)) ? Number(data.completionTimeMs) : null;
         const levelValue = Number.isFinite(Number(data.level)) ? Number(data.level) : null;
         const foundWords = Array.isArray(data.foundWords) ? data.foundWords : [];
+        // Get language settings (fallback to default if not provided for backward compatibility)
+        const learningLang = data.learningLang || "日本語";
+        const baseLang = data.baseLang || "English";
 
         latestLevel = levelValue;
         hideAll();
         showFlex("result-screen");
         resultTitle.textContent = "Your Score: " + latestScore;
 
-        // Render Found Words
+        // Render Found Words using learning and base languages
         const listContainer = document.getElementById("found-words-list");
         if (foundWords.length > 0) {
-          listContainer.innerHTML = foundWords.map(w => `
-        <div class="found-word-item">
-          <span class="found-word-kana">${escapeHtml(w.furigana)}</span>
-          <span class="found-word-en">${escapeHtml(w.english)}</span>
-        </div>
-      `).join("");
+          listContainer.innerHTML = foundWords.map(function(w) {
+            // Use getWordText to get text in the correct languages
+            // Fallback to furigana/english for backward compatibility
+            var learningText = getWordText(w, learningLang);
+            if (!learningText) {
+              learningText = w.furigana || "";
+            }
+            var baseText = getWordText(w, baseLang, false);
+            if (!baseText) {
+              baseText = w.english || "";
+            }
+            return '<div class="found-word-item">' +
+              '<span class="found-word-kana">' + escapeHtml(learningText) + '</span>' +
+              '<span class="found-word-en">' + escapeHtml(baseText) + '</span>' +
+              '</div>';
+          }).join("");
         } else {
           listContainer.innerHTML = '<div style="text-align:center;color:#aaa;">No words found</div>';
         }
@@ -1141,11 +1255,18 @@
         // Save game session and words to InstantDB
         if (window.instantDBService) {
           const userId = window.instantDBService.getOrCreateUserId();
+          // Add language information to each word for storage
+          const wordsWithLang = foundWords.map(function(w) {
+            return Object.assign({}, w, {
+              learningLang: learningLang,
+              baseLang: baseLang
+            });
+          });
           window.instantDBService.saveGameSession({
             score: latestScore,
             level: levelValue,
             completionTimeMs: completionTimeMs
-          }, foundWords).catch(function (error) {
+          }, wordsWithLang).catch(function (error) {
             console.warn("[instantDB] Failed to save game session", error);
           });
         }
