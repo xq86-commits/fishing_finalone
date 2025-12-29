@@ -521,7 +521,17 @@ let state = {
   noteScrollY: 0,
   isDraggingNote: false,
   lastPointerY: 0,
-  speakerAnim: { word: null, start: 0 }
+  speakerAnim: { word: null, start: 0 },
+
+  // Countdown Effects
+  timeShakeStart: null,
+  countdownSoundPlaying: false,
+  countdownSoundInterval: null,
+
+  // Consecutive Errors Tracking
+  consecutiveErrors: 0,
+  langButtonBlinkStart: null,
+  toastPosition: 0.7
 };
 
 const WATER_LEVEL = 0.36; // Water surface level (ratio of height)
@@ -768,8 +778,9 @@ let dpr = window.devicePixelRatio || 1;
 let toastTimeout = null;
 let toastLines = [];
 
-function showToast(message, duration = 800) {
+function showToast(message, duration = 800, position = 0.7) {
   state.toastMessage = message; // Keep for compatibility if needed, but we use toastLines now
+  state.toastPosition = position; // Set toast position
   toastLines = message.split('\n');
 
   if (toastTimeout) {
@@ -780,6 +791,7 @@ function showToast(message, duration = 800) {
     if (state.toastMessage === captured && !state.isEnding && !state.gameOver) {
       state.toastMessage = null;
       toastLines = [];
+      state.toastPosition = 0.7; // Reset to default position
     }
     toastTimeout = null;
   }, duration);
@@ -858,6 +870,14 @@ async function startGame() {
   state.isEnding = false;
   state.toastMessage = null;
 
+  // Reset countdown effects
+  stopCountdownSound();
+  state.timeShakeStart = null;
+
+  // Reset consecutive errors tracking
+  state.consecutiveErrors = 0;
+  state.langButtonBlinkStart = null;
+
   state.startTime = Date.now();
   state.lastFrameTime = Date.now();
   state.isTransitioning = false; // Ensure not transitioning at start
@@ -879,6 +899,9 @@ function nextWord() {
 }
 
 function pickNewWordAndSpawn() {
+  // Stop countdown sound when starting a new word
+  stopCountdownSound();
+  
   const vocabList = getActiveVocabList();
   if (!vocabList || !vocabList.length) return;
 
@@ -1062,6 +1085,20 @@ function update(dt) {
   const elapsed = (Date.now() - state.startTime) / 1000;
   state.timeLeft = Math.max(0, GAME_DURATION - elapsed);
 
+  // Check if countdown reaches 10 seconds (trigger only once)
+  if (state.timeLeft <= 10 && state.timeLeft > 9 && state.timeShakeStart === null) {
+    state.timeShakeStart = Date.now();
+    startCountdownSound();
+  }
+
+  // Clear shake effect after 1 second
+  if (state.timeShakeStart !== null) {
+    const shakeElapsed = Date.now() - state.timeShakeStart;
+    if (shakeElapsed >= 1000) {
+      state.timeShakeStart = null;
+    }
+  }
+
   if (state.timeLeft <= 0 && !state.gameOver) {
     endGame("Time Over");
     return;
@@ -1184,6 +1221,7 @@ function endGame(reason) {
   if (state.isEnding || state.gameOver) return;
 
   state.isEnding = true;
+  stopCountdownSound();
   showToast(reason);
 
   setTimeout(() => {
@@ -1306,6 +1344,7 @@ function draw() {
 
   // Draw Toast
   if (state.toastMessage) {
+    console.log('正在绘制Toast:', state.toastMessage, '位置比例:', state.toastPosition); // 调试信息
     const logicalWidth = canvas.width / dpr;
     const logicalHeight = canvas.height / dpr;
 
@@ -1321,7 +1360,7 @@ function draw() {
 
     // Use fillRect for compatibility if roundRect is not supported, or check support
     const boxX = logicalWidth / 2 - boxWidth / 2;
-    const boxY = logicalHeight * 0.7 - boxHeight / 2;
+    const boxY = logicalHeight * state.toastPosition - boxHeight / 2;
 
     if (ctx.roundRect) {
       ctx.beginPath();
@@ -1361,7 +1400,31 @@ function drawUI() {
   // Timer
   ctx.textAlign = 'right';
   ctx.fillStyle = '#666';
-  ctx.fillText(`Time: ${Math.ceil(state.timeLeft)}s`, logicalWidth - 20, 40 + uiOffsetY);
+  
+  // Apply shake effect if within shake duration (1 second)
+  let timeX = logicalWidth - 20;
+  let timeY = 40 + uiOffsetY;
+  
+  if (state.timeShakeStart !== null) {
+    const shakeElapsed = Date.now() - state.timeShakeStart;
+    if (shakeElapsed < 1000) {
+      // Calculate shake offset using sine/cosine waves
+      const shakeProgress = shakeElapsed / 1000;
+      const shakeFrequency = 20; // High frequency for rapid shaking
+      const shakeAmount = 5; // ±5 pixels
+      
+      const offsetX = Math.sin(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
+      const offsetY = Math.cos(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
+      
+      timeX += offsetX;
+      timeY += offsetY;
+    } else {
+      // Shake duration ended, clear it
+      state.timeShakeStart = null;
+    }
+  }
+  
+  ctx.fillText(`Time: ${Math.ceil(state.timeLeft)}s`, timeX, timeY);
 
   // Lives
   if (Math.abs(state.displayLives - state.targetLives) > 0.01) {
@@ -1444,13 +1507,40 @@ function drawUI() {
   if (ASSETS.settings.img) {
     const rect = { x: iconX, y: iconY, width: iconSize, height: iconSize };
     state.langButtonRect = rect;
-    ctx.drawImage(ASSETS.settings.img, rect.x, rect.y, rect.width, rect.height);
+    
+    // Check if blink animation is active
+    let blinkAlpha = 1;
+    let blinkScale = 1;
+    if (state.langButtonBlinkStart !== null) {
+      const blinkElapsed = Date.now() - state.langButtonBlinkStart;
+      if (blinkElapsed < 3000) {
+        // Blink for 3 seconds
+        const blinkProgress = blinkElapsed / 3000;
+        const blinkFrequency = 8; // Blink 8 times over 3 seconds
+        // Create pulsing effect with opacity and scale
+        const pulse = Math.sin(blinkElapsed * blinkFrequency * 0.01) * 0.5 + 0.5;
+        blinkAlpha = 0.4 + pulse * 0.6; // Oscillate between 0.4 and 1.0
+        blinkScale = 0.9 + pulse * 0.2; // Oscillate between 0.9 and 1.1
+      } else {
+        // Animation finished, clear it
+        state.langButtonBlinkStart = null;
+      }
+    }
+    
+    // Apply blink effect
+    ctx.save();
+    ctx.globalAlpha = blinkAlpha;
+    ctx.translate(rect.x + rect.width / 2, rect.y + rect.height / 2);
+    ctx.scale(blinkScale, blinkScale);
+    ctx.translate(-rect.width / 2, -rect.height / 2);
+    ctx.drawImage(ASSETS.settings.img, 0, 0, rect.width, rect.height);
+    ctx.restore();
 
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('Settings', rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText('Language', rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
 
   iconY += iconSize + iconGap;
@@ -2473,6 +2563,9 @@ function checkFish(fish) {
   if (fish.char === targetChar) {
     // Correct!
     state.revealedIndices[nextMissingIndex] = true;
+    
+    // Reset consecutive errors count on correct answer
+    state.consecutiveErrors = 0;
 
     // Spawn Floating Text (+100)
     // Target: Score area (approx 20, 40 + uiOffsetY)
@@ -2509,6 +2602,20 @@ function checkFish(fish) {
   } else {
     // Wrong!
     state.lives--;
+    
+    // Increment consecutive errors count
+    state.consecutiveErrors++;
+    console.log('连续错误次数:', state.consecutiveErrors); // 调试信息
+    
+    // Check if 3 consecutive errors reached
+    if (state.consecutiveErrors === 3) {
+      console.log('触发提示！'); // 调试信息
+      // Show toast at 40% position
+      showToast("Let's try a simpler mode.", 3000, 0.4);
+      // Start language button blink animation
+      state.langButtonBlinkStart = Date.now();
+      console.log('Toast消息:', state.toastMessage, '位置:', state.toastPosition); // 调试信息
+    }
 
     // Mark as wrong for animation
     fish.isWrong = true;
@@ -2595,6 +2702,76 @@ function speak(text, langName = "日本語") {
   utterance.onerror = () => { currentUtterance = null; };
 
   window.speechSynthesis.speak(utterance);
+}
+
+// Countdown Sound Effects
+let audioContext = null;
+
+function getAudioContext() {
+  if (!audioContext) {
+    try {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    } catch (e) {
+      console.warn('Web Audio API not supported', e);
+      return null;
+    }
+  }
+  // Resume audio context if suspended (required for some browsers)
+  if (audioContext.state === 'suspended') {
+    audioContext.resume();
+  }
+  return audioContext;
+}
+
+function playTickSound() {
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  // Create a short tick sound using oscillator
+  const oscillator = ctx.createOscillator();
+  const gainNode = ctx.createGain();
+
+  oscillator.connect(gainNode);
+  gainNode.connect(ctx.destination);
+
+  // Configure tick sound: 440Hz, 100ms duration
+  oscillator.frequency.value = 440;
+  oscillator.type = 'sine';
+
+  // Envelope: quick attack, quick decay
+  const now = ctx.currentTime;
+  gainNode.gain.setValueAtTime(0, now);
+  gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01); // Attack
+  gainNode.gain.linearRampToValueAtTime(0, now + 0.1); // Decay (100ms total)
+
+  oscillator.start(now);
+  oscillator.stop(now + 0.1);
+}
+
+function startCountdownSound() {
+  if (state.countdownSoundPlaying) return;
+  
+  state.countdownSoundPlaying = true;
+  
+  // Play first tick immediately
+  playTickSound();
+  
+  // Then play every second
+  state.countdownSoundInterval = setInterval(() => {
+    if (!state.countdownSoundPlaying) {
+      stopCountdownSound();
+      return;
+    }
+    playTickSound();
+  }, 1000);
+}
+
+function stopCountdownSound() {
+  state.countdownSoundPlaying = false;
+  if (state.countdownSoundInterval) {
+    clearInterval(state.countdownSoundInterval);
+    state.countdownSoundInterval = null;
+  }
 }
 
 // Start
