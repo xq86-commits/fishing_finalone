@@ -61,6 +61,10 @@
       background: #FF6042;
     }
 
+    #easier-mode-btn {
+      background: #87CEEB;
+    }
+
     /* 启动页 */
     #start-screen {
       display: flex;
@@ -127,6 +131,36 @@
       border: none;
       background: #000;
       display: block
+    }
+
+    #game-back {
+      position: absolute;
+      top: 90px;
+      left: 0px;
+      z-index: 10;
+      background: unset;
+      border: none;
+      border-image: none;
+      color: #666;
+      font-size: 18px;
+      font-weight: normal;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 4px;
+      box-shadow: none;
+      box-sizing: content-box;
+      transform: scale(1.5);
+      transition: background 0.2s, transform 0.1s;
+      line-height: 1;
+    }
+
+    #game-back:hover {
+      background: unset;
+    }
+
+    #game-back:active {
+      transform: scale(1.425);
+      background: #eeeeee;
     }
 
     /* 结算页（全屏） */
@@ -675,6 +709,43 @@
       color: #ffd700;
       font-size: 16px;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .my-word-speaker-btn {
+      width: 20px;
+      height: 20px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border-radius: 50%;
+      transition: background-color 0.2s, transform 0.1s, color 0.2s;
+      flex-shrink: 0;
+      box-shadow: none;
+      color: #1F6FCF;
+    }
+
+    .my-word-speaker-btn:hover {
+      background: rgba(31, 111, 207, 0.1);
+      color: #1F6FCF;
+    }
+
+    .my-word-speaker-btn:active {
+      transform: scale(0.95);
+    }
+
+    .my-word-speaker-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
     }
 
     .my-word-en-wrapper {
@@ -824,7 +895,7 @@
 
   <!-- 启动页（默认唯一可见） -->
   <div id="start-screen" class="is-flex">
-    <button id="music-toggle-start" class="music-toggle is-off" aria-pressed="false" aria-label="Toggle music">
+    <button id="music-toggle-start" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
         <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -846,7 +917,8 @@
   </div>
 
   <div id="game-wrapper" class="is-hidden">
-    <button id="music-toggle-game" class="music-toggle is-off" aria-pressed="false" aria-label="Toggle music">
+    <button id="game-back" aria-label="返回">&lt;</button>
+    <button id="music-toggle-game" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
         <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -859,7 +931,7 @@
   </div>
 
   <div id="result-screen" class="is-hidden">
-    <button id="music-toggle-result" class="music-toggle is-off" aria-pressed="false" aria-label="Toggle music">
+    <button id="music-toggle-result" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
         <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -871,6 +943,7 @@
     <h2 id="result-title">Your Score: 0</h2>
     <div id="found-words-list"></div>
     <button id="next-btn">Play Again</button>
+    <button id="easier-mode-btn" class="is-hidden">Easier Mode</button>
     <button id="share2-btn">Share</button>
     <button id="home-btn">Home</button>
   </div>
@@ -922,9 +995,11 @@
     const startBtn = document.getElementById("start-btn");
     const rankBtn = document.getElementById("rank-btn");
     const rankBack = document.getElementById("rank-back");
+    const gameBack = document.getElementById("game-back");
     const shareBtn = document.getElementById("share-btn");
     const share2Btn = document.getElementById("share2-btn");
     const nextBtn = document.getElementById("next-btn");
+    const easierModeBtn = document.getElementById("easier-mode-btn");
     const homeBtn = document.getElementById("home-btn");
     const myWordsBtn = document.getElementById("my-words-btn");
     const myWordsModal = document.getElementById("my-words-modal");
@@ -942,14 +1017,14 @@
     const rankList = document.getElementById("rank-list");
     let latestScore = 0;
     let latestLevel = null;
+    let latestLevelString = null;
     let fireworksTimeout = null;
     const DEFAULT_AVATAR = "assets/handy.png";
-    let bgmEnabled = false;
+    let bgmEnabled = true;
     let bgmResumeBound = false;
     if (bgm) {
       bgm.volume = 0.35;
-      bgm.pause();
-      bgm.muted = true;
+      bgm.muted = false;
     }
 
     function triggerFireworks() {
@@ -1107,6 +1182,64 @@
       return text;
     }
 
+    // Speech synthesis function (from games/game.js)
+    let voices = [];
+    let speechUnlocked = false;
+
+    function loadVoices() {
+      if ('speechSynthesis' in window) {
+        voices = window.speechSynthesis.getVoices();
+      }
+    }
+
+    if ('speechSynthesis' in window) {
+      loadVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+      }
+    }
+
+    function unlockSpeech() {
+      if (speechUnlocked || !('speechSynthesis' in window)) return;
+
+      // Play silent utterance to unlock audio context on mobile
+      const utterance = new SpeechSynthesisUtterance('');
+      utterance.volume = 0;
+      window.speechSynthesis.speak(utterance);
+      speechUnlocked = true;
+    }
+
+    function speak(text, langName = "日本語") {
+      if (!('speechSynthesis' in window)) return;
+
+      unlockSpeech();
+
+      // Resume if paused (fix for some Android/Chrome versions)
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
+
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      const mapItem = LANG_MAP[langName] || LANG_MAP["日本語"];
+      const targetLocale = mapItem.locale;
+
+      utterance.lang = targetLocale;
+      utterance.rate = 1.0;
+
+      // Try to select a voice explicitly
+      if (voices.length === 0) loadVoices();
+      // Find voice matching locale
+      const voice = voices.find(v => v.lang === targetLocale || v.lang.startsWith(targetLocale.split('-')[0]));
+      if (voice) {
+        utterance.voice = voice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
     function getInitial(name) {
       var trimmed = (name || "").trim();
       if (!trimmed) return "?";
@@ -1229,6 +1362,12 @@
       showFlex("start-screen");
       stopFireworks();
     };
+    gameBack.onclick = () => {
+      hideAll();
+      showFlex("start-screen");
+      stopFireworks();
+      tryPlayBgm();
+    };
 
     /* My Words Modal */
     function showMyWordsModal() {
@@ -1308,7 +1447,16 @@
         return '<div class="my-word-item-wrapper" data-word-id="' + wordId + '">' +
           '<div class="my-word-item ' + highlightedClass + '" data-word-id="' + wordId + '">' +
           '<div class="my-word-content">' +
-          '<span class="my-word-kana">' + learningTextEscaped + '</span>' +
+          '<span class="my-word-kana">' + learningTextEscaped +
+          '<button class="my-word-speaker-btn" ' +
+          'data-word-id="' + wordId + '" ' +
+          'data-learning-lang="' + escapeAttribute(wordLearningLang) + '" ' +
+          'aria-label="Pronounce word">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
+          '<path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>' +
+          '</svg>' +
+          '</button>' +
+          '</span>' +
           '<div class="my-word-en-wrapper">' +
           '<span class="my-word-en">' + baseTextEscaped + '</span>' +
           '<button class="my-word-favorite-btn ' + activeClass + '" ' +
@@ -1328,6 +1476,28 @@
           '</button>' +
           '</div>';
       }).join("");
+
+      // 绑定发音按钮点击事件（学习语言旁边的扬声器按钮）
+      myWordsList.querySelectorAll(".my-word-speaker-btn").forEach((btn, index) => {
+        btn.addEventListener("click", function(e) {
+          e.stopPropagation();
+          const wordId = this.getAttribute("data-word-id");
+          const learningLang = this.getAttribute("data-learning-lang") || "日本語";
+          
+          // 找到对应的单词数据
+          const wordData = filteredWords.find(w => {
+            const wId = w.id || ((w.furigana || "") + "|" + (w.english || ""));
+            return wId === wordId;
+          });
+          
+          if (wordData) {
+            const wordText = getWordText(wordData, learningLang);
+            if (wordText) {
+              speak(wordText, learningLang);
+            }
+          }
+        });
+      });
 
       // 绑定收藏按钮点击事件（基础语言旁边的星星按钮）
       myWordsList.querySelectorAll(".my-word-favorite-btn").forEach(btn => {
@@ -1362,7 +1532,8 @@
       currentY: 0,
       isSwiping: false,
       currentWrapper: null,
-      deleteButtonWidth: 80
+      deleteButtonWidth: 80,
+      deleteThreshold: 56  // 删除按钮宽度的70%，滑动超过此距离直接删除
     };
 
     function initSwipeToDelete() {
@@ -1414,9 +1585,15 @@
           const timeDelta = Date.now() - startTime;
 
           if (isDragging && deltaX < 0) {
-            // 如果滑动超过一半或速度足够快，显示删除按钮
-            if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 || 
+            // 如果滑动超过删除阈值，直接删除单词
+            if (Math.abs(deltaX) >= swipeState.deleteThreshold) {
+              const wordId = wrapper.getAttribute("data-word-id");
+              if (wordId) {
+                deleteWord(wordId);
+              }
+            } else if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 || 
                 (Math.abs(deltaX) > 30 && timeDelta < 300)) {
+              // 如果滑动超过一半或速度足够快，显示删除按钮
               item.style.transform = `translateX(-${swipeState.deleteButtonWidth}px)`;
               // 保持 swiping 类以显示删除按钮
             } else {
@@ -1468,9 +1645,15 @@
           const timeDelta = Date.now() - startTime;
 
           if (isDragging && deltaX < 0) {
-            // 如果滑动超过一半或速度足够快，显示删除按钮
-            if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 || 
+            // 如果滑动超过删除阈值，直接删除单词
+            if (Math.abs(deltaX) >= swipeState.deleteThreshold) {
+              const wordId = wrapper.getAttribute("data-word-id");
+              if (wordId) {
+                deleteWord(wordId);
+              }
+            } else if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 || 
                 (Math.abs(deltaX) > 30 && timeDelta < 300)) {
+              // 如果滑动超过一半或速度足够快，显示删除按钮
               item.style.transform = `translateX(-${swipeState.deleteButtonWidth}px)`;
               // 保持 swiping 类以显示删除按钮
             } else {
@@ -1490,9 +1673,21 @@
         item.addEventListener("mouseleave", function(e) {
           if (isDragging && touchStartX) {
             const deltaX = e.clientX - touchStartX;
-            if (deltaX < 0 && Math.abs(deltaX) > swipeState.deleteButtonWidth / 2) {
-              item.style.transform = `translateX(-${swipeState.deleteButtonWidth}px)`;
-              // 保持 swiping 类以显示删除按钮
+            if (deltaX < 0) {
+              // 如果滑动超过删除阈值，直接删除单词
+              if (Math.abs(deltaX) >= swipeState.deleteThreshold) {
+                const wordId = wrapper.getAttribute("data-word-id");
+                if (wordId) {
+                  deleteWord(wordId);
+                }
+              } else if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2) {
+                // 如果滑动超过一半，显示删除按钮
+                item.style.transform = `translateX(-${swipeState.deleteButtonWidth}px)`;
+                // 保持 swiping 类以显示删除按钮
+              } else {
+                item.style.transform = "translateX(0)";
+                wrapper.classList.remove("swiping");
+              }
             } else {
               item.style.transform = "translateX(0)";
               wrapper.classList.remove("swiping");
@@ -1708,6 +1903,30 @@
       stopFireworks();
       gameFrame.contentWindow?.postMessage({ action: "nextLevel" }, "*");
     };
+    easierModeBtn.onclick = () => {
+      // Determine lower difficulty level
+      let lowerLevel = null;
+      if (latestLevelString === "Advanced") {
+        lowerLevel = "Intermediate";
+      } else if (latestLevelString === "Intermediate") {
+        lowerLevel = "Beginner";
+      }
+      
+      // Save lower level to localStorage
+      if (lowerLevel) {
+        try {
+          localStorage.setItem('fishwordlingo_last_level', lowerLevel);
+        } catch (e) {
+          console.warn('[easierMode] Failed to save level to localStorage', e);
+        }
+      }
+      
+      // Start new game with lower difficulty
+      hideAll();
+      showBlock("game-wrapper");
+      stopFireworks();
+      gameFrame.contentWindow?.postMessage({ action: "nextLevel" }, "*");
+    };
 
     /* 接收游戏过关消息 */
     window.addEventListener("message", (e) => {
@@ -1721,10 +1940,21 @@
         const learningLang = data.learningLang || "日本語";
         const baseLang = data.baseLang || "English";
 
+        // Save level string for Easier Mode button logic
+        latestLevelString = (typeof data.level === "string") ? data.level : null;
         latestLevel = levelValue;
         hideAll();
         showFlex("result-screen");
         resultTitle.textContent = "Your Score: " + latestScore;
+
+        // Show/hide Easier Mode button based on conditions
+        if (easierModeBtn) {
+          if (latestLevelString && latestLevelString !== "Beginner" && latestScore <= 500) {
+            easierModeBtn.classList.remove("is-hidden");
+          } else {
+            easierModeBtn.classList.add("is-hidden");
+          }
+        }
 
         // Render Found Words using learning and base languages
         const listContainer = document.getElementById("found-words-list");

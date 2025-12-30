@@ -7,6 +7,7 @@ const FISH_COUNT = 6;
 const FISH_WIDTH = 40;  // 80% of previous size
 const FISH_HEIGHT = 40;
 const TOTAL_FISH_TYPES = 14;
+const TUTORIAL_STORAGE_KEY = "hasSeenTutorial";
 
 // Assets
 const ASSETS = {
@@ -472,6 +473,7 @@ let state = {
   lives: 10,
   timeLeft: GAME_DURATION,
   gameOver: false,
+  tutorialActive: false,
   startTime: 0,
   lastFrameTime: 0,
 
@@ -533,6 +535,430 @@ let state = {
 
 const WATER_LEVEL = 0.36; // Water surface level (ratio of height)
 
+let tutorialOverlay = null;
+
+function hasSeenTutorial() {
+  try {
+    return localStorage.getItem(TUTORIAL_STORAGE_KEY) === "true";
+  } catch (e) {
+    return false;
+  }
+}
+
+function markTutorialSeen() {
+  try {
+    localStorage.setItem(TUTORIAL_STORAGE_KEY, true);
+  } catch (e) {
+    console.warn("[game] Failed to save tutorial state", e);
+  }
+}
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function getLivesHighlightRect() {
+  const uiOffsetY = 80;
+  const fontSize = 20;
+  const livesRaw = typeof state.displayLives === "number"
+    ? state.displayLives
+    : (typeof state.lives === "number" ? state.lives : 10);
+  const livesValue = Math.round(livesRaw);
+  const livesText = `Lives: ${livesValue}`;
+  ctx.save();
+  ctx.font = `bold ${fontSize}px Arial`;
+  const textWidth = ctx.measureText(livesText).width;
+  ctx.restore();
+
+  const textX = 20;
+  const textY = 136 + uiOffsetY;
+  const paddingX = 12;
+  const rectHeight = fontSize + 12;
+  return {
+    x: textX - paddingX,
+    y: textY - rectHeight / 2,
+    width: textWidth + paddingX * 2,
+    height: rectHeight,
+    radius: 10
+  };
+}
+
+function getHintHighlightCircle(logicalWidth) {
+  const uiOffsetY = 80;
+  const iconSize = 40;
+  const iconGap = 30;
+
+  if (state.hintButtonRect) {
+    const rect = state.hintButtonRect;
+    return {
+      cx: rect.x + rect.width / 2,
+      cy: rect.y + rect.height / 2,
+      r: Math.max(rect.width, rect.height) / 2 + 8
+    };
+  }
+
+  const iconX = logicalWidth - iconSize - 20;
+  const iconY = 110 + uiOffsetY + (iconSize + iconGap) * 2;
+  return {
+    cx: iconX + iconSize / 2,
+    cy: iconY + iconSize / 2,
+    r: iconSize / 2 + 8
+  };
+}
+
+function getWordHighlightRect(logicalWidth, logicalHeight) {
+  const personHeight = 100;
+  const personY = logicalHeight * WATER_LEVEL - personHeight * 0.3;
+  const vocabY = personY + personHeight * 0.8;
+  const kanaFontSize = 26;
+  const englishFontSize = 13;
+  const englishOffset = 30;
+  const englishY = vocabY + englishOffset;
+
+  const joinedText = state.targetChars && state.targetChars.length
+    ? state.targetChars.map((char, index) => state.revealedIndices[index] ? char : "_").join(" ")
+    : "_ _ _ _";
+
+  ctx.save();
+  ctx.font = `bold ${kanaFontSize}px Arial`;
+  const kanaWidth = ctx.measureText(joinedText).width;
+  ctx.font = `${englishFontSize}px Arial`;
+  let translation = "";
+  if (state.currentWord) {
+    translation = getWordText(state.currentWord, state.selectedBaseLang, false) || "";
+  }
+  const englishWidth = translation ? ctx.measureText(translation).width : kanaWidth * 0.6;
+  ctx.restore();
+
+  const padX = 14;
+  const padY = 10;
+  const boxWidth = Math.max(kanaWidth, englishWidth) + padX * 2;
+  const boxTop = vocabY - kanaFontSize / 2 - padY;
+  const boxBottom = englishY + englishFontSize / 2 + padY;
+  const boxHeight = boxBottom - boxTop;
+  const boxX = logicalWidth / 2 - boxWidth / 2;
+
+  return {
+    x: boxX,
+    y: boxTop,
+    width: boxWidth,
+    height: boxHeight,
+    radius: 10
+  };
+}
+
+function getTutorialLayout() {
+  const logicalWidth = canvas.width ? canvas.width / dpr : window.innerWidth;
+  const logicalHeight = canvas.height ? canvas.height / dpr : window.innerHeight;
+
+  return {
+    width: logicalWidth,
+    height: logicalHeight,
+    lives: getLivesHighlightRect(),
+    hint: getHintHighlightCircle(logicalWidth),
+    word: getWordHighlightRect(logicalWidth, logicalHeight)
+  };
+}
+
+function injectTutorialStyles() {
+  if (document.getElementById("tutorial-overlay-styles")) return;
+  const style = document.createElement("style");
+  style.id = "tutorial-overlay-styles";
+  style.textContent = `
+.tutorial-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  cursor: pointer;
+  touch-action: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.tutorial-overlay.is-visible {
+  display: block;
+}
+
+.tutorial-overlay__mask,
+.tutorial-overlay__labels {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.tutorial-label {
+  position: absolute;
+  max-width: 180px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.3;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.tutorial-label__title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.tutorial-label--center {
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.tutorial-label--word > div {
+  display: block;
+  white-space: normal;
+  min-height: 1.3em;
+  line-height: 1.3;
+}
+
+.tutorial-label--lives {
+  white-space: nowrap;
+}
+
+.tutorial-label--hint {
+  white-space: pre-line;
+}
+  `;
+  document.head.appendChild(style);
+}
+
+class TutorialOverlay {
+  constructor(onDismiss) {
+    injectTutorialStyles();
+    this.onDismiss = onDismiss;
+    this.root = document.createElement("div");
+    this.root.className = "tutorial-overlay";
+    this.root.setAttribute("role", "button");
+    this.root.setAttribute("aria-label", "Start game");
+
+    const maskId = "tutorial-mask";
+    this.root.innerHTML = `
+<svg class="tutorial-overlay__mask" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <mask id="${maskId}">
+      <rect width="100%" height="100%" fill="white"></rect>
+      <rect data-role="hole" data-target="lives" rx="12" ry="12" fill="black"></rect>
+      <rect data-role="hole" data-target="word" rx="12" ry="12" fill="black"></rect>
+      <circle data-role="hole" data-target="hint" r="24" fill="black"></circle>
+    </mask>
+  </defs>
+  <rect width="100%" height="100%" fill="rgba(0, 0, 0, 0.6)" mask="url(#${maskId})"></rect>
+  <rect data-role="outline" data-target="lives" rx="12" ry="12" fill="none" stroke="rgba(255, 255, 255, 0.9)" stroke-width="2"></rect>
+  <rect data-role="outline" data-target="word" rx="12" ry="12" fill="none" stroke="rgba(255, 255, 255, 0.9)" stroke-width="2"></rect>
+  <circle data-role="outline" data-target="hint" fill="none" stroke="rgba(255, 255, 255, 0.9)" stroke-width="2"></circle>
+  <circle data-role="dot" data-target="lives" r="4" fill="rgba(255, 255, 255, 0.85)"></circle>
+  <circle data-role="dot" data-target="word" r="4" fill="rgba(255, 255, 255, 0.85)"></circle>
+  <circle data-role="dot" data-target="hint" r="4" fill="rgba(255, 255, 255, 0.85)"></circle>
+</svg>
+<div class="tutorial-overlay__labels">
+  <div class="tutorial-label tutorial-label--lives">
+    <div>Each wrong letter costs one life.</div>
+  </div>
+  <div class="tutorial-label tutorial-label--word tutorial-label--center">
+    <div>Catch letters to complete the word.</div>
+    <div>The meaning below is your clue.</div>
+  </div>
+  <div class="tutorial-label tutorial-label--hint">
+    <div>Use hints when you're<br>stuck.Each hint<br>reveals one letter.</div>
+  </div>
+</div>
+    `;
+
+    this.svg = this.root.querySelector(".tutorial-overlay__mask");
+    this.holes = {
+      lives: this.root.querySelector('[data-role="hole"][data-target="lives"]'),
+      word: this.root.querySelector('[data-role="hole"][data-target="word"]'),
+      hint: this.root.querySelector('[data-role="hole"][data-target="hint"]')
+    };
+    this.outlines = {
+      lives: this.root.querySelector('[data-role="outline"][data-target="lives"]'),
+      word: this.root.querySelector('[data-role="outline"][data-target="word"]'),
+      hint: this.root.querySelector('[data-role="outline"][data-target="hint"]')
+    };
+    this.dots = {
+      lives: this.root.querySelector('[data-role="dot"][data-target="lives"]'),
+      word: this.root.querySelector('[data-role="dot"][data-target="word"]'),
+      hint: this.root.querySelector('[data-role="dot"][data-target="hint"]')
+    };
+    this.labels = {
+      lives: this.root.querySelector(".tutorial-label--lives"),
+      word: this.root.querySelector(".tutorial-label--word"),
+      hint: this.root.querySelector(".tutorial-label--hint")
+    };
+
+    this.root.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (this.onDismiss) {
+        this.onDismiss();
+      }
+    });
+  }
+
+  show() {
+    if (!this.root.isConnected) {
+      document.body.appendChild(this.root);
+    }
+    this.root.classList.add("is-visible");
+  }
+
+  hide() {
+    this.root.classList.remove("is-visible");
+    if (this.root.isConnected) {
+      this.root.remove();
+    }
+  }
+
+  update(layout) {
+    if (!layout) return;
+    this.svg.setAttribute("viewBox", `0 0 ${layout.width} ${layout.height}`);
+
+    const setRect = (el, rect) => {
+      if (!el || !rect) return;
+      el.setAttribute("x", rect.x);
+      el.setAttribute("y", rect.y);
+      el.setAttribute("width", rect.width);
+      el.setAttribute("height", rect.height);
+      if (rect.radius !== undefined) {
+        el.setAttribute("rx", rect.radius);
+        el.setAttribute("ry", rect.radius);
+      }
+    };
+
+    const setCircle = (el, circle) => {
+      if (!el || !circle) return;
+      el.setAttribute("cx", circle.cx);
+      el.setAttribute("cy", circle.cy);
+      el.setAttribute("r", circle.r);
+    };
+
+    setRect(this.holes.lives, layout.lives);
+    setRect(this.outlines.lives, layout.lives);
+    setRect(this.holes.word, layout.word);
+    setRect(this.outlines.word, layout.word);
+    setCircle(this.holes.hint, layout.hint);
+    setCircle(this.outlines.hint, layout.hint);
+
+    const labelWidth = 180;
+    const safePadding = 12;
+    const maxLeft = layout.width - labelWidth - safePadding;
+    const maxTop = layout.height - 80;
+
+    const dotRadius = 4;
+    const dotOffset = 10;
+    const dotBounds = {
+      minX: safePadding + dotRadius,
+      maxX: layout.width - safePadding - dotRadius,
+      minY: safePadding + dotRadius,
+      maxY: layout.height - safePadding - dotRadius
+    };
+
+    const livesDot = {
+      cx: layout.lives.x + layout.lives.width + dotOffset,
+      cy: layout.lives.y + layout.lives.height / 2,
+      r: dotRadius
+    };
+    const wordDot = {
+      cx: layout.word.x + layout.word.width / 2,
+      cy: layout.word.y - dotOffset,
+      r: dotRadius
+    };
+    const hintDot = {
+      cx: layout.hint.cx - layout.hint.r - dotOffset,
+      cy: layout.hint.cy,
+      r: dotRadius
+    };
+
+    const clampDot = (dot) => ({
+      cx: clamp(dot.cx, dotBounds.minX, dotBounds.maxX),
+      cy: clamp(dot.cy, dotBounds.minY, dotBounds.maxY),
+      r: dot.r
+    });
+
+    setCircle(this.dots.lives, clampDot(livesDot));
+    setCircle(this.dots.word, clampDot(wordDot));
+    setCircle(this.dots.hint, clampDot(hintDot));
+
+    const livesLeft = clamp(layout.lives.x + layout.lives.width + 12, safePadding, maxLeft);
+    const livesTop = clamp(layout.lives.y - 6, safePadding, maxTop);
+    this.labels.lives.style.left = `${livesLeft}px`;
+    this.labels.lives.style.top = `${livesTop}px`;
+
+    const hintLeft = clamp(layout.hint.cx - layout.hint.r - labelWidth - 12 + 90, safePadding, maxLeft);
+    const hintTop = clamp(layout.hint.cy + 44, safePadding, maxTop);
+    this.labels.hint.style.left = `${hintLeft}px`;
+    this.labels.hint.style.top = `${hintTop}px`;
+
+    const wordCenter = layout.word.x + layout.word.width / 2;
+    const wordLeft = clamp(wordCenter, safePadding + labelWidth / 2, layout.width - safePadding - labelWidth / 2);
+    const wordTop = Math.max(safePadding, layout.word.y - 64);
+    this.labels.word.style.left = `${wordLeft}px`;
+    this.labels.word.style.top = `${wordTop}px`;
+
+    const spacing = 10;
+    const getRect = (el) => el.getBoundingClientRect();
+    const overlapsHorizontally = (a, b) => a.left < b.right && a.right > b.left;
+    const moveLabelWithinBounds = (el, deltaY) => {
+      const currentTop = parseFloat(el.style.top) || 0;
+      const height = el.getBoundingClientRect().height;
+      const minTop = safePadding;
+      const maxTop = layout.height - safePadding - height;
+      const newTop = clamp(currentTop + deltaY, minTop, maxTop);
+      el.style.top = `${newTop}px`;
+      return newTop - currentTop;
+    };
+
+    const separateLabels = (elA, elB) => {
+      const rectA = getRect(elA);
+      const rectB = getRect(elB);
+      if (!overlapsHorizontally(rectA, rectB)) return;
+
+      const isAAbove = rectA.top <= rectB.top;
+      const upperRect = isAAbove ? rectA : rectB;
+      const lowerRect = isAAbove ? rectB : rectA;
+      const upperEl = isAAbove ? elA : elB;
+      const lowerEl = isAAbove ? elB : elA;
+      const gap = lowerRect.top - upperRect.bottom;
+      if (gap >= spacing) return;
+
+      const shift = spacing - gap;
+      const moved = moveLabelWithinBounds(lowerEl, shift);
+      if (moved < shift) {
+        moveLabelWithinBounds(upperEl, -1 * (shift - moved));
+      }
+    };
+
+    for (let i = 0; i < 2; i++) {
+      separateLabels(this.labels.lives, this.labels.word);
+      separateLabels(this.labels.lives, this.labels.hint);
+      separateLabels(this.labels.word, this.labels.hint);
+    }
+  }
+}
+
+function ensureTutorialOverlay() {
+  if (!tutorialOverlay) {
+    tutorialOverlay = new TutorialOverlay(handleTutorialDismiss);
+  }
+  return tutorialOverlay;
+}
+
+function handleTutorialDismiss() {
+  if (!state.tutorialActive) return;
+  state.tutorialActive = false;
+  markTutorialSeen();
+  if (tutorialOverlay) {
+    tutorialOverlay.hide();
+    tutorialOverlay = null;
+  }
+  state.startTime = Date.now();
+  state.lastFrameTime = Date.now();
+}
+
 async function ensureActiveVocab(level) {
   const targetLevel = LEVEL_OPTIONS.includes(level) ? level : DEFAULT_LEVEL;
   state.isLoadingVocab = true;
@@ -541,6 +967,43 @@ async function ensureActiveVocab(level) {
   state.activeVocab = vocab && vocab.length ? vocab : (vocabCache[targetLevel] || vocabCache[DEFAULT_LEVEL] || vocabCache["Beginner"]);
   state.activeLevel = targetLevel;
   return state.activeVocab;
+}
+
+// Load and validate saved game settings from localStorage
+function loadSavedGameSettings() {
+  try {
+    const savedLearningLang = localStorage.getItem('fishwordlingo_last_learningLang');
+    const savedBaseLang = localStorage.getItem('fishwordlingo_last_baseLang');
+    const savedLevel = localStorage.getItem('fishwordlingo_last_level');
+    
+    // Validate and apply learning language
+    if (savedLearningLang && LANGUAGE_OPTIONS.includes(savedLearningLang)) {
+      state.selectedLearningLang = savedLearningLang;
+    }
+    
+    // Validate and apply base language
+    if (savedBaseLang && LANGUAGE_OPTIONS.includes(savedBaseLang)) {
+      state.selectedBaseLang = savedBaseLang;
+    }
+    
+    // Validate and apply level
+    if (savedLevel && LEVEL_OPTIONS.includes(savedLevel)) {
+      state.selectedLevel = savedLevel;
+    }
+    
+    // Ensure learning and base languages are different
+    if (state.selectedLearningLang === state.selectedBaseLang) {
+      // If they're the same, reset base language to a different one
+      const availableBaseLang = LANGUAGE_OPTIONS.find(l => l !== state.selectedLearningLang);
+      if (availableBaseLang) {
+        state.selectedBaseLang = availableBaseLang;
+      } else {
+        state.selectedBaseLang = "English"; // Fallback
+      }
+    }
+  } catch (e) {
+    console.warn('[game] Failed to load settings from localStorage', e);
+  }
 }
 
 async function applyLanguageSettings() {
@@ -799,6 +1262,11 @@ function init() {
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
+  state.tutorialActive = !hasSeenTutorial();
+  if (state.tutorialActive) {
+    ensureTutorialOverlay();
+  }
+
   // Load Images
   const imagesToLoad = [ASSETS.bg, ASSETS.people, ASSETS.settings, ASSETS.note, ASSETS.hint, ...ASSETS.fish];
   state.totalImages = imagesToLoad.length;
@@ -830,6 +1298,9 @@ function init() {
 }
 
 async function startGame() {
+  // Load saved game settings from localStorage
+  loadSavedGameSettings();
+  
   await ensureActiveVocab(state.selectedLevel || DEFAULT_LEVEL);
 
   state.score = 0;
@@ -871,11 +1342,16 @@ async function startGame() {
   stopCountdownSound();
   state.timeShakeStart = null;
 
-  state.startTime = Date.now();
+  state.startTime = state.tutorialActive ? null : Date.now();
   state.lastFrameTime = Date.now();
   state.isTransitioning = false; // Ensure not transitioning at start
 
   pickNewWordAndSpawn(); // Initial word and fish spawn
+  if (state.tutorialActive) {
+    ensureTutorialOverlay();
+    tutorialOverlay.show();
+    tutorialOverlay.update(getTutorialLayout());
+  }
   requestAnimationFrame(gameLoop);
 }
 
@@ -1072,6 +1548,7 @@ function gameLoop() {
 }
 
 function update(dt) {
+  if (state.tutorialActive) return;
   if (state.isEnding) return;
 
   // Timer
@@ -1219,13 +1696,24 @@ function endGame(reason) {
 
   setTimeout(() => {
     state.gameOver = true;
+    
+    // Save game settings to localStorage for next game
+    try {
+      localStorage.setItem('fishwordlingo_last_learningLang', state.selectedLearningLang);
+      localStorage.setItem('fishwordlingo_last_baseLang', state.selectedBaseLang);
+      localStorage.setItem('fishwordlingo_last_level', state.selectedLevel);
+    } catch (e) {
+      console.warn('[game] Failed to save settings to localStorage', e);
+    }
+    
     // Send message to parent
     window.parent.postMessage({
       action: "levelComplete",
       score: state.score,
       foundWords: state.foundWords,
       learningLang: state.selectedLearningLang,
-      baseLang: state.selectedBaseLang
+      baseLang: state.selectedBaseLang,
+      level: state.selectedLevel
     }, "*");
   }, 500);
 }
@@ -1275,8 +1763,24 @@ function draw() {
         ctx.scale(-1, 1); // Flip if swimming right (assuming sprite faces left)
       }
 
-      // Draw Fish
-      ctx.drawImage(asset.img, -fish.width / 2, -fish.height / 2, fish.width, fish.height);
+      // Draw Fish - 使用图片的实际宽高比，避免身体显示不完整
+      const img = asset.img;
+      const imgAspect = img.naturalWidth / img.naturalHeight; // 图片原始宽高比
+      const targetAspect = fish.width / fish.height; // 目标宽高比
+      
+      let drawWidth = fish.width;
+      let drawHeight = fish.height;
+      
+      // 如果图片宽高比与目标不同，保持图片比例，以较大的尺寸为准
+      if (imgAspect > targetAspect) {
+        // 图片更宽，以宽度为准
+        drawHeight = fish.width / imgAspect;
+      } else {
+        // 图片更高，以高度为准
+        drawWidth = fish.height * imgAspect;
+      }
+      
+      ctx.drawImage(img, -drawWidth / 2, -drawHeight / 2, drawWidth, drawHeight);
 
       // Draw Bubble and Char
       // Unflip for text/bubble
@@ -1284,7 +1788,7 @@ function draw() {
         ctx.scale(-1, 1);
       }
 
-      const bubbleY = -fish.height / 2 - 10;
+      const bubbleY = -drawHeight / 2 - 10; // 使用实际绘制高度
       const bubbleRadius = 20;
 
       // Bubble (Frosted Glass Effect)
@@ -1375,6 +1879,10 @@ function draw() {
     });
 
     ctx.restore();
+  }
+
+  if (state.tutorialActive && tutorialOverlay) {
+    tutorialOverlay.update(getTutorialLayout());
   }
 }
 
@@ -1745,17 +2253,67 @@ function drawNoteOverlay() {
       // Let's deduce it. state.selectedLearningLang might have changed.
       // Displaying in current settings is best.
       const learningText = getWordText(w, state.selectedLearningLang);
+      let translation = getWordText(w, state.selectedBaseLang, false);
 
+      // Calculate available space
+      const padding = 16;
+      const speakerSize = 24;
+      const speakerGap = 12;
+      const translationGap = 12;
+      const minTranslationWidth = 60; // Minimum space for translation
+      
+      // Available width for content
+      const availableWidth = itemW - padding * 2;
+      
+      // Set font for learning text
       ctx.fillStyle = '#2c3e50';
       ctx.font = 'bold 20px Arial';
       ctx.textAlign = 'left';
-      ctx.fillText(learningText, itemX + 16, itemY + itemHeight / 2);
+      
+      // Measure translation text first to calculate space needed
+      ctx.font = '16px Arial';
+      const translationText = `- ${translation}`;
+      const translationWidth = ctx.measureText(translationText).width;
+      
+      // Calculate space needed for speaker and translation
+      const fixedElementsWidth = speakerSize + speakerGap + translationWidth + translationGap;
+      
+      // Available width for learning text
+      const maxLearningWidth = Math.max(availableWidth - fixedElementsWidth, availableWidth * 0.4);
+      
+      // Check if learning text fits, if not, truncate it
+      ctx.font = 'bold 20px Arial';
+      let displayLearningText = learningText;
+      let learningWidth = ctx.measureText(displayLearningText).width;
+      
+      if (learningWidth > maxLearningWidth) {
+        // Truncate text with ellipsis
+        const ellipsis = '...';
+        const ellipsisWidth = ctx.measureText(ellipsis).width;
+        let truncatedWidth = maxLearningWidth - ellipsisWidth;
+        
+        // Binary search for the right truncation point
+        let low = 0;
+        let high = learningText.length;
+        while (low < high) {
+          const mid = Math.floor((low + high) / 2);
+          const testText = learningText.substring(0, mid) + ellipsis;
+          const testWidth = ctx.measureText(testText).width;
+          if (testWidth <= maxLearningWidth) {
+            low = mid + 1;
+          } else {
+            high = mid;
+          }
+        }
+        displayLearningText = learningText.substring(0, Math.max(0, low - 1)) + ellipsis;
+        learningWidth = ctx.measureText(displayLearningText).width;
+      }
 
-      const learningWidth = ctx.measureText(learningText).width;
+      // Draw learning text
+      ctx.fillText(displayLearningText, itemX + padding, itemY + itemHeight / 2);
 
       // Speaker Icon
-      const speakerSize = 24;
-      const speakerX = itemX + 16 + learningWidth + 12;
+      const speakerX = itemX + padding + learningWidth + speakerGap;
       const speakerY = itemY + itemHeight / 2;
 
       // Draw Speaker
@@ -1809,14 +2367,39 @@ function drawNoteOverlay() {
         word: w
       });
 
-      const startTransX = speakerX + speakerSize + 12;
+      const startTransX = speakerX + speakerSize + translationGap;
 
-      let translation = getWordText(w, state.selectedBaseLang, false);
-
+      // Check if translation fits, if not, truncate it
+      ctx.font = '16px Arial';
+      let displayTranslation = translationText;
+      let finalTranslationWidth = ctx.measureText(displayTranslation).width;
+      const maxTranslationX = itemX + itemW - padding;
+      const maxTranslationWidth = maxTranslationX - startTransX;
+      
+      if (finalTranslationWidth > maxTranslationWidth && maxTranslationWidth > 0) {
+        // Truncate translation with ellipsis
+        const ellipsis = '...';
+        const ellipsisWidth = ctx.measureText(ellipsis).width;
+        let truncatedWidth = maxTranslationWidth - ellipsisWidth;
+        
+        // Binary search for the right truncation point
+        let low = 0;
+        let high = translation.length;
+        while (low < high) {
+          const mid = Math.floor((low + high) / 2);
+          const testText = `- ${translation.substring(0, mid)}${ellipsis}`;
+          const testWidth = ctx.measureText(testText).width;
+          if (testWidth <= maxTranslationWidth) {
+            low = mid + 1;
+          } else {
+            high = mid;
+          }
+        }
+        displayTranslation = `- ${translation.substring(0, Math.max(0, low - 1))}${ellipsis}`;
+      }
 
       ctx.fillStyle = '#2c3e50'; // Dark blue-gray like image
-      ctx.font = '16px Arial';
-      ctx.fillText(`- ${translation}`, startTransX, itemY + itemHeight / 2);
+      ctx.fillText(displayTranslation, startTransX, itemY + itemHeight / 2);
     });
   }
   ctx.restore(); // End list clip
@@ -2432,6 +3015,7 @@ function completeCurrentWord() {
 
 // Consolidated input handlers
 function handleInputStart(e) {
+  if (state.tutorialActive) return;
   const logicalWidth = canvas.width / dpr;
   const logicalHeight = canvas.height / dpr;
   const rect = canvas.getBoundingClientRect();
@@ -2457,6 +3041,7 @@ function handleInputStart(e) {
 }
 
 function handleInputMove(e) {
+  if (state.tutorialActive) return;
   if (!state.isDraggingNote) return;
 
   const rect = canvas.getBoundingClientRect();
@@ -2476,6 +3061,7 @@ function handleInputMove(e) {
 }
 
 function handleInputEnd(e) {
+  if (state.tutorialActive) return;
   state.isDraggingNote = false;
 
   // Determine if it was a click
@@ -2493,6 +3079,7 @@ function handleInputEnd(e) {
 }
 
 async function handleInputClick(e) {
+  if (state.tutorialActive) return;
   unlockSpeech();
   const logicalWidth = canvas.width / dpr;
   const logicalHeight = canvas.height / dpr;
