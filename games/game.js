@@ -710,7 +710,7 @@ function injectTutorialStyles() {
 
 .tutorial-label--word > div {
   display: block;
-  white-space: normal;
+  white-space: nowrap;
   min-height: 1.3em;
   line-height: 1.3;
 }
@@ -868,8 +868,8 @@ class TutorialOverlay {
       r: dotRadius
     };
     const hintDot = {
-      cx: layout.hint.cx - layout.hint.r - dotOffset,
-      cy: layout.hint.cy,
+      cx: layout.hint.cx,
+      cy: layout.hint.cy + layout.hint.r + 8,
       r: dotRadius
     };
 
@@ -888,8 +888,8 @@ class TutorialOverlay {
     this.labels.lives.style.left = `${livesLeft}px`;
     this.labels.lives.style.top = `${livesTop}px`;
 
-    const hintLeft = clamp(layout.hint.cx - layout.hint.r - labelWidth - 12 + 90, safePadding, maxLeft);
-    const hintTop = clamp(layout.hint.cy + 44, safePadding, maxTop);
+    const hintLeft = clamp(layout.hint.cx - layout.hint.r - labelWidth - 12 + 90 + 40, safePadding, maxLeft);
+    const hintTop = clamp(layout.hint.cy + 44 + 40, safePadding, maxTop);
     this.labels.hint.style.left = `${hintLeft}px`;
     this.labels.hint.style.top = `${hintTop}px`;
 
