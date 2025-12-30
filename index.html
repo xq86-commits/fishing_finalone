@@ -449,18 +449,29 @@
       background: unset;
       background-image: none;
       box-shadow: none;
-      left: 324px;
-      top: 91px;
-      right: unset;
+      top: 120px;
+      right: 5px;
+      left: unset;
+      width: 68px;
+      height: 68px;
     }
 
     #music-toggle-game {
       box-shadow: none;
-      top: 400px;
-      left: 15px;
-      right: unset;
-      width: 65px;
-      height: 65px;
+      top: 120px;   /* align above Language icon; same vertical spacing as other icons */
+      right: 5px;   /* shift 5px further right */
+      left: unset;
+      width: 68px;   /* +5% from 65px */
+      height: 68px;
+    }
+
+    #music-toggle-result {
+      box-shadow: none;
+      top: 120px;
+      right: 5px;
+      left: unset;
+      width: 68px;
+      height: 68px;
     }
 
     @keyframes wavePulse {
@@ -813,7 +824,7 @@
 
   <!-- 启动页（默认唯一可见） -->
   <div id="start-screen" class="is-flex">
-    <button id="music-toggle-start" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
+    <button id="music-toggle-start" class="music-toggle is-off" aria-pressed="false" aria-label="Toggle music">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
         <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -835,7 +846,7 @@
   </div>
 
   <div id="game-wrapper" class="is-hidden">
-    <button id="music-toggle-game" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
+    <button id="music-toggle-game" class="music-toggle is-off" aria-pressed="false" aria-label="Toggle music">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
         <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
@@ -848,6 +859,15 @@
   </div>
 
   <div id="result-screen" class="is-hidden">
+    <button id="music-toggle-result" class="music-toggle is-off" aria-pressed="false" aria-label="Toggle music">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
+        <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="sound-wave wave-2" d="M18 6a7 7 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="sound-wave wave-3" d="M20.5 4a9.5 9.5 0 0 1 0 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="slash" d="M4 20L20 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+    </button>
     <h2 id="result-title">Your Score: 0</h2>
     <div id="found-words-list"></div>
     <button id="next-btn">Play Again</button>
@@ -917,16 +937,19 @@
     const bgm = document.getElementById("bgm");
     const musicToggleStart = document.getElementById("music-toggle-start");
     const musicToggleGame = document.getElementById("music-toggle-game");
+    const musicToggleResult = document.getElementById("music-toggle-result");
     const resultTitle = document.getElementById("result-title");
     const rankList = document.getElementById("rank-list");
     let latestScore = 0;
     let latestLevel = null;
     let fireworksTimeout = null;
     const DEFAULT_AVATAR = "assets/handy.png";
-    let bgmEnabled = true;
+    let bgmEnabled = false;
     let bgmResumeBound = false;
     if (bgm) {
       bgm.volume = 0.35;
+      bgm.pause();
+      bgm.muted = true;
     }
 
     function triggerFireworks() {
@@ -1223,13 +1246,27 @@
     let currentSelectedTab = null;
 
     function renderWordsList(words, selectedTab) {
-      if (!words || words.length === 0) {
+      // 每次渲染前从存储同步收藏状态，避免切换 Tab 后状态回退
+      const wordsWithHighlight = (words || []).map(function(word) {
+        const wordId = word.id || ((word.furigana || "") + "|" + (word.english || ""));
+        let highlightState = !!word.isHighlighted;
+        if (window.instantDBService && typeof window.instantDBService.isWordHighlighted === "function" && wordId) {
+          try {
+            highlightState = window.instantDBService.isWordHighlighted(wordId);
+          } catch (err) {
+            console.warn("[myWords] highlight sync failed", err);
+          }
+        }
+        return Object.assign({}, word, { id: wordId, isHighlighted: highlightState });
+      });
+
+      if (!wordsWithHighlight || wordsWithHighlight.length === 0) {
         myWordsList.innerHTML = '<div class="my-words-empty">No words found. Play games to collect words!</div>';
         return;
       }
 
       // Filter words by selected tab
-      const filteredWords = words.filter(function(word) {
+      const filteredWords = wordsWithHighlight.filter(function(word) {
         const wordLearningLang = word.learningLang || "日本語";
         const wordBaseLang = word.baseLang || "English";
         const wordPair = normalizeLanguagePair(wordLearningLang, wordBaseLang);
@@ -1764,7 +1801,7 @@
     function updateMusicButtons() {
       if (!bgm) return;
       const isPlaying = !bgm.paused && !bgm.muted;
-      [musicToggleStart, musicToggleGame].forEach(btn => {
+      [musicToggleStart, musicToggleGame, musicToggleResult].forEach(btn => {
         if (!btn) return;
         btn.setAttribute("aria-pressed", isPlaying ? "true" : "false");
         btn.classList.toggle("is-on", isPlaying);
@@ -1811,6 +1848,9 @@
     }
     if (musicToggleGame) {
       musicToggleGame.addEventListener("click", toggleBgm);
+    }
+    if (musicToggleResult) {
+      musicToggleResult.addEventListener("click", toggleBgm);
     }
   </script>
 </body>

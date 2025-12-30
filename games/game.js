@@ -528,9 +528,6 @@ let state = {
   countdownSoundPlaying: false,
   countdownSoundInterval: null,
 
-  // Consecutive Errors Tracking
-  consecutiveErrors: 0,
-  langButtonBlinkStart: null,
   toastPosition: 0.7
 };
 
@@ -873,10 +870,6 @@ async function startGame() {
   // Reset countdown effects
   stopCountdownSound();
   state.timeShakeStart = null;
-
-  // Reset consecutive errors tracking
-  state.consecutiveErrors = 0;
-  state.langButtonBlinkStart = null;
 
   state.startTime = Date.now();
   state.lastFrameTime = Date.now();
@@ -1395,15 +1388,11 @@ function drawUI() {
   ctx.textAlign = 'left';
   ctx.fillStyle = '#666';
   ctx.font = 'bold 20px Arial';
-  ctx.fillText(`Score: ${Math.round(state.displayScore)}`, 20, 40 + uiOffsetY);
 
-  // Timer
-  ctx.textAlign = 'right';
-  ctx.fillStyle = '#666';
-  
-  // Apply shake effect if within shake duration (1 second)
-  let timeX = logicalWidth - 20;
-  let timeY = 40 + uiOffsetY;
+  // Timer now at former score slot (left side)
+  ctx.textAlign = 'left';
+  let timeX = 20;
+  let timeY = 76 + uiOffsetY; // shifted further down by 6px
   
   if (state.timeShakeStart !== null) {
     const shakeElapsed = Date.now() - state.timeShakeStart;
@@ -1426,7 +1415,14 @@ function drawUI() {
   
   ctx.fillText(`Time: ${Math.ceil(state.timeLeft)}s`, timeX, timeY);
 
-  // Lives
+  // Score shifted down by one slot below time
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'left';
+  ctx.fillStyle = '#666';
+  ctx.font = 'bold 20px Arial';
+  ctx.fillText(`Score: ${Math.round(state.displayScore)}`, 20, 106 + uiOffsetY); // keep 30px gap below time
+
+  // Lives below score, preserving previous gap (30px)
   if (Math.abs(state.displayLives - state.targetLives) > 0.01) {
     state.displayLives += (state.targetLives - state.displayLives) * 0.1;
   } else {
@@ -1438,7 +1434,7 @@ function drawUI() {
   ctx.fillStyle = '#e74c3c';
   ctx.font = 'bold 20px Arial';
   ctx.textAlign = 'left';
-  ctx.fillText(`Lives: ${Math.round(state.displayLives)}`, 20, 70 + uiOffsetY);
+  ctx.fillText(`Lives: ${Math.round(state.displayLives)}`, 20, 136 + uiOffsetY); // keep 30px gap below score
 
   // Current word placed beside the fisherman
   const personWidth = 100;
@@ -1451,7 +1447,7 @@ function drawUI() {
   const joinedText = state.targetChars.map((char, index) => state.revealedIndices[index] ? char : '_').join(' ');
   const kanaFontSize = 26; // 80% of previous 32px
   const englishFontSize = 13; // 80% of previous 16px
-  const englishOffset = kanaFontSize * 0.85;
+  const englishOffset = 30; // 增大上下行间距到 30px
   const englishY = vocabY + englishOffset;
 
   ctx.font = `bold ${kanaFontSize}px Arial`;
@@ -1500,41 +1496,14 @@ function drawUI() {
   // Icons (Settings, Note, Hint) on the left
   const iconSize = 40;
   const iconGap = 30; // Gap between icon bottom and next icon top (including text)
-  const iconX = 30;
+  const iconX = logicalWidth - iconSize - 20; // Move icons to the right side
   let iconY = 110 + uiOffsetY;
 
   // Settings (Lang)
   if (ASSETS.settings.img) {
     const rect = { x: iconX, y: iconY, width: iconSize, height: iconSize };
     state.langButtonRect = rect;
-    
-    // Check if blink animation is active
-    let blinkAlpha = 1;
-    let blinkScale = 1;
-    if (state.langButtonBlinkStart !== null) {
-      const blinkElapsed = Date.now() - state.langButtonBlinkStart;
-      if (blinkElapsed < 3000) {
-        // Blink for 3 seconds
-        const blinkProgress = blinkElapsed / 3000;
-        const blinkFrequency = 8; // Blink 8 times over 3 seconds
-        // Create pulsing effect with opacity and scale
-        const pulse = Math.sin(blinkElapsed * blinkFrequency * 0.01) * 0.5 + 0.5;
-        blinkAlpha = 0.4 + pulse * 0.6; // Oscillate between 0.4 and 1.0
-        blinkScale = 0.9 + pulse * 0.2; // Oscillate between 0.9 and 1.1
-      } else {
-        // Animation finished, clear it
-        state.langButtonBlinkStart = null;
-      }
-    }
-    
-    // Apply blink effect
-    ctx.save();
-    ctx.globalAlpha = blinkAlpha;
-    ctx.translate(rect.x + rect.width / 2, rect.y + rect.height / 2);
-    ctx.scale(blinkScale, blinkScale);
-    ctx.translate(-rect.width / 2, -rect.height / 2);
-    ctx.drawImage(ASSETS.settings.img, 0, 0, rect.width, rect.height);
-    ctx.restore();
+    ctx.drawImage(ASSETS.settings.img, rect.x, rect.y, rect.width, rect.height);
 
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 12px Arial';
@@ -2773,9 +2742,6 @@ function checkFish(fish) {
   if (fish.char === targetChar) {
     // Correct!
     state.revealedIndices[nextMissingIndex] = true;
-    
-    // Reset consecutive errors count on correct answer
-    state.consecutiveErrors = 0;
 
     // Spawn Floating Text (+100)
     // Target: Score area (approx 20, 40 + uiOffsetY)
@@ -2812,20 +2778,6 @@ function checkFish(fish) {
   } else {
     // Wrong!
     state.lives--;
-    
-    // Increment consecutive errors count
-    state.consecutiveErrors++;
-    console.log('连续错误次数:', state.consecutiveErrors); // 调试信息
-    
-    // Check if 3 consecutive errors reached
-    if (state.consecutiveErrors === 3) {
-      console.log('触发提示！'); // 调试信息
-      // Show toast at 40% position
-      showToast("Let's try a simpler mode.", 3000, 0.4);
-      // Start language button blink animation
-      state.langButtonBlinkStart = Date.now();
-      console.log('Toast消息:', state.toastMessage, '位置:', state.toastPosition); // 调试信息
-    }
 
     // Mark as wrong for animation
     fish.isWrong = true;
