@@ -116,6 +116,7 @@
     /* 游戏 iframe 容器 */
     #game-wrapper {
       position: relative;
+      z-index: 0;
       width: 100%;
       max-width: 420px;
       aspect-ratio: 375/812;
@@ -419,7 +420,7 @@
       position: absolute;
       top: 16px;
       right: 16px;
-      z-index: 5;
+      z-index: 1;
       width: 57px;
       height: 57px;
       padding: 0;
@@ -483,17 +484,18 @@
       background: unset;
       background-image: none;
       box-shadow: none;
-      top: 120px;
-      right: 5px;
+      top: 100px;
+      right: -55px;
       left: unset;
       width: 68px;
       height: 68px;
     }
 
     #music-toggle-game {
+      position: fixed;  /* 改为 fixed，脱离 game-wrapper 的 stacking context */
       box-shadow: none;
       top: 120px;   /* align above Language icon; same vertical spacing as other icons */
-      right: 5px;   /* shift 5px further right */
+      right: 5px;   /* 初始位置，将通过 JavaScript 动态调整 */
       left: unset;
       width: 68px;   /* +5% from 65px */
       height: 68px;
@@ -501,8 +503,8 @@
 
     #music-toggle-result {
       box-shadow: none;
-      top: 120px;
-      right: 5px;
+      top: 100px;
+      right: -55px;
       left: unset;
       width: 68px;
       height: 68px;
@@ -1027,6 +1029,22 @@
       bgm.muted = false;
     }
 
+    // 更新游戏音乐按钮位置（相对于 game-wrapper）
+    function updateMusicToggleGamePosition() {
+      if (!musicToggleGame) return;
+      const gameWrapper = document.getElementById("game-wrapper");
+      if (!gameWrapper || gameWrapper.classList.contains("is-hidden")) return;
+      
+      const wrapperRect = gameWrapper.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const wrapperWidth = wrapperRect.width;
+      const wrapperRight = viewportWidth - wrapperRect.right;
+      
+      // 计算按钮的 right 值：游戏容器右边缘到视口右边缘的距离 + 5px
+      const rightValue = wrapperRight + 5;
+      musicToggleGame.style.right = rightValue + "px";
+    }
+
     function triggerFireworks() {
       if (window.fireworksEffect && typeof window.fireworksEffect.burst === "function") {
         window.fireworksEffect.burst(5);
@@ -1338,6 +1356,8 @@
       setTimeout(() => {
         showBlock("game-wrapper");
         gameFrame.src = "./games/game.html";
+        // 延迟更新按钮位置，确保 game-wrapper 已渲染
+        setTimeout(updateMusicToggleGamePosition, 50);
       }, 200);
       if (window.appCommunication && typeof window.appCommunication.sendMessageToApp === "function") {
         window.appCommunication.sendMessageToApp({
@@ -1902,6 +1922,8 @@
       showBlock("game-wrapper");
       stopFireworks();
       gameFrame.contentWindow?.postMessage({ action: "nextLevel" }, "*");
+      // 延迟更新按钮位置，确保 game-wrapper 已渲染
+      setTimeout(updateMusicToggleGamePosition, 50);
     };
     easierModeBtn.onclick = () => {
       // Determine lower difficulty level
@@ -1925,6 +1947,8 @@
       hideAll();
       showBlock("game-wrapper");
       stopFireworks();
+      // 延迟更新按钮位置，确保 game-wrapper 已渲染
+      setTimeout(updateMusicToggleGamePosition, 50);
       gameFrame.contentWindow?.postMessage({ action: "nextLevel" }, "*");
     };
 
@@ -2078,6 +2102,12 @@
     }
     if (musicToggleGame) {
       musicToggleGame.addEventListener("click", toggleBgm);
+      // 监听窗口大小改变，更新按钮位置
+      window.addEventListener("resize", updateMusicToggleGamePosition);
+      // 监听窗口方向改变（移动设备）
+      window.addEventListener("orientationchange", () => {
+        setTimeout(updateMusicToggleGamePosition, 100);
+      });
     }
     if (musicToggleResult) {
       musicToggleResult.addEventListener("click", toggleBgm);

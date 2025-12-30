@@ -497,8 +497,8 @@ let state = {
   languageLearningRects: [],
   languageBaseRects: [],
   languageOpen: false,
-  selectedLearningLang: "日本語",
-  selectedBaseLang: "English",
+  selectedLearningLang: "English",
+  selectedBaseLang: "中文",
   selectedLevel: DEFAULT_LEVEL,
   activeLevel: DEFAULT_LEVEL,
   activeVocab: vocabCache[DEFAULT_LEVEL] || vocabCache["Beginner"],
@@ -888,8 +888,8 @@ class TutorialOverlay {
     this.labels.lives.style.left = `${livesLeft}px`;
     this.labels.lives.style.top = `${livesTop}px`;
 
-    const hintLeft = clamp(layout.hint.cx - layout.hint.r - labelWidth - 12 + 90 + 40, safePadding, maxLeft);
-    const hintTop = clamp(layout.hint.cy + 44 + 40, safePadding, maxTop);
+    const hintLeft = clamp(layout.hint.cx - layout.hint.r - labelWidth - 12 + 90 + 40 + 30 + 70, safePadding, maxLeft);
+    const hintTop = clamp(layout.hint.cy + 44 + 40 - 30 - 40, safePadding, maxTop);
     this.labels.hint.style.left = `${hintLeft}px`;
     this.labels.hint.style.top = `${hintTop}px`;
 
@@ -998,7 +998,7 @@ function loadSavedGameSettings() {
       if (availableBaseLang) {
         state.selectedBaseLang = availableBaseLang;
       } else {
-        state.selectedBaseLang = "English"; // Fallback
+        state.selectedBaseLang = "中文"; // Fallback
       }
     }
   } catch (e) {
@@ -3217,7 +3217,7 @@ async function handleInputClick(e) {
       if (availableBaseLang) {
         state.selectedBaseLang = availableBaseLang;
       } else {
-        state.selectedBaseLang = "English"; // Fallback
+        state.selectedBaseLang = "中文"; // Fallback
       }
     }
     state.languageOpen = true;
@@ -3419,7 +3419,7 @@ function unlockSpeech() {
 }
 
 // Helper: Speak
-function speak(text, langName = "日本語") {
+function speak(text, langName = "English") {
   if (!('speechSynthesis' in window)) return;
 
   // Resume if paused (fix for some Android/Chrome versions)
@@ -3431,7 +3431,7 @@ function speak(text, langName = "日本語") {
 
   const utterance = new SpeechSynthesisUtterance(text);
 
-  const mapItem = LANG_MAP[langName] || LANG_MAP["日本語"];
+  const mapItem = LANG_MAP[langName] || LANG_MAP["English"];
   const targetLocale = mapItem.locale;
 
   utterance.lang = targetLocale;
