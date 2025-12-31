@@ -16,6 +16,8 @@ const ASSETS = {
   settings: { src: '../fish_assets/settings.png', img: null },
   note: { src: '../fish_assets/note.png', img: null },
   hint: { src: '../fish_assets/hint.png', img: null },
+  musicOn: { src: '../fish_assets/open.png', img: null },
+  musicOff: { src: '../fish_assets/mute.png', img: null },
   fish: []
 };
 
@@ -497,6 +499,9 @@ let state = {
   languageLearningRects: [],
   languageBaseRects: [],
   languageOpen: false,
+  musicEnabled: true,
+  musicButtonRect: null,
+  musicWaveAnim: { time: 0 },
   selectedLearningLang: "English",
   selectedBaseLang: "中文",
   selectedLevel: DEFAULT_LEVEL,
@@ -1268,7 +1273,7 @@ function init() {
   }
 
   // Load Images
-  const imagesToLoad = [ASSETS.bg, ASSETS.people, ASSETS.settings, ASSETS.note, ASSETS.hint, ...ASSETS.fish];
+  const imagesToLoad = [ASSETS.bg, ASSETS.people, ASSETS.settings, ASSETS.note, ASSETS.hint, ASSETS.musicOn, ASSETS.musicOff, ...ASSETS.fish];
   state.totalImages = imagesToLoad.length;
 
   imagesToLoad.forEach(asset => {
@@ -1294,7 +1299,20 @@ function init() {
     if (e.data && e.data.action === 'nextLevel') {
       startGame();
     }
+    // Handle music state updates from parent
+    if (e.data && e.data.action === 'musicStateUpdate') {
+      state.musicEnabled = e.data.enabled;
+    }
+    // Request music state on initialization
+    if (e.data && e.data.action === 'getMusicState') {
+      // This will be handled by parent page
+    }
   });
+  
+  // Request initial music state from parent
+  window.parent.postMessage({
+    action: "getMusicState"
+  }, "*");
 }
 
 async function startGame() {
@@ -1550,6 +1568,14 @@ function gameLoop() {
 function update(dt) {
   if (state.tutorialActive) return;
   if (state.isEnding) return;
+
+  // Update music wave animation
+  if (state.musicEnabled) {
+    state.musicWaveAnim.time += dt * 0.001; // Convert ms to seconds
+    if (state.musicWaveAnim.time >= 1.8) {
+      state.musicWaveAnim.time = 0; // Reset animation loop
+    }
+  }
 
   // Timer
   const elapsed = (Date.now() - state.startTime) / 1000;
@@ -2001,11 +2027,61 @@ function drawUI() {
   ctx.font = `${englishFontSize}px Arial`;
   ctx.fillText(translation, textCenterX, englishY);
 
-  // Icons (Settings, Note, Hint) on the left
+  // Icons (Music, Settings, Note, Hint) on the right
   const iconSize = 40;
+  const musicIconSize = 50; // Music button has different size
   const iconGap = 30; // Gap between icon bottom and next icon top (including text)
   const iconX = logicalWidth - iconSize - 20; // Move icons to the right side
   let iconY = 110 + uiOffsetY;
+
+  // Music button (first, at the top)
+  const musicImg = state.musicEnabled ? ASSETS.musicOn.img : ASSETS.musicOff.img;
+  if (musicImg) {
+    // Align music button right edge with other buttons (music button is larger), then shift right by 5px
+    const musicX = iconX - (musicIconSize - iconSize) + 5;
+    const rect = { x: musicX, y: iconY, width: musicIconSize, height: musicIconSize };
+    state.musicButtonRect = rect;
+    ctx.drawImage(musicImg, rect.x, rect.y, rect.width, rect.height);
+
+    // Draw sound waves animation when music is enabled
+    if (state.musicEnabled) {
+      const centerX = rect.x + rect.width / 2;
+      const centerY = rect.y + rect.height / 2;
+      const waveTime = state.musicWaveAnim.time;
+      
+      // Draw 3 sound waves with different delays
+      const waves = [
+        { delay: 0, radius: 15 },
+        { delay: 0.2, radius: 18 },
+        { delay: 0.4, radius: 21 }
+      ];
+
+      waves.forEach(wave => {
+        const animTime = (waveTime + wave.delay) % 1.8;
+        const opacity = 0.6 + Math.sin(animTime * Math.PI * 2 / 1.8) * 0.3;
+        const scale = 0.8 + animTime * 0.2;
+        
+        ctx.save();
+        ctx.strokeStyle = `rgba(242, 251, 255, ${opacity})`;
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        
+        // Draw arc (sound wave)
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, wave.radius * scale, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+      });
+    }
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 12px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText('Music', rect.x + rect.width / 2, rect.y + rect.height + 4);
+  }
+
+  iconY += musicIconSize + iconGap;
 
   // Settings (Lang)
   if (ASSETS.settings.img) {
@@ -3196,6 +3272,15 @@ async function handleInputClick(e) {
       }
       return;
     }
+  }
+
+  // Music button
+  if (state.musicButtonRect && isPointInRect(clickX, clickY, state.musicButtonRect)) {
+    // Send message to parent page to toggle music
+    window.parent.postMessage({
+      action: "toggleBgm"
+    }, "*");
+    return;
   }
 
   // Hint button

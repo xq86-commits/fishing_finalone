@@ -441,6 +441,12 @@
       font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
+    .music-toggle .music-icon {
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+    }
+
     .music-toggle.is-off {
       color: rgba(242, 251, 255, 0.65);
     }
@@ -491,14 +497,13 @@
       height: 68px;
     }
 
+    #music-toggle-start .music-icon {
+      width: 55px;
+      height: 55px;
+    }
+
     #music-toggle-game {
-      position: fixed;  /* 改为 fixed，脱离 game-wrapper 的 stacking context */
-      box-shadow: none;
-      top: 120px;   /* align above Language icon; same vertical spacing as other icons */
-      right: 5px;   /* 初始位置，将通过 JavaScript 动态调整 */
-      left: unset;
-      width: 68px;   /* +5% from 65px */
-      height: 68px;
+      display: none;  /* 已迁移到 canvas，隐藏 HTML 按钮 */
     }
 
     #music-toggle-result {
@@ -508,6 +513,11 @@
       left: unset;
       width: 68px;
       height: 68px;
+    }
+
+    #music-toggle-result .music-icon {
+      width: 55px;
+      height: 55px;
     }
 
     @keyframes wavePulse {
@@ -898,13 +908,8 @@
   <!-- 启动页（默认唯一可见） -->
   <div id="start-screen" class="is-flex">
     <button id="music-toggle-start" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
-        <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        <path class="sound-wave wave-2" d="M18 6a7 7 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        <path class="sound-wave wave-3" d="M20.5 4a9.5 9.5 0 0 1 0 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        <path class="slash" d="M4 20L20 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-      </svg>
+      <img src="fish_assets/open.png" alt="Music" class="music-icon music-icon-on" style="display: block;">
+      <img src="fish_assets/mute.png" alt="Music" class="music-icon music-icon-off" style="display: none;">
     </button>
     <h1> Words Fishing</h1>
     <button id="start-btn">Start</button>
@@ -934,13 +939,8 @@
 
   <div id="result-screen" class="is-hidden">
     <button id="music-toggle-result" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
-        <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        <path class="sound-wave wave-2" d="M18 6a7 7 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        <path class="sound-wave wave-3" d="M20.5 4a9.5 9.5 0 0 1 0 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        <path class="slash" d="M4 20L20 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-      </svg>
+      <img src="fish_assets/open.png" alt="Music" class="music-icon music-icon-on" style="display: block;">
+      <img src="fish_assets/mute.png" alt="Music" class="music-icon music-icon-off" style="display: none;">
     </button>
     <h2 id="result-title">Your Score: 0</h2>
     <div id="found-words-list"></div>
@@ -1029,21 +1029,8 @@
       bgm.muted = false;
     }
 
-    // 更新游戏音乐按钮位置（相对于 game-wrapper）
-    function updateMusicToggleGamePosition() {
-      if (!musicToggleGame) return;
-      const gameWrapper = document.getElementById("game-wrapper");
-      if (!gameWrapper || gameWrapper.classList.contains("is-hidden")) return;
-      
-      const wrapperRect = gameWrapper.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
-      const wrapperWidth = wrapperRect.width;
-      const wrapperRight = viewportWidth - wrapperRect.right;
-      
-      // 计算按钮的 right 值：游戏容器右边缘到视口右边缘的距离 + 5px
-      const rightValue = wrapperRight + 5;
-      musicToggleGame.style.right = rightValue + "px";
-    }
+    // 更新游戏音乐按钮位置（已移除，因为改为 absolute 定位后不再需要动态计算）
+    // function updateMusicToggleGamePosition() { ... }
 
     function triggerFireworks() {
       if (window.fireworksEffect && typeof window.fireworksEffect.burst === "function") {
@@ -1356,8 +1343,6 @@
       setTimeout(() => {
         showBlock("game-wrapper");
         gameFrame.src = "./games/game.html";
-        // 延迟更新按钮位置，确保 game-wrapper 已渲染
-        setTimeout(updateMusicToggleGamePosition, 50);
       }, 200);
       if (window.appCommunication && typeof window.appCommunication.sendMessageToApp === "function") {
         window.appCommunication.sendMessageToApp({
@@ -1922,8 +1907,6 @@
       showBlock("game-wrapper");
       stopFireworks();
       gameFrame.contentWindow?.postMessage({ action: "nextLevel" }, "*");
-      // 延迟更新按钮位置，确保 game-wrapper 已渲染
-      setTimeout(updateMusicToggleGamePosition, 50);
     };
     easierModeBtn.onclick = () => {
       // Determine lower difficulty level
@@ -1947,8 +1930,6 @@
       hideAll();
       showBlock("game-wrapper");
       stopFireworks();
-      // 延迟更新按钮位置，确保 game-wrapper 已渲染
-      setTimeout(updateMusicToggleGamePosition, 50);
       gameFrame.contentWindow?.postMessage({ action: "nextLevel" }, "*");
     };
 
@@ -2045,6 +2026,32 @@
 
         triggerFireworks();
       }
+      
+      // Handle music toggle request from game
+      if (data.action === "toggleBgm") {
+        toggleBgm();
+        // Send state update back to game
+        const gameFrame = document.getElementById("game-frame");
+        if (gameFrame && gameFrame.contentWindow) {
+          const isPlaying = !bgm.paused && !bgm.muted;
+          gameFrame.contentWindow.postMessage({
+            action: "musicStateUpdate",
+            enabled: isPlaying
+          }, "*");
+        }
+      }
+      
+      // Handle music state request from game
+      if (data.action === "getMusicState") {
+        const gameFrame = document.getElementById("game-frame");
+        if (gameFrame && gameFrame.contentWindow) {
+          const isPlaying = !bgm.paused && !bgm.muted;
+          gameFrame.contentWindow.postMessage({
+            action: "musicStateUpdate",
+            enabled: isPlaying
+          }, "*");
+        }
+      }
     });
 
     /* 默认预加载一次广告以加快首个展示 */
@@ -2055,12 +2062,28 @@
     function updateMusicButtons() {
       if (!bgm) return;
       const isPlaying = !bgm.paused && !bgm.muted;
-      [musicToggleStart, musicToggleGame, musicToggleResult].forEach(btn => {
+      // Update start and result page buttons (game button is now in canvas)
+      [musicToggleStart, musicToggleResult].forEach(btn => {
         if (!btn) return;
         btn.setAttribute("aria-pressed", isPlaying ? "true" : "false");
         btn.classList.toggle("is-on", isPlaying);
         btn.classList.toggle("is-off", !isPlaying);
+        // Update image display
+        const iconOn = btn.querySelector(".music-icon-on");
+        const iconOff = btn.querySelector(".music-icon-off");
+        if (iconOn && iconOff) {
+          iconOn.style.display = isPlaying ? "block" : "none";
+          iconOff.style.display = isPlaying ? "none" : "block";
+        }
       });
+      // Send state update to game canvas
+      const gameFrame = document.getElementById("game-frame");
+      if (gameFrame && gameFrame.contentWindow) {
+        gameFrame.contentWindow.postMessage({
+          action: "musicStateUpdate",
+          enabled: isPlaying
+        }, "*");
+      }
     }
 
     function tryPlayBgm() {
@@ -2102,12 +2125,7 @@
     }
     if (musicToggleGame) {
       musicToggleGame.addEventListener("click", toggleBgm);
-      // 监听窗口大小改变，更新按钮位置
-      window.addEventListener("resize", updateMusicToggleGamePosition);
-      // 监听窗口方向改变（移动设备）
-      window.addEventListener("orientationchange", () => {
-        setTimeout(updateMusicToggleGamePosition, 100);
-      });
+      // 已移除 resize 和 orientationchange 监听器，因为改为 absolute 定位后不再需要动态更新位置
     }
     if (musicToggleResult) {
       musicToggleResult.addEventListener("click", toggleBgm);
