@@ -2810,7 +2810,7 @@ function completeCurrentWord() {
   // 使用统一的 speak() 函数，确保在用户交互上下文中调用
   const wordText = getWordText(state.currentWord, state.selectedLearningLang);
   // #region agent log
-  fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:2811',message:'completeCurrentWord preparing speech',data:{wordText,selectedLearningLang:state.selectedLearningLang,speechSynthesisExists:'speechSynthesis' in window},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  debugLog('game.js:2811', 'completeCurrentWord preparing speech', {wordText, selectedLearningLang: state.selectedLearningLang, speechSynthesisExists: 'speechSynthesis' in window}, 'A');
   // #endregion
   
   if (wordText) {
@@ -3041,12 +3041,12 @@ async function handleInputClick(e) {
           if (clickX >= spk.x && clickX <= spk.x + spk.width &&
             clickY >= spk.y && clickY <= spk.y + spk.height) {
             // #region agent log
-            fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3040',message:'note speaker clicked',data:{word:spk.word?.furigana || spk.word?.english || 'unknown',selectedLearningLang:state.selectedLearningLang},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+            debugLog('game.js:3043', 'note speaker clicked', {word: spk.word?.furigana || spk.word?.english || 'unknown', selectedLearningLang: state.selectedLearningLang}, 'A');
             // #endregion
             state.speakerAnim = { word: spk.word, start: Date.now() };
             const txt = getWordText(spk.word, state.selectedLearningLang);
             // #region agent log
-            fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3045',message:'note calling speak',data:{txt,selectedLearningLang:state.selectedLearningLang},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+            debugLog('game.js:3047', 'note calling speak', {txt, selectedLearningLang: state.selectedLearningLang}, 'A');
             // #endregion
             speak(txt, state.selectedLearningLang);
             return;
@@ -3179,7 +3179,7 @@ function useHint() {
 
 function checkFish(fish) {
   // #region agent log
-  fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3172',message:'checkFish called',data:{fishChar:fish.char,selectedLearningLang:state.selectedLearningLang},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  debugLog('game.js:3180', 'checkFish called', {fishChar: fish.char, selectedLearningLang: state.selectedLearningLang}, 'A');
   // #endregion
   // Play sound
   speak(fish.char, state.selectedLearningLang);
@@ -3260,6 +3260,31 @@ function checkFish(fish) {
   }
 }
 
+// Helper: Debug Logging (stores to localStorage for remote debugging)
+function debugLog(location, message, data, hypothesisId) {
+  try {
+    const logEntry = {
+      location,
+      message,
+      data,
+      hypothesisId,
+      timestamp: Date.now(),
+      sessionId: 'debug-session',
+      runId: 'run1'
+    };
+    // Store in localStorage
+    const logs = JSON.parse(localStorage.getItem('debug_logs') || '[]');
+    logs.push(logEntry);
+    // Keep only last 100 entries
+    if (logs.length > 100) logs.shift();
+    localStorage.setItem('debug_logs', JSON.stringify(logs));
+    // Also log to console
+    console.log('[DEBUG]', location, message, data);
+  } catch (e) {
+    console.error('[DEBUG] Logging failed', e);
+  }
+}
+
 // Helper: Speak
 // Speech Synthesis State
 let voices = [];
@@ -3281,11 +3306,11 @@ if ('speechSynthesis' in window) {
 
 function unlockSpeech() {
   // #region agent log
-  fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3271',message:'unlockSpeech called',data:{speechUnlocked,speechSynthesisExists:'speechSynthesis' in window},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+  debugLog('game.js:3307', 'unlockSpeech called', {speechUnlocked, speechSynthesisExists: 'speechSynthesis' in window}, 'B');
   // #endregion
   if (speechUnlocked || !('speechSynthesis' in window)) {
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3273',message:'unlockSpeech early return',data:{speechUnlocked,speechSynthesisExists:'speechSynthesis' in window},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    debugLog('game.js:3311', 'unlockSpeech early return', {speechUnlocked, speechSynthesisExists: 'speechSynthesis' in window}, 'B');
     // #endregion
     return;
   }
@@ -3299,24 +3324,24 @@ function unlockSpeech() {
     utterance.pitch = 0;
     utterance.onend = () => {
       // #region agent log
-      fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3281',message:'unlockSpeech utterance onend',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      debugLog('game.js:3325', 'unlockSpeech utterance onend', {}, 'B');
       // #endregion
       // 解锁完成
     };
     utterance.onerror = (e) => {
       // #region agent log
-      fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3284',message:'unlockSpeech utterance onerror',data:{error:e?.error || 'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      debugLog('game.js:3331', 'unlockSpeech utterance onerror', {error: e?.error || 'unknown'}, 'B');
       // #endregion
       // 忽略错误，解锁可能失败但不影响后续使用
     };
     window.speechSynthesis.speak(utterance);
     speechUnlocked = true;
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3288',message:'unlockSpeech speak called',data:{speechUnlocked},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    debugLog('game.js:3337', 'unlockSpeech speak called', {speechUnlocked}, 'B');
     // #endregion
   } catch (e) {
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3289',message:'unlockSpeech exception',data:{error:String(e)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    debugLog('game.js:3342', 'unlockSpeech exception', {error: String(e)}, 'B');
     // #endregion
     console.warn('[speech] unlock failed', e);
     // 即使失败也标记为已尝试，避免重复尝试
@@ -3327,11 +3352,11 @@ function unlockSpeech() {
 // Helper: Speak
 function speak(text, langName = "English") {
   // #region agent log
-  fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3297',message:'speak called',data:{text,langName,speechSynthesisExists:'speechSynthesis' in window,paused:window.speechSynthesis?.paused,speaking:window.speechSynthesis?.speaking},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,C'})}).catch(()=>{});
+  debugLog('game.js:3353', 'speak called', {text, langName, speechSynthesisExists: 'speechSynthesis' in window, paused: window.speechSynthesis?.paused, speaking: window.speechSynthesis?.speaking}, 'A,C');
   // #endregion
   if (!('speechSynthesis' in window)) {
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3298',message:'speak early return no speechSynthesis',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+    debugLog('game.js:3357', 'speak early return no speechSynthesis', {}, 'D');
     // #endregion
     return;
   }
@@ -3343,7 +3368,7 @@ function speak(text, langName = "English") {
   const wasPaused = window.speechSynthesis.paused;
   if (wasPaused) {
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3304',message:'speak resuming paused synthesis',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    debugLog('game.js:3369', 'speak resuming paused synthesis', {}, 'C');
     // #endregion
     window.speechSynthesis.resume();
   }
@@ -3370,13 +3395,13 @@ function speak(text, langName = "English") {
   currentUtterance = utterance;
   utterance.onend = () => {
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3328',message:'speak utterance onend',data:{text},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    debugLog('game.js:3396', 'speak utterance onend', {text}, 'A');
     // #endregion
     currentUtterance = null;
   };
   utterance.onerror = (e) => {
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3329',message:'speak utterance onerror',data:{text,error:e?.error || 'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,C'})}).catch(()=>{});
+    debugLog('game.js:3402', 'speak utterance onerror', {text, error: e?.error || 'unknown'}, 'A,C');
     // #endregion
     currentUtterance = null;
   };
@@ -3384,11 +3409,11 @@ function speak(text, langName = "English") {
   try {
     window.speechSynthesis.speak(utterance);
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3331',message:'speak synthesis.speak called',data:{text,langName,targetLocale,voiceFound:!!voice,voicesCount:voices.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    debugLog('game.js:3410', 'speak synthesis.speak called', {text, langName, targetLocale, voiceFound: !!voice, voicesCount: voices.length}, 'A');
     // #endregion
   } catch (e) {
     // #region agent log
-    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3331',message:'speak synthesis.speak exception',data:{text,error:String(e)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    debugLog('game.js:3413', 'speak synthesis.speak exception', {text, error: String(e)}, 'A');
     // #endregion
   }
 }
