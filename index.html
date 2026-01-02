@@ -1026,6 +1026,18 @@
         }
       });
     }
+
+    // 监听来自iframe的speak请求（Android设备在iframe中无法使用speechSynthesis）
+    window.addEventListener('message', (e) => {
+      // 确保消息来自我们的iframe
+      if (e.data && e.data.action === 'speak') {
+        const { text, langName } = e.data;
+        if (text) {
+          // 使用父窗口的speechSynthesis（在Android上更可靠）
+          speak(text, langName || "日本語");
+        }
+      }
+    });
     const musicToggleStart = document.getElementById("music-toggle-start");
     const musicToggleGame = document.getElementById("music-toggle-game");
     const musicToggleResult = document.getElementById("music-toggle-result");
@@ -1269,17 +1281,41 @@
     }
 
     function speak(text, langName = "日本語") {
-      if (!('speechSynthesis' in window)) return;
+      // #region agent log
+      debugLog('index.html:1283', 'speak called (parent window)', {text, langName, speechSynthesisExists: 'speechSynthesis' in window}, 'A');
+      // #endregion
+      
+      if (!('speechSynthesis' in window) || !text) {
+        // #region agent log
+        debugLog('index.html:1287', 'speak early return', {reason: !('speechSynthesis' in window) ? 'no speechSynthesis' : 'no text'}, 'D');
+        // #endregion
+        return;
+      }
 
       // 确保音频上下文已解锁（每次调用时都尝试，以防之前解锁失败）
       unlockSpeech();
 
-      // Resume if paused (fix for some Android/Chrome versions)
-      if (window.speechSynthesis.paused) {
-        window.speechSynthesis.resume();
+      // 立即取消之前的发音，避免队列阻塞
+      try {
+        window.speechSynthesis.cancel();
+      } catch (e) {
+        // 忽略错误
       }
 
-      window.speechSynthesis.cancel();
+      // Resume if paused (fix for some Android/Chrome versions)
+      const wasPaused = window.speechSynthesis.paused;
+      if (wasPaused) {
+        // #region agent log
+        debugLog('index.html:1300', 'speak resuming paused synthesis', {}, 'C');
+        // #endregion
+        try {
+          window.speechSynthesis.resume();
+        } catch (e) {
+          // #region agent log
+          debugLog('index.html:1305', 'speak resume failed', {error: String(e)}, 'C');
+          // #endregion
+        }
+      }
 
       const utterance = new SpeechSynthesisUtterance(text);
 
@@ -1288,6 +1324,7 @@
 
       utterance.lang = targetLocale;
       utterance.rate = 1.0;
+      utterance.volume = 1.0; // 确保音量最大
 
       // Try to select a voice explicitly
       if (voices.length === 0) loadVoices();
@@ -1297,7 +1334,28 @@
         utterance.voice = voice;
       }
 
-      window.speechSynthesis.speak(utterance);
+      utterance.onend = () => {
+        // #region agent log
+        debugLog('index.html:1325', 'speak utterance onend', {text}, 'A');
+        // #endregion
+      };
+      utterance.onerror = (e) => {
+        // #region agent log
+        debugLog('index.html:1329', 'speak utterance onerror', {text, error: e?.error || 'unknown'}, 'A,C');
+        // #endregion
+      };
+
+      try {
+        window.speechSynthesis.speak(utterance);
+        // #region agent log
+        debugLog('index.html:1335', 'speak synthesis.speak called', {text, langName, targetLocale, voiceFound: !!voice, voicesCount: voices.length}, 'A');
+        // #endregion
+      } catch (e) {
+        // #region agent log
+        debugLog('index.html:1338', 'speak synthesis.speak exception', {text, error: String(e)}, 'A');
+        // #endregion
+        console.error('[speech] speak failed:', e);
+      }
     }
 
     function getInitial(name) {

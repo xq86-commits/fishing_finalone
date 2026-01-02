@@ -3329,6 +3329,25 @@ let voices = [];
 let currentUtterance = null;
 let speechUnlocked = false;
 
+// Android 检测
+function isAndroid() {
+  return /Android/i.test(navigator.userAgent);
+}
+
+// 检查是否在 iframe 中
+function isInIframe() {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true; // 如果无法访问 top，可能在 iframe 中
+  }
+}
+
+// Android + iframe 组合：需要通过父窗口使用 speechSynthesis
+function useParentSpeechSynthesis() {
+  return isAndroid() && isInIframe();
+}
+
 function loadVoices() {
   if ('speechSynthesis' in window) {
     voices = window.speechSynthesis.getVoices();
@@ -3406,11 +3425,44 @@ function speak(text, langName = "English") {
     speaking: window.speechSynthesis.speaking,
     voicesCount: voices.length
   } : null;
-  debugLog('game.js:3353', 'speak called', {text, langName, beforeState, speechSynthesisExists: 'speechSynthesis' in window}, 'A,C');
+  const androidInfo = {
+    isAndroid: isAndroid(),
+    isInIframe: isInIframe(),
+    useParent: useParentSpeechSynthesis()
+  };
+  debugLog('game.js:3401', 'speak called', {text, langName, beforeState, androidInfo, speechSynthesisExists: 'speechSynthesis' in window}, 'A,C');
   // #endregion
-  if (!('speechSynthesis' in window) || !text) {
+  
+  if (!text) {
     // #region agent log
-    debugLog('game.js:3360', 'speak early return', {reason: !('speechSynthesis' in window) ? 'no speechSynthesis' : 'no text'}, 'D');
+    debugLog('game.js:3411', 'speak early return', {reason: 'no text'}, 'D');
+    // #endregion
+    return;
+  }
+
+  // Android + iframe 特殊处理：通过父窗口执行 speechSynthesis
+  if (useParentSpeechSynthesis()) {
+    // #region agent log
+    debugLog('game.js:3417', 'speak using parent window (Android+iframe)', {text, langName}, 'A');
+    // #endregion
+    try {
+      window.parent.postMessage({
+        action: 'speak',
+        text: text,
+        langName: langName
+      }, '*');
+      return;
+    } catch (e) {
+      // #region agent log
+      debugLog('game.js:3425', 'speak parent postMessage failed', {error: String(e)}, 'A');
+      // #endregion
+      // 如果postMessage失败，继续尝试本地speechSynthesis
+    }
+  }
+
+  if (!('speechSynthesis' in window)) {
+    // #region agent log
+    debugLog('game.js:3432', 'speak early return', {reason: 'no speechSynthesis'}, 'D');
     // #endregion
     return;
   }
