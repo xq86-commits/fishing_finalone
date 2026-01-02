@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>部署检查工具</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .check-item {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border-left: 4px solid #ccc;
+    }
+    .check-item.pass {
+      border-left-color: #4CAF50;
+    }
+    .check-item.fail {
+      border-left-color: #f44336;
+    }
+    .check-item.warning {
+      border-left-color: #ff9800;
+    }
+    h1 { color: #333; }
+    h2 { color: #666; font-size: 18px; margin-top: 0; }
+    .status { font-weight: bold; }
+    .pass .status { color: #4CAF50; }
+    .fail .status { color: #f44336; }
+    .warning .status { color: #ff9800; }
+    code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; }
+    pre { background: #f0f0f0; padding: 10px; border-radius: 5px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>🔍 部署检查工具</h1>
+  <p>此工具将检查您的部署环境是否正确配置。</p>
+  
+  <div id="checks"></div>
+  
+  <script>
+    const checks = [];
+    
+    // 检查 1: speechSynthesis API
+    function checkSpeechSynthesis() {
+      const exists = 'speechSynthesis' in window;
+      const status = exists ? 'pass' : 'fail';
+      const message = exists 
+        ? '✅ speechSynthesis API 可用' 
+        : '❌ speechSynthesis API 不可用 - 这是导致发音功能失效的主要原因！';
+      return { status, message, details: exists ? 'API 正常' : '浏览器不支持或已被禁用' };
+    }
+    
+    // 检查 2: game.js 是否加载
+    function checkGameJs() {
+      // 尝试检查 game.js 中的函数是否存在
+      const hasDebugLog = typeof debugLog !== 'undefined';
+      const hasSpeak = typeof speak !== 'undefined';
+      const hasUnlockSpeech = typeof unlockSpeech !== 'undefined';
+      
+      if (hasDebugLog && hasSpeak && hasUnlockSpeech) {
+        return { 
+          status: 'pass', 
+          message: '✅ game.js 已成功加载',
+          details: '所有关键函数都已加载'
+        };
+      } else {
+        return {
+          status: 'fail',
+          message: '❌ game.js 未正确加载',
+          details: `debugLog: ${hasDebugLog}, speak: ${hasSpeak}, unlockSpeech: ${hasUnlockSpeech}`
+        };
+      }
+    }
+    
+    // 检查 3: localStorage 是否可用
+    function checkLocalStorage() {
+      try {
+        localStorage.setItem('test', 'test');
+        localStorage.removeItem('test');
+        return { status: 'pass', message: '✅ localStorage 可用', details: '可以存储调试日志' };
+      } catch (e) {
+        return { status: 'warning', message: '⚠️ localStorage 不可用', details: e.message };
+      }
+    }
+    
+    // 检查 4: 文件路径
+    function checkFilePaths() {
+      const issues = [];
+      const scripts = Array.from(document.querySelectorAll('script[src]'));
+      scripts.forEach(script => {
+        const src = script.src;
+        if (src.includes('game.js')) {
+          issues.push(`game.js 路径: ${src}`);
+        }
+      });
+      return {
+        status: issues.length > 0 ? 'pass' : 'warning',
+        message: issues.length > 0 ? '✅ 检测到 game.js 引用' : '⚠️ 未检测到 game.js 引用',
+        details: issues.join(', ') || '请确认 game.js 文件路径正确'
+      };
+    }
+    
+    // 检查 5: 调试日志
+    function checkDebugLogs() {
+      try {
+        const logs = JSON.parse(localStorage.getItem('debug_logs') || '[]');
+        if (logs.length > 0) {
+          return {
+            status: 'pass',
+            message: `✅ 找到 ${logs.length} 条调试日志`,
+            details: `最新日志: ${logs[logs.length - 1]?.message || 'N/A'}`
+          };
+        } else {
+          return {
+            status: 'warning',
+            message: '⚠️ 没有找到调试日志',
+            details: '请先测试发音功能以生成日志'
+          };
+        }
+      } catch (e) {
+        return {
+          status: 'warning',
+          message: '⚠️ 无法读取调试日志',
+          details: e.message
+        };
+      }
+    }
+    
+    // 检查 6: 浏览器信息
+    function checkBrowser() {
+      const ua = navigator.userAgent;
+      const isMobile = /Mobile|Android|iPhone|iPad/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);
+      const isAndroid = /Android/i.test(ua);
+      
+      return {
+        status: 'pass',
+        message: '✅ 浏览器信息',
+        details: `移动设备: ${isMobile ? '是' : '否'}, iOS: ${isIOS ? '是' : '否'}, Android: ${isAndroid ? '是' : '否'}, UA: ${ua.substring(0, 50)}...`
+      };
+    }
+    
+    // 执行所有检查
+    function runChecks() {
+      checks.push(checkSpeechSynthesis());
+      checks.push(checkGameJs());
+      checks.push(checkLocalStorage());
+      checks.push(checkFilePaths());
+      checks.push(checkDebugLogs());
+      checks.push(checkBrowser());
+      
+      const container = document.getElementById('checks');
+      checks.forEach((check, index) => {
+        const div = document.createElement('div');
+        div.className = `check-item ${check.status}`;
+        div.innerHTML = `
+          <h2>检查 ${index + 1}</h2>
+          <div class="status">${check.message}</div>
+          <div style="margin-top: 10px; color: #666;">${check.details}</div>
+        `;
+        container.appendChild(div);
+      });
+    }
+    
+    // 页面加载后运行检查
+    window.addEventListener('load', () => {
+      setTimeout(runChecks, 1000); // 等待 game.js 加载
+    });
+  </script>
+</body>
+</html>
+

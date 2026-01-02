@@ -2818,17 +2818,31 @@ function completeCurrentWord() {
     // 为了等待发音完成后再进入下一个单词，我们需要监听发音完成事件
     // 但由于 speak() 函数内部已经处理了 utterance，我们需要创建一个自定义的 utterance
     if ('speechSynthesis' in window) {
-      // 确保音频上下文已解锁
+      // 确保音频上下文已解锁（必须在用户交互上下文中）
       unlockSpeech();
       
-      // 取消之前的发音
-      window.speechSynthesis.cancel();
+      // 立即取消之前的发音，避免队列阻塞
+      try {
+        window.speechSynthesis.cancel();
+      } catch (e) {
+        // 忽略错误
+      }
+      
+      // 恢复暂停状态（某些浏览器可能会暂停）
+      if (window.speechSynthesis.paused) {
+        try {
+          window.speechSynthesis.resume();
+        } catch (e) {
+          // 忽略错误
+        }
+      }
       
       // 创建 utterance 并设置回调
       const utterance = new SpeechSynthesisUtterance(wordText);
       const mapItem = LANG_MAP[state.selectedLearningLang] || LANG_MAP["日本語"];
       utterance.lang = mapItem.locale;
       utterance.rate = 1.0;
+      utterance.volume = 1.0; // 确保音量最大
       
       // 选择匹配的语音
       if (voices.length === 0) loadVoices();
@@ -2838,17 +2852,32 @@ function completeCurrentWord() {
       }
       
       // 等待发音完成后再进入下一个单词
-      utterance.onend = triggerNextWord;
+      utterance.onend = () => {
+        // #region agent log
+        debugLog('game.js:2841', 'completeCurrentWord utterance onend', {wordText}, 'A');
+        // #endregion
+        triggerNextWord();
+      };
       
-      utterance.onerror = () => {
+      utterance.onerror = (e) => {
+        // #region agent log
+        debugLog('game.js:2843', 'completeCurrentWord utterance onerror', {wordText, error: e?.error || 'unknown'}, 'A');
+        // #endregion
         // 如果发音出错，立即进入下一个单词（避免卡住）
         triggerNextWord();
       };
       
       // 立即调用 speak，确保在用户交互上下文中
+      // 这对于移动浏览器非常重要
       try {
         window.speechSynthesis.speak(utterance);
+        // #region agent log
+        debugLog('game.js:2850', 'completeCurrentWord speak called', {wordText, selectedLearningLang: state.selectedLearningLang, voiceFound: !!voice}, 'A');
+        // #endregion
       } catch (e) {
+        // #region agent log
+        debugLog('game.js:2852', 'completeCurrentWord speak exception', {wordText, error: String(e)}, 'A');
+        // #endregion
         console.warn('[speech] speak failed in completeCurrentWord', e);
         // 如果失败，立即进入下一个单词
         triggerNextWord();
@@ -2934,6 +2963,9 @@ function handleInputEnd(e) {
 
 async function handleInputClick(e) {
   if (state.tutorialActive) return;
+  // #region agent log
+  debugLog('game.js:2964', 'handleInputClick called', {eventType: e?.type, isTrusted: e?.isTrusted, speechSynthesisExists: 'speechSynthesis' in window}, 'A');
+  // #endregion
   unlockSpeech();
   const logicalWidth = canvas.width / dpr;
   const logicalHeight = canvas.height / dpr;
@@ -3179,9 +3211,15 @@ function useHint() {
 
 function checkFish(fish) {
   // #region agent log
-  debugLog('game.js:3180', 'checkFish called', {fishChar: fish.char, selectedLearningLang: state.selectedLearningLang}, 'A');
+  const speechState = 'speechSynthesis' in window ? {
+    paused: window.speechSynthesis.paused,
+    pending: window.speechSynthesis.pending,
+    speaking: window.speechSynthesis.speaking,
+    voicesCount: voices.length
+  } : { error: 'no speechSynthesis' };
+  debugLog('game.js:3209', 'checkFish called', {fishChar: fish.char, selectedLearningLang: state.selectedLearningLang, speechState}, 'A');
   // #endregion
-  // Play sound
+  // Play sound - 确保在用户交互上下文中立即调用
   speak(fish.char, state.selectedLearningLang);
 
   let nextMissingIndex = -1;
@@ -3308,16 +3346,26 @@ function unlockSpeech() {
   // #region agent log
   debugLog('game.js:3307', 'unlockSpeech called', {speechUnlocked, speechSynthesisExists: 'speechSynthesis' in window}, 'B');
   // #endregion
-  if (speechUnlocked || !('speechSynthesis' in window)) {
+  if (!('speechSynthesis' in window)) {
     // #region agent log
-    debugLog('game.js:3311', 'unlockSpeech early return', {speechUnlocked, speechSynthesisExists: 'speechSynthesis' in window}, 'B');
+    debugLog('game.js:3311', 'unlockSpeech early return no speechSynthesis', {}, 'B');
     // #endregion
     return;
   }
 
-  // Play silent utterance to unlock audio context on mobile
-  // 必须在用户交互事件中调用才有效
+  // 对于移动浏览器，每次用户交互时都尝试解锁（不依赖 speechUnlocked 标志）
+  // 因为某些浏览器可能需要多次解锁
   try {
+    // 先恢复暂停状态（某些浏览器可能会暂停）
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+    }
+    
+    // 取消之前的 utterance
+    window.speechSynthesis.cancel();
+    
+    // Play silent utterance to unlock audio context on mobile
+    // 必须在用户交互事件中调用才有效
     const utterance = new SpeechSynthesisUtterance('');
     utterance.volume = 0;
     utterance.rate = 10; // 快速播放，几乎瞬间完成
@@ -3352,28 +3400,47 @@ function unlockSpeech() {
 // Helper: Speak
 function speak(text, langName = "English") {
   // #region agent log
-  debugLog('game.js:3353', 'speak called', {text, langName, speechSynthesisExists: 'speechSynthesis' in window, paused: window.speechSynthesis?.paused, speaking: window.speechSynthesis?.speaking}, 'A,C');
+  const beforeState = 'speechSynthesis' in window ? {
+    paused: window.speechSynthesis.paused,
+    pending: window.speechSynthesis.pending,
+    speaking: window.speechSynthesis.speaking,
+    voicesCount: voices.length
+  } : null;
+  debugLog('game.js:3353', 'speak called', {text, langName, beforeState, speechSynthesisExists: 'speechSynthesis' in window}, 'A,C');
   // #endregion
-  if (!('speechSynthesis' in window)) {
+  if (!('speechSynthesis' in window) || !text) {
     // #region agent log
-    debugLog('game.js:3357', 'speak early return no speechSynthesis', {}, 'D');
+    debugLog('game.js:3360', 'speak early return', {reason: !('speechSynthesis' in window) ? 'no speechSynthesis' : 'no text'}, 'D');
     // #endregion
     return;
   }
 
   // 确保音频上下文已解锁（每次调用时都尝试，以防之前解锁失败）
+  // 这对于移动浏览器非常重要，因为某些浏览器需要每次用户交互时都解锁
   unlockSpeech();
+
+  // 立即取消之前的发音，避免队列阻塞
+  // 某些移动浏览器如果队列中有未完成的 utterance，新的 utterance 可能不会播放
+  try {
+    window.speechSynthesis.cancel();
+  } catch (e) {
+    // 忽略 cancel 错误
+  }
 
   // Resume if paused (fix for some Android/Chrome versions)
   const wasPaused = window.speechSynthesis.paused;
   if (wasPaused) {
     // #region agent log
-    debugLog('game.js:3369', 'speak resuming paused synthesis', {}, 'C');
+    debugLog('game.js:3371', 'speak resuming paused synthesis', {}, 'C');
     // #endregion
-    window.speechSynthesis.resume();
+    try {
+      window.speechSynthesis.resume();
+    } catch (e) {
+      // #region agent log
+      debugLog('game.js:3376', 'speak resume failed', {error: String(e)}, 'C');
+      // #endregion
+    }
   }
-
-  window.speechSynthesis.cancel();
 
   const utterance = new SpeechSynthesisUtterance(text);
 
@@ -3382,9 +3449,16 @@ function speak(text, langName = "English") {
 
   utterance.lang = targetLocale;
   utterance.rate = 1.0;
+  utterance.volume = 1.0; // 确保音量最大
 
   // Try to select a voice explicitly
-  if (voices.length === 0) loadVoices();
+  if (voices.length === 0) {
+    loadVoices();
+    // 如果 voices 仍然为空，等待一下再试（某些浏览器需要时间加载）
+    if (voices.length === 0) {
+      setTimeout(() => loadVoices(), 100);
+    }
+  }
   // Find voice matching locale
   const voice = voices.find(v => v.lang === targetLocale || v.lang.startsWith(targetLocale.split('-')[0]));
   if (voice) {
@@ -3395,26 +3469,45 @@ function speak(text, langName = "English") {
   currentUtterance = utterance;
   utterance.onend = () => {
     // #region agent log
-    debugLog('game.js:3396', 'speak utterance onend', {text}, 'A');
+    debugLog('game.js:3402', 'speak utterance onend', {text}, 'A');
     // #endregion
     currentUtterance = null;
   };
   utterance.onerror = (e) => {
     // #region agent log
-    debugLog('game.js:3402', 'speak utterance onerror', {text, error: e?.error || 'unknown'}, 'A,C');
+    debugLog('game.js:3408', 'speak utterance onerror', {text, error: e?.error || 'unknown', charIndex: e?.charIndex, char: e?.char}, 'A,C');
     // #endregion
     currentUtterance = null;
   };
 
+  // 立即调用 speak，确保在用户交互上下文中
+  // 对于移动浏览器，这必须在用户交互事件的同步调用链中
   try {
+    const beforeSpeakState = {
+      paused: window.speechSynthesis.paused,
+      pending: window.speechSynthesis.pending,
+      speaking: window.speechSynthesis.speaking
+    };
     window.speechSynthesis.speak(utterance);
+    // 立即检查状态变化
+    setTimeout(() => {
+      const afterSpeakState = {
+        paused: window.speechSynthesis.paused,
+        pending: window.speechSynthesis.pending,
+        speaking: window.speechSynthesis.speaking
+      };
+      // #region agent log
+      debugLog('game.js:3425', 'speak state after 100ms', {text, beforeSpeakState, afterSpeakState, stateChanged: JSON.stringify(beforeSpeakState) !== JSON.stringify(afterSpeakState)}, 'A');
+      // #endregion
+    }, 100);
     // #region agent log
-    debugLog('game.js:3410', 'speak synthesis.speak called', {text, langName, targetLocale, voiceFound: !!voice, voicesCount: voices.length}, 'A');
+    debugLog('game.js:3418', 'speak synthesis.speak called', {text, langName, targetLocale, voiceFound: !!voice, voicesCount: voices.length, beforeSpeakState}, 'A');
     // #endregion
   } catch (e) {
     // #region agent log
-    debugLog('game.js:3413', 'speak synthesis.speak exception', {text, error: String(e)}, 'A');
+    debugLog('game.js:3433', 'speak synthesis.speak exception', {text, error: String(e), stack: e?.stack}, 'A');
     // #endregion
+    console.error('[speech] speak failed:', e);
   }
 }
 

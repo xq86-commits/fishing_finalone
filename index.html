@@ -915,6 +915,7 @@
     <button id="start-btn">Start</button>
     <button id="my-words-btn">My Words</button>
     <button id="share-btn">Share</button>
+    <button id="export-debug-logs-btn" style="background: #666; font-size: 12px; padding: 8px 16px; margin-top: 10px;">导出调试日志</button>
   </div>
 
   <!-- Loading / 游戏 / 结算 / 排行榜（都默认隐藏） -->
@@ -1012,6 +1013,7 @@
     const myWordsLoading = document.getElementById("my-words-loading");
     const gameFrame = document.getElementById("game-frame");
     const bgm = document.getElementById("bgm");
+    const exportDebugLogsBtn = document.getElementById("export-debug-logs-btn");
     
     // 监听游戏iframe加载完成，发送解锁音频消息
     if (gameFrame) {
@@ -1938,6 +1940,28 @@
         hideMyWordsModal();
       }
     });
+
+    /* 导出调试日志 */
+    if (exportDebugLogsBtn) {
+      exportDebugLogsBtn.onclick = () => {
+        try {
+          const logs = JSON.parse(localStorage.getItem('debug_logs') || '[]');
+          const logText = JSON.stringify(logs, null, 2);
+          // 创建临时文本区域来复制
+          const textarea = document.createElement('textarea');
+          textarea.value = logText;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          alert('日志已复制到剪贴板！请粘贴并发送给开发者。\n\n日志条数: ' + logs.length);
+        } catch (e) {
+          alert('导出日志失败: ' + e.message);
+        }
+      };
+    }
 
     /* 分享 */
     shareBtn.onclick = () => {
