@@ -28,6 +28,9 @@ function compressVocabFile(inputPath, outputPath) {
   const content = fs.readFileSync(inputPath, 'utf8');
   const data = JSON.parse(content);
   
+  // 在写入文件之前保存原始文件大小
+  const originalSize = fs.statSync(inputPath).size;
+  
   // 压缩数据
   const compressed = data.map(item => {
     const compressedItem = {};
@@ -57,7 +60,6 @@ function compressVocabFile(inputPath, outputPath) {
   fs.writeFileSync(outputPath, compressedJson, 'utf8');
   
   // 计算压缩率
-  const originalSize = fs.statSync(inputPath).size;
   const compressedSize = fs.statSync(outputPath).size;
   const reduction = ((1 - compressedSize / originalSize) * 100).toFixed(2);
   

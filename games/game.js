@@ -51,17 +51,6 @@ const N4_SEED_VOCAB = [];
 const N3_SEED_VOCAB = [];
 const N2_SEED_VOCAB = [];
 const N1_SEED_VOCAB = [];
-function buildTranslationSeed(seedList) {
-  const seed = {};
-  seedList.forEach(item => {
-    if (!item) return;
-    const furigana = typeof item.furigana === 'string' ? item.furigana.trim() : null;
-    const english = typeof item.english === 'string' ? item.english.trim().toLowerCase() : null;
-    if (furigana) seed[furigana] = item;
-    if (english) seed[english] = item;
-  });
-  return seed;
-}
 
 const ALL_SEED_VOCABS = [
   ...N5_SEED_VOCAB,
