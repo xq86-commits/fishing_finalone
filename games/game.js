@@ -2807,36 +2807,55 @@ function completeCurrentWord() {
   nextWordTimer = setTimeout(triggerNextWord, 2500); // 兜底超时
   
   // 播放单词发音（使用学习语言）
-  unlockSpeech();
+  // 使用统一的 speak() 函数，确保在用户交互上下文中调用
   const wordText = getWordText(state.currentWord, state.selectedLearningLang);
   
-  if (wordText && 'speechSynthesis' in window) {
-    // 创建 utterance 并设置回调，等待播放完成后再进入下一个单词
-    window.speechSynthesis.cancel(); // 取消之前的发音
-    
-    const utterance = new SpeechSynthesisUtterance(wordText);
-    const mapItem = LANG_MAP[state.selectedLearningLang] || LANG_MAP["日本語"];
-    utterance.lang = mapItem.locale;
-    utterance.rate = 1.0;
-    
-    // 选择匹配的语音
-    if (voices.length === 0) loadVoices();
-    const voice = voices.find(v => v.lang === utterance.lang || v.lang.startsWith(utterance.lang.split('-')[0]));
-    if (voice) {
-      utterance.voice = voice;
-    }
-    
-    // 等待发音完成后再进入下一个单词
-    utterance.onend = triggerNextWord;
-    
-    utterance.onerror = () => {
-      // 如果发音出错，立即进入下一个单词（避免卡住）
+  if (wordText) {
+    // 使用 speak() 函数，它会在用户交互上下文中调用并处理所有错误
+    // 为了等待发音完成后再进入下一个单词，我们需要监听发音完成事件
+    // 但由于 speak() 函数内部已经处理了 utterance，我们需要创建一个自定义的 utterance
+    if ('speechSynthesis' in window) {
+      // 确保音频上下文已解锁
+      unlockSpeech();
+      
+      // 取消之前的发音
+      window.speechSynthesis.cancel();
+      
+      // 创建 utterance 并设置回调
+      const utterance = new SpeechSynthesisUtterance(wordText);
+      const mapItem = LANG_MAP[state.selectedLearningLang] || LANG_MAP["日本語"];
+      utterance.lang = mapItem.locale;
+      utterance.rate = 1.0;
+      
+      // 选择匹配的语音
+      if (voices.length === 0) loadVoices();
+      const voice = voices.find(v => v.lang === utterance.lang || v.lang.startsWith(utterance.lang.split('-')[0]));
+      if (voice) {
+        utterance.voice = voice;
+      }
+      
+      // 等待发音完成后再进入下一个单词
+      utterance.onend = triggerNextWord;
+      
+      utterance.onerror = () => {
+        // 如果发音出错，立即进入下一个单词（避免卡住）
+        triggerNextWord();
+      };
+      
+      // 立即调用 speak，确保在用户交互上下文中
+      try {
+        window.speechSynthesis.speak(utterance);
+      } catch (e) {
+        console.warn('[speech] speak failed in completeCurrentWord', e);
+        // 如果失败，立即进入下一个单词
+        triggerNextWord();
+      }
+    } else {
+      // 如果没有语音功能，立即进入下一个单词
       triggerNextWord();
-    };
-    
-    window.speechSynthesis.speak(utterance);
+    }
   } else {
-    // 如果没有文本或语音功能不可用，立即进入下一个单词
+    // 如果没有文本，立即进入下一个单词
     triggerNextWord();
   }
 }
@@ -2844,6 +2863,10 @@ function completeCurrentWord() {
 // Consolidated input handlers
 function handleInputStart(e) {
   if (state.tutorialActive) return;
+  
+  // 在用户首次触摸屏幕时解锁音频上下文
+  unlockSpeech();
+  
   const logicalWidth = canvas.width / dpr;
   const logicalHeight = canvas.height / dpr;
   const rect = canvas.getBoundingClientRect();
@@ -3253,9 +3276,10 @@ function unlockSpeech() {
   try {
     const utterance = new SpeechSynthesisUtterance('');
     utterance.volume = 0;
-    utterance.onstart = () => {
-      // 立即取消，只用于解锁
-      window.speechSynthesis.cancel();
+    utterance.rate = 10; // 快速播放，几乎瞬间完成
+    utterance.pitch = 0;
+    utterance.onend = () => {
+      // 解锁完成
     };
     utterance.onerror = () => {
       // 忽略错误，解锁可能失败但不影响后续使用
@@ -3272,6 +3296,9 @@ function unlockSpeech() {
 // Helper: Speak
 function speak(text, langName = "English") {
   if (!('speechSynthesis' in window)) return;
+
+  // 确保音频上下文已解锁（每次调用时都尝试，以防之前解锁失败）
+  unlockSpeech();
 
   // Resume if paused (fix for some Android/Chrome versions)
   if (window.speechSynthesis.paused) {

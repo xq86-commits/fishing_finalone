@@ -1220,15 +1220,31 @@
       if (speechUnlocked || !('speechSynthesis' in window)) return;
 
       // Play silent utterance to unlock audio context on mobile
-      const utterance = new SpeechSynthesisUtterance('');
-      utterance.volume = 0;
-      window.speechSynthesis.speak(utterance);
-      speechUnlocked = true;
+      // 必须在用户交互事件中调用才有效
+      try {
+        const utterance = new SpeechSynthesisUtterance('');
+        utterance.volume = 0;
+        utterance.rate = 10; // 快速播放，几乎瞬间完成
+        utterance.pitch = 0;
+        utterance.onend = () => {
+          // 解锁完成
+        };
+        utterance.onerror = () => {
+          // 忽略错误，解锁可能失败但不影响后续使用
+        };
+        window.speechSynthesis.speak(utterance);
+        speechUnlocked = true;
+      } catch (e) {
+        console.warn('[speech] unlock failed', e);
+        // 即使失败也标记为已尝试，避免重复尝试
+        speechUnlocked = true;
+      }
     }
 
     function speak(text, langName = "日本語") {
       if (!('speechSynthesis' in window)) return;
 
+      // 确保音频上下文已解锁（每次调用时都尝试，以防之前解锁失败）
       unlockSpeech();
 
       // Resume if paused (fix for some Android/Chrome versions)
