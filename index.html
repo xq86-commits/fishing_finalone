@@ -1254,23 +1254,31 @@
 
       window.speechSynthesis.cancel();
 
-      const utterance = new SpeechSynthesisUtterance(text);
+      // 关键修复：Android Chrome 在 cancel() 后需要延迟才能正常 speak()
+      // 这是一个已知的 Android WebView/Chrome bug
+      setTimeout(() => {
+        const utterance = new SpeechSynthesisUtterance(text);
 
-      const mapItem = LANG_MAP[langName] || LANG_MAP["日本語"];
-      const targetLocale = mapItem.locale;
+        const mapItem = LANG_MAP[langName] || LANG_MAP["日本語"];
+        const targetLocale = mapItem.locale;
 
-      utterance.lang = targetLocale;
-      utterance.rate = 1.0;
+        utterance.lang = targetLocale;
+        utterance.rate = 1.0;
 
-      // Try to select a voice explicitly
-      if (voices.length === 0) loadVoices();
-      // Find voice matching locale
-      const voice = voices.find(v => v.lang === targetLocale || v.lang.startsWith(targetLocale.split('-')[0]));
-      if (voice) {
-        utterance.voice = voice;
-      }
+        // Try to select a voice explicitly
+        if (voices.length === 0) loadVoices();
+        // Find voice matching locale
+        const voice = voices.find(v => v.lang === targetLocale || v.lang.startsWith(targetLocale.split('-')[0]));
+        if (voice) {
+          utterance.voice = voice;
+        }
 
-      window.speechSynthesis.speak(utterance);
+        utterance.onerror = (e) => {
+          console.error('[speech] error:', e.error, text);
+        };
+
+        window.speechSynthesis.speak(utterance);
+      }, 100); // 100ms 延迟让 Android Chrome 有时间恢复
     }
 
     function getInitial(name) {

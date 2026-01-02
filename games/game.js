@@ -2821,35 +2821,39 @@ function completeCurrentWord() {
       // 取消之前的发音
       window.speechSynthesis.cancel();
       
-      // 创建 utterance 并设置回调
-      const utterance = new SpeechSynthesisUtterance(wordText);
-      const mapItem = LANG_MAP[state.selectedLearningLang] || LANG_MAP["日本語"];
-      utterance.lang = mapItem.locale;
-      utterance.rate = 1.0;
-      
-      // 选择匹配的语音
-      if (voices.length === 0) loadVoices();
-      const voice = voices.find(v => v.lang === utterance.lang || v.lang.startsWith(utterance.lang.split('-')[0]));
-      if (voice) {
-        utterance.voice = voice;
-      }
-      
-      // 等待发音完成后再进入下一个单词
-      utterance.onend = triggerNextWord;
-      
-      utterance.onerror = () => {
-        // 如果发音出错，立即进入下一个单词（避免卡住）
-        triggerNextWord();
-      };
-      
-      // 立即调用 speak，确保在用户交互上下文中
-      try {
-        window.speechSynthesis.speak(utterance);
-      } catch (e) {
-        console.warn('[speech] speak failed in completeCurrentWord', e);
-        // 如果失败，立即进入下一个单词
-        triggerNextWord();
-      }
+      // 关键修复：Android Chrome 在 cancel() 后需要延迟才能正常 speak()
+      setTimeout(() => {
+        // 创建 utterance 并设置回调
+        const utterance = new SpeechSynthesisUtterance(wordText);
+        const mapItem = LANG_MAP[state.selectedLearningLang] || LANG_MAP["日本語"];
+        utterance.lang = mapItem.locale;
+        utterance.rate = 1.0;
+        
+        // 选择匹配的语音
+        if (voices.length === 0) loadVoices();
+        const voice = voices.find(v => v.lang === utterance.lang || v.lang.startsWith(utterance.lang.split('-')[0]));
+        if (voice) {
+          utterance.voice = voice;
+        }
+        
+        // 等待发音完成后再进入下一个单词
+        utterance.onend = triggerNextWord;
+        
+        utterance.onerror = (e) => {
+          // 如果发音出错，立即进入下一个单词（避免卡住）
+          console.error('[speech] error in completeCurrentWord:', e.error, wordText);
+          triggerNextWord();
+        };
+        
+        // 调用 speak
+        try {
+          window.speechSynthesis.speak(utterance);
+        } catch (e) {
+          console.warn('[speech] speak failed in completeCurrentWord', e);
+          // 如果失败，立即进入下一个单词
+          triggerNextWord();
+        }
+      }, 100); // 100ms 延迟让 Android Chrome 有时间恢复
     } else {
       // 如果没有语音功能，立即进入下一个单词
       triggerNextWord();
@@ -3307,28 +3311,35 @@ function speak(text, langName = "English") {
 
   window.speechSynthesis.cancel();
 
-  const utterance = new SpeechSynthesisUtterance(text);
+  // 关键修复：Android Chrome 在 cancel() 后需要延迟才能正常 speak()
+  // 这是一个已知的 Android WebView/Chrome bug
+  setTimeout(() => {
+    const utterance = new SpeechSynthesisUtterance(text);
 
-  const mapItem = LANG_MAP[langName] || LANG_MAP["English"];
-  const targetLocale = mapItem.locale;
+    const mapItem = LANG_MAP[langName] || LANG_MAP["English"];
+    const targetLocale = mapItem.locale;
 
-  utterance.lang = targetLocale;
-  utterance.rate = 1.0;
+    utterance.lang = targetLocale;
+    utterance.rate = 1.0;
 
-  // Try to select a voice explicitly
-  if (voices.length === 0) loadVoices();
-  // Find voice matching locale
-  const voice = voices.find(v => v.lang === targetLocale || v.lang.startsWith(targetLocale.split('-')[0]));
-  if (voice) {
-    utterance.voice = voice;
-  }
+    // Try to select a voice explicitly
+    if (voices.length === 0) loadVoices();
+    // Find voice matching locale
+    const voice = voices.find(v => v.lang === targetLocale || v.lang.startsWith(targetLocale.split('-')[0]));
+    if (voice) {
+      utterance.voice = voice;
+    }
 
-  // Keep reference to prevent Garbage Collection
-  currentUtterance = utterance;
-  utterance.onend = () => { currentUtterance = null; };
-  utterance.onerror = () => { currentUtterance = null; };
+    // Keep reference to prevent Garbage Collection
+    currentUtterance = utterance;
+    utterance.onend = () => { currentUtterance = null; };
+    utterance.onerror = (e) => { 
+      console.error('[speech] error:', e.error, text);
+      currentUtterance = null; 
+    };
 
-  window.speechSynthesis.speak(utterance);
+    window.speechSynthesis.speak(utterance);
+  }, 100); // 100ms 延迟让 Android Chrome 有时间恢复
 }
 
 // Countdown Sound Effects
