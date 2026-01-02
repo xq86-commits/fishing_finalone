@@ -1022,6 +1022,9 @@ function init() {
 
   // Message Handling
   window.addEventListener('message', (e) => {
+    // #region agent log
+    debugLog('game.js:1024', 'message received', {action: e.data?.action}, 'A');
+    // #endregion
     if (e.data && e.data.action === 'nextLevel') {
       startGame();
     }
@@ -1035,9 +1038,24 @@ function init() {
     }
     // Handle unlock speech request from parent
     if (e.data && e.data.action === 'unlockSpeech') {
+      // #region agent log
+      debugLog('game.js:1037', 'unlockSpeech message received from parent', {}, 'B');
+      // #endregion
       unlockSpeech();
     }
   });
+  
+  // 页面加载时记录初始状态
+  // #region agent log
+  debugLog('game.js:init', 'game.js loaded and initialized', {
+    speechSynthesisExists: 'speechSynthesis' in window,
+    isAndroid: isAndroid(),
+    isInIframe: isInIframe(),
+    useParent: useParentSpeechSynthesis(),
+    userAgent: navigator.userAgent.substring(0, 80),
+    localStorageAvailable: typeof localStorage !== 'undefined'
+  }, 'A');
+  // #endregion
   
   // Request initial music state from parent
   window.parent.postMessage({
@@ -1046,6 +1064,15 @@ function init() {
 }
 
 async function startGame() {
+  // #region agent log
+  debugLog('game.js:startGame', 'startGame called', {
+    speechSynthesisExists: 'speechSynthesis' in window,
+    isAndroid: isAndroid(),
+    isInIframe: isInIframe(),
+    useParent: useParentSpeechSynthesis(),
+    userAgent: navigator.userAgent.substring(0, 50)
+  }, 'A');
+  // #endregion
   // Load saved game settings from localStorage
   loadSavedGameSettings();
   
@@ -3300,26 +3327,40 @@ function checkFish(fish) {
 
 // Helper: Debug Logging (stores to localStorage for remote debugging)
 function debugLog(location, message, data, hypothesisId) {
+  // 总是先输出到console（即使localStorage失败也能看到）
+  console.log('[DEBUG]', location, message, data || {});
+  
   try {
     const logEntry = {
       location,
       message,
-      data,
-      hypothesisId,
+      data: data || {},
+      hypothesisId: hypothesisId || 'unknown',
       timestamp: Date.now(),
       sessionId: 'debug-session',
       runId: 'run1'
     };
+    
     // Store in localStorage
-    const logs = JSON.parse(localStorage.getItem('debug_logs') || '[]');
+    let logs = [];
+    try {
+      const stored = localStorage.getItem('debug_logs');
+      if (stored) {
+        logs = JSON.parse(stored);
+      }
+    } catch (e) {
+      console.warn('[DEBUG] Failed to parse stored logs, starting fresh');
+      logs = [];
+    }
+    
     logs.push(logEntry);
-    // Keep only last 100 entries
-    if (logs.length > 100) logs.shift();
+    // Keep only last 200 entries (增加容量)
+    if (logs.length > 200) logs.shift();
+    
     localStorage.setItem('debug_logs', JSON.stringify(logs));
-    // Also log to console
-    console.log('[DEBUG]', location, message, data);
   } catch (e) {
-    console.error('[DEBUG] Logging failed', e);
+    console.error('[DEBUG] Logging to localStorage failed:', e);
+    // 即使localStorage失败，console.log也已经执行了
   }
 }
 
@@ -3329,9 +3370,10 @@ let voices = [];
 let currentUtterance = null;
 let speechUnlocked = false;
 
-// Android 检测
+// Android 检测 - 更精确的检测
 function isAndroid() {
-  return /Android/i.test(navigator.userAgent);
+  const ua = navigator.userAgent;
+  return /Android/i.test(ua) && !/Windows Phone/i.test(ua);
 }
 
 // 检查是否在 iframe 中
@@ -3346,6 +3388,11 @@ function isInIframe() {
 // Android + iframe 组合：需要通过父窗口使用 speechSynthesis
 function useParentSpeechSynthesis() {
   return isAndroid() && isInIframe();
+}
+
+// 检查是否为移动设备浏览器（更严格的条件）
+function isMobileBrowser() {
+  return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
 function loadVoices() {

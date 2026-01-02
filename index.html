@@ -1031,6 +1031,9 @@
     window.addEventListener('message', (e) => {
       // 确保消息来自我们的iframe
       if (e.data && e.data.action === 'speak') {
+        // #region agent log
+        debugLog('index.html:message', 'speak request received from iframe', {text: e.data.text, langName: e.data.langName}, 'A');
+        // #endregion
         const { text, langName } = e.data;
         if (text) {
           // 使用父窗口的speechSynthesis（在Android上更可靠）
@@ -1038,6 +1041,15 @@
         }
       }
     });
+    
+    // 页面加载时记录初始状态
+    // #region agent log
+    debugLog('index.html:init', 'index.html loaded', {
+      speechSynthesisExists: 'speechSynthesis' in window,
+      userAgent: navigator.userAgent.substring(0, 80),
+      localStorageAvailable: typeof localStorage !== 'undefined'
+    }, 'A');
+    // #endregion
     const musicToggleStart = document.getElementById("music-toggle-start");
     const musicToggleGame = document.getElementById("music-toggle-game");
     const musicToggleResult = document.getElementById("music-toggle-result");
@@ -1282,12 +1294,18 @@
 
     function speak(text, langName = "日本語") {
       // #region agent log
-      debugLog('index.html:1283', 'speak called (parent window)', {text, langName, speechSynthesisExists: 'speechSynthesis' in window}, 'A');
+      debugLog('index.html:1283', 'speak called (parent window)', {
+        text,
+        langName,
+        speechSynthesisExists: 'speechSynthesis' in window,
+        isAndroid: /Android/i.test(navigator.userAgent),
+        userAgent: navigator.userAgent.substring(0, 50)
+      }, 'A');
       // #endregion
-      
+
       if (!('speechSynthesis' in window) || !text) {
         // #region agent log
-        debugLog('index.html:1287', 'speak early return', {reason: !('speechSynthesis' in window) ? 'no speechSynthesis' : 'no text'}, 'D');
+        debugLog('index.html:1294', 'speak early return', {reason: !('speechSynthesis' in window) ? 'no speechSynthesis' : 'no text'}, 'D');
         // #endregion
         return;
       }
