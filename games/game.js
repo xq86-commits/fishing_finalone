@@ -2809,6 +2809,9 @@ function completeCurrentWord() {
   // 播放单词发音（使用学习语言）
   // 使用统一的 speak() 函数，确保在用户交互上下文中调用
   const wordText = getWordText(state.currentWord, state.selectedLearningLang);
+  // #region agent log
+  fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:2811',message:'completeCurrentWord preparing speech',data:{wordText,selectedLearningLang:state.selectedLearningLang,speechSynthesisExists:'speechSynthesis' in window},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  // #endregion
   
   if (wordText) {
     // 使用 speak() 函数，它会在用户交互上下文中调用并处理所有错误
@@ -3037,9 +3040,14 @@ async function handleInputClick(e) {
         for (const spk of state.noteSpeakerRects) {
           if (clickX >= spk.x && clickX <= spk.x + spk.width &&
             clickY >= spk.y && clickY <= spk.y + spk.height) {
-
+            // #region agent log
+            fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3040',message:'note speaker clicked',data:{word:spk.word?.furigana || spk.word?.english || 'unknown',selectedLearningLang:state.selectedLearningLang},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+            // #endregion
             state.speakerAnim = { word: spk.word, start: Date.now() };
             const txt = getWordText(spk.word, state.selectedLearningLang);
+            // #region agent log
+            fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3045',message:'note calling speak',data:{txt,selectedLearningLang:state.selectedLearningLang},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+            // #endregion
             speak(txt, state.selectedLearningLang);
             return;
           }
@@ -3170,6 +3178,9 @@ function useHint() {
 }
 
 function checkFish(fish) {
+  // #region agent log
+  fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3172',message:'checkFish called',data:{fishChar:fish.char,selectedLearningLang:state.selectedLearningLang},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+  // #endregion
   // Play sound
   speak(fish.char, state.selectedLearningLang);
 
@@ -3269,7 +3280,15 @@ if ('speechSynthesis' in window) {
 }
 
 function unlockSpeech() {
-  if (speechUnlocked || !('speechSynthesis' in window)) return;
+  // #region agent log
+  fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3271',message:'unlockSpeech called',data:{speechUnlocked,speechSynthesisExists:'speechSynthesis' in window},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+  // #endregion
+  if (speechUnlocked || !('speechSynthesis' in window)) {
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3273',message:'unlockSpeech early return',data:{speechUnlocked,speechSynthesisExists:'speechSynthesis' in window},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
+    return;
+  }
 
   // Play silent utterance to unlock audio context on mobile
   // 必须在用户交互事件中调用才有效
@@ -3279,14 +3298,26 @@ function unlockSpeech() {
     utterance.rate = 10; // 快速播放，几乎瞬间完成
     utterance.pitch = 0;
     utterance.onend = () => {
+      // #region agent log
+      fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3281',message:'unlockSpeech utterance onend',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      // #endregion
       // 解锁完成
     };
-    utterance.onerror = () => {
+    utterance.onerror = (e) => {
+      // #region agent log
+      fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3284',message:'unlockSpeech utterance onerror',data:{error:e?.error || 'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+      // #endregion
       // 忽略错误，解锁可能失败但不影响后续使用
     };
     window.speechSynthesis.speak(utterance);
     speechUnlocked = true;
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3288',message:'unlockSpeech speak called',data:{speechUnlocked},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
   } catch (e) {
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3289',message:'unlockSpeech exception',data:{error:String(e)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
+    // #endregion
     console.warn('[speech] unlock failed', e);
     // 即使失败也标记为已尝试，避免重复尝试
     speechUnlocked = true;
@@ -3295,13 +3326,25 @@ function unlockSpeech() {
 
 // Helper: Speak
 function speak(text, langName = "English") {
-  if (!('speechSynthesis' in window)) return;
+  // #region agent log
+  fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3297',message:'speak called',data:{text,langName,speechSynthesisExists:'speechSynthesis' in window,paused:window.speechSynthesis?.paused,speaking:window.speechSynthesis?.speaking},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,C'})}).catch(()=>{});
+  // #endregion
+  if (!('speechSynthesis' in window)) {
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3298',message:'speak early return no speechSynthesis',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
+    // #endregion
+    return;
+  }
 
   // 确保音频上下文已解锁（每次调用时都尝试，以防之前解锁失败）
   unlockSpeech();
 
   // Resume if paused (fix for some Android/Chrome versions)
-  if (window.speechSynthesis.paused) {
+  const wasPaused = window.speechSynthesis.paused;
+  if (wasPaused) {
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3304',message:'speak resuming paused synthesis',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
+    // #endregion
     window.speechSynthesis.resume();
   }
 
@@ -3325,10 +3368,29 @@ function speak(text, langName = "English") {
 
   // Keep reference to prevent Garbage Collection
   currentUtterance = utterance;
-  utterance.onend = () => { currentUtterance = null; };
-  utterance.onerror = () => { currentUtterance = null; };
+  utterance.onend = () => {
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3328',message:'speak utterance onend',data:{text},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+    currentUtterance = null;
+  };
+  utterance.onerror = (e) => {
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3329',message:'speak utterance onerror',data:{text,error:e?.error || 'unknown'},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A,C'})}).catch(()=>{});
+    // #endregion
+    currentUtterance = null;
+  };
 
-  window.speechSynthesis.speak(utterance);
+  try {
+    window.speechSynthesis.speak(utterance);
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3331',message:'speak synthesis.speak called',data:{text,langName,targetLocale,voiceFound:!!voice,voicesCount:voices.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+  } catch (e) {
+    // #region agent log
+    fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'game.js:3331',message:'speak synthesis.speak exception',data:{text,error:String(e)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
+    // #endregion
+  }
 }
 
 // Countdown Sound Effects

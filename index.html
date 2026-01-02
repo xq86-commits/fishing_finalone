@@ -1516,6 +1516,9 @@
       // 绑定发音按钮点击事件（学习语言旁边的扬声器按钮）
       myWordsList.querySelectorAll(".my-word-speaker-btn").forEach((btn, index) => {
         btn.addEventListener("click", function(e) {
+          // #region agent log
+          fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:1518',message:'myWords speaker button clicked',data:{wordId:this.getAttribute("data-word-id"),learningLang:this.getAttribute("data-learning-lang")},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+          // #endregion
           e.stopPropagation();
           const wordId = this.getAttribute("data-word-id");
           const learningLang = this.getAttribute("data-learning-lang") || "日本語";
@@ -1528,9 +1531,16 @@
           
           if (wordData) {
             const wordText = getWordText(wordData, learningLang);
+            // #region agent log
+            fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:1530',message:'myWords calling speak',data:{wordText,learningLang,wordDataFound:!!wordData},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+            // #endregion
             if (wordText) {
               speak(wordText, learningLang);
             }
+          } else {
+            // #region agent log
+            fetch('http://127.0.0.1:7243/ingest/18cca8ad-d11a-43da-810f-32c7d8be5d81',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'index.html:1534',message:'myWords wordData not found',data:{wordId},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'E'})}).catch(()=>{});
+            // #endregion
           }
         });
       });
