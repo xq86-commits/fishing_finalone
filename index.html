@@ -1012,6 +1012,18 @@
     const myWordsLoading = document.getElementById("my-words-loading");
     const gameFrame = document.getElementById("game-frame");
     const bgm = document.getElementById("bgm");
+    
+    // 监听游戏iframe加载完成，发送解锁音频消息
+    if (gameFrame) {
+      gameFrame.addEventListener('load', () => {
+        // 通知游戏iframe解锁音频上下文
+        if (gameFrame.contentWindow) {
+          gameFrame.contentWindow.postMessage({
+            action: "unlockSpeech"
+          }, "*");
+        }
+      });
+    }
     const musicToggleStart = document.getElementById("music-toggle-start");
     const musicToggleGame = document.getElementById("music-toggle-game");
     const musicToggleResult = document.getElementById("music-toggle-result");
@@ -1336,6 +1348,9 @@
 
     /* 开始游戏 */
     startBtn.onclick = () => {
+      // 立即解锁音频上下文（必须在用户交互时立即调用）
+      unlockSpeech();
+      
       hideAll();
       showFlex("loading");
       stopFireworks();
@@ -1848,6 +1863,8 @@
 
     if (myWordsBtn) {
       myWordsBtn.onclick = () => {
+        // 解锁音频上下文，确保发音功能可用
+        unlockSpeech();
         showMyWordsModal();
       };
     }
@@ -1903,12 +1920,17 @@
       tryPlayBgm();
     };
     nextBtn.onclick = () => {
+      // 解锁音频上下文，确保下一局游戏发音功能可用
+      unlockSpeech();
       hideAll();
       showBlock("game-wrapper");
       stopFireworks();
       gameFrame.contentWindow?.postMessage({ action: "nextLevel" }, "*");
     };
     easierModeBtn.onclick = () => {
+      // 解锁音频上下文，确保下一局游戏发音功能可用
+      unlockSpeech();
+      
       // Determine lower difficulty level
       let lowerLevel = null;
       if (latestLevelString === "Advanced") {

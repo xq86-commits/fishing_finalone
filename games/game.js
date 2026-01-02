@@ -1033,6 +1033,10 @@ function init() {
     if (e.data && e.data.action === 'getMusicState') {
       // This will be handled by parent page
     }
+    // Handle unlock speech request from parent
+    if (e.data && e.data.action === 'unlockSpeech') {
+      unlockSpeech();
+    }
   });
   
   // Request initial music state from parent
@@ -3245,10 +3249,24 @@ function unlockSpeech() {
   if (speechUnlocked || !('speechSynthesis' in window)) return;
 
   // Play silent utterance to unlock audio context on mobile
-  const utterance = new SpeechSynthesisUtterance('');
-  utterance.volume = 0;
-  window.speechSynthesis.speak(utterance);
-  speechUnlocked = true;
+  // 必须在用户交互事件中调用才有效
+  try {
+    const utterance = new SpeechSynthesisUtterance('');
+    utterance.volume = 0;
+    utterance.onstart = () => {
+      // 立即取消，只用于解锁
+      window.speechSynthesis.cancel();
+    };
+    utterance.onerror = () => {
+      // 忽略错误，解锁可能失败但不影响后续使用
+    };
+    window.speechSynthesis.speak(utterance);
+    speechUnlocked = true;
+  } catch (e) {
+    console.warn('[speech] unlock failed', e);
+    // 即使失败也标记为已尝试，避免重复尝试
+    speechUnlocked = true;
+  }
 }
 
 // Helper: Speak
