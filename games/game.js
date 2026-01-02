@@ -1022,9 +1022,6 @@ function init() {
 
   // Message Handling
   window.addEventListener('message', (e) => {
-    // #region agent log
-    debugLog('game.js:1024', 'message received', {action: e.data?.action}, 'A');
-    // #endregion
     if (e.data && e.data.action === 'nextLevel') {
       startGame();
     }
@@ -1038,24 +1035,9 @@ function init() {
     }
     // Handle unlock speech request from parent
     if (e.data && e.data.action === 'unlockSpeech') {
-      // #region agent log
-      debugLog('game.js:1037', 'unlockSpeech message received from parent', {}, 'B');
-      // #endregion
       unlockSpeech();
     }
   });
-  
-  // 页面加载时记录初始状态
-  // #region agent log
-  debugLog('game.js:init', 'game.js loaded and initialized', {
-    speechSynthesisExists: 'speechSynthesis' in window,
-    isAndroid: isAndroid(),
-    isInIframe: isInIframe(),
-    useParent: useParentSpeechSynthesis(),
-    userAgent: navigator.userAgent.substring(0, 80),
-    localStorageAvailable: typeof localStorage !== 'undefined'
-  }, 'A');
-  // #endregion
   
   // Request initial music state from parent
   window.parent.postMessage({
@@ -1064,15 +1046,6 @@ function init() {
 }
 
 async function startGame() {
-  // #region agent log
-  debugLog('game.js:startGame', 'startGame called', {
-    speechSynthesisExists: 'speechSynthesis' in window,
-    isAndroid: isAndroid(),
-    isInIframe: isInIframe(),
-    useParent: useParentSpeechSynthesis(),
-    userAgent: navigator.userAgent.substring(0, 50)
-  }, 'A');
-  // #endregion
   // Load saved game settings from localStorage
   loadSavedGameSettings();
   
@@ -2836,40 +2809,23 @@ function completeCurrentWord() {
   // 播放单词发音（使用学习语言）
   // 使用统一的 speak() 函数，确保在用户交互上下文中调用
   const wordText = getWordText(state.currentWord, state.selectedLearningLang);
-  // #region agent log
-  debugLog('game.js:2811', 'completeCurrentWord preparing speech', {wordText, selectedLearningLang: state.selectedLearningLang, speechSynthesisExists: 'speechSynthesis' in window}, 'A');
-  // #endregion
   
   if (wordText) {
     // 使用 speak() 函数，它会在用户交互上下文中调用并处理所有错误
     // 为了等待发音完成后再进入下一个单词，我们需要监听发音完成事件
     // 但由于 speak() 函数内部已经处理了 utterance，我们需要创建一个自定义的 utterance
     if ('speechSynthesis' in window) {
-      // 确保音频上下文已解锁（必须在用户交互上下文中）
+      // 确保音频上下文已解锁
       unlockSpeech();
       
-      // 立即取消之前的发音，避免队列阻塞
-      try {
-        window.speechSynthesis.cancel();
-      } catch (e) {
-        // 忽略错误
-      }
-      
-      // 恢复暂停状态（某些浏览器可能会暂停）
-      if (window.speechSynthesis.paused) {
-        try {
-          window.speechSynthesis.resume();
-        } catch (e) {
-          // 忽略错误
-        }
-      }
+      // 取消之前的发音
+      window.speechSynthesis.cancel();
       
       // 创建 utterance 并设置回调
       const utterance = new SpeechSynthesisUtterance(wordText);
       const mapItem = LANG_MAP[state.selectedLearningLang] || LANG_MAP["日本語"];
       utterance.lang = mapItem.locale;
       utterance.rate = 1.0;
-      utterance.volume = 1.0; // 确保音量最大
       
       // 选择匹配的语音
       if (voices.length === 0) loadVoices();
@@ -2879,32 +2835,17 @@ function completeCurrentWord() {
       }
       
       // 等待发音完成后再进入下一个单词
-      utterance.onend = () => {
-        // #region agent log
-        debugLog('game.js:2841', 'completeCurrentWord utterance onend', {wordText}, 'A');
-        // #endregion
-        triggerNextWord();
-      };
+      utterance.onend = triggerNextWord;
       
-      utterance.onerror = (e) => {
-        // #region agent log
-        debugLog('game.js:2843', 'completeCurrentWord utterance onerror', {wordText, error: e?.error || 'unknown'}, 'A');
-        // #endregion
+      utterance.onerror = () => {
         // 如果发音出错，立即进入下一个单词（避免卡住）
         triggerNextWord();
       };
       
       // 立即调用 speak，确保在用户交互上下文中
-      // 这对于移动浏览器非常重要
       try {
         window.speechSynthesis.speak(utterance);
-        // #region agent log
-        debugLog('game.js:2850', 'completeCurrentWord speak called', {wordText, selectedLearningLang: state.selectedLearningLang, voiceFound: !!voice}, 'A');
-        // #endregion
       } catch (e) {
-        // #region agent log
-        debugLog('game.js:2852', 'completeCurrentWord speak exception', {wordText, error: String(e)}, 'A');
-        // #endregion
         console.warn('[speech] speak failed in completeCurrentWord', e);
         // 如果失败，立即进入下一个单词
         triggerNextWord();
@@ -2990,9 +2931,6 @@ function handleInputEnd(e) {
 
 async function handleInputClick(e) {
   if (state.tutorialActive) return;
-  // #region agent log
-  debugLog('game.js:2964', 'handleInputClick called', {eventType: e?.type, isTrusted: e?.isTrusted, speechSynthesisExists: 'speechSynthesis' in window}, 'A');
-  // #endregion
   unlockSpeech();
   const logicalWidth = canvas.width / dpr;
   const logicalHeight = canvas.height / dpr;
@@ -3099,14 +3037,9 @@ async function handleInputClick(e) {
         for (const spk of state.noteSpeakerRects) {
           if (clickX >= spk.x && clickX <= spk.x + spk.width &&
             clickY >= spk.y && clickY <= spk.y + spk.height) {
-            // #region agent log
-            debugLog('game.js:3043', 'note speaker clicked', {word: spk.word?.furigana || spk.word?.english || 'unknown', selectedLearningLang: state.selectedLearningLang}, 'A');
-            // #endregion
+
             state.speakerAnim = { word: spk.word, start: Date.now() };
             const txt = getWordText(spk.word, state.selectedLearningLang);
-            // #region agent log
-            debugLog('game.js:3047', 'note calling speak', {txt, selectedLearningLang: state.selectedLearningLang}, 'A');
-            // #endregion
             speak(txt, state.selectedLearningLang);
             return;
           }
@@ -3237,16 +3170,7 @@ function useHint() {
 }
 
 function checkFish(fish) {
-  // #region agent log
-  const speechState = 'speechSynthesis' in window ? {
-    paused: window.speechSynthesis.paused,
-    pending: window.speechSynthesis.pending,
-    speaking: window.speechSynthesis.speaking,
-    voicesCount: voices.length
-  } : { error: 'no speechSynthesis' };
-  debugLog('game.js:3209', 'checkFish called', {fishChar: fish.char, selectedLearningLang: state.selectedLearningLang, speechState}, 'A');
-  // #endregion
-  // Play sound - 确保在用户交互上下文中立即调用
+  // Play sound
   speak(fish.char, state.selectedLearningLang);
 
   let nextMissingIndex = -1;
@@ -3325,75 +3249,11 @@ function checkFish(fish) {
   }
 }
 
-// Helper: Debug Logging (stores to localStorage for remote debugging)
-function debugLog(location, message, data, hypothesisId) {
-  // 总是先输出到console（即使localStorage失败也能看到）
-  console.log('[DEBUG]', location, message, data || {});
-  
-  try {
-    const logEntry = {
-      location,
-      message,
-      data: data || {},
-      hypothesisId: hypothesisId || 'unknown',
-      timestamp: Date.now(),
-      sessionId: 'debug-session',
-      runId: 'run1'
-    };
-    
-    // Store in localStorage
-    let logs = [];
-    try {
-      const stored = localStorage.getItem('debug_logs');
-      if (stored) {
-        logs = JSON.parse(stored);
-      }
-    } catch (e) {
-      console.warn('[DEBUG] Failed to parse stored logs, starting fresh');
-      logs = [];
-    }
-    
-    logs.push(logEntry);
-    // Keep only last 200 entries (增加容量)
-    if (logs.length > 200) logs.shift();
-    
-    localStorage.setItem('debug_logs', JSON.stringify(logs));
-  } catch (e) {
-    console.error('[DEBUG] Logging to localStorage failed:', e);
-    // 即使localStorage失败，console.log也已经执行了
-  }
-}
-
 // Helper: Speak
 // Speech Synthesis State
 let voices = [];
 let currentUtterance = null;
 let speechUnlocked = false;
-
-// Android 检测 - 更精确的检测
-function isAndroid() {
-  const ua = navigator.userAgent;
-  return /Android/i.test(ua) && !/Windows Phone/i.test(ua);
-}
-
-// 检查是否在 iframe 中
-function isInIframe() {
-  try {
-    return window.self !== window.top;
-  } catch (e) {
-    return true; // 如果无法访问 top，可能在 iframe 中
-  }
-}
-
-// Android + iframe 组合：需要通过父窗口使用 speechSynthesis
-function useParentSpeechSynthesis() {
-  return isAndroid() && isInIframe();
-}
-
-// 检查是否为移动设备浏览器（更严格的条件）
-function isMobileBrowser() {
-  return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
 
 function loadVoices() {
   if ('speechSynthesis' in window) {
@@ -3409,54 +3269,24 @@ if ('speechSynthesis' in window) {
 }
 
 function unlockSpeech() {
-  // #region agent log
-  debugLog('game.js:3307', 'unlockSpeech called', {speechUnlocked, speechSynthesisExists: 'speechSynthesis' in window}, 'B');
-  // #endregion
-  if (!('speechSynthesis' in window)) {
-    // #region agent log
-    debugLog('game.js:3311', 'unlockSpeech early return no speechSynthesis', {}, 'B');
-    // #endregion
-    return;
-  }
+  if (speechUnlocked || !('speechSynthesis' in window)) return;
 
-  // 对于移动浏览器，每次用户交互时都尝试解锁（不依赖 speechUnlocked 标志）
-  // 因为某些浏览器可能需要多次解锁
+  // Play silent utterance to unlock audio context on mobile
+  // 必须在用户交互事件中调用才有效
   try {
-    // 先恢复暂停状态（某些浏览器可能会暂停）
-    if (window.speechSynthesis.paused) {
-      window.speechSynthesis.resume();
-    }
-    
-    // 取消之前的 utterance
-    window.speechSynthesis.cancel();
-    
-    // Play silent utterance to unlock audio context on mobile
-    // 必须在用户交互事件中调用才有效
     const utterance = new SpeechSynthesisUtterance('');
     utterance.volume = 0;
     utterance.rate = 10; // 快速播放，几乎瞬间完成
     utterance.pitch = 0;
     utterance.onend = () => {
-      // #region agent log
-      debugLog('game.js:3325', 'unlockSpeech utterance onend', {}, 'B');
-      // #endregion
       // 解锁完成
     };
-    utterance.onerror = (e) => {
-      // #region agent log
-      debugLog('game.js:3331', 'unlockSpeech utterance onerror', {error: e?.error || 'unknown'}, 'B');
-      // #endregion
+    utterance.onerror = () => {
       // 忽略错误，解锁可能失败但不影响后续使用
     };
     window.speechSynthesis.speak(utterance);
     speechUnlocked = true;
-    // #region agent log
-    debugLog('game.js:3337', 'unlockSpeech speak called', {speechUnlocked}, 'B');
-    // #endregion
   } catch (e) {
-    // #region agent log
-    debugLog('game.js:3342', 'unlockSpeech exception', {error: String(e)}, 'B');
-    // #endregion
     console.warn('[speech] unlock failed', e);
     // 即使失败也标记为已尝试，避免重复尝试
     speechUnlocked = true;
@@ -3465,81 +3295,17 @@ function unlockSpeech() {
 
 // Helper: Speak
 function speak(text, langName = "English") {
-  // #region agent log
-  const beforeState = 'speechSynthesis' in window ? {
-    paused: window.speechSynthesis.paused,
-    pending: window.speechSynthesis.pending,
-    speaking: window.speechSynthesis.speaking,
-    voicesCount: voices.length
-  } : null;
-  const androidInfo = {
-    isAndroid: isAndroid(),
-    isInIframe: isInIframe(),
-    useParent: useParentSpeechSynthesis()
-  };
-  debugLog('game.js:3401', 'speak called', {text, langName, beforeState, androidInfo, speechSynthesisExists: 'speechSynthesis' in window}, 'A,C');
-  // #endregion
-  
-  if (!text) {
-    // #region agent log
-    debugLog('game.js:3411', 'speak early return', {reason: 'no text'}, 'D');
-    // #endregion
-    return;
-  }
-
-  // Android + iframe 特殊处理：通过父窗口执行 speechSynthesis
-  if (useParentSpeechSynthesis()) {
-    // #region agent log
-    debugLog('game.js:3417', 'speak using parent window (Android+iframe)', {text, langName}, 'A');
-    // #endregion
-    try {
-      window.parent.postMessage({
-        action: 'speak',
-        text: text,
-        langName: langName
-      }, '*');
-      return;
-    } catch (e) {
-      // #region agent log
-      debugLog('game.js:3425', 'speak parent postMessage failed', {error: String(e)}, 'A');
-      // #endregion
-      // 如果postMessage失败，继续尝试本地speechSynthesis
-    }
-  }
-
-  if (!('speechSynthesis' in window)) {
-    // #region agent log
-    debugLog('game.js:3432', 'speak early return', {reason: 'no speechSynthesis'}, 'D');
-    // #endregion
-    return;
-  }
+  if (!('speechSynthesis' in window)) return;
 
   // 确保音频上下文已解锁（每次调用时都尝试，以防之前解锁失败）
-  // 这对于移动浏览器非常重要，因为某些浏览器需要每次用户交互时都解锁
   unlockSpeech();
 
-  // 立即取消之前的发音，避免队列阻塞
-  // 某些移动浏览器如果队列中有未完成的 utterance，新的 utterance 可能不会播放
-  try {
-    window.speechSynthesis.cancel();
-  } catch (e) {
-    // 忽略 cancel 错误
+  // Resume if paused (fix for some Android/Chrome versions)
+  if (window.speechSynthesis.paused) {
+    window.speechSynthesis.resume();
   }
 
-  // Resume if paused (fix for some Android/Chrome versions)
-  const wasPaused = window.speechSynthesis.paused;
-  if (wasPaused) {
-    // #region agent log
-    debugLog('game.js:3371', 'speak resuming paused synthesis', {}, 'C');
-    // #endregion
-    try {
-      window.speechSynthesis.resume();
-    } catch (e) {
-      // #region agent log
-      debugLog('game.js:3376', 'speak resume failed', {error: String(e)}, 'C');
-      // #endregion
-    }
-  }
+  window.speechSynthesis.cancel();
 
   const utterance = new SpeechSynthesisUtterance(text);
 
@@ -3548,16 +3314,9 @@ function speak(text, langName = "English") {
 
   utterance.lang = targetLocale;
   utterance.rate = 1.0;
-  utterance.volume = 1.0; // 确保音量最大
 
   // Try to select a voice explicitly
-  if (voices.length === 0) {
-    loadVoices();
-    // 如果 voices 仍然为空，等待一下再试（某些浏览器需要时间加载）
-    if (voices.length === 0) {
-      setTimeout(() => loadVoices(), 100);
-    }
-  }
+  if (voices.length === 0) loadVoices();
   // Find voice matching locale
   const voice = voices.find(v => v.lang === targetLocale || v.lang.startsWith(targetLocale.split('-')[0]));
   if (voice) {
@@ -3566,48 +3325,10 @@ function speak(text, langName = "English") {
 
   // Keep reference to prevent Garbage Collection
   currentUtterance = utterance;
-  utterance.onend = () => {
-    // #region agent log
-    debugLog('game.js:3402', 'speak utterance onend', {text}, 'A');
-    // #endregion
-    currentUtterance = null;
-  };
-  utterance.onerror = (e) => {
-    // #region agent log
-    debugLog('game.js:3408', 'speak utterance onerror', {text, error: e?.error || 'unknown', charIndex: e?.charIndex, char: e?.char}, 'A,C');
-    // #endregion
-    currentUtterance = null;
-  };
+  utterance.onend = () => { currentUtterance = null; };
+  utterance.onerror = () => { currentUtterance = null; };
 
-  // 立即调用 speak，确保在用户交互上下文中
-  // 对于移动浏览器，这必须在用户交互事件的同步调用链中
-  try {
-    const beforeSpeakState = {
-      paused: window.speechSynthesis.paused,
-      pending: window.speechSynthesis.pending,
-      speaking: window.speechSynthesis.speaking
-    };
-    window.speechSynthesis.speak(utterance);
-    // 立即检查状态变化
-    setTimeout(() => {
-      const afterSpeakState = {
-        paused: window.speechSynthesis.paused,
-        pending: window.speechSynthesis.pending,
-        speaking: window.speechSynthesis.speaking
-      };
-      // #region agent log
-      debugLog('game.js:3425', 'speak state after 100ms', {text, beforeSpeakState, afterSpeakState, stateChanged: JSON.stringify(beforeSpeakState) !== JSON.stringify(afterSpeakState)}, 'A');
-      // #endregion
-    }, 100);
-    // #region agent log
-    debugLog('game.js:3418', 'speak synthesis.speak called', {text, langName, targetLocale, voiceFound: !!voice, voicesCount: voices.length, beforeSpeakState}, 'A');
-    // #endregion
-  } catch (e) {
-    // #region agent log
-    debugLog('game.js:3433', 'speak synthesis.speak exception', {text, error: String(e), stack: e?.stack}, 'A');
-    // #endregion
-    console.error('[speech] speak failed:', e);
-  }
+  window.speechSynthesis.speak(utterance);
 }
 
 // Countdown Sound Effects

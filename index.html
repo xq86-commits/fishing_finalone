@@ -915,7 +915,6 @@
     <button id="start-btn">Start</button>
     <button id="my-words-btn">My Words</button>
     <button id="share-btn">Share</button>
-    <button id="export-debug-logs-btn" style="background: #666; font-size: 12px; padding: 8px 16px; margin-top: 10px;">导出调试日志</button>
   </div>
 
   <!-- Loading / 游戏 / 结算 / 排行榜（都默认隐藏） -->
@@ -1013,7 +1012,6 @@
     const myWordsLoading = document.getElementById("my-words-loading");
     const gameFrame = document.getElementById("game-frame");
     const bgm = document.getElementById("bgm");
-    const exportDebugLogsBtn = document.getElementById("export-debug-logs-btn");
     
     // 监听游戏iframe加载完成，发送解锁音频消息
     if (gameFrame) {
@@ -1026,30 +1024,6 @@
         }
       });
     }
-
-    // 监听来自iframe的speak请求（Android设备在iframe中无法使用speechSynthesis）
-    window.addEventListener('message', (e) => {
-      // 确保消息来自我们的iframe
-      if (e.data && e.data.action === 'speak') {
-        // #region agent log
-        debugLog('index.html:message', 'speak request received from iframe', {text: e.data.text, langName: e.data.langName}, 'A');
-        // #endregion
-        const { text, langName } = e.data;
-        if (text) {
-          // 使用父窗口的speechSynthesis（在Android上更可靠）
-          speak(text, langName || "日本語");
-        }
-      }
-    });
-    
-    // 页面加载时记录初始状态
-    // #region agent log
-    debugLog('index.html:init', 'index.html loaded', {
-      speechSynthesisExists: 'speechSynthesis' in window,
-      userAgent: navigator.userAgent.substring(0, 80),
-      localStorageAvailable: typeof localStorage !== 'undefined'
-    }, 'A');
-    // #endregion
     const musicToggleStart = document.getElementById("music-toggle-start");
     const musicToggleGame = document.getElementById("music-toggle-game");
     const musicToggleResult = document.getElementById("music-toggle-result");
@@ -1267,73 +1241,18 @@
       }
     }
 
-    // Helper: Debug Logging (stores to localStorage for remote debugging)
-    function debugLog(location, message, data, hypothesisId) {
-      try {
-        const logEntry = {
-          location,
-          message,
-          data,
-          hypothesisId,
-          timestamp: Date.now(),
-          sessionId: 'debug-session',
-          runId: 'run1'
-        };
-        // Store in localStorage
-        const logs = JSON.parse(localStorage.getItem('debug_logs') || '[]');
-        logs.push(logEntry);
-        // Keep only last 100 entries
-        if (logs.length > 100) logs.shift();
-        localStorage.setItem('debug_logs', JSON.stringify(logs));
-        // Also log to console
-        console.log('[DEBUG]', location, message, data);
-      } catch (e) {
-        console.error('[DEBUG] Logging failed', e);
-      }
-    }
-
     function speak(text, langName = "日本語") {
-      // #region agent log
-      debugLog('index.html:1283', 'speak called (parent window)', {
-        text,
-        langName,
-        speechSynthesisExists: 'speechSynthesis' in window,
-        isAndroid: /Android/i.test(navigator.userAgent),
-        userAgent: navigator.userAgent.substring(0, 50)
-      }, 'A');
-      // #endregion
-
-      if (!('speechSynthesis' in window) || !text) {
-        // #region agent log
-        debugLog('index.html:1294', 'speak early return', {reason: !('speechSynthesis' in window) ? 'no speechSynthesis' : 'no text'}, 'D');
-        // #endregion
-        return;
-      }
+      if (!('speechSynthesis' in window)) return;
 
       // 确保音频上下文已解锁（每次调用时都尝试，以防之前解锁失败）
       unlockSpeech();
 
-      // 立即取消之前的发音，避免队列阻塞
-      try {
-        window.speechSynthesis.cancel();
-      } catch (e) {
-        // 忽略错误
+      // Resume if paused (fix for some Android/Chrome versions)
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
       }
 
-      // Resume if paused (fix for some Android/Chrome versions)
-      const wasPaused = window.speechSynthesis.paused;
-      if (wasPaused) {
-        // #region agent log
-        debugLog('index.html:1300', 'speak resuming paused synthesis', {}, 'C');
-        // #endregion
-        try {
-          window.speechSynthesis.resume();
-        } catch (e) {
-          // #region agent log
-          debugLog('index.html:1305', 'speak resume failed', {error: String(e)}, 'C');
-          // #endregion
-        }
-      }
+      window.speechSynthesis.cancel();
 
       const utterance = new SpeechSynthesisUtterance(text);
 
@@ -1342,7 +1261,6 @@
 
       utterance.lang = targetLocale;
       utterance.rate = 1.0;
-      utterance.volume = 1.0; // 确保音量最大
 
       // Try to select a voice explicitly
       if (voices.length === 0) loadVoices();
@@ -1352,28 +1270,7 @@
         utterance.voice = voice;
       }
 
-      utterance.onend = () => {
-        // #region agent log
-        debugLog('index.html:1325', 'speak utterance onend', {text}, 'A');
-        // #endregion
-      };
-      utterance.onerror = (e) => {
-        // #region agent log
-        debugLog('index.html:1329', 'speak utterance onerror', {text, error: e?.error || 'unknown'}, 'A,C');
-        // #endregion
-      };
-
-      try {
-        window.speechSynthesis.speak(utterance);
-        // #region agent log
-        debugLog('index.html:1335', 'speak synthesis.speak called', {text, langName, targetLocale, voiceFound: !!voice, voicesCount: voices.length}, 'A');
-        // #endregion
-      } catch (e) {
-        // #region agent log
-        debugLog('index.html:1338', 'speak synthesis.speak exception', {text, error: String(e)}, 'A');
-        // #endregion
-        console.error('[speech] speak failed:', e);
-      }
+      window.speechSynthesis.speak(utterance);
     }
 
     function getInitial(name) {
@@ -1619,9 +1516,6 @@
       // 绑定发音按钮点击事件（学习语言旁边的扬声器按钮）
       myWordsList.querySelectorAll(".my-word-speaker-btn").forEach((btn, index) => {
         btn.addEventListener("click", function(e) {
-          // #region agent log
-          debugLog('index.html:1518', 'myWords speaker button clicked', {wordId: this.getAttribute("data-word-id"), learningLang: this.getAttribute("data-learning-lang")}, 'E');
-          // #endregion
           e.stopPropagation();
           const wordId = this.getAttribute("data-word-id");
           const learningLang = this.getAttribute("data-learning-lang") || "日本語";
@@ -1634,16 +1528,9 @@
           
           if (wordData) {
             const wordText = getWordText(wordData, learningLang);
-            // #region agent log
-            debugLog('index.html:1533', 'myWords calling speak', {wordText, learningLang, wordDataFound: !!wordData}, 'E');
-            // #endregion
             if (wordText) {
               speak(wordText, learningLang);
             }
-          } else {
-            // #region agent log
-            debugLog('index.html:1540', 'myWords wordData not found', {wordId}, 'E');
-            // #endregion
           }
         });
       });
@@ -2016,28 +1903,6 @@
         hideMyWordsModal();
       }
     });
-
-    /* 导出调试日志 */
-    if (exportDebugLogsBtn) {
-      exportDebugLogsBtn.onclick = () => {
-        try {
-          const logs = JSON.parse(localStorage.getItem('debug_logs') || '[]');
-          const logText = JSON.stringify(logs, null, 2);
-          // 创建临时文本区域来复制
-          const textarea = document.createElement('textarea');
-          textarea.value = logText;
-          textarea.style.position = 'fixed';
-          textarea.style.opacity = '0';
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textarea);
-          alert('日志已复制到剪贴板！请粘贴并发送给开发者。\n\n日志条数: ' + logs.length);
-        } catch (e) {
-          alert('导出日志失败: ' + e.message);
-        }
-      };
-    }
 
     /* 分享 */
     shareBtn.onclick = () => {

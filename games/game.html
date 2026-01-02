@@ -43,14 +43,6 @@ canvas {
 
 <script src="game.js"></script>
 <script>
-// 检查 game.js 是否成功加载
-if (typeof window.speechSynthesis === 'undefined') {
-  console.error('[game.html] speechSynthesis API not available');
-}
-if (typeof debugLog === 'undefined') {
-  console.warn('[game.html] debugLog function not found - game.js may not have loaded correctly');
-}
-
 let lastTouchEnd = 0;
 document.addEventListener('touchend', e => {
   const now = Date.now();
