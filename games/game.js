@@ -1271,6 +1271,77 @@ function pickNewWordAndSpawn() {
   spawnFishes(true); // Spawn from sides
 }
 
+/**
+ * 检查两个小鱼是否重叠
+ * @param {Object} fish1 - 第一条小鱼
+ * @param {Object} fish2 - 第二条小鱼
+ * @param {number} minDistance - 最小间距（默认使用小鱼宽度作为间距）
+ * @returns {boolean} 如果重叠返回 true
+ */
+function checkFishOverlap(fish1, fish2, minDistance = null) {
+  if (!minDistance) {
+    minDistance = FISH_WIDTH * 1.5; // 使用小鱼宽度的1.5倍作为最小间距
+  }
+  
+  const dx = Math.abs(fish1.x - fish2.x);
+  const dy = Math.abs(fish1.y - fish2.y);
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  
+  return distance < minDistance;
+}
+
+/**
+ * 找到一个不与现有小鱼重叠的位置
+ * @param {number} x - x坐标（如果为null则随机生成）
+ * @param {number} yMin - y坐标最小值
+ * @param {number} yMax - y坐标最大值
+ * @param {number} logicalWidth - 逻辑宽度（如果x为null时需要）
+ * @param {Object} excludeFish - 要排除的小鱼（不检查与它的重叠）
+ * @param {number} maxAttempts - 最大尝试次数
+ * @returns {Object} 包含 x 和 y 的对象
+ */
+function findNonOverlappingPosition(x, yMin, yMax, logicalWidth = null, excludeFish = null, maxAttempts = 50) {
+  let attempts = 0;
+  let newX, newY;
+  
+  while (attempts < maxAttempts) {
+    // 如果x为null，随机生成x坐标
+    if (x === null && logicalWidth !== null) {
+      newX = randomRange(0, logicalWidth);
+    } else {
+      newX = x;
+    }
+    
+    newY = randomRange(yMin, yMax);
+    
+    // 检查是否与现有小鱼重叠
+    let overlaps = false;
+    for (const otherFish of state.fishes) {
+      // 跳过要排除的小鱼
+      if (excludeFish && otherFish === excludeFish) continue;
+      // 跳过错误状态的小鱼（它们正在消失）
+      if (otherFish.isWrong) continue;
+      
+      if (checkFishOverlap({ x: newX, y: newY }, otherFish)) {
+        overlaps = true;
+        break;
+      }
+    }
+    
+    if (!overlaps) {
+      return { x: newX, y: newY };
+    }
+    
+    attempts++;
+  }
+  
+  // 如果尝试多次后仍然重叠，返回一个位置（至少尝试避免重叠）
+  return { 
+    x: newX !== undefined ? newX : (logicalWidth ? logicalWidth / 2 : 0),
+    y: newY !== undefined ? newY : (yMin + yMax) / 2
+  };
+}
+
 function spawnFishes(fromSides = false) {
   state.fishes = [];
 
@@ -1339,10 +1410,15 @@ function spawnFishes(fromSides = false) {
       // Spawn left or right
       const side = Math.random() < 0.5 ? -1 : 1;
       startX = side === -1 ? -FISH_WIDTH - randomRange(0, 100) : logicalWidth + FISH_WIDTH + randomRange(0, 100);
-      startY = randomRange(yMinLogical, yMaxLogical);
+      // 使用碰撞检测找到不重叠的y位置
+      const pos = findNonOverlappingPosition(startX, yMinLogical, yMaxLogical, logicalWidth, null);
+      startX = pos.x;
+      startY = pos.y;
     } else {
-      startX = randomRange(0, logicalWidth);
-      startY = randomRange(yMinLogical, yMaxLogical);
+      // 使用碰撞检测找到不重叠的位置
+      const pos = findNonOverlappingPosition(null, yMinLogical, yMaxLogical, logicalWidth, null);
+      startX = pos.x;
+      startY = pos.y;
     }
 
     // Determine speed direction: if spawned left, must go right. If right, must go left.
@@ -1359,6 +1435,7 @@ function spawnFishes(fromSides = false) {
       x: startX,
       y: startY,
       speed: speed,
+      vy: 0, // 添加垂直速度，初始为0
       typeIndex: fishTypeIndex,
       char: fishChars[i].char,
       width: FISH_WIDTH,
@@ -1639,13 +1716,96 @@ function update(dt) {
           fish.char = randomChar(state.selectedLearningLang);
         }
 
-        // Respawn logic
-        fish.x = (fish.speed > 0) ? -50 : logicalWidth + 50;
-        fish.y = randomRange(yMin, yMax);
+        // Respawn logic - 使用碰撞检测
+        const newX = (fish.speed > 0) ? -50 : logicalWidth + 50;
+        const pos = findNonOverlappingPosition(newX, yMin, yMax, logicalWidth, fish);
+        fish.x = pos.x;
+        fish.y = pos.y;
+        fish.vy = 0; // 重置垂直速度
       }
     } else {
-      // Normal Movement
-      fish.x += fish.speed * (dt / 16);
+      // Normal Movement with Collision Avoidance
+      
+      // 1. 计算分离力（Separation Force）- 让小鱼远离附近的其他小鱼
+      const separationRadius = FISH_WIDTH * 2.5; // 检测半径
+      const separationForce = { x: 0, y: 0 };
+      const maxSeparationForce = 0.8; // 最大避让速度
+      
+      state.fishes.forEach(otherFish => {
+        if (otherFish === fish || otherFish.isWrong) return;
+        
+        const dx = fish.x - otherFish.x;
+        const dy = fish.y - otherFish.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        // 如果距离太近，产生避让力
+        if (distance > 0 && distance < separationRadius) {
+          // 归一化方向向量
+          const invDistance = 1 / distance;
+          const normalizedX = dx * invDistance;
+          const normalizedY = dy * invDistance;
+          
+          // 距离越近，避让力越大（使用反比例）
+          const strength = (separationRadius - distance) / separationRadius;
+          
+          separationForce.x += normalizedX * strength;
+          separationForce.y += normalizedY * strength;
+        }
+      });
+      
+      // 限制分离力的大小
+      const separationMagnitude = Math.sqrt(separationForce.x * separationForce.x + separationForce.y * separationForce.y);
+      if (separationMagnitude > maxSeparationForce) {
+        separationForce.x = (separationForce.x / separationMagnitude) * maxSeparationForce;
+        separationForce.y = (separationForce.y / separationMagnitude) * maxSeparationForce;
+      }
+      
+      // 2. 应用分离力到垂直速度
+      fish.vy = fish.vy || 0; // 确保vy存在
+      fish.vy += separationForce.y * (dt / 16) * 0.5; // 应用垂直避让力
+      
+      // 3. 添加轻微的随机游动（让路径更自然）
+      fish.vy += (Math.random() - 0.5) * 0.02;
+      
+      // 4. 应用阻尼，让垂直速度逐渐衰减
+      fish.vy *= 0.95;
+      
+      // 5. 限制垂直速度的最大值
+      const maxVerticalSpeed = 0.6;
+      if (fish.vy > maxVerticalSpeed) fish.vy = maxVerticalSpeed;
+      if (fish.vy < -maxVerticalSpeed) fish.vy = -maxVerticalSpeed;
+      
+      // 6. 根据附近小鱼调整水平速度（如果前方有鱼，稍微减速）
+      let speedMultiplier = 1.0;
+      const lookAheadDistance = FISH_WIDTH * 1.5;
+      state.fishes.forEach(otherFish => {
+        if (otherFish === fish || otherFish.isWrong) return;
+        
+        // 检查是否在同一方向且在前方
+        const dx = otherFish.x - fish.x;
+        const sameDirection = (fish.speed > 0 && dx > 0) || (fish.speed < 0 && dx < 0);
+        const dy = Math.abs(fish.y - otherFish.y);
+        
+        if (sameDirection && Math.abs(dx) < lookAheadDistance && dy < FISH_HEIGHT * 1.2) {
+          // 前方有鱼，稍微减速
+          speedMultiplier = 0.85;
+        }
+      });
+      
+      // 7. 更新位置
+      fish.x += fish.speed * speedMultiplier * (dt / 16);
+      fish.y += fish.vy * (dt / 16);
+      
+      // 8. 边界约束 - 确保小鱼在有效y范围内
+      const fishMinY = getFishMinY();
+      if (fish.y < fishMinY) {
+        fish.y = fishMinY;
+        fish.vy = Math.max(0, fish.vy); // 如果撞到上边界，向下移动
+      }
+      if (fish.y > yMax) {
+        fish.y = yMax;
+        fish.vy = Math.min(0, fish.vy); // 如果撞到下边界，向上移动
+      }
 
       // Bobbing
       fish.bobOffset += dt * 0.003;
@@ -1655,7 +1815,10 @@ function update(dt) {
       if (!state.isTransitioning) {
         if (fish.speed > 0 && fish.x > logicalWidth + 50) {
           fish.x = -50;
-          fish.y = randomRange(yMin, yMax);
+          fish.vy = 0; // 重置垂直速度
+          // 使用碰撞检测找到不重叠的y位置
+          const pos = findNonOverlappingPosition(fish.x, yMin, yMax, logicalWidth, fish);
+          fish.y = pos.y;
           // 检查是否有缺失的字符需要补充
           const missingChars = getMissingCharsOnScreen();
           if (missingChars.length > 0) {
@@ -1673,7 +1836,10 @@ function update(dt) {
           }
         } else if (fish.speed < 0 && fish.x < -50) {
           fish.x = logicalWidth + 50;
-          fish.y = randomRange(yMin, yMax);
+          fish.vy = 0; // 重置垂直速度
+          // 使用碰撞检测找到不重叠的y位置
+          const pos = findNonOverlappingPosition(fish.x, yMin, yMax, logicalWidth, fish);
+          fish.y = pos.y;
           // 同样的逻辑
           const missingChars = getMissingCharsOnScreen();
           if (missingChars.length > 0) {
@@ -1692,10 +1858,6 @@ function update(dt) {
         }
       }
     }
-    
-    // 兜底约束：确保小鱼 y 坐标不会小于 fishMinY（最小 y 限制）
-    const fishMinY = getFishMinY();
-    fish.y = Math.max(fish.y, fishMinY);
   });
   
   // 确保屏幕内始终有正确答案的小鱼
@@ -3479,12 +3641,16 @@ function checkFish(fish) {
     const logicalWidth = canvas.width / dpr;
     const logicalHeight = canvas.height / dpr;
 
-    fish.x = (fish.speed > 0) ? -50 : logicalWidth + 50;
+    // 使用碰撞检测找到不重叠的位置
+    const newX = (fish.speed > 0) ? -50 : logicalWidth + 50;
     // 应用最小 y 限制（fishMinY），确保小鱼在 Hint 按钮下方
     const originalYMin = logicalHeight * (WATER_LEVEL + 0.05);
     const yMin = Math.max(originalYMin, getFishMinY());
     const yMax = logicalHeight * 0.9;
-    fish.y = randomRange(yMin, yMax);
+    const pos = findNonOverlappingPosition(newX, yMin, yMax, logicalWidth, fish);
+    fish.x = pos.x;
+    fish.y = pos.y;
+    fish.vy = 0; // 重置垂直速度
 
     if (state.revealedIndices.every(r => r)) {
       completeCurrentWord();
