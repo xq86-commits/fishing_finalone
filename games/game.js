@@ -1204,28 +1204,46 @@ function pickNewWordAndSpawn() {
   const vocabList = getActiveVocabList();
   if (!vocabList || !vocabList.length) return;
 
-  let word, text;
-  let attempts = 0;
-  // Try to pick a word that has content for the selected language
-  do {
-    word = vocabList[Math.floor(Math.random() * vocabList.length)];
-    text = getWordText(word, state.selectedLearningLang);
-    attempts++;
-  } while ((!text || text.length > 12) && attempts < 50); // Avoid overly long words if possible
+  // 预先筛选出同时有学习语言和基础语言翻译的单词
+  const validWords = vocabList.filter(w => {
+    // 检查学习语言文本
+    const learningText = getWordText(w, state.selectedLearningLang);
+    if (!learningText || learningText.length === 0 || learningText.length > 12) {
+      return false;
+    }
+    
+    // 检查基础语言翻译（使用 strictValidation = false）
+    const translation = getWordText(w, state.selectedBaseLang, false);
+    if (!translation || translation.trim().length === 0) {
+      return false;
+    }
+    
+    return true;
+  });
 
-  // 如果还是找不到有对应学习语言字段的单词，尝试更严格的筛选
-  if (!text) {
-    const validWords = vocabList.filter(w => {
+  let word, text;
+  
+  // 如果没有符合条件的单词，使用回退逻辑
+  if (validWords.length === 0) {
+    // 尝试只检查学习语言（至少保证单词本身存在）
+    const fallbackWords = vocabList.filter(w => {
       const langText = getWordText(w, state.selectedLearningLang);
       return langText && langText.length > 0 && langText.length <= 12;
     });
-    if (validWords.length > 0) {
-      word = validWords[Math.floor(Math.random() * validWords.length)];
+    
+    if (fallbackWords.length > 0) {
+      word = fallbackWords[Math.floor(Math.random() * fallbackWords.length)];
       text = getWordText(word, state.selectedLearningLang);
+    } else {
+      // 最后的回退：使用第一个单词
+      word = vocabList[0];
+      text = getWordText(word, state.selectedLearningLang) || "Error";
     }
+  } else {
+    // 从符合条件的单词中随机选择一个
+    word = validWords[Math.floor(Math.random() * validWords.length)];
+    text = getWordText(word, state.selectedLearningLang);
   }
-
-  if (!text) text = "Error"; // Fallback
 
   state.currentWord = word;
   state.targetChars = text.split('');
