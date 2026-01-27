@@ -2133,7 +2133,7 @@ function drawUI() {
   const kanaText = state.targetChars.map((char, index) => state.revealedIndices[index] ? char : '_').join(''); // Remove spaces in join for cleaner look? Or keep space? ' ' is good.
   const joinedText = state.targetChars.map((char, index) => state.revealedIndices[index] ? char : '_').join(' ');
   const kanaFontSize = 26; // 80% of previous 32px
-  const englishFontSize = 13; // 80% of previous 16px
+  const englishFontSize = 17; // 从 13 放大到 17 (1.3倍)
   const englishOffset = 30; // 增大上下行间距到 30px
   const englishY = vocabY + englishOffset;
 
@@ -2145,12 +2145,44 @@ function drawUI() {
   // Translation: selectedBaseLang
   let translation = getWordText(state.currentWord, state.selectedBaseLang, false);
 
-  const englishWidth = ctx.measureText(translation).width;
-  const englishHeight = englishFontSize;
-
+  // 设置最大卡片宽度（屏幕宽度的85%，留出左右边距）
+  const maxCardWidth = logicalWidth * 0.85;
   const padX = 14;
   const padY = 10;
-  const boxWidth = Math.max(kanaWidth, englishWidth) + padX * 2;
+  
+  // 计算翻译文本的最大可用宽度
+  const maxTranslationWidth = maxCardWidth - padX * 2;
+  
+  // 检查翻译文本是否需要截断
+  let displayTranslation = translation;
+  let englishWidth = ctx.measureText(translation).width;
+  
+  if (englishWidth > maxTranslationWidth) {
+    // 需要截断文本
+    const ellipsis = '...';
+    const ellipsisWidth = ctx.measureText(ellipsis).width;
+    
+    // 使用二分查找找到合适的截断点
+    let low = 0;
+    let high = translation.length;
+    while (low < high) {
+      const mid = Math.floor((low + high) / 2);
+      const testText = translation.substring(0, mid) + ellipsis;
+      const testWidth = ctx.measureText(testText).width;
+      if (testWidth <= maxTranslationWidth) {
+        low = mid + 1;
+      } else {
+        high = mid;
+      }
+    }
+    displayTranslation = translation.substring(0, Math.max(0, low - 1)) + ellipsis;
+    englishWidth = ctx.measureText(displayTranslation).width;
+  }
+
+  const englishHeight = englishFontSize;
+  
+  // 计算卡片宽度，但不超过最大宽度
+  const boxWidth = Math.min(Math.max(kanaWidth, englishWidth) + padX * 2, maxCardWidth);
   const boxTop = vocabY - kanaHeight / 2 - padY;
   const boxBottom = englishY + englishHeight / 2 + padY;
   const boxHeight = boxBottom - boxTop;
@@ -2178,7 +2210,7 @@ function drawUI() {
 
   ctx.fillStyle = '#3a3a3a';
   ctx.font = `${englishFontSize}px Arial`;
-  ctx.fillText(translation, textCenterX, englishY);
+  ctx.fillText(displayTranslation, textCenterX, englishY);
 
   // Icons (Music, Settings, Note, Hint) on the right
   const iconSize = 40;
