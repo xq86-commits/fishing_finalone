@@ -290,6 +290,28 @@ function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
+/**
+ * 获取小鱼的最小 y 坐标（最小 y 限制）
+ * 确保小鱼的最上边界永远在 Hint 按钮下方，留 8~12px 间距
+ * @returns {number} 小鱼的最小 y 坐标（逻辑坐标）
+ */
+function getFishMinY() {
+  const logicalHeight = canvas.height / dpr;
+  const originalWaterMinY = logicalHeight * (WATER_LEVEL + 0.2);
+  
+  // 如果 Hint 按钮位置已设置，计算其底部 + margin
+  if (state.hintButtonRect) {
+    const hintBottom = state.hintButtonRect.y + state.hintButtonRect.height;
+    const margin = 10; // 8~12px 范围内的间距
+    const fishMinY = hintBottom + margin;
+    // 确保 fishMinY 不会小于原始水域最小 y
+    return Math.max(originalWaterMinY, fishMinY);
+  }
+  
+  // 如果 Hint 按钮位置未设置，返回原始水域最小 y
+  return originalWaterMinY;
+}
+
 function getLivesHighlightRect() {
   const uiOffsetY = 80;
   const fontSize = 20;
@@ -1288,7 +1310,9 @@ function spawnFishes(fromSides = false) {
     const logicalHeight = canvas.height / dpr;
     const logicalWidth = canvas.width / dpr;
 
-    const yMinLogical = logicalHeight * (WATER_LEVEL + 0.2);
+    // 应用最小 y 限制（fishMinY），确保小鱼在 Hint 按钮下方
+    const originalYMin = logicalHeight * (WATER_LEVEL + 0.2);
+    const yMinLogical = Math.max(originalYMin, getFishMinY());
     const yMaxLogical = logicalHeight * 0.9;
 
     let startX, startY;
@@ -1305,7 +1329,7 @@ function spawnFishes(fromSides = false) {
 
     // Determine speed direction: if spawned left, must go right. If right, must go left.
     // If random spawn, random direction.
-    let speed = randomRange(0.5, 2.5) * 0.75;
+    let speed = randomRange(0.5, 1.5) * 0.75;
     if (fromSides) {
       if (startX < 0) speed = Math.abs(speed); // Go right
       else speed = -Math.abs(speed); // Go left
@@ -1326,6 +1350,117 @@ function spawnFishes(fromSides = false) {
       opacity: fromSides ? 1 : 1 // Start visible
     });
   }
+}
+
+// 获取当前需要的正确答案字符列表
+function getNeededChars() {
+  const neededChars = [];
+  const charSet = CHAR_SETS[state.selectedLearningLang] || "";
+  state.targetChars.forEach((char, index) => {
+    if (!state.revealedIndices[index]) {
+      let isValidChar = false;
+      if (state.selectedLearningLang === "English" || state.selectedLearningLang === "Español" || state.selectedLearningLang === "Français") {
+        isValidChar = charSet.includes(char.toLowerCase()) || charSet.includes(char.toUpperCase());
+      } else {
+        isValidChar = charSet.includes(char);
+      }
+      if (isValidChar) {
+        neededChars.push(char);
+      }
+    }
+  });
+  return neededChars;
+}
+
+// 检查屏幕内是否有正确答案的小鱼（保留用于向后兼容）
+function hasCorrectFishOnScreen() {
+  const neededChars = getNeededChars();
+  if (neededChars.length === 0) return true; // 所有字符都已揭示，不需要检查
+  
+  const logicalWidth = canvas.width / dpr;
+  
+  // 检查是否有正确答案的小鱼在屏幕内（x坐标在 -50 到 logicalWidth + 50 之间）
+  return state.fishes.some(fish => {
+    if (fish.isWrong || fish.opacity <= 0) return false;
+    const isOnScreen = fish.x >= -50 && fish.x <= logicalWidth + 50;
+    return isOnScreen && neededChars.includes(fish.char);
+  });
+}
+
+// 检查每个需要的字符是否都有对应的小鱼在屏幕内
+function hasAllNeededCharsOnScreen() {
+  const neededChars = getNeededChars();
+  if (neededChars.length === 0) return true;
+  
+  const logicalWidth = canvas.width / dpr;
+  const onScreenFishes = state.fishes.filter(fish => {
+    if (fish.isWrong || fish.opacity <= 0) return false;
+    const isOnScreen = fish.x >= -50 && fish.x <= logicalWidth + 50;
+    return isOnScreen;
+  });
+  
+  // 检查每个需要的字符是否都有对应的小鱼
+  return neededChars.every(char => {
+    return onScreenFishes.some(fish => fish.char === char);
+  });
+}
+
+// 获取缺失的字符列表（需要补充的字符）
+function getMissingCharsOnScreen() {
+  const neededChars = getNeededChars();
+  if (neededChars.length === 0) return [];
+  
+  const logicalWidth = canvas.width / dpr;
+  const onScreenFishes = state.fishes.filter(fish => {
+    if (fish.isWrong || fish.opacity <= 0) return false;
+    const isOnScreen = fish.x >= -50 && fish.x <= logicalWidth + 50;
+    return isOnScreen;
+  });
+  
+  const onScreenChars = new Set(onScreenFishes.map(fish => fish.char));
+  return neededChars.filter(char => !onScreenChars.has(char));
+}
+
+// 确保每个需要的字符都至少有一条小鱼在屏幕内
+function ensureCorrectFishOnScreen() {
+  const missingChars = getMissingCharsOnScreen();
+  if (missingChars.length === 0) return; // 所有字符都有对应小鱼
+  
+  const logicalWidth = canvas.width / dpr;
+  const logicalHeight = canvas.height / dpr;
+  const yMin = Math.max(logicalHeight * (WATER_LEVEL + 0.2), getFishMinY());
+  const yMax = logicalHeight * 0.9;
+  const neededChars = getNeededChars();
+  
+  // 为每个缺失的字符补充一条小鱼
+  missingChars.forEach(missingChar => {
+    // 优先找一条在屏幕内的小鱼来替换
+    let targetFish = state.fishes.find(fish => {
+      if (fish.isWrong || fish.opacity <= 0) return false;
+      const isOnScreen = fish.x >= -50 && fish.x <= logicalWidth + 50;
+      if (!isOnScreen) return false;
+      
+      // 这条小鱼不是正确答案，可以替换
+      return !neededChars.includes(fish.char);
+    });
+    
+    // 如果屏幕内没有可替换的小鱼，找一条即将进入屏幕的小鱼
+    if (!targetFish) {
+      targetFish = state.fishes.find(fish => {
+        return !fish.isWrong && fish.opacity > 0;
+      });
+    }
+    
+    // 如果找到了小鱼，设置为缺失的字符
+    if (targetFish) {
+      targetFish.char = missingChar;
+      // 如果小鱼在屏幕外，立即移动到屏幕边缘
+      if (targetFish.x < -50 || targetFish.x > logicalWidth + 50) {
+        targetFish.x = targetFish.speed > 0 ? -50 : logicalWidth + 50;
+        targetFish.y = randomRange(yMin, yMax);
+      }
+    }
+  });
 }
 
 function resizeCanvas() {
@@ -1453,7 +1588,9 @@ function update(dt) {
   // Logical dimensions
   const logicalWidth = canvas.width / dpr;
   const logicalHeight = canvas.height / dpr;
-  const yMin = logicalHeight * (WATER_LEVEL + 0.2);
+  // 应用最小 y 限制（fishMinY），确保小鱼在 Hint 按钮下方
+  const originalYMin = logicalHeight * (WATER_LEVEL + 0.2);
+  const yMin = Math.max(originalYMin, getFishMinY());
   const yMax = logicalHeight * 0.9;
 
   // Fish Movement
@@ -1474,7 +1611,15 @@ function update(dt) {
         fish.opacity = 1;
         fish.shakeX = 0;
         fish.shakeY = 0;
-        fish.char = randomChar(state.selectedLearningLang);
+        
+        // 检查是否有缺失的字符需要补充
+        const missingChars = getMissingCharsOnScreen();
+        if (missingChars.length > 0) {
+          // 优先设置为缺失的字符
+          fish.char = missingChars[Math.floor(Math.random() * missingChars.length)];
+        } else {
+          fish.char = randomChar(state.selectedLearningLang);
+        }
 
         // Respawn logic
         fish.x = (fish.speed > 0) ? -50 : logicalWidth + 50;
@@ -1493,13 +1638,52 @@ function update(dt) {
         if (fish.speed > 0 && fish.x > logicalWidth + 50) {
           fish.x = -50;
           fish.y = randomRange(yMin, yMax);
+          // 检查是否有缺失的字符需要补充
+          const missingChars = getMissingCharsOnScreen();
+          if (missingChars.length > 0) {
+            // 优先设置为缺失的字符
+            fish.char = missingChars[Math.floor(Math.random() * missingChars.length)];
+          } else {
+            // 否则随机生成，但优先考虑正确答案
+            const neededChars = getNeededChars();
+            const shouldBeCorrect = Math.random() < 0.3; // 30%概率是正确答案
+            if (shouldBeCorrect && neededChars.length > 0) {
+              fish.char = neededChars[Math.floor(Math.random() * neededChars.length)];
+            } else {
+              fish.char = randomChar(state.selectedLearningLang);
+            }
+          }
         } else if (fish.speed < 0 && fish.x < -50) {
           fish.x = logicalWidth + 50;
           fish.y = randomRange(yMin, yMax);
+          // 同样的逻辑
+          const missingChars = getMissingCharsOnScreen();
+          if (missingChars.length > 0) {
+            // 优先设置为缺失的字符
+            fish.char = missingChars[Math.floor(Math.random() * missingChars.length)];
+          } else {
+            // 否则随机生成，但优先考虑正确答案
+            const neededChars = getNeededChars();
+            const shouldBeCorrect = Math.random() < 0.3;
+            if (shouldBeCorrect && neededChars.length > 0) {
+              fish.char = neededChars[Math.floor(Math.random() * neededChars.length)];
+            } else {
+              fish.char = randomChar(state.selectedLearningLang);
+            }
+          }
         }
       }
     }
+    
+    // 兜底约束：确保小鱼 y 坐标不会小于 fishMinY（最小 y 限制）
+    const fishMinY = getFishMinY();
+    fish.y = Math.max(fish.y, fishMinY);
   });
+  
+  // 确保屏幕内始终有正确答案的小鱼
+  if (!state.isTransitioning && !state.tutorialActive) {
+    ensureCorrectFishOnScreen();
+  }
 }
 
 function endGame(reason) {
@@ -3264,13 +3448,23 @@ function checkFish(fish) {
     state.score += 100; // Logic update immediately
     // Visual target update happens when text arrives
 
-    fish.char = randomChar(state.selectedLearningLang);
+    // 检查是否有缺失的字符需要补充（在重新生成这条小鱼之前检查）
+    // 注意：此时 revealedIndices 已经更新，所以需要检查更新后的状态
+    const missingChars = getMissingCharsOnScreen();
+    if (missingChars.length > 0) {
+      // 优先设置为缺失的字符
+      fish.char = missingChars[Math.floor(Math.random() * missingChars.length)];
+    } else {
+      fish.char = randomChar(state.selectedLearningLang);
+    }
 
     const logicalWidth = canvas.width / dpr;
     const logicalHeight = canvas.height / dpr;
 
     fish.x = (fish.speed > 0) ? -50 : logicalWidth + 50;
-    const yMin = logicalHeight * (WATER_LEVEL + 0.05);
+    // 应用最小 y 限制（fishMinY），确保小鱼在 Hint 按钮下方
+    const originalYMin = logicalHeight * (WATER_LEVEL + 0.05);
+    const yMin = Math.max(originalYMin, getFishMinY());
     const yMax = logicalHeight * 0.9;
     fish.y = randomRange(yMin, yMax);
 
