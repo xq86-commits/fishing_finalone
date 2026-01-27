@@ -503,7 +503,8 @@
     }
 
     #music-toggle-game {
-      display: none;  /* 已迁移到 canvas，隐藏 HTML 按钮 */
+      display: none;
+      /* 已迁移到 canvas，隐藏 HTML 按钮 */
     }
 
     #music-toggle-result {
@@ -524,9 +525,11 @@
       0% {
         opacity: 0.6;
       }
+
       50% {
         opacity: 1;
       }
+
       100% {
         opacity: 0.6;
       }
@@ -928,10 +931,14 @@
     <button id="music-toggle-game" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
-        <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        <path class="sound-wave wave-2" d="M18 6a7 7 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        <path class="sound-wave wave-3" d="M20.5 4a9.5 9.5 0 0 1 0 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
-        <path class="slash" d="M4 20L20 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path class="sound-wave wave-1" d="M15.5 8.5a4.5 4.5 0 0 1 0 7" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round"></path>
+        <path class="sound-wave wave-2" d="M18 6a7 7 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round"></path>
+        <path class="sound-wave wave-3" d="M20.5 4a9.5 9.5 0 0 1 0 16" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round"></path>
+        <path class="slash" d="M4 20L20 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        </path>
       </svg>
     </button>
     <iframe id="game-frame" src=""></iframe>
@@ -980,7 +987,61 @@
   <script src="./scripts/advertising-manager.js"></script>
   <script src="./scripts/app-communication.js"></script>
   <script src="./scripts/instantdb.js"></script>
+  <script src="https://ali-hk-h5.hellotalk8.com/ai-bridge-call-sdk/latest/index.umd.js"></script>
+
   <script>
+    /* 提取方法到全局，以便直接调用 */
+    const HTInteraction = window.HTInteraction;
+    let adSupportInfo = null;
+    console.log('HTInteraction', HTInteraction);
+    console.log('userInfo', HTInteraction.userInfo);
+    console.log('ready', HTInteraction.ready);
+
+
+    // 预加载广告
+    const preloadAd = async (getBusinessWebRewardedAdConfigInformation) => {
+      const { code, data } = await getBusinessWebRewardedAdConfigInformation("179,180,181,182", "320,321,322,323");
+      console.log(code, data);
+
+      const configStr = code === 0 && data.rewarded_ad_items[0]
+        ? JSON.stringify(data.rewarded_ad_items[0])
+        : undefined;
+
+      /* 保存配置信息，以便后续 show 调用时使用 */
+      if (window.advertisingManager) {
+        window.advertisingManager.advertisingConfig = configStr;
+      }
+
+      /* 默认预加载一次广告以加快首个展示 */
+      if (window.advertisingManager && typeof window.advertisingManager.preload === "function") {
+        window.advertisingManager.preload({
+          sceneType: "words-fishing-watch-advertising",
+          advertisingConfig: configStr
+        });
+      }
+    }
+    // 如果客户端版本大于等于6.1.80，则预加载广告
+    (async () => {
+      if (!HTInteraction || typeof HTInteraction.ready !== "function") {
+        return;
+      }
+
+      await HTInteraction.ready();
+
+      const { getBusinessWebRewardedAdConfigInformation, userInfo, canIuseVersion } = HTInteraction;
+      adSupportInfo = !!(canIuseVersion && userInfo && userInfo.version && canIuseVersion("6.1.80", userInfo.version));
+      if (adSupportInfo) {
+        preloadAd(getBusinessWebRewardedAdConfigInformation);
+      }
+      const iframe = document.getElementById("game-frame");
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({
+          action: "adSupportUpdate",
+          supported: adSupportInfo
+        }, "*");
+      }
+    })();
+
     /* 工具：状态切换（只留一个层可见） */
     const LAYERS = ["start-screen", "loading", "game-wrapper", "result-screen", "rank-screen"];
     function showFlex(id) { hideAll(); document.getElementById(id).classList.remove("is-hidden"); document.getElementById(id).classList.add("is-flex"); }
@@ -1012,7 +1073,6 @@
     const myWordsLoading = document.getElementById("my-words-loading");
     const gameFrame = document.getElementById("game-frame");
     const bgm = document.getElementById("bgm");
-    
     // 监听游戏iframe加载完成，发送解锁音频消息
     if (gameFrame) {
       gameFrame.addEventListener('load', () => {
@@ -1021,6 +1081,12 @@
           gameFrame.contentWindow.postMessage({
             action: "unlockSpeech"
           }, "*");
+          if (adSupportInfo !== null) {
+            gameFrame.contentWindow.postMessage({
+              action: "adSupportUpdate",
+              supported: adSupportInfo
+            }, "*");
+          }
         }
       });
     }
@@ -1146,7 +1212,7 @@
       // Clean up: take first part before delimiters
       text = text.split(/[,;\/]/)[0];
       text = text.trim();
-      
+
       // 验证文本是否真的包含指定语言的字符（防止使用回退值）
       const charSet = CHAR_SETS[langName] || "";
       if (charSet && text.length > 0) {
@@ -1154,7 +1220,7 @@
         if (!strictValidation) {
           // 对于基础语言，即使字符不完全匹配字符集，也返回文本（因为可能是有效的翻译）
           // 只做基本检查：如果文本完全由空格和标点组成，返回空字符串
-          const hasContent = text.split('').some(function(char) {
+          const hasContent = text.split('').some(function (char) {
             return !/[\s\.,;:!?\-\(\)\[\]{}]/.test(char);
           });
           if (!hasContent) {
@@ -1163,19 +1229,19 @@
           // 对于基础语言，直接返回文本，不进行严格的字符集验证
           return text;
         }
-        
+
         // 学习语言使用严格验证（现有逻辑）
         // 检查文本中的字符是否主要属于指定语言字符集
         var validCharCount = 0;
         var totalCharCount = 0;
-        
-        text.split('').forEach(function(char) {
+
+        text.split('').forEach(function (char) {
           // 跳过空格和标点符号
           if (/[\s\.,;:!?\-\(\)\[\]{}]/.test(char)) {
             return;
           }
           totalCharCount++;
-          
+
           // 对于大小写敏感的语言（如英语），检查小写和大写
           if (langName === "English" || langName === "Español" || langName === "Français") {
             if (charSet.indexOf(char.toLowerCase()) !== -1 || charSet.indexOf(char.toUpperCase()) !== -1) {
@@ -1188,14 +1254,14 @@
             }
           }
         });
-        
+
         // 如果文本中大部分字符都不属于指定语言字符集，说明这是回退值，返回空字符串
         // 要求至少50%的字符属于指定语言字符集
         if (totalCharCount > 0 && validCharCount / totalCharCount < 0.5) {
           return "";
         }
       }
-      
+
       return text;
     }
 
@@ -1374,7 +1440,7 @@
     startBtn.onclick = () => {
       // 立即解锁音频上下文（必须在用户交互时立即调用）
       unlockSpeech();
-      
+
       hideAll();
       showFlex("loading");
       stopFireworks();
@@ -1430,7 +1496,7 @@
 
     function renderWordsList(words, selectedTab) {
       // 每次渲染前从存储同步收藏状态，避免切换 Tab 后状态回退
-      const wordsWithHighlight = (words || []).map(function(word) {
+      const wordsWithHighlight = (words || []).map(function (word) {
         const wordId = word.id || ((word.furigana || "") + "|" + (word.english || ""));
         let highlightState = !!word.isHighlighted;
         if (window.instantDBService && typeof window.instantDBService.isWordHighlighted === "function" && wordId) {
@@ -1449,7 +1515,7 @@
       }
 
       // Filter words by selected tab
-      const filteredWords = wordsWithHighlight.filter(function(word) {
+      const filteredWords = wordsWithHighlight.filter(function (word) {
         const wordLearningLang = word.learningLang || "日本語";
         const wordBaseLang = word.baseLang || "English";
         const wordPair = normalizeLanguagePair(wordLearningLang, wordBaseLang);
@@ -1464,14 +1530,14 @@
       // Sort by creation date (newest first)
       filteredWords.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-      myWordsList.innerHTML = filteredWords.map(function(word) {
+      myWordsList.innerHTML = filteredWords.map(function (word) {
         const highlightedClass = word.isHighlighted ? "highlighted" : "";
         const wordId = escapeAttribute(word.id || "");
-        
+
         // Get learning and base languages from word data (with backward compatibility)
         const wordLearningLang = word.learningLang || "日本語";
         const wordBaseLang = word.baseLang || "English";
-        
+
         // Use getWordText to get text in the correct languages
         // Fallback to furigana/english for backward compatibility
         var learningText = getWordText(word, wordLearningLang);
@@ -1482,12 +1548,12 @@
         if (!baseText) {
           baseText = word.english || "";
         }
-        
+
         const learningTextEscaped = escapeHtml(learningText);
         const baseTextEscaped = escapeHtml(baseText);
         const ariaLabel = word.isHighlighted ? "Remove highlight" : "Highlight word";
         const activeClass = word.isHighlighted ? "active" : "";
-        
+
         return '<div class="my-word-item-wrapper" data-word-id="' + wordId + '">' +
           '<div class="my-word-item ' + highlightedClass + '" data-word-id="' + wordId + '">' +
           '<div class="my-word-content">' +
@@ -1523,17 +1589,17 @@
 
       // 绑定发音按钮点击事件（学习语言旁边的扬声器按钮）
       myWordsList.querySelectorAll(".my-word-speaker-btn").forEach((btn, index) => {
-        btn.addEventListener("click", function(e) {
+        btn.addEventListener("click", function (e) {
           e.stopPropagation();
           const wordId = this.getAttribute("data-word-id");
           const learningLang = this.getAttribute("data-learning-lang") || "日本語";
-          
+
           // 找到对应的单词数据
           const wordData = filteredWords.find(w => {
             const wId = w.id || ((w.furigana || "") + "|" + (w.english || ""));
             return wId === wordId;
           });
-          
+
           if (wordData) {
             const wordText = getWordText(wordData, learningLang);
             if (wordText) {
@@ -1545,7 +1611,7 @@
 
       // 绑定收藏按钮点击事件（基础语言旁边的星星按钮）
       myWordsList.querySelectorAll(".my-word-favorite-btn").forEach(btn => {
-        btn.addEventListener("click", function(e) {
+        btn.addEventListener("click", function (e) {
           e.stopPropagation();
           const wordId = this.getAttribute("data-word-id");
           const wordItem = this.closest(".my-word-item");
@@ -1553,12 +1619,12 @@
           const newHighlightState = !isCurrentlyHighlighted;
 
           // 更新数据库
-          window.instantDBService.toggleWordHighlight(wordId, newHighlightState).then(function() {
+          window.instantDBService.toggleWordHighlight(wordId, newHighlightState).then(function () {
             // 更新UI
             wordItem.classList.toggle("highlighted", newHighlightState);
             // 更新按钮的状态
             this.classList.toggle("active", newHighlightState);
-          }.bind(this)).catch(function(error) {
+          }.bind(this)).catch(function (error) {
             console.warn("[myWords] Failed to toggle highlight", error);
           });
         });
@@ -1582,7 +1648,7 @@
 
     function initSwipeToDelete() {
       const wrappers = myWordsList.querySelectorAll(".my-word-item-wrapper");
-      
+
       wrappers.forEach(wrapper => {
         const item = wrapper.querySelector(".my-word-item");
         let touchStartX = 0;
@@ -1591,7 +1657,7 @@
         let startTime = 0;
 
         // 触摸事件（移动端）
-        item.addEventListener("touchstart", function(e) {
+        item.addEventListener("touchstart", function (e) {
           touchStartX = e.touches[0].clientX;
           touchStartY = e.touches[0].clientY;
           startTime = Date.now();
@@ -1599,9 +1665,9 @@
           swipeState.currentWrapper = wrapper;
         }, { passive: true });
 
-        item.addEventListener("touchmove", function(e) {
+        item.addEventListener("touchmove", function (e) {
           if (!touchStartX) return;
-          
+
           const touchX = e.touches[0].clientX;
           const touchY = e.touches[0].clientY;
           const deltaX = touchX - touchStartX;
@@ -1611,7 +1677,7 @@
           if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
             isDragging = true;
             e.preventDefault();
-            
+
             // 只允许向左滑动
             if (deltaX < 0) {
               const translateX = Math.max(deltaX, -swipeState.deleteButtonWidth);
@@ -1621,9 +1687,9 @@
           }
         }, { passive: false });
 
-        item.addEventListener("touchend", function(e) {
+        item.addEventListener("touchend", function (e) {
           if (!touchStartX) return;
-          
+
           const touchX = e.changedTouches[0].clientX;
           const deltaX = touchX - touchStartX;
           const timeDelta = Date.now() - startTime;
@@ -1635,8 +1701,8 @@
               if (wordId) {
                 deleteWord(wordId);
               }
-            } else if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 || 
-                (Math.abs(deltaX) > 30 && timeDelta < 300)) {
+            } else if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 ||
+              (Math.abs(deltaX) > 30 && timeDelta < 300)) {
               // 如果滑动超过一半或速度足够快，显示删除按钮
               item.style.transform = `translateX(-${swipeState.deleteButtonWidth}px)`;
               // 保持 swiping 类以显示删除按钮
@@ -1655,7 +1721,7 @@
         }, { passive: true });
 
         // 鼠标事件（桌面端）
-        item.addEventListener("mousedown", function(e) {
+        item.addEventListener("mousedown", function (e) {
           touchStartX = e.clientX;
           touchStartY = e.clientY;
           startTime = Date.now();
@@ -1663,16 +1729,16 @@
           swipeState.currentWrapper = wrapper;
         });
 
-        item.addEventListener("mousemove", function(e) {
+        item.addEventListener("mousemove", function (e) {
           if (!touchStartX || e.buttons !== 1) return;
-          
+
           const deltaX = e.clientX - touchStartX;
           const deltaY = e.clientY - touchStartY;
 
           // 判断是否为水平滑动
           if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
             isDragging = true;
-            
+
             // 只允许向左滑动
             if (deltaX < 0) {
               const translateX = Math.max(deltaX, -swipeState.deleteButtonWidth);
@@ -1682,9 +1748,9 @@
           }
         });
 
-        item.addEventListener("mouseup", function(e) {
+        item.addEventListener("mouseup", function (e) {
           if (!touchStartX) return;
-          
+
           const deltaX = e.clientX - touchStartX;
           const timeDelta = Date.now() - startTime;
 
@@ -1695,8 +1761,8 @@
               if (wordId) {
                 deleteWord(wordId);
               }
-            } else if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 || 
-                (Math.abs(deltaX) > 30 && timeDelta < 300)) {
+            } else if (Math.abs(deltaX) > swipeState.deleteButtonWidth / 2 ||
+              (Math.abs(deltaX) > 30 && timeDelta < 300)) {
               // 如果滑动超过一半或速度足够快，显示删除按钮
               item.style.transform = `translateX(-${swipeState.deleteButtonWidth}px)`;
               // 保持 swiping 类以显示删除按钮
@@ -1714,7 +1780,7 @@
           isDragging = false;
         });
 
-        item.addEventListener("mouseleave", function(e) {
+        item.addEventListener("mouseleave", function (e) {
           if (isDragging && touchStartX) {
             const deltaX = e.clientX - touchStartX;
             if (deltaX < 0) {
@@ -1744,7 +1810,7 @@
 
       // 绑定删除按钮点击事件
       myWordsList.querySelectorAll(".my-word-delete-btn").forEach(btn => {
-        btn.addEventListener("click", function(e) {
+        btn.addEventListener("click", function (e) {
           e.stopPropagation();
           const wordId = this.getAttribute("data-word-id");
           deleteWord(wordId);
@@ -1752,7 +1818,7 @@
       });
 
       // 点击其他地方时关闭已打开的删除按钮
-      document.addEventListener("click", function(e) {
+      document.addEventListener("click", function (e) {
         if (!e.target.closest(".my-word-item-wrapper")) {
           myWordsList.querySelectorAll(".my-word-item").forEach(item => {
             item.style.transform = "translateX(0)";
@@ -1778,10 +1844,10 @@
         wrapper.style.transition = "transform 0.3s ease-out, opacity 0.3s ease-out";
         wrapper.style.transform = "translateX(-100%)";
         wrapper.style.opacity = "0";
-        
-        setTimeout(function() {
+
+        setTimeout(function () {
           wrapper.remove();
-          
+
           // 检查是否还有单词，如果没有则显示空状态
           if (myWordsList.querySelectorAll(".my-word-item-wrapper").length === 0) {
             myWordsList.innerHTML = '<div class="my-words-empty">No words in this language pair.</div>';
@@ -1801,9 +1867,9 @@
       myWordsTabs.innerHTML = "";
 
       const userId = window.instantDBService.getOrCreateUserId();
-      window.instantDBService.getAllUserWords(userId).then(function(words) {
+      window.instantDBService.getAllUserWords(userId).then(function (words) {
         myWordsLoading.style.display = "none";
-        
+
         if (!words || words.length === 0) {
           myWordsList.innerHTML = '<div class="my-words-empty">No words found. Play games to collect words!</div>';
           myWordsTabs.innerHTML = "";
@@ -1830,7 +1896,7 @@
 
         // Extract unique language pairs
         const languagePairs = new Set();
-        uniqueWords.forEach(function(word) {
+        uniqueWords.forEach(function (word) {
           const wordLearningLang = word.learningLang || "日本語";
           const wordBaseLang = word.baseLang || "English";
           const pair = normalizeLanguagePair(wordLearningLang, wordBaseLang);
@@ -1853,25 +1919,25 @@
         currentSelectedTab = defaultTab;
 
         // Render tabs
-        myWordsTabs.innerHTML = sortedPairs.map(function(pair) {
+        myWordsTabs.innerHTML = sortedPairs.map(function (pair) {
           const isActive = pair === currentSelectedTab ? "active" : "";
-          return '<button class="my-words-tab ' + isActive + '" data-tab="' + escapeAttribute(pair) + '">' + 
-                 escapeHtml(pair) + '</button>';
+          return '<button class="my-words-tab ' + isActive + '" data-tab="' + escapeAttribute(pair) + '">' +
+            escapeHtml(pair) + '</button>';
         }).join("");
 
         // Bind tab click events
         myWordsTabs.querySelectorAll(".my-words-tab").forEach(tab => {
-          tab.addEventListener("click", function() {
+          tab.addEventListener("click", function () {
             const tabPair = this.getAttribute("data-tab");
             currentSelectedTab = tabPair;
-            
+
             // Update active state
             myWordsTabs.querySelectorAll(".my-words-tab").forEach(t => t.classList.remove("active"));
             this.classList.add("active");
-            
+
             // Save selected tab
             localStorage.setItem('fishwordlingo_selected_tab', tabPair);
-            
+
             // Re-render word list
             renderWordsList(uniqueWords, tabPair);
           });
@@ -1879,7 +1945,7 @@
 
         // Render initial word list
         renderWordsList(uniqueWords, currentSelectedTab);
-      }).catch(function(error) {
+      }).catch(function (error) {
         console.warn("[myWords] Failed to load words", error);
         myWordsLoading.textContent = "Failed to load words. Please try again.";
       });
@@ -1906,7 +1972,7 @@
     }
 
     // 按 ESC 键关闭弹窗
-    document.addEventListener("keydown", function(e) {
+    document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && myWordsModal && !myWordsModal.classList.contains("is-hidden")) {
         hideMyWordsModal();
       }
@@ -1954,7 +2020,7 @@
     easierModeBtn.onclick = () => {
       // 解锁音频上下文，确保下一局游戏发音功能可用
       unlockSpeech();
-      
+
       // Determine lower difficulty level
       let lowerLevel = null;
       if (latestLevelString === "Advanced") {
@@ -1962,7 +2028,7 @@
       } else if (latestLevelString === "Intermediate") {
         lowerLevel = "Beginner";
       }
-      
+
       // Save lower level to localStorage
       if (lowerLevel) {
         try {
@@ -1971,7 +2037,7 @@
           console.warn('[easierMode] Failed to save level to localStorage', e);
         }
       }
-      
+
       // Start new game with lower difficulty
       hideAll();
       showBlock("game-wrapper");
@@ -2010,7 +2076,7 @@
         // Render Found Words using learning and base languages
         const listContainer = document.getElementById("found-words-list");
         if (foundWords.length > 0) {
-          listContainer.innerHTML = foundWords.map(function(w) {
+          listContainer.innerHTML = foundWords.map(function (w) {
             // Use getWordText to get text in the correct languages
             // Fallback to furigana/english for backward compatibility
             var learningText = getWordText(w, learningLang);
@@ -2055,7 +2121,7 @@
         if (window.instantDBService) {
           const userId = window.instantDBService.getOrCreateUserId();
           // Add language information to each word for storage
-          const wordsWithLang = foundWords.map(function(w) {
+          const wordsWithLang = foundWords.map(function (w) {
             return Object.assign({}, w, {
               learningLang: learningLang,
               baseLang: baseLang
@@ -2072,7 +2138,7 @@
 
         triggerFireworks();
       }
-      
+
       // Handle music toggle request from game
       if (data.action === "toggleBgm") {
         toggleBgm();
@@ -2086,7 +2152,7 @@
           }, "*");
         }
       }
-      
+
       // Handle music state request from game
       if (data.action === "getMusicState") {
         const gameFrame = document.getElementById("game-frame");
@@ -2098,12 +2164,18 @@
           }, "*");
         }
       }
+      // Handle ad support request from game
+      if (data.action === "getAdSupport") {
+        const gameFrame = document.getElementById("game-frame");
+        if (gameFrame && gameFrame.contentWindow) {
+          gameFrame.contentWindow.postMessage({
+            action: "adSupportUpdate",
+            supported: adSupportInfo
+          }, "*");
+        }
+      }
     });
 
-    /* 默认预加载一次广告以加快首个展示 */
-    if (window.advertisingManager && typeof window.advertisingManager.preload === "function") {
-      window.advertisingManager.preload({ sceneType: "reward" });
-    }
 
     function updateMusicButtons() {
       if (!bgm) return;

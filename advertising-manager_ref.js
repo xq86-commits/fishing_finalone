@@ -6,7 +6,7 @@
     const REQUEST_TIMEOUT_MS = 45000;
     const DEFAULT_PARAMS = {
         source: 'wordle_h5',
-        sceneType: 'reward'
+        sceneType: 'words-fishing-watch-advertising'
     };
 
     let listeners = [];
@@ -112,21 +112,21 @@
     }
 
     function invokeNativeAdvertising(params) {
-        if (callIOSHandler('callNativeAdvertising', params)) {
-            return true;
-        }
-        if (callAndroidHandler('callNativeAdvertising', params)) {
-            return true;
+        const { isAndroidPhone, isIOSPhone } = window.HTInteraction || {};
+        if (isIOSPhone) {
+            if (callIOSHandler('callNativeAdvertising', params)) return true;
+        } else if (isAndroidPhone) {
+            if (callAndroidHandler('callNativeAdvertising', params)) return true;
         }
         return false;
     }
 
     function invokeNativePreload(params) {
-        if (callIOSHandler('callNativeAdvertisingPreload', params)) {
-            return true;
-        }
-        if (callAndroidHandler('callNativeAdvertisingPreload', params)) {
-            return true;
+        const { isAndroidPhone, isIOSPhone } = window.HTInteraction || {};
+        if (isIOSPhone) {
+            if (callIOSHandler('callNativeAdvertisingPreload', params)) return true;
+        } else if (isAndroidPhone) {
+            if (callAndroidHandler('callNativeAdvertisingPreload', params)) return true;
         }
         return false;
     }
@@ -179,7 +179,10 @@
             const mergedParams = {
                 ...DEFAULT_PARAMS,
                 ...params,
-                sceneType: normalizeSceneType(params.sceneType)
+                sceneType: normalizeSceneType(params.sceneType),
+                advertisingConfig: params.advertisingConfig !== undefined
+                    ? params.advertisingConfig
+                    : this.advertisingConfig
             };
             if (!invokeNativePreload(mergedParams)) {
                 log('Preload skipped (bridge unavailable)');
@@ -213,10 +216,17 @@
             const requestId = generateRequestId();
             const params = {
                 ...DEFAULT_PARAMS,
+                advertisingConfig: this.advertisingConfig,
                 ...options,
                 sceneType,
                 requestId
             };
+
+            // 如果 options 中没传，则使用缓存的
+            if (options.advertisingConfig === undefined) {
+                params.advertisingConfig = this.advertisingConfig;
+            }
+
 
             const invoked = invokeNativeAdvertising(params);
             if (!invoked) {
@@ -263,8 +273,8 @@
             const normalized = { ...payload };
             normalized.sceneType = normalizeSceneType(
                 payload.sceneType
-                    || (pendingRequest && pendingRequest.sceneType)
-                    || DEFAULT_PARAMS.sceneType
+                || (pendingRequest && pendingRequest.sceneType)
+                || DEFAULT_PARAMS.sceneType
             );
             normalized.requestId = payload.requestId || (pendingRequest && pendingRequest.requestId) || '';
             normalized.isGainReward = Number(payload.isGainReward) === 1 ? 1 : 0;

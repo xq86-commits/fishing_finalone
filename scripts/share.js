@@ -1,7 +1,9 @@
 (function initGameShareBridge() {
-  var SHARE_URL = "https://ali-global-statics.hellotalk8.com/ai-business/prod/fishwordlingo/index.html?HS=1&HA=1&FC=1";
-  var SHARE_ICON = "https://ali-global-statics.hellotalk8.com/ai-business/prod/fishwordlingo/assets/icon.png";
-  var MOMENT_CARD_IMAGE = "https://ali-global-statics.hellotalk8.com/ai-business/prod/fishwordlingo/assets/shareimg.png";
+  const { isAndroidPhone, isIOSPhone } = window.HTInteraction || {};
+  var currentOrigin = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, "");
+  var SHARE_URL = currentOrigin + "/index.html?HS=1&HA=1&FC=1";
+  var SHARE_ICON = currentOrigin + "/assets/icon.png";
+  var MOMENT_CARD_IMAGE = currentOrigin + "/assets/shareimg.png";
   var MOMENT_CARD_WIDTH = 1024;
   var MOMENT_CARD_HEIGHT = 1536;
   var LEARN_CARD_HEIGHT = 655;

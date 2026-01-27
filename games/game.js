@@ -71,12 +71,12 @@ function cleanText(value, fallback = "") {
 // 字段映射函数：将压缩格式转换为标准格式
 function normalizeVocabItem(item) {
   if (!item) return null;
-  
+
   // 如果已经是标准格式（有furigana字段），直接返回
   if (item.furigana !== undefined) {
     return item;
   }
-  
+
   // 如果是压缩格式（有f字段），转换为标准格式
   if (item.f !== undefined) {
     return {
@@ -89,7 +89,7 @@ function normalizeVocabItem(item) {
       french: item.fr || ''
     };
   }
-  
+
   // 兼容其他可能的格式
   return item;
 }
@@ -232,6 +232,7 @@ let state = {
   activeVocab: vocabCache[DEFAULT_LEVEL] || vocabCache["Beginner"],
   levelRects: [],
   isLoadingVocab: false,
+  adSupport: null,
 
   currentWord: null,
   targetChars: [], // ['あ', 'か', 'な']
@@ -246,6 +247,7 @@ let state = {
 
   imagesLoaded: 0,
   totalImages: 0,
+  gameStarted: false,
 
   // Note Scroll State
   noteScrollY: 0,
@@ -706,22 +708,22 @@ function loadSavedGameSettings() {
     const savedLearningLang = localStorage.getItem('fishwordlingo_last_learningLang');
     const savedBaseLang = localStorage.getItem('fishwordlingo_last_baseLang');
     const savedLevel = localStorage.getItem('fishwordlingo_last_level');
-    
+
     // Validate and apply learning language
     if (savedLearningLang && LANGUAGE_OPTIONS.includes(savedLearningLang)) {
       state.selectedLearningLang = savedLearningLang;
     }
-    
+
     // Validate and apply base language
     if (savedBaseLang && LANGUAGE_OPTIONS.includes(savedBaseLang)) {
       state.selectedBaseLang = savedBaseLang;
     }
-    
+
     // Validate and apply level
     if (savedLevel && LEVEL_OPTIONS.includes(savedLevel)) {
       state.selectedLevel = savedLevel;
     }
-    
+
     // Ensure learning and base languages are different
     if (state.selectedLearningLang === state.selectedBaseLang) {
       // If they're the same, reset base language to a different one
@@ -765,7 +767,13 @@ function handleAdEvent(payload) {
   if (!state.waitingHintAd) return;
   state.waitingHintAd = false;
 
-  if (payload && payload.isGainReward === 1) {
+  let parsedPayload;
+  try {
+    parsedPayload = typeof payload === 'string' ? JSON.parse(payload || '{}') : payload;
+  } catch (e) {
+    parsedPayload = {};
+  }
+  if (parsedPayload && parsedPayload.isGainReward === 1) {
     state.hintsLeft = (state.hintsLeft || 0) + 1;
     showToast("Hint +1");
     if (state.hintButtonRect) {
@@ -784,17 +792,18 @@ function handleAdEvent(payload) {
       });
     }
   } else {
-    const errorMsg = payload && payload.errorCode === "DAILY_LIMIT_REACHED"
+    const errorMsg = parsedPayload && (parsedPayload.viewsNumber === parsedPayload.maximumViews)
       ? "Ad limit reached today"
       : "Ad not completed";
     showToast(errorMsg);
   }
 }
 
-function requestHintAd() {
+async function requestHintAd() {
   attachHintAdListener();
 
   const adManager = getAdManager();
+
   if (!adManager || typeof adManager.show !== "function") {
     showToast("Ad unavailable");
     return;
@@ -804,10 +813,18 @@ function requestHintAd() {
     showToast("Ad loading...");
     return;
   }
-
+  // 检查客户端版本是否支持调用广告
+  if (state.adSupport === null) {
+    showToast("Ad loading...");
+    return;
+  }
+  if (state.adSupport === false) {
+    showToast("Please upgrade to the latest version");
+    return;
+  }
   state.waitingHintAd = true;
   const started = adManager.show({
-    sceneType: "reward",
+    sceneType: "words-fishing-watch-advertising",
     slot: "hint",
     position: "hint_button"
   });
@@ -851,7 +868,13 @@ async function loadVocabForLevel(level = DEFAULT_LEVEL) {
     if (!file) continue;
 
     try {
-      const res = await fetch(file);
+      // Create a timeout controller for the fetch request
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 seconds timeout
+
+      const res = await fetch(file, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
       const text = await res.text();
       // Some source files may contain NaN; replace with null before parsing
       const safeText = text.replace(/\bNaN\b/g, "null");
@@ -906,7 +929,7 @@ function getWordText(wordItem, langName, strictValidation = true) {
   // Clean up: take first part before delimiters
   text = text.split(/[,;\/]/)[0];
   text = text.trim();
-  
+
   // 验证文本是否真的包含指定语言的字符（防止使用回退值）
   const charSet = CHAR_SETS[langName] || "";
   if (charSet && text.length > 0) {
@@ -923,19 +946,19 @@ function getWordText(wordItem, langName, strictValidation = true) {
       // 对于基础语言，直接返回文本，不进行严格的字符集验证
       return text;
     }
-    
+
     // 学习语言使用严格验证（现有逻辑）
     // 检查文本中的字符是否主要属于指定语言字符集
     let validCharCount = 0;
     let totalCharCount = 0;
-    
+
     text.split('').forEach(char => {
       // 跳过空格和标点符号
       if (/[\s\.,;:!?\-\(\)\[\]{}]/.test(char)) {
         return;
       }
       totalCharCount++;
-      
+
       // 对于大小写敏感的语言（如英语），检查小写和大写
       if (langName === "English" || langName === "Español" || langName === "Français") {
         if (charSet.includes(char.toLowerCase()) || charSet.includes(char.toUpperCase())) {
@@ -948,14 +971,14 @@ function getWordText(wordItem, langName, strictValidation = true) {
         }
       }
     });
-    
+
     // 如果文本中大部分字符都不属于指定语言字符集，说明这是回退值，返回空字符串
     // 要求至少50%的字符属于指定语言字符集
     if (totalCharCount > 0 && validCharCount / totalCharCount < 0.5) {
       return "";
     }
   }
-  
+
   return text;
 }
 
@@ -1001,6 +1024,25 @@ function init() {
   // Load Images
   const imagesToLoad = [ASSETS.bg, ASSETS.people, ASSETS.settings, ASSETS.note, ASSETS.hint, ASSETS.musicOn, ASSETS.musicOff, ...ASSETS.fish];
   state.totalImages = imagesToLoad.length;
+  let processedImages = 0;
+
+  const onImageProcessed = () => {
+    processedImages++;
+    if (processedImages === state.totalImages) {
+      if (state.gameStarted) return; // Prevent double start
+      state.gameStarted = true;
+      startGame();
+    }
+  };
+
+  // Fail-safe: 5 seconds timeout to start game even if resources are stuck
+  const loadTimeout = setTimeout(() => {
+    if (!state.gameStarted) {
+      console.warn("Resource loading timed out, starting game anyway...");
+      state.gameStarted = true;
+      startGame();
+    }
+  }, 5000);
 
   imagesToLoad.forEach(asset => {
     const img = new Image();
@@ -1008,9 +1050,11 @@ function init() {
     img.onload = () => {
       asset.img = img;
       state.imagesLoaded++;
-      if (state.imagesLoaded === state.totalImages) {
-        startGame();
-      }
+      onImageProcessed();
+    };
+    img.onerror = () => {
+      console.error(`Failed to load image: ${asset.src}`);
+      onImageProcessed();
     };
   });
 
@@ -1037,18 +1081,25 @@ function init() {
     if (e.data && e.data.action === 'unlockSpeech') {
       unlockSpeech();
     }
+    // Handle ad support info from parent
+    if (e.data && e.data.action === 'adSupportUpdate') {
+      state.adSupport = !!e.data.supported;
+    }
   });
-  
+
   // Request initial music state from parent
   window.parent.postMessage({
     action: "getMusicState"
+  }, "*");
+  window.parent.postMessage({
+    action: "getAdSupport"
   }, "*");
 }
 
 async function startGame() {
   // Load saved game settings from localStorage
   loadSavedGameSettings();
-  
+
   await ensureActiveVocab(state.selectedLevel || DEFAULT_LEVEL);
 
   state.score = 0;
@@ -1126,7 +1177,7 @@ function nextWord() {
 function pickNewWordAndSpawn() {
   // Stop countdown sound when starting a new word
   stopCountdownSound();
-  
+
   const vocabList = getActiveVocabList();
   if (!vocabList || !vocabList.length) return;
 
@@ -1213,7 +1264,7 @@ function spawnFishes(fromSides = false) {
         // 对于其他语言，直接检查
         isValidChar = charSet.includes(char);
       }
-      
+
       if (isValidChar) {
         neededChars.push(char);
       }
@@ -1460,7 +1511,7 @@ function endGame(reason) {
 
   setTimeout(() => {
     state.gameOver = true;
-    
+
     // Save game settings to localStorage for next game
     try {
       localStorage.setItem('fishwordlingo_last_learningLang', state.selectedLearningLang);
@@ -1469,7 +1520,7 @@ function endGame(reason) {
     } catch (e) {
       console.warn('[game] Failed to save settings to localStorage', e);
     }
-    
+
     // Send message to parent
     window.parent.postMessage({
       action: "levelComplete",
@@ -1531,10 +1582,10 @@ function draw() {
       const img = asset.img;
       const imgAspect = img.naturalWidth / img.naturalHeight; // 图片原始宽高比
       const targetAspect = fish.width / fish.height; // 目标宽高比
-      
+
       let drawWidth = fish.width;
       let drawHeight = fish.height;
-      
+
       // 如果图片宽高比与目标不同，保持图片比例，以较大的尺寸为准
       if (imgAspect > targetAspect) {
         // 图片更宽，以宽度为准
@@ -1543,7 +1594,7 @@ function draw() {
         // 图片更高，以高度为准
         drawWidth = fish.height * imgAspect;
       }
-      
+
       ctx.drawImage(img, -drawWidth / 2, -drawHeight / 2, drawWidth, drawHeight);
 
       // Draw Bubble and Char
@@ -1665,7 +1716,7 @@ function drawUI() {
   ctx.textAlign = 'left';
   let timeX = 20;
   let timeY = 76 + uiOffsetY; // shifted further down by 6px
-  
+
   if (state.timeShakeStart !== null) {
     const shakeElapsed = Date.now() - state.timeShakeStart;
     if (shakeElapsed < 1000) {
@@ -1673,10 +1724,10 @@ function drawUI() {
       const shakeProgress = shakeElapsed / 1000;
       const shakeFrequency = 20; // High frequency for rapid shaking
       const shakeAmount = 5; // ±5 pixels
-      
+
       const offsetX = Math.sin(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
       const offsetY = Math.cos(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
-      
+
       timeX += offsetX;
       timeY += offsetY;
     } else {
@@ -1684,7 +1735,7 @@ function drawUI() {
       state.timeShakeStart = null;
     }
   }
-  
+
   ctx.fillText(`Time: ${Math.ceil(state.timeLeft)}s`, timeX, timeY);
 
   // Score shifted down by one slot below time
@@ -1786,7 +1837,7 @@ function drawUI() {
       const centerX = rect.x + rect.width / 2;
       const centerY = rect.y + rect.height / 2;
       const waveTime = state.musicWaveAnim.time;
-      
+
       // Draw 3 sound waves with different delays
       const waves = [
         { delay: 0, radius: 15 },
@@ -1798,12 +1849,12 @@ function drawUI() {
         const animTime = (waveTime + wave.delay) % 1.8;
         const opacity = 0.6 + Math.sin(animTime * Math.PI * 2 / 1.8) * 0.3;
         const scale = 0.8 + animTime * 0.2;
-        
+
         ctx.save();
         ctx.strokeStyle = `rgba(242, 251, 255, ${opacity})`;
         ctx.lineWidth = 2;
         ctx.lineCap = 'round';
-        
+
         // Draw arc (sound wave)
         ctx.beginPath();
         ctx.arc(centerX, centerY, wave.radius * scale, 0, Math.PI * 2);
@@ -2075,37 +2126,37 @@ function drawNoteOverlay() {
       const speakerGap = 12;
       const translationGap = 12;
       const minTranslationWidth = 60; // Minimum space for translation
-      
+
       // Available width for content
       const availableWidth = itemW - padding * 2;
-      
+
       // Set font for learning text
       ctx.fillStyle = '#2c3e50';
       ctx.font = 'bold 20px Arial';
       ctx.textAlign = 'left';
-      
+
       // Measure translation text first to calculate space needed
       ctx.font = '16px Arial';
       const translationText = `- ${translation}`;
       const translationWidth = ctx.measureText(translationText).width;
-      
+
       // Calculate space needed for speaker and translation
       const fixedElementsWidth = speakerSize + speakerGap + translationWidth + translationGap;
-      
+
       // Available width for learning text
       const maxLearningWidth = Math.max(availableWidth - fixedElementsWidth, availableWidth * 0.4);
-      
+
       // Check if learning text fits, if not, truncate it
       ctx.font = 'bold 20px Arial';
       let displayLearningText = learningText;
       let learningWidth = ctx.measureText(displayLearningText).width;
-      
+
       if (learningWidth > maxLearningWidth) {
         // Truncate text with ellipsis
         const ellipsis = '...';
         const ellipsisWidth = ctx.measureText(ellipsis).width;
         let truncatedWidth = maxLearningWidth - ellipsisWidth;
-        
+
         // Binary search for the right truncation point
         let low = 0;
         let high = learningText.length;
@@ -2189,13 +2240,13 @@ function drawNoteOverlay() {
       let finalTranslationWidth = ctx.measureText(displayTranslation).width;
       const maxTranslationX = itemX + itemW - padding;
       const maxTranslationWidth = maxTranslationX - startTransX;
-      
+
       if (finalTranslationWidth > maxTranslationWidth && maxTranslationWidth > 0) {
         // Truncate translation with ellipsis
         const ellipsis = '...';
         const ellipsisWidth = ctx.measureText(ellipsis).width;
         let truncatedWidth = maxTranslationWidth - ellipsisWidth;
-        
+
         // Binary search for the right truncation point
         let low = 0;
         let high = translation.length;
@@ -2222,7 +2273,7 @@ function drawNoteOverlay() {
 // Helper function to draw enhanced button with gradient, highlight, and shadow
 function drawEnhancedButton(ctx, x, y, width, height, radius, selected, text) {
   ctx.save();
-  
+
   if (selected) {
     // Selected button: gradient from medium blue to lighter blue
     const grad = ctx.createLinearGradient(x, y, x, y + height);
@@ -2230,13 +2281,13 @@ function drawEnhancedButton(ctx, x, y, width, height, radius, selected, text) {
     grad.addColorStop(0.5, '#4A9BCA');
     grad.addColorStop(1, '#3A9BC8');
     ctx.fillStyle = grad;
-    
+
     // Shadow for depth (lighter)
     ctx.shadowColor = 'rgba(58, 155, 200, 0.3)';
     ctx.shadowBlur = 4;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 2;
-    
+
     // Draw button
     if (ctx.roundRect) {
       ctx.beginPath();
@@ -2245,12 +2296,12 @@ function drawEnhancedButton(ctx, x, y, width, height, radius, selected, text) {
     } else {
       ctx.fillRect(x, y, width, height);
     }
-    
+
     // Reset shadow
     ctx.shadowColor = 'transparent';
     ctx.shadowBlur = 0;
     ctx.shadowOffsetY = 0;
-    
+
     // Top highlight
     const highlightGrad = ctx.createLinearGradient(x, y, x, y + height * 0.3);
     highlightGrad.addColorStop(0, 'rgba(255, 255, 255, 0.25)');
@@ -2263,7 +2314,7 @@ function drawEnhancedButton(ctx, x, y, width, height, radius, selected, text) {
     } else {
       ctx.fillRect(x, y, width, height * 0.3);
     }
-    
+
     // Border
     ctx.strokeStyle = '#3A9BC8';
     ctx.lineWidth = 1;
@@ -2274,7 +2325,7 @@ function drawEnhancedButton(ctx, x, y, width, height, radius, selected, text) {
     } else {
       ctx.strokeRect(x, y, width, height);
     }
-    
+
     // Text
     ctx.fillStyle = '#FFFFFF';
   } else {
@@ -2283,7 +2334,7 @@ function drawEnhancedButton(ctx, x, y, width, height, radius, selected, text) {
     grad.addColorStop(0, '#FFFFFF');
     grad.addColorStop(1, '#E8F4FF');
     ctx.fillStyle = grad;
-    
+
     // Draw button
     if (ctx.roundRect) {
       ctx.beginPath();
@@ -2292,7 +2343,7 @@ function drawEnhancedButton(ctx, x, y, width, height, radius, selected, text) {
     } else {
       ctx.fillRect(x, y, width, height);
     }
-    
+
     // Border
     ctx.strokeStyle = '#87CEEB';
     ctx.lineWidth = 1.5;
@@ -2303,29 +2354,29 @@ function drawEnhancedButton(ctx, x, y, width, height, radius, selected, text) {
     } else {
       ctx.strokeRect(x, y, width, height);
     }
-    
+
     // Text
     ctx.fillStyle = '#1E3A5F';
   }
-  
+
   ctx.restore();
 }
 
 // Helper function to draw bubble with highlight
 function drawBubble(ctx, x, y, size) {
   ctx.save();
-  
+
   // Main bubble
   ctx.beginPath();
   ctx.arc(x, y, size, 0, Math.PI * 2);
   ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
   ctx.fill();
-  
+
   // Border
   ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
   ctx.lineWidth = 1.5;
   ctx.stroke();
-  
+
   // Highlight (top-left)
   const highlightSize = size * 0.4;
   const highlightX = x - size * 0.3;
@@ -2334,7 +2385,7 @@ function drawBubble(ctx, x, y, size) {
   ctx.arc(highlightX, highlightY, highlightSize, 0, Math.PI * 2);
   ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
   ctx.fill();
-  
+
   ctx.restore();
 }
 
@@ -2344,7 +2395,7 @@ function drawWaveDecoration(ctx, x, y, width, amplitude, frequency) {
   ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
   ctx.lineWidth = 2;
   ctx.lineCap = 'round';
-  
+
   ctx.beginPath();
   for (let i = 0; i <= width; i += 2) {
     const waveY = y + amplitude * Math.sin((i / width) * Math.PI * frequency);
@@ -2355,7 +2406,7 @@ function drawWaveDecoration(ctx, x, y, width, amplitude, frequency) {
     }
   }
   ctx.stroke();
-  
+
   ctx.restore();
 }
 
@@ -2364,15 +2415,15 @@ function drawStarfish(ctx, x, y, size) {
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate(-Math.PI / 2); // Rotate so top arm points up
-  
+
   ctx.fillStyle = 'rgba(255, 200, 150, 0.6)';
   ctx.strokeStyle = 'rgba(255, 180, 120, 0.8)';
   ctx.lineWidth = 1;
-  
+
   const arms = 5;
   const outerRadius = size;
   const innerRadius = size * 0.4;
-  
+
   ctx.beginPath();
   for (let i = 0; i < arms * 2; i++) {
     const angle = (i * Math.PI) / arms;
@@ -2388,7 +2439,7 @@ function drawStarfish(ctx, x, y, size) {
   ctx.closePath();
   ctx.fill();
   ctx.stroke();
-  
+
   ctx.restore();
 }
 
@@ -2396,18 +2447,18 @@ function drawStarfish(ctx, x, y, size) {
 function drawShell(ctx, x, y, size) {
   ctx.save();
   ctx.translate(x, y);
-  
+
   // Shell body (semi-circle)
   ctx.fillStyle = 'rgba(255, 220, 180, 0.7)';
   ctx.strokeStyle = 'rgba(255, 200, 150, 0.9)';
   ctx.lineWidth = 1;
-  
+
   ctx.beginPath();
   ctx.arc(0, 0, size, 0, Math.PI, false);
   ctx.closePath();
   ctx.fill();
   ctx.stroke();
-  
+
   // Shell lines
   ctx.strokeStyle = 'rgba(255, 180, 120, 0.6)';
   ctx.lineWidth = 0.5;
@@ -2416,20 +2467,20 @@ function drawShell(ctx, x, y, size) {
     ctx.arc(0, 0, size * (i / 4), 0, Math.PI, false);
     ctx.stroke();
   }
-  
+
   ctx.restore();
 }
 
 function drawLanguageOverlay() {
   if (!state.languageOpen) {
-  state.langPanelRect = null;
-  state.langCloseRect = null;
-  state.langConfirmRect = null;
-  state.languageLearningRects = [];
-  state.languageBaseRects = [];
-  state.levelRects = [];
-  return;
-}
+    state.langPanelRect = null;
+    state.langCloseRect = null;
+    state.langConfirmRect = null;
+    state.languageLearningRects = [];
+    state.languageBaseRects = [];
+    state.levelRects = [];
+    return;
+  }
 
   const logicalWidth = canvas.width / dpr;
   const logicalHeight = canvas.height / dpr;
@@ -2441,11 +2492,11 @@ function drawLanguageOverlay() {
   const chipHeight = 36;
   const chipGapY = 10;
   const chipGapX = 10;
-  
+
   // Dynamic language options calculation
   const learningOptions = LANGUAGE_OPTIONS; // All languages can be selected as learning language
   const baseOptions = LANGUAGE_OPTIONS; // Show all 6 languages
-  
+
   const learningRows = Math.ceil(learningOptions.length / 2);
   const learningSectionHeight = learningRows * (chipHeight + chipGapY) + 30;
   const baseRows = Math.ceil(baseOptions.length / 2);
@@ -2493,11 +2544,11 @@ function drawLanguageOverlay() {
     { x: x + panelWidth - 70, y: y + 280, size: 6 },
     { x: x + 25, y: y + 320, size: 9 }
   ];
-  
+
   bubblePositions.forEach(bubble => {
     drawBubble(ctx, bubble.x, bubble.y, bubble.size);
   });
-  
+
   // Ocean decorative elements (starfish and shells)
   drawStarfish(ctx, x + panelWidth - 20, y + panelHeight - 30, 8);
   drawShell(ctx, x + 12, y + panelHeight - 20, 6);
@@ -2512,7 +2563,7 @@ function drawLanguageOverlay() {
   headerGrad.addColorStop(1, '#3A9BC8');
   ctx.fillStyle = headerGrad;
   ctx.fillRect(x, y, panelWidth, headerHeight);
-  
+
   // Wave decoration at bottom of header
   drawWaveDecoration(ctx, x + 10, y + headerHeight - 8, panelWidth - 20, 3, 3);
 
@@ -2612,7 +2663,7 @@ function drawLanguageOverlay() {
 
     // Draw enhanced button
     drawEnhancedButton(ctx, chipX, chipY, levelChipWidth, chipHeight, 8, selected, level);
-    
+
     // Draw text
     ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
@@ -2652,7 +2703,7 @@ function drawLanguageOverlay() {
 
     // Draw enhanced button
     drawEnhancedButton(ctx, chipX, chipY, chipWidth, chipHeight, 8, selected, lang);
-    
+
     // Draw text
     ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
@@ -2692,7 +2743,7 @@ function drawLanguageOverlay() {
 
     // Draw enhanced button
     drawEnhancedButton(ctx, chipX, chipY, chipWidth, chipHeight, 8, selected, lang);
-    
+
     // Draw text
     ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
@@ -2715,20 +2766,20 @@ function drawLanguageOverlay() {
 
   // Enhanced Apply button with gradient, highlight, and shadow
   ctx.save();
-  
+
   // Shadow (lighter)
   ctx.shadowColor = 'rgba(58, 155, 200, 0.4)';
   ctx.shadowBlur = 6;
   ctx.shadowOffsetX = 0;
   ctx.shadowOffsetY = 3;
-  
+
   // Gradient background (lighter)
   const applyGrad = ctx.createLinearGradient(confirmRect.x, confirmRect.y, confirmRect.x, confirmRect.y + confirmRect.height);
   applyGrad.addColorStop(0, '#5FB3D3');
   applyGrad.addColorStop(0.5, '#4A9BCA');
   applyGrad.addColorStop(1, '#3A9BC8');
   ctx.fillStyle = applyGrad;
-  
+
   if (ctx.roundRect) {
     ctx.beginPath();
     ctx.roundRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height, 22);
@@ -2736,12 +2787,12 @@ function drawLanguageOverlay() {
   } else {
     ctx.fillRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height);
   }
-  
+
   // Reset shadow
   ctx.shadowColor = 'transparent';
   ctx.shadowBlur = 0;
   ctx.shadowOffsetY = 0;
-  
+
   // Top highlight
   const highlightGrad = ctx.createLinearGradient(confirmRect.x, confirmRect.y, confirmRect.x, confirmRect.y + confirmRect.height * 0.4);
   highlightGrad.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
@@ -2754,7 +2805,7 @@ function drawLanguageOverlay() {
   } else {
     ctx.fillRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height * 0.4);
   }
-  
+
   // Border with highlight
   ctx.strokeStyle = '#3A9BC8';
   ctx.lineWidth = 1.5;
@@ -2765,14 +2816,14 @@ function drawLanguageOverlay() {
   } else {
     ctx.strokeRect(confirmRect.x, confirmRect.y, confirmRect.width, confirmRect.height);
   }
-  
+
   // Text
   ctx.fillStyle = '#FFFFFF';
   ctx.font = 'bold 18px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('Apply', confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height / 2);
-  
+
   ctx.restore();
 
   if (state.isLoadingVocab) {
@@ -2805,11 +2856,11 @@ function completeCurrentWord() {
     }
   };
   nextWordTimer = setTimeout(triggerNextWord, 2500); // 兜底超时
-  
+
   // 播放单词发音（使用学习语言）
   // 使用统一的 speak() 函数，确保在用户交互上下文中调用
   const wordText = getWordText(state.currentWord, state.selectedLearningLang);
-  
+
   if (wordText) {
     // 使用 speak() 函数，它会在用户交互上下文中调用并处理所有错误
     // 为了等待发音完成后再进入下一个单词，我们需要监听发音完成事件
@@ -2817,10 +2868,10 @@ function completeCurrentWord() {
     if ('speechSynthesis' in window) {
       // 确保音频上下文已解锁
       unlockSpeech();
-      
+
       // 取消之前的发音
       window.speechSynthesis.cancel();
-      
+
       // 关键修复：Android Chrome 在 cancel() 后需要延迟才能正常 speak()
       setTimeout(() => {
         // 创建 utterance 并设置回调
@@ -2828,23 +2879,23 @@ function completeCurrentWord() {
         const mapItem = LANG_MAP[state.selectedLearningLang] || LANG_MAP["日本語"];
         utterance.lang = mapItem.locale;
         utterance.rate = 1.0;
-        
+
         // 选择匹配的语音
         if (voices.length === 0) loadVoices();
         const voice = voices.find(v => v.lang === utterance.lang || v.lang.startsWith(utterance.lang.split('-')[0]));
         if (voice) {
           utterance.voice = voice;
         }
-        
+
         // 等待发音完成后再进入下一个单词
         utterance.onend = triggerNextWord;
-        
+
         utterance.onerror = (e) => {
           // 如果发音出错，立即进入下一个单词（避免卡住）
           console.error('[speech] error in completeCurrentWord:', e.error, wordText);
           triggerNextWord();
         };
-        
+
         // 调用 speak
         try {
           window.speechSynthesis.speak(utterance);
@@ -2867,10 +2918,10 @@ function completeCurrentWord() {
 // Consolidated input handlers
 function handleInputStart(e) {
   if (state.tutorialActive) return;
-  
+
   // 在用户首次触摸屏幕时解锁音频上下文
   unlockSpeech();
-  
+
   const logicalWidth = canvas.width / dpr;
   const logicalHeight = canvas.height / dpr;
   const rect = canvas.getBoundingClientRect();
@@ -3333,9 +3384,9 @@ function speak(text, langName = "English") {
     // Keep reference to prevent Garbage Collection
     currentUtterance = utterance;
     utterance.onend = () => { currentUtterance = null; };
-    utterance.onerror = (e) => { 
+    utterance.onerror = (e) => {
       console.error('[speech] error:', e.error, text);
-      currentUtterance = null; 
+      currentUtterance = null;
     };
 
     window.speechSynthesis.speak(utterance);
@@ -3388,12 +3439,12 @@ function playTickSound() {
 
 function startCountdownSound() {
   if (state.countdownSoundPlaying) return;
-  
+
   state.countdownSoundPlaying = true;
-  
+
   // Play first tick immediately
   playTickSound();
-  
+
   // Then play every second
   state.countdownSoundInterval = setInterval(() => {
     if (!state.countdownSoundPlaying) {

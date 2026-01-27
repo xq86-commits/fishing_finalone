@@ -6,7 +6,7 @@
   var REQUEST_TIMEOUT_MS = 45000;
   var DEFAULT_PARAMS = {
     source: "mini_game_h5",
-    sceneType: "reward"
+    sceneType: "words-fishing-watch-advertising"
   };
 
   var listeners = [];
@@ -102,14 +102,22 @@
   }
 
   function invokeAdvertising(payload) {
-    if (callIOS("callNativeAdvertising", payload)) return true;
-    if (callAndroid("callNativeAdvertising", payload)) return true;
+    const { isAndroidPhone, isIOSPhone } = window.HTInteraction || {};
+    if (isIOSPhone) {
+      if (callIOS("callNativeAdvertising", payload)) return true;
+    } else if (isAndroidPhone) {
+      if (callAndroid("callNativeAdvertising", payload)) return true;
+    }
     return false;
   }
 
   function invokePreload(payload) {
-    if (callIOS("callNativeAdvertisingPreload", payload)) return true;
-    if (callAndroid("callNativeAdvertisingPreload", payload)) return true;
+    const { isAndroidPhone, isIOSPhone } = window.HTInteraction || {};
+    if (isIOSPhone) {
+      if (callIOS("callNativeAdvertisingPreload", payload)) return true;
+    } else if (isAndroidPhone) {
+      if (callAndroid("callNativeAdvertisingPreload", payload)) return true;
+    }
     return false;
   }
 
@@ -122,7 +130,7 @@
   }
 
   function notifyListeners(payload) {
-    listeners.forEach(function(listener) {
+    listeners.forEach(function (listener) {
       try {
         listener(payload);
       } catch (error) {
@@ -139,39 +147,42 @@
   }
 
   var manager = {
-    addListener: function(handler) {
+    addListener: function (handler) {
       if (typeof handler === "function" && listeners.indexOf(handler) === -1) {
         listeners.push(handler);
       }
     },
 
-    removeListener: function(handler) {
-      listeners = listeners.filter(function(fn) { return fn !== handler; });
+    removeListener: function (handler) {
+      listeners = listeners.filter(function (fn) { return fn !== handler; });
     },
 
-    getDailyLimit: function() {
+    getDailyLimit: function () {
       return DAILY_LIMIT;
     },
 
-    getWatchedCount: function() {
+    getWatchedCount: function () {
       return readCount();
     },
 
-    canWatchMore: function() {
+    canWatchMore: function () {
       return this.getWatchedCount() < this.getDailyLimit();
     },
 
-    preload: function(params) {
+    preload: function (params) {
       var merged = {
         source: DEFAULT_PARAMS.source,
-        sceneType: normalizeSceneType(params && params.sceneType)
+        sceneType: normalizeSceneType(params && params.sceneType),
+        advertisingConfig: (params && params.advertisingConfig) !== undefined
+          ? params.advertisingConfig
+          : this.advertisingConfig
       };
       if (!invokePreload(merged)) {
         log("preload skipped (no native bridge)");
       }
     },
 
-    show: function(options) {
+    show: function (options) {
       if (pendingRequest) {
         warn("ad request already pending");
         return false;
@@ -194,7 +205,8 @@
       var payload = {
         source: DEFAULT_PARAMS.source,
         sceneType: sceneType,
-        requestId: requestId
+        requestId: requestId,
+        advertisingConfig: this.advertisingConfig // 使用保存好的配置信息
       };
       if (options) {
         var key;
@@ -205,6 +217,10 @@
         }
         payload.sceneType = sceneType;
         payload.requestId = requestId;
+        // 如果 options 中没传，则使用缓存的
+        if (options.advertisingConfig === undefined) {
+          payload.advertisingConfig = this.advertisingConfig;
+        }
       }
 
       if (!invokeAdvertising(payload)) {
@@ -224,7 +240,7 @@
       pendingRequest = {
         requestId: requestId,
         sceneType: sceneType,
-        timeoutId: setTimeout(function() {
+        timeoutId: setTimeout(function () {
           warn("ad request timeout", requestId);
           clearPending();
           notifyListeners({
@@ -244,7 +260,7 @@
       return true;
     },
 
-    handleNativeCallback: function(payload) {
+    handleNativeCallback: function (payload) {
       log("native callback", payload);
       var normalized = payload || {};
       normalized.sceneType = normalizeSceneType(normalized.sceneType ||
@@ -268,7 +284,7 @@
   };
 
   window.advertisingManager = manager;
-  window.callNativeAdvertisingCallback = function(payload) {
+  window.callNativeAdvertisingCallback = function (payload) {
     manager.handleNativeCallback(payload);
   };
 })();
