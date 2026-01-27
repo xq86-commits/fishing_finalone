@@ -8,6 +8,7 @@ const FISH_WIDTH = 40;  // 80% of previous size
 const FISH_HEIGHT = 40;
 const TOTAL_FISH_TYPES = 14;
 const TUTORIAL_STORAGE_KEY = "hasSeenTutorial";
+const CORRECT_FISH_MULTIPLIER = 2; // 每个需要的字符出现几次（增加正确小鱼的数量）
 
 // Assets
 const ASSETS = {
@@ -1294,14 +1295,31 @@ function spawnFishes(fromSides = false) {
   });
 
   const fishChars = [];
-  neededChars.forEach(c => fishChars.push({ char: c, needed: true }));
+  // 方案二：每个需要的字符出现多次，增加正确小鱼的数量
+  neededChars.forEach(c => {
+    for (let i = 0; i < CORRECT_FISH_MULTIPLIER; i++) {
+      fishChars.push({ char: c, needed: true });
+    }
+  });
+  // 如果正确小鱼的数量已经达到或超过 FISH_COUNT，就只取前 FISH_COUNT 个
+  // 否则用随机字符填充剩余位置
   while (fishChars.length < FISH_COUNT) {
     fishChars.push({ char: randomChar(state.selectedLearningLang), needed: false });
   }
-
-  for (let i = fishChars.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [fishChars[i], fishChars[j]] = [fishChars[j], fishChars[i]];
+  // 如果正确小鱼超过 FISH_COUNT，随机选择 FISH_COUNT 个（优先保留正确小鱼）
+  if (fishChars.length > FISH_COUNT) {
+    // 打乱顺序，然后取前 FISH_COUNT 个
+    for (let i = fishChars.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [fishChars[i], fishChars[j]] = [fishChars[j], fishChars[i]];
+    }
+    fishChars.splice(FISH_COUNT);
+  } else {
+    // 如果正好等于 FISH_COUNT，也需要打乱顺序
+    for (let i = fishChars.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [fishChars[i], fishChars[j]] = [fishChars[j], fishChars[i]];
+    }
   }
 
   for (let i = 0; i < FISH_COUNT; i++) {
