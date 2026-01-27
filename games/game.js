@@ -3179,7 +3179,7 @@ function useHint() {
     .filter(index => index !== null);
   if (!missingIndices.length) return;
 
-  const pickIndex = missingIndices[Math.floor(Math.random() * missingIndices.length)];
+  const pickIndex = missingIndices[0]; // 选择第一个（最左边的）缺失位置
   state.revealedIndices[pickIndex] = true;
   state.hintsLeft--;
   state.score += 100;
