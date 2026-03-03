@@ -915,19 +915,19 @@
       <img src="fish_assets/mute.png" alt="Music" class="music-icon music-icon-off" style="display: none;">
     </button>
     <h1> Words Fishing</h1>
-    <button id="start-btn">Start</button>
-    <button id="my-words-btn">My Words</button>
+    <button id="start-btn" data-i18n="startGameButton">Start</button>
+    <button id="my-words-btn" data-i18n="myWordsLabel">My Words</button>
     <button id="share-btn">Share</button>
   </div>
 
   <!-- Loading / 游戏 / 结算 / 排行榜（都默认隐藏） -->
   <div id="loading" class="is-hidden">
     <div class="loader"></div>
-    <div>loading</div>
+    <div data-i18n="loading">Loading...</div>
   </div>
 
   <div id="game-wrapper" class="is-hidden">
-    <button id="game-back" aria-label="返回">&lt;</button>
+    <button id="game-back" aria-label="Back">&lt;</button>
     <button id="music-toggle-game" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>
@@ -951,16 +951,16 @@
     </button>
     <h2 id="result-title">Your Score: 0</h2>
     <div id="found-words-list"></div>
-    <button id="next-btn">Play Again</button>
+    <button id="next-btn" data-i18n="playAgain">Play Again</button>
     <button id="easier-mode-btn" class="is-hidden">Easier Mode</button>
     <button id="share2-btn">Share</button>
-    <button id="home-btn">Home</button>
+    <button id="home-btn" data-i18n="homePageGeneral">Home</button>
   </div>
 
   <div id="rank-screen" class="is-hidden">
     <div id="rank-header">
       <button id="rank-back">←</button>
-      Leaderboard
+      <span>Leaderboard</span>
     </div>
     <div id="rank-list"></div>
   </div>
@@ -970,17 +970,18 @@
     <div id="my-words-overlay" class="my-words-overlay"></div>
     <div id="my-words-content" class="my-words-content">
       <div id="my-words-header" class="my-words-header">
-        <h2>My Words</h2>
+        <h2 data-i18n="myWordsLabel">My Words</h2>
         <button id="my-words-close" class="my-words-close">×</button>
       </div>
       <div id="my-words-tabs" class="my-words-tabs"></div>
       <div id="my-words-list-container" class="my-words-list-container">
-        <div id="my-words-loading" class="my-words-loading">Loading...</div>
+        <div id="my-words-loading" class="my-words-loading" data-i18n="loading">Loading...</div>
         <div id="my-words-list" class="my-words-list"></div>
       </div>
     </div>
   </div>
 
+  <script src="./scripts/i18n.js"></script>
   <script src="./scripts/fireworks.js"></script>
   <script src="./scripts/game-data.js"></script>
   <script src="./scripts/share.js"></script>
@@ -988,8 +989,29 @@
   <script src="./scripts/app-communication.js"></script>
   <script src="./scripts/instantdb.js"></script>
   <script src="https://ali-hk-h5.hellotalk8.com/ai-bridge-call-sdk/latest/index.umd.js"></script>
+<!-- DEBUG -->
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+<script>
+  // VConsole will be exported to `window.VConsole` by default.
+  var vConsole = new window.VConsole();
+
+</script>
 
   <script>
+    /* i18n helper */
+    var t = window.i18n ? window.i18n.t.bind(window.i18n) : function(k) { return k; };
+
+    function applyI18nToDOM() {
+      t = window.i18n ? window.i18n.t.bind(window.i18n) : function(k) { return k; };
+      document.querySelectorAll("[data-i18n]").forEach(function(el) {
+        el.textContent = t(el.getAttribute("data-i18n"));
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach(function(el) {
+        el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
+      });
+      document.title = "Words Fishing Lingo";
+    }
+
     /* 提取方法到全局，以便直接调用 */
     const HTInteraction = window.HTInteraction;
     let adSupportInfo = null;
@@ -1012,6 +1034,8 @@
         window.advertisingManager.advertisingConfig = configStr;
       }
 
+      console.log("广告配置", configStr);
+
       /* 默认预加载一次广告以加快首个展示 */
       if (window.advertisingManager && typeof window.advertisingManager.preload === "function") {
         window.advertisingManager.preload({
@@ -1033,6 +1057,21 @@
       if (adSupportInfo) {
         preloadAd(getBusinessWebRewardedAdConfigInformation);
       }
+
+      // i18n: detect UI language from HelloTalk user info
+      if (userInfo && window.i18n) {
+        var appLang = userInfo.appLang || "Chinese";
+        if (appLang) {
+          var currentLocale = window.i18n.getLocale();
+          window.i18n.loadLocale(appLang, "locales/", function () {
+            window.i18n.setLocale(appLang);
+            if (window.i18n.getLocale() !== currentLocale) {
+              applyI18nToDOM();
+            }
+          });
+        }
+      }
+
       const iframe = document.getElementById("game-frame");
       if (iframe && iframe.contentWindow) {
         iframe.contentWindow.postMessage({
@@ -1399,7 +1438,7 @@
 
     function renderLeaderboard(list) {
       if (!Array.isArray(list) || list.length === 0) {
-        rankList.innerHTML = '<div class="rank-empty">暂时没有排行榜数据</div>';
+        rankList.innerHTML = '<div class="rank-empty">No leaderboard data available</div>';
         return;
       }
       rankList.innerHTML = list.map(function (item, index) {
@@ -1408,7 +1447,7 @@
     }
 
     function loadLeaderboard() {
-      rankList.innerHTML = '<div class="rank-loading">正在加载排行榜...</div>';
+      rankList.innerHTML = '<div class="rank-loading">' + escapeHtml(t("loading")) + '</div>';
       var service = window.gameDataService;
       var loader;
       if (service && typeof service.fetchLeaderboard === "function") {
@@ -1423,12 +1462,17 @@
         renderLeaderboard(list);
       }).catch(function (error) {
         console.warn("[leaderboard] load failed", error);
-        rankList.innerHTML = '<div class="rank-error">排行榜加载失败，请稍后再试。</div>';
+        rankList.innerHTML = '<div class="rank-error">Failed to load leaderboard. Please try again.</div>';
       });
     }
 
     /* 首屏强制态（防止某些浏览器闪现浮层） */
     window.addEventListener("DOMContentLoaded", () => {
+      if (window.i18n) {
+        window.i18n.init("locales/", function() {
+          applyI18nToDOM();
+        });
+      }
       hideAll();
       showFlex("start-screen");   // 只显示首页
       updateMusicButtons();
@@ -1510,7 +1554,7 @@
       });
 
       if (!wordsWithHighlight || wordsWithHighlight.length === 0) {
-        myWordsList.innerHTML = '<div class="my-words-empty">No words found. Play games to collect words!</div>';
+        myWordsList.innerHTML = '<div class="my-words-empty">' + escapeHtml(t("emptyStateNote")) + '</div>';
         return;
       }
 
@@ -1523,7 +1567,7 @@
       });
 
       if (filteredWords.length === 0) {
-        myWordsList.innerHTML = '<div class="my-words-empty">No words in this language pair.</div>';
+        myWordsList.innerHTML = '<div class="my-words-empty">' + escapeHtml(t("emptyStateNote")) + '</div>';
         return;
       }
 
@@ -1850,7 +1894,7 @@
 
           // 检查是否还有单词，如果没有则显示空状态
           if (myWordsList.querySelectorAll(".my-word-item-wrapper").length === 0) {
-            myWordsList.innerHTML = '<div class="my-words-empty">No words in this language pair.</div>';
+            myWordsList.innerHTML = '<div class="my-words-empty">' + escapeHtml(t("emptyStateNote")) + '</div>';
           }
         }, 300);
       }
@@ -1871,7 +1915,7 @@
         myWordsLoading.style.display = "none";
 
         if (!words || words.length === 0) {
-          myWordsList.innerHTML = '<div class="my-words-empty">No words found. Play games to collect words!</div>';
+          myWordsList.innerHTML = '<div class="my-words-empty">' + escapeHtml(t("emptyStateNote")) + '</div>';
           myWordsTabs.innerHTML = "";
           return;
         }
@@ -1909,7 +1953,7 @@
         // Generate tabs
         if (sortedPairs.length === 0) {
           myWordsTabs.innerHTML = "";
-          myWordsList.innerHTML = '<div class="my-words-empty">No words found. Play games to collect words!</div>';
+          myWordsList.innerHTML = '<div class="my-words-empty">' + escapeHtml(t("emptyStateNote")) + '</div>';
           return;
         }
 
@@ -2062,7 +2106,7 @@
         latestLevel = levelValue;
         hideAll();
         showFlex("result-screen");
-        resultTitle.textContent = "Your Score: " + latestScore;
+        resultTitle.textContent = t("yourScoreDisplay") + ": " + latestScore;
 
         // Show/hide Easier Mode button based on conditions
         if (easierModeBtn) {
@@ -2093,7 +2137,7 @@
               '</div>';
           }).join("");
         } else {
-          listContainer.innerHTML = '<div style="text-align:center;color:#aaa;">No words found</div>';
+          listContainer.innerHTML = '<div style="text-align:center;color:#aaa;">' + escapeHtml(t("emptyStateNote")) + '</div>';
         }
 
         if (window.appCommunication && typeof window.appCommunication.sendMessageToApp === "function") {

@@ -1,0 +1,18 @@
+{
+  "startGameButton": "Jugar",
+  "myWordsLabel": "Mis palabras",
+  "gameScoreText": "Puntuación",
+  "healthPointsValue": "Energía",
+  "music": "Música",
+  "myNotesInfo": "Capturas",
+  "hintPoint": "Pista",
+  "endGameAction": "Salir",
+  "gameOverStatus": "Fin",
+  "yourScoreDisplay": "Tu puntaje",
+  "emptyStateNote": "Sin palabras",
+  "playAgain": "Jugar de Nuevo",
+  "homePageGeneral": "Inicio",
+  "loading": "Cargando...",
+  "selectLanguagePrompt": "Ya en uso",
+  "adLoadingMessage": "Ver anuncio para obtener una pista"
+}

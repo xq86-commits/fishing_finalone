@@ -1,0 +1,18 @@
+{
+  "startGameButton": "เริ่มเกม",
+  "myWordsLabel": "คลังคำศัพท์",
+  "gameScoreText": "คะแนน",
+  "healthPointsValue": "พลังงาน",
+  "music": "เพลง",
+  "myNotesInfo": "คำที่ตกได้",
+  "hintPoint": "คำใบ้",
+  "endGameAction": "ออก",
+  "gameOverStatus": "จบเกม",
+  "yourScoreDisplay": "คะแนนของคุณ",
+  "emptyStateNote": "ยังไม่มีคำ",
+  "playAgain": "เล่นอีกครั้ง",
+  "homePageGeneral": "หน้าหลัก",
+  "loading": "กำลังโหลด...",
+  "selectLanguagePrompt": "เลือกอยู่แล้ว",
+  "adLoadingMessage": "ดูโฆษณาเพื่อรับคำใบ้"
+}

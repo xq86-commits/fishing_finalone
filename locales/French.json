@@ -1,0 +1,18 @@
+{
+  "startGameButton": "Jouer",
+  "myWordsLabel": "Mes mots",
+  "gameScoreText": "Score",
+  "healthPointsValue": "Énergie",
+  "music": "Musique",
+  "myNotesInfo": "Mes prises",
+  "hintPoint": "Indice",
+  "endGameAction": "Quitter",
+  "gameOverStatus": "Fin",
+  "yourScoreDisplay": "Ton score",
+  "emptyStateNote": "Aucun mot",
+  "playAgain": "Jouer à nouveau",
+  "homePageGeneral": "Accueil",
+  "loading": "Chargement...",
+  "selectLanguagePrompt": "Déjà utilisé",
+  "adLoadingMessage": "Pub pour indice"
+}

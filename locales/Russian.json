@@ -1,0 +1,18 @@
+{
+  "startGameButton": "Играть",
+  "myWordsLabel": "Мои слова",
+  "gameScoreText": "Счет",
+  "healthPointsValue": "Энергия",
+  "music": "Музыка",
+  "myNotesInfo": "Улов",
+  "hintPoint": "Подсказка",
+  "endGameAction": "Выйти",
+  "gameOverStatus": "Конец",
+  "yourScoreDisplay": "Ваш счет",
+  "emptyStateNote": "Нет слов",
+  "playAgain": "Играть снова",
+  "homePageGeneral": "Домой",
+  "loading": "Загрузка...",
+  "selectLanguagePrompt": "Уже выбрано",
+  "adLoadingMessage": "Смотреть рекламу за подсказку"
+}

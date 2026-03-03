@@ -1,6 +1,11 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
+// i18n: reuse parent page's i18n object (same-origin iframe)
+var t = (window.parent && window.parent !== window && window.parent.i18n)
+  ? window.parent.i18n.t.bind(window.parent.i18n)
+  : (window.i18n ? window.i18n.t.bind(window.i18n) : function (key) { return key; });
+
 // Game Configuration
 const GAME_DURATION = 90; // seconds
 const FISH_COUNT = 6;
@@ -519,7 +524,7 @@ class TutorialOverlay {
     <div>The meaning below is your clue.</div>
   </div>
   <div class="tutorial-label tutorial-label--hint">
-    <div>Use hints when you're<br>stuck.Each hint<br>reveals one letter.</div>
+    <div>Use hints when you're stuck. Each hint reveals one letter.</div>
   </div>
 </div>
     `;
@@ -559,6 +564,9 @@ class TutorialOverlay {
     if (!this.root.isConnected) {
       document.body.appendChild(this.root);
     }
+    this.root.querySelectorAll("[data-i18n]").forEach(function(el) {
+      el.textContent = t(el.getAttribute("data-i18n"));
+    });
     this.root.classList.add("is-visible");
   }
 
@@ -764,7 +772,7 @@ function loadSavedGameSettings() {
 
 async function applyLanguageSettings() {
   if (state.selectedLearningLang === state.selectedBaseLang) {
-    showToast("Please Choose Different Language");
+    showToast(t("selectLanguagePrompt"));
     return;
   }
 
@@ -833,12 +841,11 @@ async function requestHintAd() {
   }
 
   if (state.waitingHintAd) {
-    showToast("Ad loading...");
+    showToast(t("adLoadingMessage"));
     return;
   }
-  // 检查客户端版本是否支持调用广告
   if (state.adSupport === null) {
-    showToast("Ad loading...");
+    showToast(t("adLoadingMessage"));
     return;
   }
   if (state.adSupport === false) {
@@ -856,7 +863,7 @@ async function requestHintAd() {
     state.waitingHintAd = false;
     showToast("Ad unavailable");
   } else {
-    showToast("Loading ad...");
+    showToast(t("adLoadingMessage"));
   }
 }
 
@@ -1633,7 +1640,7 @@ function update(dt) {
   }
 
   if (state.timeLeft <= 0 && !state.gameOver) {
-    endGame("Time Over");
+    endGame(t("gameOverStatus"));
     return;
   }
 
@@ -1674,7 +1681,7 @@ function update(dt) {
   } else {
     state.displayLives = state.targetLives;
     if (state.targetLives <= 0 && !state.isEnding && !state.gameOver) {
-      endGame("Out of Lives");
+      endGame(t("gameOverStatus"));
     }
   }
 
@@ -2118,14 +2125,14 @@ function drawUI() {
     }
   }
 
-  ctx.fillText(`Time: ${Math.ceil(state.timeLeft)}s`, timeX, timeY);
+  ctx.fillText("Time: " + Math.ceil(state.timeLeft) + "s", timeX, timeY);
 
   // Score shifted down by one slot below time
   ctx.textBaseline = 'middle';
   ctx.textAlign = 'left';
   ctx.fillStyle = '#666';
   ctx.font = 'bold 20px Arial';
-  ctx.fillText(`Score: ${Math.round(state.displayScore)}`, 20, 106 + uiOffsetY); // keep 30px gap below time
+  ctx.fillText(t("gameScoreText") + ": " + Math.round(state.displayScore), 20, 106 + uiOffsetY);
 
   // Lives below score, preserving previous gap (30px)
   if (Math.abs(state.displayLives - state.targetLives) > 0.01) {
@@ -2133,13 +2140,13 @@ function drawUI() {
   } else {
     state.displayLives = state.targetLives;
     if (state.targetLives <= 0 && !state.isEnding && !state.gameOver) {
-      endGame("Out of Lives");
+      endGame(t("gameOverStatus"));
     }
   }
   ctx.fillStyle = '#e74c3c';
   ctx.font = 'bold 20px Arial';
   ctx.textAlign = 'left';
-  ctx.fillText(`Lives: ${Math.round(state.displayLives)}`, 20, 136 + uiOffsetY); // keep 30px gap below score
+  ctx.fillText(t("healthPointsValue") + ": " + Math.round(state.displayLives), 20, 136 + uiOffsetY);
 
   // Current word placed beside the fisherman
   const personWidth = 100;
@@ -2281,7 +2288,7 @@ function drawUI() {
     ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('Music', rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText(t("music"), rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
 
   iconY += musicIconSize + iconGap;
@@ -2296,7 +2303,7 @@ function drawUI() {
     ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('Language', rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText("Language", rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
 
   iconY += iconSize + iconGap;
@@ -2311,7 +2318,7 @@ function drawUI() {
     ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('Note', rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText(t("myNotesInfo"), rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
 
   iconY += iconSize + iconGap;
@@ -2342,7 +2349,7 @@ function drawUI() {
     ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('Hint', rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText(t("hintPoint"), rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
 }
 
@@ -2407,7 +2414,7 @@ function drawNoteOverlay() {
   ctx.font = '600 18px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillText('📓 Notes', x + 16, y + headerHeight / 2);
+  ctx.fillText("📓 " + t("myNotesInfo"), x + 16, y + headerHeight / 2);
 
   // Close Button
   const closeSize = 26;
@@ -2479,11 +2486,11 @@ function drawNoteOverlay() {
 
     ctx.fillStyle = '#2c3e50';
     ctx.font = 'bold 18px Arial';
-    ctx.fillText('Your word album is empty', x + panelWidth / 2, fishY);
+    ctx.fillText(t("emptyStateNote"), x + panelWidth / 2, fishY);
 
     ctx.fillStyle = '#7f8c8d';
     ctx.font = '14px Arial';
-    ctx.fillText('Catch fish to unlock new words!', x + panelWidth / 2, fishY + 26);
+    ctx.fillText("Catch fish to unlock new words!", x + panelWidth / 2, fishY + 26);
 
   } else {
 
@@ -2994,7 +3001,7 @@ function drawLanguageOverlay() {
   ctx.font = '600 18px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillText('Language Settings', x + 16, y + headerHeight / 2);
+  ctx.fillText("Language Settings", x + 16, y + headerHeight / 2);
 
   // Close Button
   const closeSize = 26;
@@ -3056,12 +3063,12 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  const levelLabel = 'Difficulty Level';
+  const levelLabel = "Difficulty Level";
   ctx.fillText(levelLabel, x + 28, levelSectionY + 12);
   ctx.font = '12px Arial';
   ctx.fillStyle = '#1E5F8F';
   const levelLabelWidth = ctx.measureText(levelLabel).width;
-  ctx.fillText(`Current: ${state.activeLevel}`, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
+  ctx.fillText("Current: " + state.activeLevel, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
 
   state.levelRects = [];
   const levelGridStartY = levelSectionY + 40;
@@ -3101,7 +3108,7 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  ctx.fillText('Learning', x + 28, cursorY + 12);
+  ctx.fillText("Learning", x + 28, cursorY + 12);
 
   state.languageLearningRects = [];
   const learningKeyStartY = cursorY + 36;
@@ -3141,7 +3148,7 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  ctx.fillText('Using', x + 28, cursorY + 12);
+  ctx.fillText("Using", x + 28, cursorY + 12);
 
   state.languageBaseRects = [];
   const baseKeyStartY = cursorY + 36;
@@ -3236,14 +3243,14 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 18px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('Apply', confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height / 2);
+  ctx.fillText("Apply", confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height / 2);
 
   ctx.restore();
 
   if (state.isLoadingVocab) {
     ctx.fillStyle = '#1E3A5F';
     ctx.font = '12px Arial';
-    ctx.fillText('Loading vocab...', confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height + 18);
+    ctx.fillText(t("loading"), confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height + 18);
   }
 
   ctx.restore(); // End clip
@@ -3453,8 +3460,8 @@ async function handleInputClick(e) {
           state.selectedLearningLang = opt.lang;
           // If base language is the same as new learning language, revert and show toast
           if (state.selectedBaseLang === opt.lang) {
-            state.selectedLearningLang = previousLearningLang; // Revert to previous value
-            showToast("Please Choose Different Language");
+            state.selectedLearningLang = previousLearningLang;
+            showToast(t("selectLanguagePrompt"));
           }
           handledLang = true;
           break;
@@ -3469,8 +3476,8 @@ async function handleInputClick(e) {
           state.selectedBaseLang = opt.lang;
           // If learning language is the same as new base language, revert and show toast
           if (state.selectedLearningLang === opt.lang) {
-            state.selectedBaseLang = previousBaseLang; // Revert to previous value
-            showToast("Please Choose Different Language");
+            state.selectedBaseLang = previousBaseLang;
+            showToast(t("selectLanguagePrompt"));
           }
           handledLang = true;
           break;

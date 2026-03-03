@@ -1,0 +1,18 @@
+{
+  "startGameButton": "Jogar",
+  "myWordsLabel": "Palavras",
+  "gameScoreText": "Pontos",
+  "healthPointsValue": "Energia",
+  "music": "Música",
+  "myNotesInfo": "Capturas",
+  "hintPoint": "Dica",
+  "endGameAction": "Sair",
+  "gameOverStatus": "Fim de jogo",
+  "yourScoreDisplay": "Teus pontos",
+  "emptyStateNote": "Vazio",
+  "playAgain": "Jogar Novamente",
+  "homePageGeneral": "Início",
+  "loading": "Carregando...",
+  "selectLanguagePrompt": "Já em uso",
+  "adLoadingMessage": "Ver anúncio para ganhar uma dica"
+}

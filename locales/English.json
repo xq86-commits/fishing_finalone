@@ -1,0 +1,18 @@
+{
+  "startGameButton": "Start",
+  "myWordsLabel": "My Words",
+  "gameScoreText": "Score",
+  "healthPointsValue": "Energy",
+  "music": "Music",
+  "myNotesInfo": "Catch",
+  "hintPoint": "Hint",
+  "endGameAction": "Quit",
+  "gameOverStatus": "Game Over",
+  "yourScoreDisplay": "Your Score",
+  "emptyStateNote": "No words caught",
+  "playAgain": "Play Again",
+  "homePageGeneral": "Home",
+  "loading": "Loading...",
+  "selectLanguagePrompt": "Language already in use",
+  "adLoadingMessage": "Watch Ad for Hint"
+}

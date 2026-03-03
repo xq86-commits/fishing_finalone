@@ -1,0 +1,18 @@
+{
+  "startGameButton": "Chơi",
+  "myWordsLabel": "Từ của tôi",
+  "gameScoreText": "Điểm số",
+  "healthPointsValue": "Thể lực",
+  "music": "Âm nhạc",
+  "myNotesInfo": "Thu hoạch",
+  "hintPoint": "Gợi ý",
+  "endGameAction": "Thoát",
+  "gameOverStatus": "Kết thúc",
+  "yourScoreDisplay": "Điểm của bạn",
+  "emptyStateNote": "Chưa có từ",
+  "playAgain": "Chơi Lại",
+  "homePageGeneral": "Trang chủ",
+  "loading": "đang tải...",
+  "selectLanguagePrompt": "Đang sử dụng",
+  "adLoadingMessage": "Xem QC để nhận gợi ý"
+}

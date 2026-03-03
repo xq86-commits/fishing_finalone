@@ -1,0 +1,18 @@
+{
+  "startGameButton": "开始遊戲",
+  "myWordsLabel": "我的單詞",
+  "gameScoreText": "得分",
+  "healthPointsValue": "體力",
+  "music": "音樂",
+  "myNotesInfo": "單詞",
+  "hintPoint": "提示",
+  "endGameAction": "結束本局",
+  "gameOverStatus": "遊戲結束",
+  "yourScoreDisplay": "本局得分",
+  "emptyStateNote": "尚未釣到單詞",
+  "playAgain": "再來一局",
+  "homePageGeneral": "主頁",
+  "loading": "加載中...",
+  "selectLanguagePrompt": "已是當前語言",
+  "adLoadingMessage": "觀看廣告獲取更多提示"
+}

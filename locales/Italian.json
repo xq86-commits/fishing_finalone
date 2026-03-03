@@ -1,0 +1,18 @@
+{
+  "startGameButton": "Gioca",
+  "myWordsLabel": "Mie parole",
+  "gameScoreText": "Punteggio",
+  "healthPointsValue": "Energia",
+  "music": "Musica",
+  "myNotesInfo": "Bottino",
+  "hintPoint": "Aiuto",
+  "endGameAction": "Esci",
+  "gameOverStatus": "Fine",
+  "yourScoreDisplay": "Tuo score",
+  "emptyStateNote": "Vuoto",
+  "playAgain": "Rigioca",
+  "homePageGeneral": "Home",
+  "loading": "Caricamento...",
+  "selectLanguagePrompt": "Già in uso",
+  "adLoadingMessage": "Guarda un annuncio per un aiuto"
+}

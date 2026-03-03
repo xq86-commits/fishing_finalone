@@ -1,0 +1,18 @@
+{
+  "startGameButton": "Oyna",
+  "myWordsLabel": "Kelimelerim",
+  "gameScoreText": "Skor",
+  "healthPointsValue": "Enerji",
+  "music": "Müzik",
+  "myNotesInfo": "Yakalanan",
+  "hintPoint": "İpucu",
+  "endGameAction": "Çık",
+  "gameOverStatus": "Oyun Bitti",
+  "yourScoreDisplay": "Skorun",
+  "emptyStateNote": "Kelime yok",
+  "playAgain": "Tekrar Oyna",
+  "homePageGeneral": "Ana Sayfa",
+  "loading": "Yükleniyor…",
+  "selectLanguagePrompt": "Zaten seçili",
+  "adLoadingMessage": "İpucu için reklam izle"
+}

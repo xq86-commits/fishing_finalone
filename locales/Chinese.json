@@ -1,0 +1,18 @@
+{
+  "startGameButton": "开始游戏",
+  "myWordsLabel": "我的单词",
+  "gameScoreText": "得分",
+  "healthPointsValue": "体力",
+  "music": "音乐",
+  "myNotesInfo": "单词",
+  "hintPoint": "提示",
+  "endGameAction": "结束本局",
+  "gameOverStatus": "游戏结束",
+  "yourScoreDisplay": "本局得分",
+  "emptyStateNote": "尚未钓到单词",
+  "playAgain": "再来一局",
+  "homePageGeneral": "主页",
+  "loading": "加载中...",
+  "selectLanguagePrompt": "已是当前语言",
+  "adLoadingMessage": "观看广告获取更多提示"
+}

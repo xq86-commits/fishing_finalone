@@ -1,0 +1,18 @@
+{
+  "startGameButton": "プレイ",
+  "myWordsLabel": "単語帳",
+  "gameScoreText": "スコア",
+  "healthPointsValue": "スタミナ",
+  "music": "音楽",
+  "myNotesInfo": "ゲットした単語",
+  "hintPoint": "ヒント",
+  "endGameAction": "終了",
+  "gameOverStatus": "ゲームオーバー",
+  "yourScoreDisplay": "今回のスコア",
+  "emptyStateNote": "記録なし",
+  "playAgain": "再プレイ",
+  "homePageGeneral": "ホーム",
+  "loading": "ログイン中...",
+  "selectLanguagePrompt": "選択済みです",
+  "adLoadingMessage": "広告でヒント"
+}

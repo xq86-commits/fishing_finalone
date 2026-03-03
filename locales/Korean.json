@@ -1,0 +1,18 @@
+{
+  "startGameButton": "시작하기",
+  "myWordsLabel": "내 단어장",
+  "gameScoreText": "점수",
+  "healthPointsValue": "에너지",
+  "music": "음악",
+  "myNotesInfo": "낚은 단어",
+  "hintPoint": "힌트",
+  "endGameAction": "나가기",
+  "gameOverStatus": "게임 오버",
+  "yourScoreDisplay": "최종 점수",
+  "emptyStateNote": "획득 없음",
+  "playAgain": "다시 플레이",
+  "homePageGeneral": "홈",
+  "loading": "로딩중…",
+  "selectLanguagePrompt": "이미 사용 중",
+  "adLoadingMessage": "광고 보고 힌트"
+}

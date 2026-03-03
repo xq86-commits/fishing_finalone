@@ -1,0 +1,18 @@
+{
+  "startGameButton": "Mulai",
+  "myWordsLabel": "Kata-kataku",
+  "gameScoreText": "Skor",
+  "healthPointsValue": "Energi",
+  "music": "Musik",
+  "myNotesInfo": "Tangkapan",
+  "hintPoint": "Petunjuk",
+  "endGameAction": "Keluar",
+  "gameOverStatus": "Selesai",
+  "yourScoreDisplay": "Skormu",
+  "emptyStateNote": "Kosong",
+  "playAgain": "Main Lagi",
+  "homePageGeneral": "Beranda",
+  "loading": "memuatkan...",
+  "selectLanguagePrompt": "Sudah ada",
+  "adLoadingMessage": "Tonton iklan untuk mendapatkan petunjuk"
+}
