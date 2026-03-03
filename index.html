@@ -981,6 +981,7 @@
     </div>
   </div>
 
+  <script src="https://ali-hk-statics.hellotalk8.com/h5_assets/DataReport-v3.umd.cjs"></script>
   <script src="./scripts/i18n.js"></script>
   <script src="./scripts/fireworks.js"></script>
   <script src="./scripts/game-data.js"></script>
@@ -988,6 +989,7 @@
   <script src="./scripts/advertising-manager.js"></script>
   <script src="./scripts/app-communication.js"></script>
   <script src="./scripts/instantdb.js"></script>
+  <script src="./scripts/report.js"></script>
   <script src="https://ali-hk-h5.hellotalk8.com/ai-bridge-call-sdk/latest/index.umd.js"></script>
 <!-- DEBUG -->
     <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
@@ -1019,6 +1021,8 @@
     console.log('userInfo', HTInteraction.userInfo);
     console.log('ready', HTInteraction.ready);
 
+    initThinkingData(HTInteraction?.userInfo?.userId, HTInteraction?.IS_PROD);
+    reportPageEnter()
 
     // 预加载广告
     const preloadAd = async (getBusinessWebRewardedAdConfigInformation) => {
