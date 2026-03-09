@@ -139,29 +139,33 @@
       top: 90px;
       left: 0px;
       z-index: 10;
-      background: unset;
+      background: transparent;
       border: none;
-      border-image: none;
-      color: #666;
-      font-size: 18px;
-      font-weight: normal;
+      padding: 0;
+      width: 56px;
+      height: 56px;
       cursor: pointer;
-      padding: 8px 12px;
-      border-radius: 4px;
       box-shadow: none;
-      box-sizing: content-box;
-      transform: scale(1.5);
-      transition: background 0.2s, transform 0.1s;
-      line-height: 1;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s ease;
+    }
+
+    #game-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     #game-back:hover {
-      background: unset;
+      transform: scale(1.05);
     }
 
     #game-back:active {
-      transform: scale(1.425);
-      background: #eeeeee;
+      transform: scale(0.95);
     }
 
     /* 结算页（全屏） */
@@ -927,7 +931,7 @@
   </div>
 
   <div id="game-wrapper" class="is-hidden">
-    <button id="game-back" aria-label="Back">&lt;</button>
+    <button id="game-back" aria-label="返回"><img src="fish_assets/back.png" alt="返回"></button>
     <button id="music-toggle-game" class="music-toggle is-on" aria-pressed="true" aria-label="Toggle music">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"></path>

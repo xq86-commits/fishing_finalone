@@ -7,7 +7,7 @@ var t = (window.parent && window.parent !== window && window.parent.i18n)
   : (window.i18n ? window.i18n.t.bind(window.i18n) : function (key) { return key; });
 
 // Game Configuration
-const GAME_DURATION = 90; // seconds
+// const GAME_DURATION = 90; // seconds
 const FISH_COUNT = 6;
 const FISH_WIDTH = 40;  // 80% of previous size
 const FISH_HEIGHT = 40;
@@ -202,10 +202,10 @@ function getAdManager() {
 let state = {
   score: 0,
   lives: 10,
-  timeLeft: GAME_DURATION,
+  // timeLeft: GAME_DURATION,
   gameOver: false,
   tutorialActive: false,
-  startTime: 0,
+  // startTime: 0,
   lastFrameTime: 0,
 
   // Visual State
@@ -262,9 +262,10 @@ let state = {
   speakerAnim: { word: null, start: 0 },
 
   // Countdown Effects
-  timeShakeStart: null,
-  countdownSoundPlaying: false,
-  countdownSoundInterval: null,
+  // timeShakeStart: null,
+  // countdownSoundPlaying: false,
+  // countdownSoundInterval: null,
+  endGameButtonRect: null,
 
   toastPosition: 0.7
 };
@@ -1133,7 +1134,7 @@ async function startGame() {
 
   state.score = 0;
   state.lives = 10;
-  state.timeLeft = GAME_DURATION;
+  // state.timeLeft = GAME_DURATION;
   state.gameOver = false;
   state.foundWords = [];
   state.hintsLeft = 3;
@@ -1171,10 +1172,10 @@ async function startGame() {
   state.toastMessage = null;
 
   // Reset countdown effects
-  stopCountdownSound();
-  state.timeShakeStart = null;
+  // stopCountdownSound();
+  // state.timeShakeStart = null;
 
-  state.startTime = state.tutorialActive ? null : Date.now();
+  // state.startTime = state.tutorialActive ? null : Date.now();
   state.lastFrameTime = Date.now();
   state.isTransitioning = false; // Ensure not transitioning at start
 
@@ -1205,7 +1206,7 @@ function nextWord() {
 
 function pickNewWordAndSpawn() {
   // Stop countdown sound when starting a new word
-  stopCountdownSound();
+  // stopCountdownSound();
 
   const vocabList = getActiveVocabList();
   if (!vocabList || !vocabList.length) return;
@@ -1621,22 +1622,22 @@ function update(dt) {
   }
 
   // Timer
-  const elapsed = (Date.now() - state.startTime) / 1000;
-  state.timeLeft = Math.max(0, GAME_DURATION - elapsed);
+  // const elapsed = (Date.now() - state.startTime) / 1000;
+  // state.timeLeft = Math.max(0, GAME_DURATION - elapsed);
 
   // Check if countdown reaches 10 seconds (trigger only once)
-  if (state.timeLeft <= 10 && state.timeLeft > 9 && state.timeShakeStart === null) {
-    state.timeShakeStart = Date.now();
-    startCountdownSound();
-  }
+  // if (state.timeLeft <= 10 && state.timeLeft > 9 && state.timeShakeStart === null) {
+  //   state.timeShakeStart = Date.now();
+  //   startCountdownSound();
+  // }
 
   // Clear shake effect after 1 second
-  if (state.timeShakeStart !== null) {
-    const shakeElapsed = Date.now() - state.timeShakeStart;
-    if (shakeElapsed >= 1000) {
-      state.timeShakeStart = null;
-    }
-  }
+  // if (state.timeShakeStart !== null) {
+  //   const shakeElapsed = Date.now() - state.timeShakeStart;
+  //   if (shakeElapsed >= 1000) {
+  //     state.timeShakeStart = null;
+  //   }
+  // }
 
   if (state.timeLeft <= 0 && !state.gameOver) {
     endGame(t("gameOverStatus"));
@@ -1894,7 +1895,7 @@ function endGame(reason) {
   if (state.isEnding || state.gameOver) return;
 
   state.isEnding = true;
-  stopCountdownSound();
+  // stopCountdownSound();
   showToast(reason);
 
   setTimeout(() => {
@@ -2101,32 +2102,32 @@ function drawUI() {
   ctx.font = 'bold 20px Arial';
 
   // Timer now at former score slot (left side)
-  ctx.textAlign = 'left';
-  let timeX = 20;
-  let timeY = 76 + uiOffsetY; // shifted further down by 6px
+  // ctx.textAlign = 'left';
+  // let timeX = 20;
+  // let timeY = 76 + uiOffsetY; // shifted further down by 6px
 
-  if (state.timeShakeStart !== null) {
-    const shakeElapsed = Date.now() - state.timeShakeStart;
-    if (shakeElapsed < 1000) {
-      // Calculate shake offset using sine/cosine waves
-      const shakeProgress = shakeElapsed / 1000;
-      const shakeFrequency = 20; // High frequency for rapid shaking
-      const shakeAmount = 5; // ±5 pixels
+  // if (state.timeShakeStart !== null) {
+  //   const shakeElapsed = Date.now() - state.timeShakeStart;
+  //   if (shakeElapsed < 1000) {
+  //     // Calculate shake offset using sine/cosine waves
+  //     const shakeProgress = shakeElapsed / 1000;
+  //     const shakeFrequency = 20; // High frequency for rapid shaking
+  //     const shakeAmount = 5; // ±5 pixels
 
-      const offsetX = Math.sin(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
-      const offsetY = Math.cos(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
+  //     const offsetX = Math.sin(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
+  //     const offsetY = Math.cos(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
 
-      timeX += offsetX;
-      timeY += offsetY;
-    } else {
-      // Shake duration ended, clear it
-      state.timeShakeStart = null;
-    }
-  }
+  //     timeX += offsetX;
+  //     timeY += offsetY;
+  //   } else {
+  //     // Shake duration ended, clear it
+  //     state.timeShakeStart = null;
+  //   }
+  // }
 
-  ctx.fillText("Time: " + Math.ceil(state.timeLeft) + "s", timeX, timeY);
+  // ctx.fillText(`Time: ${Math.ceil(state.timeLeft)}s`, timeX, timeY);
 
-  // Score shifted down by one slot below time
+  // Score (keeping original position below where time used to be)
   ctx.textBaseline = 'middle';
   ctx.textAlign = 'left';
   ctx.fillStyle = '#666';
@@ -2350,6 +2351,46 @@ function drawUI() {
     ctx.textBaseline = 'top';
     ctx.fillText(t("hintPoint"), rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
+
+  iconY += iconSize + iconGap;
+
+  // End Game button (placed below Hint button, 80% size)
+  const endGameButtonSize = iconSize * 0.8;
+  const endGameButtonX = iconX + (iconSize - endGameButtonSize) / 2; // Center align with other buttons
+  const endGameButtonRect = { x: endGameButtonX, y: iconY, width: endGameButtonSize, height: endGameButtonSize };
+  state.endGameButtonRect = endGameButtonRect;
+
+  // Draw circular button background
+  const centerX = endGameButtonRect.x + endGameButtonRect.width / 2;
+  const centerY = endGameButtonRect.y + endGameButtonRect.height / 2;
+  const radius = endGameButtonRect.width / 2;
+  
+  ctx.fillStyle = 'rgba(231, 76, 60, 0.9)'; // Red color
+  ctx.strokeStyle = 'rgba(192, 57, 43, 0.8)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Draw "X" icon inside button
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 3;
+  ctx.lineCap = 'round';
+  const iconSizeInner = radius * 0.6;
+  ctx.beginPath();
+  ctx.moveTo(centerX - iconSizeInner, centerY - iconSizeInner);
+  ctx.lineTo(centerX + iconSizeInner, centerY + iconSizeInner);
+  ctx.moveTo(centerX + iconSizeInner, centerY - iconSizeInner);
+  ctx.lineTo(centerX - iconSizeInner, centerY + iconSizeInner);
+  ctx.stroke();
+
+  // Draw label below button
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 12px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillText('End Game', centerX, endGameButtonRect.y + endGameButtonRect.height + 4);
 }
 
 function drawGameOver() {
@@ -3560,6 +3601,12 @@ async function handleInputClick(e) {
     return;
   }
 
+  // End Game button
+  if (state.endGameButtonRect && isPointInRect(clickX, clickY, state.endGameButtonRect)) {
+    endGame("Game Ended");
+    return;
+  }
+
   // Note button
   if (state.noteButtonRect && isPointInRect(clickX, clickY, state.noteButtonRect)) {
     state.languageOpen = false;
@@ -3846,56 +3893,56 @@ function getAudioContext() {
   return audioContext;
 }
 
-function playTickSound() {
-  const ctx = getAudioContext();
-  if (!ctx) return;
+// function playTickSound() {
+//   const ctx = getAudioContext();
+//   if (!ctx) return;
 
-  // Create a short tick sound using oscillator
-  const oscillator = ctx.createOscillator();
-  const gainNode = ctx.createGain();
+//   // Create a short tick sound using oscillator
+//   const oscillator = ctx.createOscillator();
+//   const gainNode = ctx.createGain();
 
-  oscillator.connect(gainNode);
-  gainNode.connect(ctx.destination);
+//   oscillator.connect(gainNode);
+//   gainNode.connect(ctx.destination);
 
-  // Configure tick sound: 440Hz, 100ms duration
-  oscillator.frequency.value = 440;
-  oscillator.type = 'sine';
+//   // Configure tick sound: 440Hz, 100ms duration
+//   oscillator.frequency.value = 440;
+//   oscillator.type = 'sine';
 
-  // Envelope: quick attack, quick decay
-  const now = ctx.currentTime;
-  gainNode.gain.setValueAtTime(0, now);
-  gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01); // Attack
-  gainNode.gain.linearRampToValueAtTime(0, now + 0.1); // Decay (100ms total)
+//   // Envelope: quick attack, quick decay
+//   const now = ctx.currentTime;
+//   gainNode.gain.setValueAtTime(0, now);
+//   gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01); // Attack
+//   gainNode.gain.linearRampToValueAtTime(0, now + 0.1); // Decay (100ms total)
 
-  oscillator.start(now);
-  oscillator.stop(now + 0.1);
-}
+//   oscillator.start(now);
+//   oscillator.stop(now + 0.1);
+// }
 
-function startCountdownSound() {
-  if (state.countdownSoundPlaying) return;
+// function startCountdownSound() {
+//   if (state.countdownSoundPlaying) return;
 
-  state.countdownSoundPlaying = true;
+//   state.countdownSoundPlaying = true;
 
-  // Play first tick immediately
-  playTickSound();
+//   // Play first tick immediately
+//   playTickSound();
 
-  // Then play every second
-  state.countdownSoundInterval = setInterval(() => {
-    if (!state.countdownSoundPlaying) {
-      stopCountdownSound();
-      return;
-    }
-    playTickSound();
-  }, 1000);
-}
+//   // Then play every second
+//   state.countdownSoundInterval = setInterval(() => {
+//     if (!state.countdownSoundPlaying) {
+//       stopCountdownSound();
+//       return;
+//     }
+//     playTickSound();
+//   }, 1000);
+// }
 
-function stopCountdownSound() {
-  state.countdownSoundPlaying = false;
-  if (state.countdownSoundInterval) {
-    clearInterval(state.countdownSoundInterval);
-    state.countdownSoundInterval = null;
-  }
-}
+// function stopCountdownSound() {
+//   state.countdownSoundPlaying = false;
+//   if (state.countdownSoundInterval) {
+//     clearInterval(state.countdownSoundInterval);
+//     state.countdownSoundInterval = null;
+//   }
+// }
 
 // Start
 init();
