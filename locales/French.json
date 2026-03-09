@@ -1,9 +1,11 @@
 {
   "startGameButton": "Jouer",
   "myWordsLabel": "Mes mots",
+  "share": "Partager",
   "gameScoreText": "Score",
   "healthPointsValue": "Énergie",
   "music": "Musique",
+  "language_settings": "Langue",
   "myNotesInfo": "Mes prises",
   "hintPoint": "Indice",
   "endGameAction": "Quitter",
@@ -14,5 +16,17 @@
   "homePageGeneral": "Accueil",
   "loading": "Chargement...",
   "selectLanguagePrompt": "Déjà utilisé",
-  "adLoadingMessage": "Pub pour indice"
+  "adLoadingMessage": "Pub pour indice",
+  "easier Mode": "Mode plus facile",
+  "languageSettingsTitle": "Paramètres de langue",
+  "difficultylabel": "Difficulté",
+  "currentLevel": "Niveau actuel",
+  "learningLabel": "Langue d’apprentissage",
+  "usingLable": "Langue d’explication",
+  "applyButton": "Appliquer",
+  "hintPlusOne": "+1 Indice",
+  "adLimitReached": "Limite de pub atteinte",
+  "adNotCompleted": "Pub non terminée. Aucun indice accordé.",
+  "adUnavailable": "Les pubs ne sont pas disponibles pour le moment. Réessayez plus tard.",
+  "upgradeVersion": "Votre version est obsolète. Mettez à jour puis réessayez."
 }

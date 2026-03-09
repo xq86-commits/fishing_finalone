@@ -1,9 +1,11 @@
 {
   "startGameButton": "开始游戏",
   "myWordsLabel": "我的单词",
+  "share": "分享",
   "gameScoreText": "得分",
   "healthPointsValue": "体力",
   "music": "音乐",
+  "language_settings": "语言",
   "myNotesInfo": "单词",
   "hintPoint": "提示",
   "endGameAction": "结束本局",
@@ -14,5 +16,17 @@
   "homePageGeneral": "主页",
   "loading": "加载中...",
   "selectLanguagePrompt": "已是当前语言",
-  "adLoadingMessage": "观看广告获取更多提示"
+  "adLoadingMessage": "观看广告获取更多提示",
+  "easier Mode": "降低难度",
+  "languageSettingsTitle": "语言设置",
+  "difficultylabel": "难度",
+  "currentLevel": "当前等级",
+  "learningLabel": "学习语言",
+  "usingLable": "解释语言",
+  "applyButton": "应用",
+  "hintPlusOne": "提示+1",
+  "adLimitReached": "今日可观看广告已达上限",
+  "adNotCompleted": "广告未完成",
+  "adUnavailable": "广告暂不可用",
+  "upgradeVersion": "版本过低，请更新后再试"
 }

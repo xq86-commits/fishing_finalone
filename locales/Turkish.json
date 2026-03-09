@@ -1,9 +1,11 @@
 {
   "startGameButton": "Oyna",
   "myWordsLabel": "Kelimelerim",
+  "share": "Paylaş",
   "gameScoreText": "Skor",
   "healthPointsValue": "Enerji",
   "music": "Müzik",
+  "language_settings": "Dil",
   "myNotesInfo": "Yakalanan",
   "hintPoint": "İpucu",
   "endGameAction": "Çık",
@@ -14,5 +16,17 @@
   "homePageGeneral": "Ana Sayfa",
   "loading": "Yükleniyor…",
   "selectLanguagePrompt": "Zaten seçili",
-  "adLoadingMessage": "İpucu için reklam izle"
+  "adLoadingMessage": "İpucu için reklam izle",
+  "easier Mode": "Kolay mod",
+  "languageSettingsTitle": "Dil ayarları",
+  "difficultylabel": "Zorluk",
+  "currentLevel": "Mevcut seviye",
+  "learningLabel": "Öğrenme dili",
+  "usingLable": "Açıklama dili",
+  "applyButton": "Uygula",
+  "hintPlusOne": "+1 İpucu",
+  "adLimitReached": "Reklam limitine ulaşıldı",
+  "adNotCompleted": "Reklam tamamlanmadı. İpucu verilmedi.",
+  "adUnavailable": "Reklamlar şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.",
+  "upgradeVersion": "Sürümünüz güncel değil. Lütfen güncelleyip tekrar deneyin."
 }

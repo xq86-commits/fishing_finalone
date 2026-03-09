@@ -1,9 +1,11 @@
 {
   "startGameButton": "เริ่มเกม",
   "myWordsLabel": "คลังคำศัพท์",
+  "share": "แชร์",
   "gameScoreText": "คะแนน",
   "healthPointsValue": "พลังงาน",
   "music": "เพลง",
+  "language_settings": "ภาษา",
   "myNotesInfo": "คำที่ตกได้",
   "hintPoint": "คำใบ้",
   "endGameAction": "ออก",
@@ -14,5 +16,17 @@
   "homePageGeneral": "หน้าหลัก",
   "loading": "กำลังโหลด...",
   "selectLanguagePrompt": "เลือกอยู่แล้ว",
-  "adLoadingMessage": "ดูโฆษณาเพื่อรับคำใบ้"
+  "adLoadingMessage": "ดูโฆษณาเพื่อรับคำใบ้",
+  "easier Mode": "โหมดง่ายขึ้น",
+  "languageSettingsTitle": "ตั้งค่าภาษา",
+  "difficultylabel": "ความยาก",
+  "currentLevel": "ระดับปัจจุบัน",
+  "learningLabel": "ภาษาที่เรียน",
+  "usingLable": "ภาษาคำอธิบาย",
+  "applyButton": "ใช้",
+  "hintPlusOne": "+1 คำใบ้",
+  "adLimitReached": "ถึงขีดจำกัดโฆษณาแล้ว",
+  "adNotCompleted": "ดูโฆษณาไม่จบ จึงไม่ได้รับคำใบ้",
+  "adUnavailable": "ขณะนี้ไม่มีโฆษณา กรุณาลองใหม่ภายหลัง",
+  "upgradeVersion": "เวอร์ชันของคุณเก่าเกินไป กรุณาอัปเดตแล้วลองใหม่"
 }

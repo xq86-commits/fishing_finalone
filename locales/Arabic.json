@@ -1,9 +1,11 @@
 {
   "startGameButton": "ابدأ",
   "myWordsLabel": "كلماتي",
+  "share": "المشاركة",
   "gameScoreText": "النتيجة",
   "healthPointsValue": "الطاقة",
   "music": "موسيقى",
+  "language_settings": "اللغة",
   "myNotesInfo": "حصيلة اليوم",
   "hintPoint": "تلميح",
   "endGameAction": "خروج",
@@ -14,5 +16,17 @@
   "homePageGeneral": "الرئيسية",
   "loading": "تحميل...",
   "selectLanguagePrompt": "قيد الاستخدام",
-  "adLoadingMessage": "إعلان للتلميح"
+  "adLoadingMessage": "إعلان للتلميح",
+  "easier Mode": "وضع أسهل",
+  "languageSettingsTitle": "إعدادات اللغة",
+  "difficultylabel": "الصعوبة",
+  "currentLevel": "المستوى الحالي",
+  "learningLabel": "لغة التعلّم",
+  "usingLable": "لغة الشرح",
+  "applyButton": "تطبيق",
+  "hintPlusOne": "+1 تلميح",
+  "adLimitReached": "تم الوصول إلى حد الإعلانات",
+  "adNotCompleted": "لم يكتمل الإعلان. لم يتم منح تلميح.",
+  "adUnavailable": "الإعلانات غير متاحة الآن. يُرجى المحاولة لاحقًا.",
+  "upgradeVersion": "إصدارك قديم. يُرجى التحديث ثم المحاولة مرة أخرى."
 }

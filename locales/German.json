@@ -1,9 +1,11 @@
 {
   "startGameButton": "Spielen",
   "myWordsLabel": "Wortschatz",
+  "share": "Teilen",
   "gameScoreText": "Punkte",
   "healthPointsValue": "Energie",
   "music": "Musik",
+  "language_settings": "Sprache",
   "myNotesInfo": "Fang",
   "hintPoint": "Tipp",
   "endGameAction": "Beenden",
@@ -14,5 +16,17 @@
   "homePageGeneral": "Home",
   "loading": "Laden...",
   "selectLanguagePrompt": "Bereits ausgewählt",
-  "adLoadingMessage": "Video für Tipp"
+  "adLoadingMessage": "Video für Tipp",
+  "easier Mode": "Einfacher Modus",
+  "languageSettingsTitle": "Spracheinstellungen",
+  "difficultylabel": "Schwierigkeit",
+  "currentLevel": "Aktuelles Level",
+  "learningLabel": "Lernsprache",
+  "usingLable": "Erklärungssprache",
+  "applyButton": "Anwenden",
+  "hintPlusOne": "+1 Tipp",
+  "adLimitReached": "Werbelimit erreicht",
+  "adNotCompleted": "Anzeige nicht abgeschlossen. Kein Tipp erhalten.",
+  "adUnavailable": "Werbung ist derzeit nicht verfügbar. Bitte später erneut versuchen.",
+  "upgradeVersion": "Ihre Version ist veraltet. Bitte aktualisieren und erneut versuchen."
 }

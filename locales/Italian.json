@@ -1,9 +1,11 @@
 {
   "startGameButton": "Gioca",
   "myWordsLabel": "Mie parole",
+  "share": "Condividi",
   "gameScoreText": "Punteggio",
   "healthPointsValue": "Energia",
   "music": "Musica",
+  "language_settings": "Lingua",
   "myNotesInfo": "Bottino",
   "hintPoint": "Aiuto",
   "endGameAction": "Esci",
@@ -14,5 +16,17 @@
   "homePageGeneral": "Home",
   "loading": "Caricamento...",
   "selectLanguagePrompt": "Già in uso",
-  "adLoadingMessage": "Guarda un annuncio per un aiuto"
+  "adLoadingMessage": "Guarda un annuncio per un aiuto",
+  "easier Mode": "Modalità più facile",
+  "languageSettingsTitle": "Impostazioni lingua",
+  "difficultylabel": "Difficoltà",
+  "currentLevel": "Livello attuale",
+  "learningLabel": "Lingua di apprendimento",
+  "usingLable": "Lingua di spiegazione",
+  "applyButton": "Applica",
+  "hintPlusOne": "+1 Aiuto",
+  "adLimitReached": "Limite annunci raggiunto",
+  "adNotCompleted": "Annuncio non completato. Nessun aiuto assegnato.",
+  "adUnavailable": "Gli annunci non sono disponibili al momento. Riprova più tardi.",
+  "upgradeVersion": "La tua versione non è aggiornata. Aggiorna e riprova."
 }

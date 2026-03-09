@@ -308,9 +308,8 @@ function getFishMinY() {
   // 如果 Hint 按钮位置已设置，计算其底部 + margin
   if (state.hintButtonRect) {
     const hintBottom = state.hintButtonRect.y + state.hintButtonRect.height;
-    const margin = 10; // 8~12px 范围内的间距
+    const margin = 10;
     const fishMinY = hintBottom + margin;
-    // 确保 fishMinY 不会小于原始水域最小 y
     return Math.max(originalWaterMinY, fishMinY);
   }
   
@@ -806,7 +805,7 @@ function handleAdEvent(payload) {
   }
   if (parsedPayload && parsedPayload.isGainReward === 1) {
     state.hintsLeft = (state.hintsLeft || 0) + 1;
-    showToast("Hint +1");
+    showToast(t("hintPlusOne"));
     if (state.hintButtonRect) {
       state.floatingTexts.push({
         x: state.hintButtonRect.x + state.hintButtonRect.width / 2,
@@ -824,8 +823,8 @@ function handleAdEvent(payload) {
     }
   } else {
     const errorMsg = parsedPayload && (parsedPayload.viewsNumber === parsedPayload.maximumViews)
-      ? "Ad limit reached today"
-      : "Ad not completed";
+      ? t("adLimitReached")
+      : t("adNotCompleted");
     showToast(errorMsg);
   }
 }
@@ -836,7 +835,7 @@ async function requestHintAd() {
   const adManager = getAdManager();
 
   if (!adManager || typeof adManager.show !== "function") {
-    showToast("Ad unavailable");
+    showToast(t("adUnavailable"));
     return;
   }
 
@@ -849,7 +848,7 @@ async function requestHintAd() {
     return;
   }
   if (state.adSupport === false) {
-    showToast("Please upgrade to the latest version");
+    showToast(t("upgradeVersion"));
     return;
   }
   state.waitingHintAd = true;
@@ -861,7 +860,7 @@ async function requestHintAd() {
 
   if (!started) {
     state.waitingHintAd = false;
-    showToast("Ad unavailable");
+    showToast(t("adUnavailable"));
   } else {
     showToast(t("adLoadingMessage"));
   }
@@ -2303,7 +2302,7 @@ function drawUI() {
     ctx.font = 'bold 12px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText("Language", rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText(t("language_settings"), rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
 
   iconY += iconSize + iconGap;
@@ -3001,7 +3000,7 @@ function drawLanguageOverlay() {
   ctx.font = '600 18px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillText("Language Settings", x + 16, y + headerHeight / 2);
+  ctx.fillText(t("languageSettingsTitle"), x + 16, y + headerHeight / 2);
 
   // Close Button
   const closeSize = 26;
@@ -3063,12 +3062,12 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  const levelLabel = "Difficulty Level";
+  const levelLabel = t("difficultylabel");
   ctx.fillText(levelLabel, x + 28, levelSectionY + 12);
   ctx.font = '12px Arial';
   ctx.fillStyle = '#1E5F8F';
   const levelLabelWidth = ctx.measureText(levelLabel).width;
-  ctx.fillText("Current: " + state.activeLevel, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
+  ctx.fillText(t("currentLevel") + ": " + state.activeLevel, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
 
   state.levelRects = [];
   const levelGridStartY = levelSectionY + 40;
@@ -3108,7 +3107,7 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  ctx.fillText("Learning", x + 28, cursorY + 12);
+  ctx.fillText(t("learningLabel"), x + 28, cursorY + 12);
 
   state.languageLearningRects = [];
   const learningKeyStartY = cursorY + 36;
@@ -3148,7 +3147,7 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  ctx.fillText("Using", x + 28, cursorY + 12);
+  ctx.fillText(t("usingLable"), x + 28, cursorY + 12);
 
   state.languageBaseRects = [];
   const baseKeyStartY = cursorY + 36;
@@ -3243,7 +3242,7 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 18px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText("Apply", confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height / 2);
+  ctx.fillText(t("applyButton"), confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height / 2);
 
   ctx.restore();
 

@@ -1,9 +1,11 @@
 {
   "startGameButton": "Jogar",
   "myWordsLabel": "Palavras",
+  "share": "Compartilhar",
   "gameScoreText": "Pontos",
   "healthPointsValue": "Energia",
   "music": "Música",
+  "language_settings": "Idioma",
   "myNotesInfo": "Capturas",
   "hintPoint": "Dica",
   "endGameAction": "Sair",
@@ -14,5 +16,17 @@
   "homePageGeneral": "Início",
   "loading": "Carregando...",
   "selectLanguagePrompt": "Já em uso",
-  "adLoadingMessage": "Ver anúncio para ganhar uma dica"
+  "adLoadingMessage": "Ver anúncio para ganhar uma dica",
+  "easier Mode": "Modo mais fácil",
+  "languageSettingsTitle": "Configurações de idioma",
+  "difficultylabel": "Dificuldade",
+  "currentLevel": "Nível atual",
+  "learningLabel": "Idioma de aprendizagem",
+  "usingLable": "Idioma de explicação",
+  "applyButton": "Aplicar",
+  "hintPlusOne": "+1 Dica",
+  "adLimitReached": "Limite de anúncios atingido",
+  "adNotCompleted": "Anúncio não concluído. Nenhuma dica recebida.",
+  "adUnavailable": "Os anúncios não estão disponíveis no momento. Tente novamente mais tarde.",
+  "upgradeVersion": "Sua versão está desatualizada. Atualize e tente novamente."
 }
