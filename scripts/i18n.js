@@ -2,7 +2,6 @@
   var locales = {};
   var currentLocale = "English";
   var fallbackLocale = "English";
-  var STORAGE_KEY = "fishwordlingo_ui_lang";
 
   var VALID_LOCALES = [
     "Arabic", "Chinese", "Chinese_yy", "English", "French", "German",
@@ -29,22 +28,11 @@
     return isValidLocale(name) ? name : null;
   }
 
-  function detectLocale() {
-    try {
-      var saved = localStorage.getItem(STORAGE_KEY);
-      var resolved = resolveLocale(saved);
-      if (resolved) return resolved;
-    } catch (e) { /* ignore */ }
-    return fallbackLocale;
-  }
-
   window.i18n = {
     setLocale: function (locale) {
       var resolved = resolveLocale(locale) || fallbackLocale;
       currentLocale = locales[resolved] ? resolved : fallbackLocale;
-      try {
-        localStorage.setItem(STORAGE_KEY, currentLocale);
-      } catch (e) { /* ignore */ }
+      console.log("[i18n] setLocale:", locale, "→", currentLocale);
     },
 
     getLocale: function () {
@@ -95,18 +83,8 @@
 
     init: function (basePath, callback) {
       var self = this;
-      var detected = detectLocale();
-
       self.loadLocale(fallbackLocale, basePath, function () {
-        if (detected === fallbackLocale) {
-          self.setLocale(detected);
-          if (callback) callback(currentLocale);
-        } else {
-          self.loadLocale(detected, basePath, function () {
-            self.setLocale(detected);
-            if (callback) callback(currentLocale);
-          });
-        }
+        if (callback) callback(currentLocale);
       });
     }
   };

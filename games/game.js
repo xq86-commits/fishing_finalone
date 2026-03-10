@@ -278,6 +278,8 @@ const WATER_LEVEL = 0.36; // Water surface level (ratio of height)
 let tutorialOverlay = null;
 
 function hasSeenTutorial() {
+  // 没有多语言的教程，暂时禁用
+  return true;
   try {
     return localStorage.getItem(TUTORIAL_STORAGE_KEY) === "true";
   } catch (e) {
@@ -2390,7 +2392,7 @@ function drawUI() {
   ctx.font = 'bold 12px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  ctx.fillText('End Game', centerX, endGameButtonRect.y + endGameButtonRect.height + 4);
+  ctx.fillText(t("endGameAction"), centerX, endGameButtonRect.y + endGameButtonRect.height + 4);
 }
 
 function drawGameOver() {
@@ -3603,7 +3605,7 @@ async function handleInputClick(e) {
 
   // End Game button
   if (state.endGameButtonRect && isPointInRect(clickX, clickY, state.endGameButtonRect)) {
-    endGame("Game Ended");
+    endGame(t("gameOverStatus"));
     return;
   }
 
