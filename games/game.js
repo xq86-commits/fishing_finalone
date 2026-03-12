@@ -849,6 +849,7 @@ function handleAdEvent(payload) {
 }
 
 async function requestHintAd() {
+  return showToast(t("hintPlusOne"));
   attachHintAdListener();
 
   const adManager = getAdManager();
@@ -1040,6 +1041,33 @@ let dpr = window.devicePixelRatio || 1;
 let toastTimeout = null;
 let toastLines = [];
 
+function isCJK(ch) {
+  var code = ch.charCodeAt(0);
+  return (code >= 0x3000 && code <= 0x9FFF) ||
+         (code >= 0xAC00 && code <= 0xD7AF) ||
+         (code >= 0xF900 && code <= 0xFAFF) ||
+         (code >= 0xFF01 && code <= 0xFF60);
+}
+
+function tokenize(line) {
+  var tokens = [];
+  var buf = '';
+  for (var i = 0; i < line.length; i++) {
+    var ch = line[i];
+    if (isCJK(ch)) {
+      if (buf) { tokens.push(buf); buf = ''; }
+      tokens.push(ch);
+    } else if (/\s/.test(ch)) {
+      buf += ch;
+      tokens.push(buf); buf = '';
+    } else {
+      buf += ch;
+    }
+  }
+  if (buf) tokens.push(buf);
+  return tokens;
+}
+
 function wrapText(ctx, text, maxWidth) {
   var manualLines = text.split('\n');
   var result = [];
@@ -1049,14 +1077,14 @@ function wrapText(ctx, text, maxWidth) {
       result.push(line);
       continue;
     }
-    var words = line.split(/(\s+)/);
+    var tokens = tokenize(line);
     var current = '';
-    for (var i = 0; i < words.length; i++) {
-      var word = words[i];
-      var test = current + word;
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i];
+      var test = current + token;
       if (ctx.measureText(test).width > maxWidth && current.trim().length > 0) {
         result.push(current.trim());
-        current = word;
+        current = token;
       } else {
         current = test;
       }
