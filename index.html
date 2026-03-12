@@ -1498,10 +1498,7 @@
       showFlex("loading");
       stopFireworks();
       tryPlayBgm();
-      setTimeout(() => {
-        showBlock("game-wrapper");
-        gameFrame.src = "./games/game.html";
-      }, 200);
+      gameFrame.src = "./games/game.html";
       if (window.appCommunication && typeof window.appCommunication.sendMessageToApp === "function") {
         window.appCommunication.sendMessageToApp({
           type: "gameStart"
@@ -2101,6 +2098,11 @@
     /* 接收游戏过关消息 */
     window.addEventListener("message", (e) => {
       const data = e.data || {};
+      if (data.action === "gameReady") {
+        hideAll();
+        showBlock("game-wrapper");
+        return;
+      }
       if (data.action === "levelComplete") {
         latestScore = Number(data.score ?? 0) || 0;
         const completionTimeMs = Number.isFinite(Number(data.completionTimeMs)) ? Number(data.completionTimeMs) : null;

@@ -1234,6 +1234,7 @@ async function startGame() {
     tutorialOverlay.show();
     tutorialOverlay.update(getTutorialLayout());
   }
+  window.parent.postMessage({ action: "gameReady" }, "*");
   requestAnimationFrame(gameLoop);
 }
 
