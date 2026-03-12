@@ -1,8 +1,29 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
+// i18n: reuse parent page's i18n object (same-origin iframe)
+var _i18n = (window.parent && window.parent !== window && window.parent.i18n)
+  ? window.parent.i18n
+  : (window.i18n || null);
+var t = _i18n ? _i18n.t.bind(_i18n) : function (key) { return key; };
+
+function isRTL() {
+  return _i18n && typeof _i18n.isRTL === 'function' && _i18n.isRTL();
+}
+
+function fillTextBidi(ctx, text, x, y) {
+  if (isRTL()) {
+    ctx.save();
+    ctx.direction = 'rtl';
+    ctx.fillText(text, x, y);
+    ctx.restore();
+  } else {
+    ctx.fillText(text, x, y);
+  }
+}
+
 // Game Configuration
-const GAME_DURATION = 90; // seconds
+// const GAME_DURATION = 90; // seconds
 const FISH_COUNT = 6;
 const FISH_WIDTH = 40;  // 80% of previous size
 const FISH_HEIGHT = 40;
@@ -197,10 +218,10 @@ function getAdManager() {
 let state = {
   score: 0,
   lives: 10,
-  timeLeft: GAME_DURATION,
+  // timeLeft: GAME_DURATION,
   gameOver: false,
   tutorialActive: false,
-  startTime: 0,
+  // startTime: 0,
   lastFrameTime: 0,
 
   // Visual State
@@ -257,9 +278,10 @@ let state = {
   speakerAnim: { word: null, start: 0 },
 
   // Countdown Effects
-  timeShakeStart: null,
-  countdownSoundPlaying: false,
-  countdownSoundInterval: null,
+  // timeShakeStart: null,
+  // countdownSoundPlaying: false,
+  // countdownSoundInterval: null,
+  endGameButtonRect: null,
 
   toastPosition: 0.7
 };
@@ -272,6 +294,8 @@ const WATER_LEVEL = 0.36; // Water surface level (ratio of height)
 let tutorialOverlay = null;
 
 function hasSeenTutorial() {
+  // 没有多语言的教程，暂时禁用
+  return true;
   try {
     return localStorage.getItem(TUTORIAL_STORAGE_KEY) === "true";
   } catch (e) {
@@ -303,9 +327,8 @@ function getFishMinY() {
   // 如果 Hint 按钮位置已设置，计算其底部 + margin
   if (state.hintButtonRect) {
     const hintBottom = state.hintButtonRect.y + state.hintButtonRect.height;
-    const margin = 10; // 8~12px 范围内的间距
+    const margin = 10;
     const fishMinY = hintBottom + margin;
-    // 确保 fishMinY 不会小于原始水域最小 y
     return Math.max(originalWaterMinY, fishMinY);
   }
   
@@ -519,7 +542,7 @@ class TutorialOverlay {
     <div>The meaning below is your clue.</div>
   </div>
   <div class="tutorial-label tutorial-label--hint">
-    <div>Use hints when you're<br>stuck.Each hint<br>reveals one letter.</div>
+    <div>Use hints when you're stuck. Each hint reveals one letter.</div>
   </div>
 </div>
     `;
@@ -559,6 +582,9 @@ class TutorialOverlay {
     if (!this.root.isConnected) {
       document.body.appendChild(this.root);
     }
+    this.root.querySelectorAll("[data-i18n]").forEach(function(el) {
+      el.textContent = t(el.getAttribute("data-i18n"));
+    });
     this.root.classList.add("is-visible");
   }
 
@@ -764,7 +790,7 @@ function loadSavedGameSettings() {
 
 async function applyLanguageSettings() {
   if (state.selectedLearningLang === state.selectedBaseLang) {
-    showToast("Please Choose Different Language");
+    showToast(t("selectLanguagePrompt"));
     return;
   }
 
@@ -798,7 +824,7 @@ function handleAdEvent(payload) {
   }
   if (parsedPayload && parsedPayload.isGainReward === 1) {
     state.hintsLeft = (state.hintsLeft || 0) + 1;
-    showToast("Hint +1");
+    showToast(t("hintPlusOne"));
     if (state.hintButtonRect) {
       state.floatingTexts.push({
         x: state.hintButtonRect.x + state.hintButtonRect.width / 2,
@@ -816,8 +842,8 @@ function handleAdEvent(payload) {
     }
   } else {
     const errorMsg = parsedPayload && (parsedPayload.viewsNumber === parsedPayload.maximumViews)
-      ? "Ad limit reached today"
-      : "Ad not completed";
+      ? t("adLimitReached")
+      : t("adNotCompleted");
     showToast(errorMsg);
   }
 }
@@ -828,21 +854,20 @@ async function requestHintAd() {
   const adManager = getAdManager();
 
   if (!adManager || typeof adManager.show !== "function") {
-    showToast("Ad unavailable");
+    showToast(t("adUnavailable"));
     return;
   }
 
   if (state.waitingHintAd) {
-    showToast("Ad loading...");
+    showToast(t("adLoadingMessage"));
     return;
   }
-  // 检查客户端版本是否支持调用广告
   if (state.adSupport === null) {
-    showToast("Ad loading...");
+    showToast(t("adLoadingMessage"));
     return;
   }
   if (state.adSupport === false) {
-    showToast("Please upgrade to the latest version");
+    showToast(t("upgradeVersion"));
     return;
   }
   state.waitingHintAd = true;
@@ -854,9 +879,9 @@ async function requestHintAd() {
 
   if (!started) {
     state.waitingHintAd = false;
-    showToast("Ad unavailable");
+    showToast(t("adUnavailable"));
   } else {
-    showToast("Loading ad...");
+    showToast(t("adLoadingMessage"));
   }
 }
 
@@ -1015,10 +1040,41 @@ let dpr = window.devicePixelRatio || 1;
 let toastTimeout = null;
 let toastLines = [];
 
+function wrapText(ctx, text, maxWidth) {
+  var manualLines = text.split('\n');
+  var result = [];
+  for (var m = 0; m < manualLines.length; m++) {
+    var line = manualLines[m];
+    if (ctx.measureText(line).width <= maxWidth) {
+      result.push(line);
+      continue;
+    }
+    var words = line.split(/(\s+)/);
+    var current = '';
+    for (var i = 0; i < words.length; i++) {
+      var word = words[i];
+      var test = current + word;
+      if (ctx.measureText(test).width > maxWidth && current.trim().length > 0) {
+        result.push(current.trim());
+        current = word;
+      } else {
+        current = test;
+      }
+    }
+    if (current.trim()) result.push(current.trim());
+  }
+  return result;
+}
+
 function showToast(message, duration = 800, position = 0.7) {
-  state.toastMessage = message; // Keep for compatibility if needed, but we use toastLines now
-  state.toastPosition = position; // Set toast position
-  toastLines = message.split('\n');
+  state.toastMessage = message;
+  state.toastPosition = position;
+
+  ctx.save();
+  ctx.font = 'bold 14px Arial';
+  var maxTextWidth = 260;
+  toastLines = wrapText(ctx, message, maxTextWidth);
+  ctx.restore();
 
   if (toastTimeout) {
     clearTimeout(toastTimeout);
@@ -1028,7 +1084,7 @@ function showToast(message, duration = 800, position = 0.7) {
     if (state.toastMessage === captured && !state.isEnding && !state.gameOver) {
       state.toastMessage = null;
       toastLines = [];
-      state.toastPosition = 0.7; // Reset to default position
+      state.toastPosition = 0.7;
     }
     toastTimeout = null;
   }, duration);
@@ -1127,7 +1183,7 @@ async function startGame() {
 
   state.score = 0;
   state.lives = 10;
-  state.timeLeft = GAME_DURATION;
+  // state.timeLeft = GAME_DURATION;
   state.gameOver = false;
   state.foundWords = [];
   state.hintsLeft = 3;
@@ -1165,10 +1221,10 @@ async function startGame() {
   state.toastMessage = null;
 
   // Reset countdown effects
-  stopCountdownSound();
-  state.timeShakeStart = null;
+  // stopCountdownSound();
+  // state.timeShakeStart = null;
 
-  state.startTime = state.tutorialActive ? null : Date.now();
+  // state.startTime = state.tutorialActive ? null : Date.now();
   state.lastFrameTime = Date.now();
   state.isTransitioning = false; // Ensure not transitioning at start
 
@@ -1178,6 +1234,7 @@ async function startGame() {
     tutorialOverlay.show();
     tutorialOverlay.update(getTutorialLayout());
   }
+  window.parent.postMessage({ action: "gameReady" }, "*");
   requestAnimationFrame(gameLoop);
 }
 
@@ -1199,7 +1256,7 @@ function nextWord() {
 
 function pickNewWordAndSpawn() {
   // Stop countdown sound when starting a new word
-  stopCountdownSound();
+  // stopCountdownSound();
 
   const vocabList = getActiveVocabList();
   if (!vocabList || !vocabList.length) return;
@@ -1615,25 +1672,25 @@ function update(dt) {
   }
 
   // Timer
-  const elapsed = (Date.now() - state.startTime) / 1000;
-  state.timeLeft = Math.max(0, GAME_DURATION - elapsed);
+  // const elapsed = (Date.now() - state.startTime) / 1000;
+  // state.timeLeft = Math.max(0, GAME_DURATION - elapsed);
 
   // Check if countdown reaches 10 seconds (trigger only once)
-  if (state.timeLeft <= 10 && state.timeLeft > 9 && state.timeShakeStart === null) {
-    state.timeShakeStart = Date.now();
-    startCountdownSound();
-  }
+  // if (state.timeLeft <= 10 && state.timeLeft > 9 && state.timeShakeStart === null) {
+  //   state.timeShakeStart = Date.now();
+  //   startCountdownSound();
+  // }
 
   // Clear shake effect after 1 second
-  if (state.timeShakeStart !== null) {
-    const shakeElapsed = Date.now() - state.timeShakeStart;
-    if (shakeElapsed >= 1000) {
-      state.timeShakeStart = null;
-    }
-  }
+  // if (state.timeShakeStart !== null) {
+  //   const shakeElapsed = Date.now() - state.timeShakeStart;
+  //   if (shakeElapsed >= 1000) {
+  //     state.timeShakeStart = null;
+  //   }
+  // }
 
   if (state.timeLeft <= 0 && !state.gameOver) {
-    endGame("Time Over");
+    endGame(t("gameOverStatus"));
     return;
   }
 
@@ -1674,7 +1731,7 @@ function update(dt) {
   } else {
     state.displayLives = state.targetLives;
     if (state.targetLives <= 0 && !state.isEnding && !state.gameOver) {
-      endGame("Out of Lives");
+      endGame(t("gameOverStatus"));
     }
   }
 
@@ -1888,7 +1945,7 @@ function endGame(reason) {
   if (state.isEnding || state.gameOver) return;
 
   state.isEnding = true;
-  stopCountdownSound();
+  // stopCountdownSound();
   showToast(reason);
 
   setTimeout(() => {
@@ -2043,19 +2100,24 @@ function draw() {
     const logicalHeight = canvas.height / dpr;
 
     ctx.save();
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.font = 'bold 14px Arial';
 
-    // Calculate size based on lines
-    const lineHeight = 30;
-    const paddingV = 0;
-    const paddingH = 40;
+    const lineHeight = 24;
+    const paddingV = 16;
+    const paddingH = 28;
+
+    var maxLineWidth = 0;
+    for (var li = 0; li < toastLines.length; li++) {
+      var w = ctx.measureText(toastLines[li]).width;
+      if (w > maxLineWidth) maxLineWidth = w;
+    }
+
+    const boxWidth = Math.min(maxLineWidth + paddingH * 2, logicalWidth - 40);
     const boxHeight = toastLines.length * lineHeight + paddingV;
-    const boxWidth = 300; // Fixed width for simplicity or measure
-
-    // Use fillRect for compatibility if roundRect is not supported, or check support
     const boxX = logicalWidth / 2 - boxWidth / 2;
     const boxY = logicalHeight * state.toastPosition - boxHeight / 2;
 
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     if (ctx.roundRect) {
       ctx.beginPath();
       ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 10);
@@ -2065,14 +2127,12 @@ function draw() {
     }
 
     ctx.fillStyle = '#fff';
-    ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
-    // Draw each line
     toastLines.forEach((line, index) => {
       const lineY = boxY + paddingV / 2 + lineHeight / 2 + index * lineHeight;
-      ctx.fillText(line, logicalWidth / 2, lineY);
+      fillTextBidi(ctx, line, logicalWidth / 2, lineY);
     });
 
     ctx.restore();
@@ -2095,37 +2155,37 @@ function drawUI() {
   ctx.font = 'bold 20px Arial';
 
   // Timer now at former score slot (left side)
-  ctx.textAlign = 'left';
-  let timeX = 20;
-  let timeY = 76 + uiOffsetY; // shifted further down by 6px
+  // ctx.textAlign = 'left';
+  // let timeX = 20;
+  // let timeY = 76 + uiOffsetY; // shifted further down by 6px
 
-  if (state.timeShakeStart !== null) {
-    const shakeElapsed = Date.now() - state.timeShakeStart;
-    if (shakeElapsed < 1000) {
-      // Calculate shake offset using sine/cosine waves
-      const shakeProgress = shakeElapsed / 1000;
-      const shakeFrequency = 20; // High frequency for rapid shaking
-      const shakeAmount = 5; // ±5 pixels
+  // if (state.timeShakeStart !== null) {
+  //   const shakeElapsed = Date.now() - state.timeShakeStart;
+  //   if (shakeElapsed < 1000) {
+  //     // Calculate shake offset using sine/cosine waves
+  //     const shakeProgress = shakeElapsed / 1000;
+  //     const shakeFrequency = 20; // High frequency for rapid shaking
+  //     const shakeAmount = 5; // ±5 pixels
 
-      const offsetX = Math.sin(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
-      const offsetY = Math.cos(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
+  //     const offsetX = Math.sin(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
+  //     const offsetY = Math.cos(shakeElapsed * shakeFrequency * 0.01) * shakeAmount * (1 - shakeProgress);
 
-      timeX += offsetX;
-      timeY += offsetY;
-    } else {
-      // Shake duration ended, clear it
-      state.timeShakeStart = null;
-    }
-  }
+  //     timeX += offsetX;
+  //     timeY += offsetY;
+  //   } else {
+  //     // Shake duration ended, clear it
+  //     state.timeShakeStart = null;
+  //   }
+  // }
 
-  ctx.fillText(`Time: ${Math.ceil(state.timeLeft)}s`, timeX, timeY);
+  // ctx.fillText(`Time: ${Math.ceil(state.timeLeft)}s`, timeX, timeY);
 
-  // Score shifted down by one slot below time
+  // Score (keeping original position below where time used to be)
   ctx.textBaseline = 'middle';
   ctx.textAlign = 'left';
   ctx.fillStyle = '#666';
   ctx.font = 'bold 20px Arial';
-  ctx.fillText(`Score: ${Math.round(state.displayScore)}`, 20, 106 + uiOffsetY); // keep 30px gap below time
+  fillTextBidi(ctx, t("gameScoreText") + ": " + Math.round(state.displayScore), 20, 106 + uiOffsetY);
 
   // Lives below score, preserving previous gap (30px)
   if (Math.abs(state.displayLives - state.targetLives) > 0.01) {
@@ -2133,13 +2193,13 @@ function drawUI() {
   } else {
     state.displayLives = state.targetLives;
     if (state.targetLives <= 0 && !state.isEnding && !state.gameOver) {
-      endGame("Out of Lives");
+      endGame(t("gameOverStatus"));
     }
   }
   ctx.fillStyle = '#e74c3c';
   ctx.font = 'bold 20px Arial';
   ctx.textAlign = 'left';
-  ctx.fillText(`Lives: ${Math.round(state.displayLives)}`, 20, 136 + uiOffsetY); // keep 30px gap below score
+  fillTextBidi(ctx, t("healthPointsValue") + ": " + Math.round(state.displayLives), 20, 136 + uiOffsetY);
 
   // Current word placed beside the fisherman
   const personWidth = 100;
@@ -2231,6 +2291,7 @@ function drawUI() {
   ctx.fillText(displayTranslation, textCenterX, englishY);
 
   // Icons (Music, Settings, Note, Hint) on the right
+  const iconLabelSize = (_i18n && _i18n.getLocale() === "Japanese") ? 10 : 12;
   const iconSize = 40;
   const musicIconSize = 50; // Music button has different size
   const iconGap = 30; // Gap between icon bottom and next icon top (including text)
@@ -2278,10 +2339,10 @@ function drawUI() {
     }
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold ' + iconLabelSize + 'px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('Music', rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText(t("music"), rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
 
   iconY += musicIconSize + iconGap;
@@ -2293,10 +2354,10 @@ function drawUI() {
     ctx.drawImage(ASSETS.settings.img, rect.x, rect.y, rect.width, rect.height);
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold ' + iconLabelSize + 'px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('Language', rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText(t("language_settings"), rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
 
   iconY += iconSize + iconGap;
@@ -2308,10 +2369,10 @@ function drawUI() {
     ctx.drawImage(ASSETS.note.img, rect.x, rect.y, rect.width, rect.height);
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold ' + iconLabelSize + 'px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('Note', rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText(t("myNotesInfo"), rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
 
   iconY += iconSize + iconGap;
@@ -2339,11 +2400,50 @@ function drawUI() {
     ctx.fillText(badgeText, badgeX, badgeY);
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold ' + iconLabelSize + 'px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
-    ctx.fillText('Hint', rect.x + rect.width / 2, rect.y + rect.height + 4);
+    ctx.fillText(t("hintPoint"), rect.x + rect.width / 2, rect.y + rect.height + 4);
   }
+
+  iconY += iconSize + iconGap;
+
+  // End Game button (placed below Hint button, 80% size)
+  const endGameButtonSize = iconSize * 0.8;
+  const endGameButtonX = iconX + (iconSize - endGameButtonSize) / 2; // Center align with other buttons
+  const endGameButtonRect = { x: endGameButtonX, y: iconY, width: endGameButtonSize, height: endGameButtonSize };
+  state.endGameButtonRect = endGameButtonRect;
+
+  // Draw circular button background
+  const centerX = endGameButtonRect.x + endGameButtonRect.width / 2;
+  const centerY = endGameButtonRect.y + endGameButtonRect.height / 2;
+  const radius = endGameButtonRect.width / 2;
+  
+  ctx.fillStyle = 'rgba(231, 76, 60, 0.9)'; // Red color
+  ctx.strokeStyle = 'rgba(192, 57, 43, 0.8)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Draw "X" icon inside button
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 3;
+  ctx.lineCap = 'round';
+  const iconSizeInner = radius * 0.6;
+  ctx.beginPath();
+  ctx.moveTo(centerX - iconSizeInner, centerY - iconSizeInner);
+  ctx.lineTo(centerX + iconSizeInner, centerY + iconSizeInner);
+  ctx.moveTo(centerX + iconSizeInner, centerY - iconSizeInner);
+  ctx.lineTo(centerX - iconSizeInner, centerY + iconSizeInner);
+  ctx.stroke();
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold ' + iconLabelSize + 'px Arial';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillText(t("endGameAction"), centerX, endGameButtonRect.y + endGameButtonRect.height + 4);
 }
 
 function drawGameOver() {
@@ -2407,7 +2507,7 @@ function drawNoteOverlay() {
   ctx.font = '600 18px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillText('📓 Notes', x + 16, y + headerHeight / 2);
+  fillTextBidi(ctx, "📓 " + t("myNotesInfo"), x + 16, y + headerHeight / 2);
 
   // Close Button
   const closeSize = 26;
@@ -2479,11 +2579,11 @@ function drawNoteOverlay() {
 
     ctx.fillStyle = '#2c3e50';
     ctx.font = 'bold 18px Arial';
-    ctx.fillText('Your word album is empty', x + panelWidth / 2, fishY);
+    ctx.fillText(t("emptyStateNote"), x + panelWidth / 2, fishY);
 
     ctx.fillStyle = '#7f8c8d';
     ctx.font = '14px Arial';
-    ctx.fillText('Catch fish to unlock new words!', x + panelWidth / 2, fishY + 26);
+    ctx.fillText("Catch fish to unlock new words!", x + panelWidth / 2, fishY + 26);
 
   } else {
 
@@ -2994,7 +3094,7 @@ function drawLanguageOverlay() {
   ctx.font = '600 18px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillText('Language Settings', x + 16, y + headerHeight / 2);
+  ctx.fillText(t("languageSettingsTitle"), x + 16, y + headerHeight / 2);
 
   // Close Button
   const closeSize = 26;
@@ -3056,12 +3156,12 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  const levelLabel = 'Difficulty Level';
+  const levelLabel = t("difficultylabel");
   ctx.fillText(levelLabel, x + 28, levelSectionY + 12);
   ctx.font = '12px Arial';
   ctx.fillStyle = '#1E5F8F';
   const levelLabelWidth = ctx.measureText(levelLabel).width;
-  ctx.fillText(`Current: ${state.activeLevel}`, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
+  fillTextBidi(ctx, t("currentLevel") + ": " + state.activeLevel, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
 
   state.levelRects = [];
   const levelGridStartY = levelSectionY + 40;
@@ -3101,7 +3201,7 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  ctx.fillText('Learning', x + 28, cursorY + 12);
+  ctx.fillText(t("learningLabel"), x + 28, cursorY + 12);
 
   state.languageLearningRects = [];
   const learningKeyStartY = cursorY + 36;
@@ -3141,7 +3241,7 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 14px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'top';
-  ctx.fillText('Using', x + 28, cursorY + 12);
+  ctx.fillText(t("usingLable"), x + 28, cursorY + 12);
 
   state.languageBaseRects = [];
   const baseKeyStartY = cursorY + 36;
@@ -3236,14 +3336,14 @@ function drawLanguageOverlay() {
   ctx.font = 'bold 18px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText('Apply', confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height / 2);
+  ctx.fillText(t("applyButton"), confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height / 2);
 
   ctx.restore();
 
   if (state.isLoadingVocab) {
     ctx.fillStyle = '#1E3A5F';
     ctx.font = '12px Arial';
-    ctx.fillText('Loading vocab...', confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height + 18);
+    ctx.fillText(t("loading"), confirmRect.x + confirmRect.width / 2, confirmRect.y + confirmRect.height + 18);
   }
 
   ctx.restore(); // End clip
@@ -3453,8 +3553,8 @@ async function handleInputClick(e) {
           state.selectedLearningLang = opt.lang;
           // If base language is the same as new learning language, revert and show toast
           if (state.selectedBaseLang === opt.lang) {
-            state.selectedLearningLang = previousLearningLang; // Revert to previous value
-            showToast("Please Choose Different Language");
+            state.selectedLearningLang = previousLearningLang;
+            showToast(t("selectLanguagePrompt"));
           }
           handledLang = true;
           break;
@@ -3469,8 +3569,8 @@ async function handleInputClick(e) {
           state.selectedBaseLang = opt.lang;
           // If learning language is the same as new base language, revert and show toast
           if (state.selectedLearningLang === opt.lang) {
-            state.selectedBaseLang = previousBaseLang; // Revert to previous value
-            showToast("Please Choose Different Language");
+            state.selectedBaseLang = previousBaseLang;
+            showToast(t("selectLanguagePrompt"));
           }
           handledLang = true;
           break;
@@ -3551,6 +3651,12 @@ async function handleInputClick(e) {
     }
     state.languageOpen = true;
     state.noteOpen = false;
+    return;
+  }
+
+  // End Game button
+  if (state.endGameButtonRect && isPointInRect(clickX, clickY, state.endGameButtonRect)) {
+    endGame(t("gameOverStatus"));
     return;
   }
 
@@ -3840,56 +3946,56 @@ function getAudioContext() {
   return audioContext;
 }
 
-function playTickSound() {
-  const ctx = getAudioContext();
-  if (!ctx) return;
+// function playTickSound() {
+//   const ctx = getAudioContext();
+//   if (!ctx) return;
 
-  // Create a short tick sound using oscillator
-  const oscillator = ctx.createOscillator();
-  const gainNode = ctx.createGain();
+//   // Create a short tick sound using oscillator
+//   const oscillator = ctx.createOscillator();
+//   const gainNode = ctx.createGain();
 
-  oscillator.connect(gainNode);
-  gainNode.connect(ctx.destination);
+//   oscillator.connect(gainNode);
+//   gainNode.connect(ctx.destination);
 
-  // Configure tick sound: 440Hz, 100ms duration
-  oscillator.frequency.value = 440;
-  oscillator.type = 'sine';
+//   // Configure tick sound: 440Hz, 100ms duration
+//   oscillator.frequency.value = 440;
+//   oscillator.type = 'sine';
 
-  // Envelope: quick attack, quick decay
-  const now = ctx.currentTime;
-  gainNode.gain.setValueAtTime(0, now);
-  gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01); // Attack
-  gainNode.gain.linearRampToValueAtTime(0, now + 0.1); // Decay (100ms total)
+//   // Envelope: quick attack, quick decay
+//   const now = ctx.currentTime;
+//   gainNode.gain.setValueAtTime(0, now);
+//   gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01); // Attack
+//   gainNode.gain.linearRampToValueAtTime(0, now + 0.1); // Decay (100ms total)
 
-  oscillator.start(now);
-  oscillator.stop(now + 0.1);
-}
+//   oscillator.start(now);
+//   oscillator.stop(now + 0.1);
+// }
 
-function startCountdownSound() {
-  if (state.countdownSoundPlaying) return;
+// function startCountdownSound() {
+//   if (state.countdownSoundPlaying) return;
 
-  state.countdownSoundPlaying = true;
+//   state.countdownSoundPlaying = true;
 
-  // Play first tick immediately
-  playTickSound();
+//   // Play first tick immediately
+//   playTickSound();
 
-  // Then play every second
-  state.countdownSoundInterval = setInterval(() => {
-    if (!state.countdownSoundPlaying) {
-      stopCountdownSound();
-      return;
-    }
-    playTickSound();
-  }, 1000);
-}
+//   // Then play every second
+//   state.countdownSoundInterval = setInterval(() => {
+//     if (!state.countdownSoundPlaying) {
+//       stopCountdownSound();
+//       return;
+//     }
+//     playTickSound();
+//   }, 1000);
+// }
 
-function stopCountdownSound() {
-  state.countdownSoundPlaying = false;
-  if (state.countdownSoundInterval) {
-    clearInterval(state.countdownSoundInterval);
-    state.countdownSoundInterval = null;
-  }
-}
+// function stopCountdownSound() {
+//   state.countdownSoundPlaying = false;
+//   if (state.countdownSoundInterval) {
+//     clearInterval(state.countdownSoundInterval);
+//     state.countdownSoundInterval = null;
+//   }
+// }
 
 // Start
 init();
