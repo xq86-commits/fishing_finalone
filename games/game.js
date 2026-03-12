@@ -2,9 +2,25 @@ const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
 // i18n: reuse parent page's i18n object (same-origin iframe)
-var t = (window.parent && window.parent !== window && window.parent.i18n)
-  ? window.parent.i18n.t.bind(window.parent.i18n)
-  : (window.i18n ? window.i18n.t.bind(window.i18n) : function (key) { return key; });
+var _i18n = (window.parent && window.parent !== window && window.parent.i18n)
+  ? window.parent.i18n
+  : (window.i18n || null);
+var t = _i18n ? _i18n.t.bind(_i18n) : function (key) { return key; };
+
+function isRTL() {
+  return _i18n && typeof _i18n.isRTL === 'function' && _i18n.isRTL();
+}
+
+function fillTextBidi(ctx, text, x, y) {
+  if (isRTL()) {
+    ctx.save();
+    ctx.direction = 'rtl';
+    ctx.fillText(text, x, y);
+    ctx.restore();
+  } else {
+    ctx.fillText(text, x, y);
+  }
+}
 
 // Game Configuration
 // const GAME_DURATION = 90; // seconds
@@ -1024,10 +1040,41 @@ let dpr = window.devicePixelRatio || 1;
 let toastTimeout = null;
 let toastLines = [];
 
+function wrapText(ctx, text, maxWidth) {
+  var manualLines = text.split('\n');
+  var result = [];
+  for (var m = 0; m < manualLines.length; m++) {
+    var line = manualLines[m];
+    if (ctx.measureText(line).width <= maxWidth) {
+      result.push(line);
+      continue;
+    }
+    var words = line.split(/(\s+)/);
+    var current = '';
+    for (var i = 0; i < words.length; i++) {
+      var word = words[i];
+      var test = current + word;
+      if (ctx.measureText(test).width > maxWidth && current.trim().length > 0) {
+        result.push(current.trim());
+        current = word;
+      } else {
+        current = test;
+      }
+    }
+    if (current.trim()) result.push(current.trim());
+  }
+  return result;
+}
+
 function showToast(message, duration = 800, position = 0.7) {
-  state.toastMessage = message; // Keep for compatibility if needed, but we use toastLines now
-  state.toastPosition = position; // Set toast position
-  toastLines = message.split('\n');
+  state.toastMessage = message;
+  state.toastPosition = position;
+
+  ctx.save();
+  ctx.font = 'bold 14px Arial';
+  var maxTextWidth = 260;
+  toastLines = wrapText(ctx, message, maxTextWidth);
+  ctx.restore();
 
   if (toastTimeout) {
     clearTimeout(toastTimeout);
@@ -1037,7 +1084,7 @@ function showToast(message, duration = 800, position = 0.7) {
     if (state.toastMessage === captured && !state.isEnding && !state.gameOver) {
       state.toastMessage = null;
       toastLines = [];
-      state.toastPosition = 0.7; // Reset to default position
+      state.toastPosition = 0.7;
     }
     toastTimeout = null;
   }, duration);
@@ -2052,19 +2099,24 @@ function draw() {
     const logicalHeight = canvas.height / dpr;
 
     ctx.save();
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    ctx.font = 'bold 14px Arial';
 
-    // Calculate size based on lines
-    const lineHeight = 30;
-    const paddingV = 0;
-    const paddingH = 40;
+    const lineHeight = 24;
+    const paddingV = 16;
+    const paddingH = 28;
+
+    var maxLineWidth = 0;
+    for (var li = 0; li < toastLines.length; li++) {
+      var w = ctx.measureText(toastLines[li]).width;
+      if (w > maxLineWidth) maxLineWidth = w;
+    }
+
+    const boxWidth = Math.min(maxLineWidth + paddingH * 2, logicalWidth - 40);
     const boxHeight = toastLines.length * lineHeight + paddingV;
-    const boxWidth = 300; // Fixed width for simplicity or measure
-
-    // Use fillRect for compatibility if roundRect is not supported, or check support
     const boxX = logicalWidth / 2 - boxWidth / 2;
     const boxY = logicalHeight * state.toastPosition - boxHeight / 2;
 
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
     if (ctx.roundRect) {
       ctx.beginPath();
       ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 10);
@@ -2074,14 +2126,12 @@ function draw() {
     }
 
     ctx.fillStyle = '#fff';
-    ctx.font = 'bold 14px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
-    // Draw each line
     toastLines.forEach((line, index) => {
       const lineY = boxY + paddingV / 2 + lineHeight / 2 + index * lineHeight;
-      ctx.fillText(line, logicalWidth / 2, lineY);
+      fillTextBidi(ctx, line, logicalWidth / 2, lineY);
     });
 
     ctx.restore();
@@ -2134,7 +2184,7 @@ function drawUI() {
   ctx.textAlign = 'left';
   ctx.fillStyle = '#666';
   ctx.font = 'bold 20px Arial';
-  ctx.fillText(t("gameScoreText") + ": " + Math.round(state.displayScore), 20, 106 + uiOffsetY);
+  fillTextBidi(ctx, t("gameScoreText") + ": " + Math.round(state.displayScore), 20, 106 + uiOffsetY);
 
   // Lives below score, preserving previous gap (30px)
   if (Math.abs(state.displayLives - state.targetLives) > 0.01) {
@@ -2148,7 +2198,7 @@ function drawUI() {
   ctx.fillStyle = '#e74c3c';
   ctx.font = 'bold 20px Arial';
   ctx.textAlign = 'left';
-  ctx.fillText(t("healthPointsValue") + ": " + Math.round(state.displayLives), 20, 136 + uiOffsetY);
+  fillTextBidi(ctx, t("healthPointsValue") + ": " + Math.round(state.displayLives), 20, 136 + uiOffsetY);
 
   // Current word placed beside the fisherman
   const personWidth = 100;
@@ -2240,6 +2290,7 @@ function drawUI() {
   ctx.fillText(displayTranslation, textCenterX, englishY);
 
   // Icons (Music, Settings, Note, Hint) on the right
+  const iconLabelSize = (_i18n && _i18n.getLocale() === "Japanese") ? 10 : 12;
   const iconSize = 40;
   const musicIconSize = 50; // Music button has different size
   const iconGap = 30; // Gap between icon bottom and next icon top (including text)
@@ -2287,7 +2338,7 @@ function drawUI() {
     }
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold ' + iconLabelSize + 'px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillText(t("music"), rect.x + rect.width / 2, rect.y + rect.height + 4);
@@ -2302,7 +2353,7 @@ function drawUI() {
     ctx.drawImage(ASSETS.settings.img, rect.x, rect.y, rect.width, rect.height);
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold ' + iconLabelSize + 'px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillText(t("language_settings"), rect.x + rect.width / 2, rect.y + rect.height + 4);
@@ -2317,7 +2368,7 @@ function drawUI() {
     ctx.drawImage(ASSETS.note.img, rect.x, rect.y, rect.width, rect.height);
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold ' + iconLabelSize + 'px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillText(t("myNotesInfo"), rect.x + rect.width / 2, rect.y + rect.height + 4);
@@ -2348,7 +2399,7 @@ function drawUI() {
     ctx.fillText(badgeText, badgeX, badgeY);
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold ' + iconLabelSize + 'px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillText(t("hintPoint"), rect.x + rect.width / 2, rect.y + rect.height + 4);
@@ -2387,9 +2438,8 @@ function drawUI() {
   ctx.lineTo(centerX - iconSizeInner, centerY + iconSizeInner);
   ctx.stroke();
 
-  // Draw label below button
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 12px Arial';
+  ctx.font = 'bold ' + iconLabelSize + 'px Arial';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
   ctx.fillText(t("endGameAction"), centerX, endGameButtonRect.y + endGameButtonRect.height + 4);
@@ -2456,7 +2506,7 @@ function drawNoteOverlay() {
   ctx.font = '600 18px Arial';
   ctx.textAlign = 'left';
   ctx.textBaseline = 'middle';
-  ctx.fillText("📓 " + t("myNotesInfo"), x + 16, y + headerHeight / 2);
+  fillTextBidi(ctx, "📓 " + t("myNotesInfo"), x + 16, y + headerHeight / 2);
 
   // Close Button
   const closeSize = 26;
@@ -3110,7 +3160,7 @@ function drawLanguageOverlay() {
   ctx.font = '12px Arial';
   ctx.fillStyle = '#1E5F8F';
   const levelLabelWidth = ctx.measureText(levelLabel).width;
-  ctx.fillText(t("currentLevel") + ": " + state.activeLevel, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
+  fillTextBidi(ctx, t("currentLevel") + ": " + state.activeLevel, x + 28 + levelLabelWidth + 40, levelSectionY + 14);
 
   state.levelRects = [];
   const levelGridStartY = levelSectionY + 40;

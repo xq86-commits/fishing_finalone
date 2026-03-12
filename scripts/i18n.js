@@ -28,7 +28,13 @@
     return isValidLocale(name) ? name : null;
   }
 
+  var RTL_LOCALES = ["Arabic"];
+
   window.i18n = {
+    isRTL: function () {
+      return RTL_LOCALES.indexOf(currentLocale) !== -1;
+    },
+
     setLocale: function (locale) {
       var resolved = resolveLocale(locale) || fallbackLocale;
       currentLocale = locales[resolved] ? resolved : fallbackLocale;

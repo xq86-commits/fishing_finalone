@@ -1015,6 +1015,7 @@
       document.querySelectorAll("[data-i18n-aria]").forEach(function(el) {
         el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
       });
+      document.documentElement.dir = (window.i18n && window.i18n.isRTL()) ? "rtl" : "ltr";
       document.title = "Words Fishing Lingo";
     }
 
@@ -2114,7 +2115,9 @@
         latestLevel = levelValue;
         hideAll();
         showFlex("result-screen");
-        resultTitle.textContent = t("yourScoreDisplay") + ": " + latestScore;
+        var scoreText = t("yourScoreDisplay") + ": " + latestScore;
+        resultTitle.textContent = scoreText;
+        resultTitle.dir = (window.i18n && window.i18n.isRTL()) ? "rtl" : "ltr";
 
         // Show/hide Easier Mode button based on conditions
         if (easierModeBtn) {
