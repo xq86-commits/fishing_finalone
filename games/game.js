@@ -249,6 +249,8 @@ let state = {
   musicWaveAnim: { time: 0 },
   selectedLearningLang: "English",
   selectedBaseLang: "中文",
+  pendingLearningLang: "English",
+  pendingBaseLang: "中文",
   selectedLevel: DEFAULT_LEVEL,
   activeLevel: DEFAULT_LEVEL,
   activeVocab: vocabCache[DEFAULT_LEVEL] || vocabCache["Beginner"],
@@ -775,24 +777,43 @@ function loadSavedGameSettings() {
 
     // Ensure learning and base languages are different
     if (state.selectedLearningLang === state.selectedBaseLang) {
-      // If they're the same, reset base language to a different one
       const availableBaseLang = LANGUAGE_OPTIONS.find(l => l !== state.selectedLearningLang);
       if (availableBaseLang) {
         state.selectedBaseLang = availableBaseLang;
       } else {
-        state.selectedBaseLang = "中文"; // Fallback
+        state.selectedBaseLang = "中文";
       }
     }
+
+    state.pendingLearningLang = state.selectedLearningLang;
+    state.pendingBaseLang = state.selectedBaseLang;
   } catch (e) {
     console.warn('[game] Failed to load settings from localStorage', e);
   }
 }
 
+function saveGameSettings() {
+  try {
+    localStorage.setItem('fishwordlingo_last_learningLang', state.selectedLearningLang);
+    localStorage.setItem('fishwordlingo_last_baseLang', state.selectedBaseLang);
+    localStorage.setItem('fishwordlingo_last_level', state.selectedLevel);
+  } catch (e) {
+    console.warn('[game] Failed to save settings to localStorage', e);
+  }
+}
+
 async function applyLanguageSettings() {
-  if (state.selectedLearningLang === state.selectedBaseLang) {
+  if (state.pendingLearningLang === state.pendingBaseLang) {
     showToast(t("selectLanguagePrompt"));
     return;
   }
+
+  state.isTransitioning = true;
+  state.fishes.forEach(f => f.opacity = 0);
+
+  state.selectedLearningLang = state.pendingLearningLang;
+  state.selectedBaseLang = state.pendingBaseLang;
+  saveGameSettings();
 
   const levelChanged = state.selectedLevel !== state.activeLevel || !(state.activeVocab && state.activeVocab.length);
   if (levelChanged) {
@@ -800,6 +821,7 @@ async function applyLanguageSettings() {
   }
 
   state.languageOpen = false;
+  state.isTransitioning = false;
   pickNewWordAndSpawn();
 }
 
@@ -849,6 +871,7 @@ function handleAdEvent(payload) {
 }
 
 async function requestHintAd() {
+  return showToast(t("hintPlusOne"));
   attachHintAdListener();
 
   const adManager = getAdManager();
@@ -1040,6 +1063,33 @@ let dpr = window.devicePixelRatio || 1;
 let toastTimeout = null;
 let toastLines = [];
 
+function isCJK(ch) {
+  var code = ch.charCodeAt(0);
+  return (code >= 0x3000 && code <= 0x9FFF) ||
+         (code >= 0xAC00 && code <= 0xD7AF) ||
+         (code >= 0xF900 && code <= 0xFAFF) ||
+         (code >= 0xFF01 && code <= 0xFF60);
+}
+
+function tokenize(line) {
+  var tokens = [];
+  var buf = '';
+  for (var i = 0; i < line.length; i++) {
+    var ch = line[i];
+    if (isCJK(ch)) {
+      if (buf) { tokens.push(buf); buf = ''; }
+      tokens.push(ch);
+    } else if (/\s/.test(ch)) {
+      buf += ch;
+      tokens.push(buf); buf = '';
+    } else {
+      buf += ch;
+    }
+  }
+  if (buf) tokens.push(buf);
+  return tokens;
+}
+
 function wrapText(ctx, text, maxWidth) {
   var manualLines = text.split('\n');
   var result = [];
@@ -1049,14 +1099,14 @@ function wrapText(ctx, text, maxWidth) {
       result.push(line);
       continue;
     }
-    var words = line.split(/(\s+)/);
+    var tokens = tokenize(line);
     var current = '';
-    for (var i = 0; i < words.length; i++) {
-      var word = words[i];
-      var test = current + word;
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i];
+      var test = current + token;
       if (ctx.measureText(test).width > maxWidth && current.trim().length > 0) {
         result.push(current.trim());
-        current = word;
+        current = token;
       } else {
         current = test;
       }
@@ -1441,34 +1491,34 @@ function spawnFishes(fromSides = false) {
   });
 
   const fishChars = [];
-  // 方案二：每个需要的字符出现多次，增加正确小鱼的数量
-  neededChars.forEach(c => {
-    for (let i = 0; i < CORRECT_FISH_MULTIPLIER; i++) {
-      fishChars.push({ char: c, needed: true });
+  const uniqueNeededChars = [];
+  neededChars.forEach(char => {
+    if (uniqueNeededChars.indexOf(char) === -1) {
+      uniqueNeededChars.push(char);
+      fishChars.push({ char: char, needed: true, guaranteed: true });
     }
   });
-  // 如果正确小鱼的数量已经达到或超过 FISH_COUNT，就只取前 FISH_COUNT 个
-  // 否则用随机字符填充剩余位置
+
+  // 先保证每个必需字符至少出现一次，再追加额外的正确字符。
+  neededChars.forEach(char => {
+    for (let i = 1; i < CORRECT_FISH_MULTIPLIER && fishChars.length < FISH_COUNT; i++) {
+      fishChars.push({ char: char, needed: true, guaranteed: false });
+    }
+  });
+
   while (fishChars.length < FISH_COUNT) {
-    fishChars.push({ char: randomChar(state.selectedLearningLang), needed: false });
-  }
-  // 如果正确小鱼超过 FISH_COUNT，随机选择 FISH_COUNT 个（优先保留正确小鱼）
-  if (fishChars.length > FISH_COUNT) {
-    // 打乱顺序，然后取前 FISH_COUNT 个
-    for (let i = fishChars.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [fishChars[i], fishChars[j]] = [fishChars[j], fishChars[i]];
-    }
-    fishChars.splice(FISH_COUNT);
-  } else {
-    // 如果正好等于 FISH_COUNT，也需要打乱顺序
-    for (let i = fishChars.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [fishChars[i], fishChars[j]] = [fishChars[j], fishChars[i]];
-    }
+    fishChars.push({ char: randomChar(state.selectedLearningLang), needed: false, guaranteed: false });
   }
 
+  for (let i = fishChars.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [fishChars[i], fishChars[j]] = [fishChars[j], fishChars[i]];
+  }
+
+  // 首次生成时确保每个必需字符至少有一条鱼直接出现在可见区域，
+  // 避免后续通过运行时纠正字符导致可见闪动。
   for (let i = 0; i < FISH_COUNT; i++) {
+    const fishConfig = fishChars[i];
     const fishTypeIndex = Math.floor(Math.random() * TOTAL_FISH_TYPES);
     // Logical height
     const logicalHeight = canvas.height / dpr;
@@ -1480,10 +1530,21 @@ function spawnFishes(fromSides = false) {
     const yMaxLogical = logicalHeight * 0.9;
 
     let startX, startY;
+    const side = Math.random() < 0.5 ? -1 : 1;
+    const shouldStartVisible = fromSides
+      && fishConfig
+      && fishConfig.guaranteed;
 
-    if (fromSides) {
+    if (shouldStartVisible) {
+      const visibleInset = Math.min(120, logicalWidth * 0.25);
+      startX = side === -1
+        ? randomRange(30, Math.max(40, visibleInset))
+        : randomRange(Math.min(logicalWidth - 40, Math.max(logicalWidth - visibleInset, logicalWidth * 0.7)), logicalWidth - 30);
+      const pos = findNonOverlappingPosition(startX, yMinLogical, yMaxLogical, logicalWidth, null);
+      startX = pos.x;
+      startY = pos.y;
+    } else if (fromSides) {
       // Spawn left or right
-      const side = Math.random() < 0.5 ? -1 : 1;
       startX = side === -1 ? -FISH_WIDTH - randomRange(0, 100) : logicalWidth + FISH_WIDTH + randomRange(0, 100);
       // 使用碰撞检测找到不重叠的y位置
       const pos = findNonOverlappingPosition(startX, yMinLogical, yMaxLogical, logicalWidth, null);
@@ -1500,7 +1561,7 @@ function spawnFishes(fromSides = false) {
     // If random spawn, random direction.
     let speed = randomRange(0.5, 1.5) * 0.75;
     if (fromSides) {
-      if (startX < 0) speed = Math.abs(speed); // Go right
+      if (side === -1) speed = Math.abs(speed); // Go right
       else speed = -Math.abs(speed); // Go left
     } else {
       speed *= (Math.random() < 0.5 ? 1 : -1);
@@ -1512,12 +1573,13 @@ function spawnFishes(fromSides = false) {
       speed: speed,
       vy: 0, // 添加垂直速度，初始为0
       typeIndex: fishTypeIndex,
-      char: fishChars[i].char,
+      char: fishConfig.char,
       width: FISH_WIDTH,
       height: FISH_HEIGHT,
       wobbleOffset: Math.random() * Math.PI * 2,
       bobOffset: Math.random() * Math.PI * 2,
-      opacity: fromSides ? 1 : 1 // Start visible
+      opacity: 0,
+      fadeIn: true
     });
   }
 }
@@ -1593,6 +1655,7 @@ function getMissingCharsOnScreen() {
 
 // 确保每个需要的字符都至少有一条小鱼在屏幕内
 function ensureCorrectFishOnScreen() {
+  if (state.fishes.some(f => f.fadeIn)) return;
   const missingChars = getMissingCharsOnScreen();
   if (missingChars.length === 0) return; // 所有字符都有对应小鱼
   
@@ -1604,31 +1667,18 @@ function ensureCorrectFishOnScreen() {
   
   // 为每个缺失的字符补充一条小鱼
   missingChars.forEach(missingChar => {
-    // 优先找一条在屏幕内的小鱼来替换
+    // 只调整屏幕外的小鱼，避免用户看到屏幕内文字被替换。
     let targetFish = state.fishes.find(fish => {
-      if (fish.isWrong || fish.opacity <= 0) return false;
-      const isOnScreen = fish.x >= -50 && fish.x <= logicalWidth + 50;
-      if (!isOnScreen) return false;
-      
-      // 这条小鱼不是正确答案，可以替换
+      if (fish.isWrong || fish.opacity <= 0 || fish.fadeIn) return false;
+      const isOffScreen = fish.x < -50 || fish.x > logicalWidth + 50;
+      if (!isOffScreen) return false;
       return !neededChars.includes(fish.char);
     });
-    
-    // 如果屏幕内没有可替换的小鱼，找一条即将进入屏幕的小鱼
-    if (!targetFish) {
-      targetFish = state.fishes.find(fish => {
-        return !fish.isWrong && fish.opacity > 0;
-      });
-    }
-    
-    // 如果找到了小鱼，设置为缺失的字符
+
     if (targetFish) {
       targetFish.char = missingChar;
-      // 如果小鱼在屏幕外，立即移动到屏幕边缘
-      if (targetFish.x < -50 || targetFish.x > logicalWidth + 50) {
-        targetFish.x = targetFish.speed > 0 ? -50 : logicalWidth + 50;
-        targetFish.y = randomRange(yMin, yMax);
-      }
+      targetFish.x = targetFish.speed > 0 ? -FISH_WIDTH - 10 : logicalWidth + FISH_WIDTH + 10;
+      targetFish.y = randomRange(yMin, yMax);
     }
   });
 }
@@ -1765,6 +1815,11 @@ function update(dt) {
 
   // Fish Movement
   state.fishes.forEach(fish => {
+    if (fish.fadeIn) {
+      fish.opacity = Math.min(1, fish.opacity + dt * 0.004);
+      if (fish.opacity >= 1) fish.fadeIn = false;
+    }
+
     if (fish.isWrong) {
       // Wrong Fish Animation (Vibrate & Fade)
       fish.opacity -= dt * 0.002; // Fade out speed
@@ -1778,7 +1833,8 @@ function update(dt) {
       // Respawn if fully faded
       if (fish.opacity <= 0) {
         fish.isWrong = false;
-        fish.opacity = 1;
+        fish.opacity = 0;
+        fish.fadeIn = true;
         fish.shakeX = 0;
         fish.shakeY = 0;
         
@@ -1951,14 +2007,8 @@ function endGame(reason) {
   setTimeout(() => {
     state.gameOver = true;
 
-    // Save game settings to localStorage for next game
-    try {
-      localStorage.setItem('fishwordlingo_last_learningLang', state.selectedLearningLang);
-      localStorage.setItem('fishwordlingo_last_baseLang', state.selectedBaseLang);
-      localStorage.setItem('fishwordlingo_last_level', state.selectedLevel);
-    } catch (e) {
-      console.warn('[game] Failed to save settings to localStorage', e);
-    }
+    // Keep a final save as a fallback.
+    saveGameSettings();
 
     // Send message to parent
     window.parent.postMessage({
@@ -3213,7 +3263,7 @@ function drawLanguageOverlay() {
     const rect = { x: chipX, y: chipY, width: chipWidth, height: chipHeight, lang, type: 'learning' };
     state.languageLearningRects.push(rect);
 
-    const selected = state.selectedLearningLang === lang;
+    const selected = state.pendingLearningLang === lang;
 
     // Draw enhanced button
     drawEnhancedButton(ctx, chipX, chipY, chipWidth, chipHeight, 8, selected, lang);
@@ -3253,7 +3303,7 @@ function drawLanguageOverlay() {
     const rect = { x: chipX, y: chipY, width: chipWidth, height: chipHeight, lang, type: 'base' };
     state.languageBaseRects.push(rect);
 
-    const selected = state.selectedBaseLang === lang;
+    const selected = state.pendingBaseLang === lang;
 
     // Draw enhanced button
     drawEnhancedButton(ctx, chipX, chipY, chipWidth, chipHeight, 8, selected, lang);
@@ -3549,12 +3599,10 @@ async function handleInputClick(e) {
     if (!handledLang) {
       for (const opt of state.languageLearningRects) {
         if (isPointInRect(clickX, clickY, opt)) {
-          const previousLearningLang = state.selectedLearningLang; // Save previous value
-          state.selectedLearningLang = opt.lang;
-          // If base language is the same as new learning language, revert and show toast
-          if (state.selectedBaseLang === opt.lang) {
-            state.selectedLearningLang = previousLearningLang;
+          if (state.pendingBaseLang === opt.lang) {
             showToast(t("selectLanguagePrompt"));
+          } else {
+            state.pendingLearningLang = opt.lang;
           }
           handledLang = true;
           break;
@@ -3565,12 +3613,10 @@ async function handleInputClick(e) {
     if (!handledLang) {
       for (const opt of state.languageBaseRects) {
         if (isPointInRect(clickX, clickY, opt)) {
-          const previousBaseLang = state.selectedBaseLang; // Save previous value
-          state.selectedBaseLang = opt.lang;
-          // If learning language is the same as new base language, revert and show toast
-          if (state.selectedLearningLang === opt.lang) {
-            state.selectedBaseLang = previousBaseLang;
+          if (state.pendingLearningLang === opt.lang) {
             showToast(t("selectLanguagePrompt"));
+          } else {
+            state.pendingBaseLang = opt.lang;
           }
           handledLang = true;
           break;
@@ -3640,15 +3686,16 @@ async function handleInputClick(e) {
   // Language button
   if (state.langButtonRect && isPointInRect(clickX, clickY, state.langButtonRect)) {
     state.selectedLevel = state.activeLevel || state.selectedLevel || DEFAULT_LEVEL;
-    // Ensure base language is valid (but allow same as learning - will be validated on click)
     if (!LANGUAGE_OPTIONS.includes(state.selectedBaseLang)) {
       const availableBaseLang = LANGUAGE_OPTIONS.find(l => l !== state.selectedLearningLang);
       if (availableBaseLang) {
         state.selectedBaseLang = availableBaseLang;
       } else {
-        state.selectedBaseLang = "中文"; // Fallback
+        state.selectedBaseLang = "中文";
       }
     }
+    state.pendingLearningLang = state.selectedLearningLang;
+    state.pendingBaseLang = state.selectedBaseLang;
     state.languageOpen = true;
     state.noteOpen = false;
     return;
@@ -3670,7 +3717,7 @@ async function handleInputClick(e) {
   for (let i = state.fishes.length - 1; i >= 0; i--) {
     const fish = state.fishes[i];
 
-    if (fish.isWrong) continue; // Ignore dying fish
+    if (fish.isWrong || fish.fadeIn || (fish.opacity !== undefined && fish.opacity < 0.95)) continue;
 
     // Fish coordinates are logical.
     // Apply bobbing to Y for collision check
