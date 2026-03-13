@@ -792,6 +792,16 @@ function loadSavedGameSettings() {
   }
 }
 
+function saveGameSettings() {
+  try {
+    localStorage.setItem('fishwordlingo_last_learningLang', state.selectedLearningLang);
+    localStorage.setItem('fishwordlingo_last_baseLang', state.selectedBaseLang);
+    localStorage.setItem('fishwordlingo_last_level', state.selectedLevel);
+  } catch (e) {
+    console.warn('[game] Failed to save settings to localStorage', e);
+  }
+}
+
 async function applyLanguageSettings() {
   if (state.pendingLearningLang === state.pendingBaseLang) {
     showToast(t("selectLanguagePrompt"));
@@ -803,6 +813,7 @@ async function applyLanguageSettings() {
 
   state.selectedLearningLang = state.pendingLearningLang;
   state.selectedBaseLang = state.pendingBaseLang;
+  saveGameSettings();
 
   const levelChanged = state.selectedLevel !== state.activeLevel || !(state.activeVocab && state.activeVocab.length);
   if (levelChanged) {
@@ -1996,14 +2007,8 @@ function endGame(reason) {
   setTimeout(() => {
     state.gameOver = true;
 
-    // Save game settings to localStorage for next game
-    try {
-      localStorage.setItem('fishwordlingo_last_learningLang', state.selectedLearningLang);
-      localStorage.setItem('fishwordlingo_last_baseLang', state.selectedBaseLang);
-      localStorage.setItem('fishwordlingo_last_level', state.selectedLevel);
-    } catch (e) {
-      console.warn('[game] Failed to save settings to localStorage', e);
-    }
+    // Keep a final save as a fallback.
+    saveGameSettings();
 
     // Send message to parent
     window.parent.postMessage({
